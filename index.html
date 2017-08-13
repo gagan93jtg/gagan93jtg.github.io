@@ -4,33 +4,38 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Portfolio</title>
+  <title>Gagandeep Singh - Ruby on Rails developer / AWS Devops</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
   <link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
 <body data-spy="scroll" data-target="#main-navbar" data-offset="100">
-  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse" id="main-navbar">
-    <ul class="nav navbar-nav container nav-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#timeline">Timeline</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#skills">Skills</a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-light bg-faded navbar-fixed-top navbar-dark bg-inverse">
+    <button class="navbar navbar-fixed-top navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation" id="main-navbar">
+      &#9776;
+    </button>
+    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+      <ul class="nav navbar-nav container nav-pills">
+        <li class="nav-item active">
+          <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#timeline">Timeline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">Skills</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <div class="top-header" id="home">
-    <div class="container">
-      <img src="resources/images/gagan.png" class="top-img img-circle img-fluid d-inline-block">
+    <div class="container top-part">
+      <img src="resources/images/gagan.png" class="top-img img-circle img-fluid">
       <div class="top-details d-inline-block">
         <h1 class="top-details-h1">Gagandeep Singh</h1>
         <h4 class="top-details-h4">Web App Developer / Devops</h4>
@@ -55,7 +60,7 @@
 
   <div class="container bottom-part">
     <div id="block-1">
-      <div class="gray-box d-inline-block about" id="about">
+      <div class="gray-box about" id="about">
         <h1 class="m-b-3 gray-box-header">About</h1>
         <h5 class="d-inline-block gray-box-body">
           I'm a Ruby on rails developer with more than 2 years of experience in backend development, design,
@@ -63,20 +68,20 @@
         </h5>
       </div>
 
-      <div class="gray-box current-things d-inline-block">
-        <div class="d-inline-block current-things-item">
+      <div class="gray-box current-things">
+        <div class="current-things-item">
           <i class="material-icons m-r-2">location_on</i>
           <p class="d-inline-block gray-box-body">New Delhi, India</p>
         </div>
-        <div class="d-inline-block current-things-item">
+        <div class="current-things-item">
           <i class="material-icons m-r-2">work</i>
-          <p class="d-inline-block gray-box-body">JTG E-Business Solutions Pvt. Ltd. | Haryana, India</p>
+          <p class="d-inline-block gray-box-body">JTG E-Business Software Pvt. Ltd. | Haryana, India</p>
         </div>
-        <div class="d-inline-block current-things-item">
+        <div class="current-things-item">
           <i class="material-icons m-r-2">assignment_ind</i>
           <p class="d-inline-block gray-box-body">Senior Software Developer</p>
         </div>
-        <div class="d-inline-block current-things-item">
+        <div class="current-things-item">
           <i class="material-icons m-r-2">email</i>
           <p class="d-inline-block gray-box-body">gagan93gtbit@gmail.com</p>
         </div>
@@ -94,7 +99,7 @@
                 <div class="timeline-heading">
                   <h4 class="timeline-title">Senior Software Developer</h4>
                   <div class="timeline-sub-heading">
-                    <div><small class="text-muted">JTG E-Business Solutions Pvt. Ltd. | Gurugram, Haryana, India</small></div>
+                    <div><small class="text-muted">JTG E-Business Software Pvt. Ltd. | Gurugram, Haryana, India</small></div>
                     <div><small class="text-muted">Project : Uptime Cloud Monitor | Oct 2016 to Present</small></div>
                   </div>
                 </div>
@@ -118,7 +123,7 @@
                 <div class="timeline-heading">
                   <h4 class="timeline-title">Software Developer</h4>
                   <div class="timeline-sub-heading">
-                    <div><small class="text-muted">JTG E-Business Solutions Pvt. Ltd. | Gurugram, Haryana, India</small></div>
+                    <div><small class="text-muted">JTG E-Business Software Pvt. Ltd. | Gurugram, Haryana, India</small></div>
                     <div><small class="text-muted">Project : Uptime Cloud Monitor | Jun 2015 to Oct 2016</small></div>
                   </div>
                 </div>
@@ -162,18 +167,38 @@
     <div id="block-3">
       <div class="gray-box d-inline-block skills" id="skills">
         <h1 class="m-b-3 gray-box-header">Skills</h1>
-        <h5 class="d-inline-block gray-box-body">
+        <div class="d-inline-block gray-box-body">
           <div class="row">
-              <div class="ror-bar d-inline-block"></div>
-              <div class="aws-bar d-inline-block"></div>
-              <div class="android-bar d-inline-block"></div>
-              <div class="angular2-bar d-inline-block"></div>
-              <div class="azure-bar d-inline-block"></div>
-              <div class="Ubuntu-bar d-inline-block"></div>
-              <div class="java-bar d-inline-block"></div>
-              <div class="javascript-bar d-inline-block"></div>
+            <div class="col circle-text good-hold">Ruby on Rails </div>
+            <div class="col circle-text good">Java</div>
+            <div class="col circle-text good-hold">AWS EC2</div>
+            <div class="col circle-text good">Angular 2</div>
+            <div class="col circle-text good-hold">AWS VPC</div>
+            <div class="col circle-text good">Team Mgmt</div>
+            <div class="col circle-text good-hold">MySQL</div>
+            <div class="col circle-text good-hold">MS Azure Cloud</div>
+            <div class="col circle-text good-hold">AWS Lambda</div>
+            <div class="col circle-text good">Android</div>
+            <div class="col circle-text good-hold">Jenkins</div>
+            <div class="col circle-text good-hold">Github</div>
+            <div class="col circle-text good-hold">NGINX</div>
+            <div class="col circle-text good-hold">Ubuntu</div>
+            <div class="col circle-text good">Bash</div>
+            <div class="col circle-text good-hold">Redis</div>
+            <div class="col circle-text good">Backbone JS</div>
           </div>
-        </h5>
+
+          <div class="symbol-meaning">
+            <div>
+              <span class="indicator d-inline-block indicator-good-hold"></span>
+              <p class="d-inline">Things I am good at or have recently worked on</p>
+            </div>
+            <div>
+              <span class="indicator d-inline-block indicator-good"></span>
+              <p class="d-inline">Things on which I've worked in past / have limited knowledge about / are in learning phase</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
