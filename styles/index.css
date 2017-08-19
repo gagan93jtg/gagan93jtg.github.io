@@ -15,6 +15,10 @@ body {
   max-height: 55px;
 }
 
+.nav-link {
+  color: #666 !important;
+}
+
 .nav-link.active {
   color: #FFF !important;
   background-color: #222 !important;
@@ -47,7 +51,7 @@ body {
 .social a img {
   width: 48px;
   height: 48px;
-  margin: 15px 15px 0px 0px;
+  margin: 15px 7.5px 0px 7.5px;
   border-radius: 50%;
 }
 
@@ -76,6 +80,7 @@ body {
   vertical-align: top;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0, 0.1);
+  box-shadow: 0 0 4px #AAA;
 }
 
 .gray-box-header {
@@ -88,7 +93,7 @@ body {
   line-height: 1.50;
 }
 
-.about {
+.about-div {
   width: 565px;
   display: inline-block;
 }
@@ -115,15 +120,15 @@ body {
   font-size: 16px;
 }
 
-.skills {
+.skills-div {
   margin-bottom: 100px;
 }
 
-.skills .row {
+.skills-div .row {
   margin-left: 50px;
 }
 
-.skills .row .circle-text {
+.skills-div .row .circle-text {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -167,6 +172,15 @@ body {
   box-shadow: 0 0 2px #000;
 }
 
+.resume {
+  margin: 15px;
+}
+
+.resume a {
+  text-decoration: none;
+  color: #000;
+}
+
 footer {
   background-color: #222;
   min-height: 25px;
@@ -180,7 +194,19 @@ footer span {
   font-weight: 400;
 }
 
+@media (max-width: 1228px) {
+  .current-things, .about-div {
+    display: block;
+    width: 97.70%;
+  }
+}
+
 @media (max-width: 767px) {
+  .current-things, .about-div {
+    margin: 10px auto;
+    display: block;
+    width: 98.8%;
+  }
 
   .container {
     padding: 0px;
@@ -199,7 +225,7 @@ footer span {
 
   .top-details {
     width: 100%;
-    margin-top 25px;
+    margin: 25px 0px 0px 0px;
   }
 
   .top-details-h1 {
@@ -209,13 +235,14 @@ footer span {
 
   .top-details-h4 {
     font-size: 0.8rem;
+    margin: 15px 0px 0px 0px;
     text-align: center;
   }
 
   .social {
     display: block;
     text-align: center;
-    margin-left: 24px;
+    margin-left: 0px;
   }
 
   .social a img {
@@ -241,7 +268,7 @@ footer span {
     font-size: 12px;
   }
 
-  .skills .row .circle-text {
+  .skills-div .row .circle-text {
     width: 96px;
     height: 96px;
     font-size: 14px;
@@ -260,22 +287,20 @@ footer span {
     margin: 4px 5px 5px 5px;
   }
 
+  .resume a {
+    font-size: 0.55rem;
+  }
+
   footer {
     font-size: 10px;
     padding: 6px;
     min-height: 15px;
+    margin-top: 30px;
   }
 
   .gray-box {
     padding: 10px;
     margin: 10px 2px;
-  }
-}
-
-@media (max-width: 1228px) {
-  .current-things, .about {
-    display: block;
-    width: 97.70%;
   }
 }
 

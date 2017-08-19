@@ -14,21 +14,21 @@
   <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-down" id="main-navbar">
     <ul class="nav navbar-nav container nav-pills">
       <li class="nav-item">
-        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" id="home-link" href="#home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" id="about-link" href="#about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#timeline">Timeline</a>
+        <a class="nav-link" id="timeline-link" href="#timeline">Timeline</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" id="skills-link" href="#skills">Skills</a>
       </li>
     </ul>
   </nav>
 
-  <div class="top-header" id="home">
+  <div class="top-header home-div" id="home">
     <div class="container top-part">
       <img src="resources/images/gagan.png" class="top-img img-circle img-fluid">
       <div class="top-details d-inline-block">
@@ -55,7 +55,7 @@
 
   <div class="container bottom-part">
     <div id="block-1">
-      <div class="gray-box about" id="about">
+      <div class="gray-box about-div" id="about">
         <h1 class="m-b-3 gray-box-header">About</h1>
         <h5 class="d-inline-block gray-box-body">
           I'm a Ruby on rails developer with more than 2 years of experience in backend development, design,
@@ -84,7 +84,7 @@
     </div>
 
     <div id="block-2">
-      <div class="gray-box" id="timeline">
+      <div class="gray-box timeline-div" id="timeline">
         <h1 class="m-b-3 gray-box-header">Timeline</h1>
         <div class="container">
           <ul class="timeline">
@@ -160,7 +160,7 @@
     </div>
 
     <div id="block-3">
-      <div class="gray-box d-inline-block skills" id="skills">
+      <div class="gray-box d-inline-block skills-div" id="skills">
         <h1 class="m-b-3 gray-box-header">Skills</h1>
         <div class="d-inline-block gray-box-body">
           <div class="row">
@@ -193,6 +193,11 @@
               <p class="d-inline">Things on which I've worked in past / have limited knowledge about / are in learning phase</p>
             </div>
           </div>
+          <button class="resume btn btn-sm btn-outline-secondary">
+            <a href="https://github.com/gagan93jtg/gagan93jtg.github.io/raw/master/resources/pdfs/GagandeepSinghResume.pdf">
+              Download Resume
+            </a>
+          </button>
         </div>
       </div>
     </div>
@@ -210,5 +215,6 @@
   <script>
     $('body').bootstrapMaterialDesign();
   </script>
+  <script type="text/javascript" src="scripts/index.js"></script>
 </body>
 </html>
