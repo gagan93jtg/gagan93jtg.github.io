@@ -1,2 +1,2 @@
 # gagan93jtg.github.io
-Portfolio
+Simple Gray Design by Gagandeep Singh
