@@ -172,11 +172,8 @@ body {
   box-shadow: 0 0 2px #000;
 }
 
-.resume {
+a.resume {
   margin: 15px;
-}
-
-.resume a {
   text-decoration: none;
   color: #000;
 }
@@ -258,6 +255,7 @@ footer span {
   .current-things p {
     font-size: 9px;
     margin-bottom: 0px;
+    margin-top: 1px;
   }
 
   .gray-box-header {
@@ -287,8 +285,8 @@ footer span {
     margin: 4px 5px 5px 5px;
   }
 
-  .resume a {
-    font-size: 0.55rem;
+  a.resume {
+    font-size: 0.55rem !important;
   }
 
   footer {
