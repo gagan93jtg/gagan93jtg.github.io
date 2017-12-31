@@ -216,7 +216,7 @@ footer span {
   .current-things, .about-div {
     margin: 10px auto;
     display: block;
-    width: 98.8%;
+    width: 100%;
   }
 
   .container {
@@ -259,7 +259,6 @@ footer span {
   .social a img {
     width: 32px;
     height: 32px;
-
   }
 
   .current-things i {
@@ -271,6 +270,10 @@ footer span {
     font-size: 10px;
   }
 
+  .company-location {
+    display: block;
+    padding: 0;
+  }
 
   .current-things p {
     font-size: 9px;
@@ -318,7 +321,8 @@ footer span {
 
   .gray-box {
     padding: 10px;
-    margin: 10px 2px;
+    margin: 10px 0px;
+    border-radius: 0px;
   }
 }
 
@@ -492,6 +496,7 @@ ul>li {
 
   .timeline-sub-heading {
     font-size: 10px;
+    margin: 5px 0px 5px 0px;
   }
 
   .timeline-body > p, .timeline-body > ul {
