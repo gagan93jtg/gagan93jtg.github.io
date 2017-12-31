@@ -74,7 +74,7 @@ body {
 }
 
 .gray-box {
-  background-color: #EEE;
+  background-color: #EFEFEF;
   padding: 25px;
   margin: 10px;
   vertical-align: top;
@@ -191,6 +191,20 @@ footer span {
   font-weight: 400;
 }
 
+.pad-left-5 {
+  padding-left: 7.5px;
+}
+
+.company-title, .proj-title {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.proj-title {
+  margin-top: 2.5px;
+}
+
 @media (max-width: 1228px) {
   .current-things, .about-div {
     display: block;
@@ -251,6 +265,12 @@ footer span {
   .current-things i {
     font-size: 10px;
   }
+
+  .company-title, .proj-title {
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
 
   .current-things p {
     font-size: 9px;
