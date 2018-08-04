@@ -16,7 +16,17 @@ body {
 }
 
 .nav-link {
-  color: #666 !important;
+  color: white;
+  margin: 5px 15px 0px 20px;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-round {
+  border-radius: 50%;
 }
 
 .nav-link.active {
@@ -25,12 +35,14 @@ body {
 
 }
 
-.top-img {
+.top-image {
   width: 200px;
   height: 200px;
   margin: 4px;
   box-shadow: 0 0 8px #000;
   display: inline-block;
+  border-radius: 50%;
+  filter: grayscale(100%);
 }
 
 .top-details {
@@ -99,7 +111,7 @@ body {
 }
 
 .current-things {
-  padding-bottom: 30px;
+  padding-bottom: 0px;
   width: 500px;
   display: inline-block;
 }
@@ -122,6 +134,7 @@ body {
 
 .skills-div {
   margin-bottom: 100px;
+  width: 98%;
 }
 
 .skills-div .row {
@@ -129,8 +142,8 @@ body {
 }
 
 .skills-div .row .circle-text {
-  width: 150px;
-  height: 150px;
+  min-width: 150px;
+  min-height: 150px;
   border-radius: 50%;
   font-size: 18px;
   color: #DDD;
@@ -209,6 +222,11 @@ footer span {
   .current-things, .about-div {
     display: block;
     width: 97.70%;
+  }
+
+  .skills-div  {
+    min-width: 125px;
+    min-height: 125px;
   }
 }
 
@@ -290,8 +308,8 @@ footer span {
   }
 
   .skills-div .row .circle-text {
-    width: 96px;
-    height: 96px;
+    min-width: 96px;
+    min-height: 96px;
     font-size: 14px;
     line-height: 96px;
     margin: 8px 12px;

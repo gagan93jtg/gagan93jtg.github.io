@@ -5,28 +5,49 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gagandeep Singh - Ruby on Rails developer / AWS Devops</title>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/jquery.easing.js"></script>
+  <script type="text/javascript" src="scripts/popper.min.js"></script>
+  <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/mdb.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="styles/index.css">
+  <script type="text/javascript" src="scripts/index.js"></script>
+
 </head>
 <body data-spy="scroll" data-target="#main-navbar" data-offset="100">
-  <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-down" id="main-navbar">
-    <ul class="nav navbar-nav container nav-pills">
-      <li class="nav-item">
-        <a class="nav-link" id="home-link" href="#home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="about-link" href="#about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="timeline-link" href="#timeline">Timeline</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="skills-link" href="#skills">Skills</a>
-      </li>
-    </ul>
-  </nav>
+ <nav class="navbar navbar-expand-lg elegant-color" id="main-navbar">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link waves-effect home-link" href="#">Home
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-effect about-light" href="#about">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-effect timeline-light" href="#timeline">Timeline</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-effect skills-link" href="#skills">Skills</a>
+    </li>
+  </ul>
+</nav>
 
   <div class="top-header home-div" id="home">
     <div class="container top-part">
-      <img src="resources/images/gagan.png" class="top-img img-circle img-fluid">
+      <img src="resources/images/gagan2.png" class="top-image">
       <div class="top-details d-inline-block">
         <h1 class="top-details-h1">Gagandeep Singh</h1>
         <h4 class="top-details-h4">Web App Developer / Devops</h4>
@@ -40,7 +61,7 @@
       <div class="contact-mail hidden-md-down">
         <a href="mailto:gagan93gtbit@gmail.com">
           <span class="btn-group-lg">
-            <button type="button" class="btn btn-secondary bmd-btn-fab">
+            <button type="button" class="btn-floating btn-lg btn-round">
               <i class="material-icons">message</i>
             </button>
           </span>
@@ -53,8 +74,9 @@
     <div id="block-1">
       <div class="gray-box about-div" id="about">
         <h1 class="m-b-3 gray-box-header">About</h1>
+
         <h5 class="d-inline-block gray-box-body">
-          I'm a Ruby on rails developer with more than 2 and a half years of experience in backend development, design, estimation, cloud infrastructure management, cost optimization, mentoring and interviewing. Apart from working on client products, I automated generation of internal retrospective reports and many other management tasks using ruby scripts.
+          I'm a Ruby on rails developer with 3+ years of experience in backend development, design, estimation, cloud infrastructure management, cost optimization, mentoring and interviewing. Apart from working on client products, I automated generation of internal retrospective reports and many other management tasks using ruby scripts.
         </h5>
       </div>
 
@@ -65,11 +87,11 @@
         </div>
         <div class="current-things-item">
           <i class="material-icons m-r-2">work</i>
-          <p class="d-inline-block gray-box-body">JTG E-Business Software Pvt. Ltd. | Haryana, India</p>
+          <p class="d-inline-block gray-box-body">BT TechLabs Pvt Ltd | Haryana, India</p>
         </div>
         <div class="current-things-item">
           <i class="material-icons m-r-2">assignment_ind</i>
-          <p class="d-inline-block gray-box-body">Senior Software Developer</p>
+          <p class="d-inline-block gray-box-body">Member of Technical Staff</p>
         </div>
         <div class="current-things-item">
           <i class="material-icons m-r-2">email</i>
@@ -84,6 +106,33 @@
         <div class="container">
           <ul class="timeline">
             <li>
+              <div class="timeline-badge"><i class="material-icons">work</i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Member of Technical Staff</h4>
+                  <div class="timeline-sub-heading">
+                    <div>
+                      <span class="company-title">BT TechLabs Pvt Ltd</span>
+                      <small class="text-muted pad-left-5 company-location"> Gurugram, Haryana, India </small>
+                    </div>
+                    <div><a class="proj-title" href="loconav.com">Loconav.com</a><small class="text-muted pad-left-5"> 5nd Feb 2018 - Present</small></div>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    <ul>
+                      <li> Entirely wrote scalable android backend with <a href="https://github.com/ruby-grape/grape">Grape</a></li>
+                      <li> Helped team to scale things - launching ALBs, choosing correct AWS instace type based on services launched</li>
+                      <li> Did setup for app analytics using <a href="https://github.com/ankane/ahoy">Ahoy</a>. Moved this to separately hosted database when main DB became large in size</li>
+                      <li> Resolved endless minor / major bugs in the application.</li>
+                      <li> Did various integrations -  <a href="https://fastag.equitasbank.com/">Fastags,</a>
+                        <a href="https://www.happay.in/">Happay prepaid cards</a></li>
+                      <li> Doing more awesome things</li>
+                    </ul>
+                  </p>
+                </div>
+            </li>
+            <li class="timeline-inverted">
               <div class="timeline-badge"><i class="material-icons">work</i></div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -120,9 +169,9 @@
                   <p>
                     <ul>
                       <li>The product was based on Magento 2 framework (PHP) and requirement was to integrate
-                      <a href="http://hubspot.com/">Hubspot</a> with the product to push doctor and patient information
-                      to hubspot. Apart from basic information, an Email template was also pushed which was used by marketing
-                      team to send promotional mails to end users. I investigated magento event observers and wrote the entire integration
+                        <a href="http://hubspot.com/">Hubspot</a> with the product to push doctor and patient information
+                        to hubspot. Apart from basic information, an Email template was also pushed which was used by marketing
+                        team to send promotional mails to end users. I investigated magento event observers and wrote the entire integration
                       in PHP. </li>
                     </ul>
                   </p>
@@ -137,7 +186,7 @@
                   <p>
                     <ul>
                       <li> Did Jenkins setup (AWS EC2), added required plugins, configured SES,
-                      added Node integrations, created jobs for deploying Angular code to S3 and Django code to
+                        added Node integrations, created jobs for deploying Angular code to S3 and Django code to
                       respective environments (Dev, Stage and Prod)</li>
                       <li> Spinned up dev environment (using staging environment), did VPC peering for the same
                       , created security groups, required subnets, etc </li>
@@ -146,7 +195,7 @@
                 </div>
               </div>
             </li>
-            <li class="timeline-inverted">
+            <li>
               <div class="timeline-badge"><i class="material-icons">work</i></div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -174,7 +223,7 @@
                 </div>
               </div>
             </li>
-            <li class="timeline">
+            <li class="timeline-inverted">
               <div class="timeline-badge"><i class="material-icons">school</i></div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -203,7 +252,7 @@
         <h1 class="m-b-3 gray-box-header">Skills</h1>
         <div class="d-inline-block gray-box-body">
           <div class="row">
-            <div class="col circle-text good-hold">Ruby on Rails </div>
+            <div class="col circle-text good-hold sbc">Ruby on Rails </div>
             <div class="col circle-text good">Java</div>
             <div class="col circle-text good-hold">AWS EC2</div>
             <div class="col circle-text good">Angular 2</div>
@@ -246,21 +295,8 @@
 
 <footer>
   Simple Gray Design by&nbsp <span>Gagandeep Singh<span>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
-<script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-<script>
-  $('body').bootstrapMaterialDesign();
-</script>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
-<link rel="stylesheet" type="text/css" href="styles/index.css">
-<script type="text/javascript" src="scripts/index.js"></script>
+  </footer>
 </body>
+  <script type="text/javascript" src="scripts/mdb.min.js"></script>
+  <script type="text/javascript" src="scripts/waves.js"></script>
 </html>
