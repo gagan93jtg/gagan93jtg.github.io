@@ -398,7 +398,7 @@ Content Sections - basic style
   height: 100vh;
   background: white;
 }
-.cd-section:nth-of-type(even) {
+.cd-section:nth-of-type(odd) {
   background-color: #EEE;
 }
 .cd-section > div {

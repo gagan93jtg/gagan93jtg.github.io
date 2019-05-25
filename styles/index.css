@@ -20,14 +20,13 @@ a {
   left: 0;
   width: 100px;
   font-size: 2em;
-
 }
 
 .profile_image > img {
   margin: 0 auto;
   border-radius: 50%;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   display: block;
   padding: 1px;
   border: 5px solid black;
@@ -37,24 +36,20 @@ a {
   transition: all 2s ease-out;
 }
 
-.image_box > a > img:hover {
-  transform: scale(1.1);
-}
-
 .name, .designation {
   text-align: center;
 }
 
 .name {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 700;
-  margin-top: 20px;
-  color: #264348;
+  margin-top: 10px;
+  color: white;
 }
 
 .designation {
-  margin-top: 20px;
-  font-size: 24px;
+  margin-top: 5px;
+  font-size: 16px;
 }
 
 .designation > span {
@@ -82,6 +77,11 @@ a {
   padding: 1px;
   background-color: white;
   border-radius: 50%;
+  transition: all .2s ease-in-out;
+}
+
+.image_box > a > img:hover {
+  transform: scale(1.25);
 }
 
 .links {
@@ -100,26 +100,20 @@ a {
   color: white;
 }
 
-.about > table {
-  margin-left: 20px;
+.details_row {
+  margin-top: 10px;
 }
 
-.about > table > tbody > tr {
-  margin-bottom: 10px;
-  display: inline-block;
-  width: 100%;
+.details_row > div > i {
+  margin: 10px;
+  font-size: 12px;
+  float: left;
 }
 
-td.icon > i {
-  font-size: 36px;
-}
-
-td.value {
-  vertical-align: -webkit-baseline-middle;
-  position: relative;
-  top: 3px;
-  left: 15px;
-  font-size: 20px;
+.details_row > div > span {
+  margin-top: 7px;
+  font-size: 12px;
+  float: left;
 }
 
 .skills {
@@ -138,7 +132,7 @@ div.skill {
   color: white;
   padding: 4px 10px;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
@@ -165,9 +159,11 @@ i.bronze_badge {
 }
 
 .badge_meanings {
-  margin-top: 45px;
+  position: absolute;
+  bottom: 15px;
+  left: 28px;
+  right: 28px;
   background-color: #222;
-  border-radius: 10px;
   padding: 5px 10px;
 }
 
@@ -177,7 +173,58 @@ i.bronze_badge {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 666px) {
+@media only screen and (max-width: 1339px) {
+  .name, .designation, .skill > span {
+    font-size: 0.8em;
+  }
+  #section1 > .content-wrapper > .container > .row {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1137px) {
+  .details_row > div > span {
+    font-size: 10px;
+  }
+
+  #section1 > .content-wrapper > .container > .row {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .left_bar {
+    width: 75px;
+  }
+
+  .image_box > a > img {
+    transform: scale(0.75);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .details_row > div > span {
+    font-size: 14px;
+  }
+
+  .name, .designation, .skill > span {
+    font-size: 1em;
+  }
+
+  .badge_meanings {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  #section1 > .content-wrapper > .container > .row {
+    max-width: 650px;
+  }
+}
+
+
+@media only screen and (max-width: 805px) {
   .links {
     display: block;
   }
