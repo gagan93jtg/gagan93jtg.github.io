@@ -12,14 +12,13 @@
   <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="scripts/index.js"></script>
   <script type="text/javascript" src="scripts/vertical_navigation.js"></script>
-  <script type="text/javascript" src="scripts/modernizr.min.js"></script>
-  <script type="text/javascript" src="scripts/scrollify.min.js"></script>
   <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="styles/reset.css">
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/index.css">
   <link rel="stylesheet" href="styles/vertical_navigation.css">
+  <link rel="stylesheet" href="styles/timeline.css">
 </head>
 <body>
   <div class="left_bar clearfix image_box vt_image_box">
@@ -29,29 +28,7 @@
     <a href="mailto:gagan93gtbit@gmail.com" target="_blank"> <img src="resources/images/email.png"> </a>
     <a href="https://fb.com/gagan93" target="_blank"> <img src="resources/images/fb.svg"> </a>
   </div>
-  <nav class="cd-vertical-nav">
-    <ul>
-      <li><a href="#section1" class="active"><span class="label">Intro</span></a></li>
-      <li><a href="#section2"><span class="label">Events</span></a></li>
-      <li><a href="#section3"><span class="label">Help</span></a></li>
-      <li><a href="#section4"><span class="label">Share</span></a></li>
-    </ul>
-  </nav>
-  <button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
   <div class="content">
-    <!-- <section id="section1" class="cd-section">
-      <div class="content-wrapper">
-        <div class="links">
-          <div class="image_box hz_image_box">
-            <a href="https://github.com/gagan93jtg" target="_blank"> <img src="resources/images/github.png"> </a>
-            <a href="https://stackoverflow.com/users/2753864/gagan93" target="_blank"> <img src="resources/images/so.png"> </a>
-            <a href="https://in.linkedin.com/in/gagan93" target="_blank"> <img src="resources/images/linkedin.svg"> </a>
-            <a href="mailto:gagan93gtbit@gmail.com" target="_blank"> <img src="resources/images/email.png"> </a>
-            <a href="https://fb.com/gagan93" target="_blank"> <img src="resources/images/fb.svg"> </a>
-          </div>
-        </div>
-      </div>
-     </section>-->
     <section id="section1" class="cd-section">
       <div class="content-wrapper">
         <div class="container">
@@ -169,48 +146,196 @@
                 <span>JQuery</span>
               </div>
               <div class="row badge_meanings">
-                <div class="col-sm-4 badge_meanings_row">
+                <div class="col-4 badge_meanings_row">
                   <i class="circle_badge gold_badge"></i>
-                  <span> Gold </span>
+                  <span>Good</span>
                 </div>
-                <div class="col-sm-4 badge_meanings_row">
+                <div class="col-4 badge_meanings_row">
                   <i class="circle_badge silver_badge"></i>
-                  <span> Silver </span>
+                  <span>On it</span>
                 </div>
-                <div class="col-sm-4 badge_meanings_row">
+                <div class="col-4 badge_meanings_row">
                   <i class="circle_badge bronze_badge"></i>
-                  <span> Bronze </span>
+                  <span>Average</span>
+                </div>
+              </div>
+              <div class="links">
+                <div class="image_box hz_image_box">
+                  <a href="https://github.com/gagan93jtg" target="_blank"> <img src="resources/images/github.png"> </a>
+                  <a href="https://stackoverflow.com/users/2753864/gagan93" target="_blank"> <img src="resources/images/so.png"> </a>
+                  <a href="https://in.linkedin.com/in/gagan93" target="_blank"> <img src="resources/images/linkedin.svg"> </a>
+                  <a href="mailto:gagan93gtbit@gmail.com" target="_blank"> <img src="resources/images/email.png"> </a>
+                  <a href="https://fb.com/gagan93" target="_blank"> <img src="resources/images/fb.svg"> </a>
                 </div>
               </div>
             </div>
           </div>
+          <div class="about_text">
+            <p>Hi, I am Gagandeep Singh from New Delhi, India.</p>
+          </div>
         </div>
       </div>
     </section>
-    <section id="section3" class="cd-section">
+    <section id="section2" class="cd-section">
       <div class="content_wrapper">
-        <p>
-          Ipsum
-        </p>
-      </div>
-    </section>
-    <section id="section4" class="cd-section">
-      <div class="content_wrapper">
-        <p>
-          consectetuer
-        </p>
-      </div>
-    </section>
-  </div>
-</div>
-</body>
-</html>
+        <div class="container">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-badge"><i class="material-icons">work</i></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Member of Technical Staff</h4>
+                  <div class="timeline-sub-heading">
+                    <div class="company-info">
+                      <span class="company-title">BT TechLabs Pvt Ltd</span>
+                      <small class="text-muted ml-2 company-location"> Gurugram, Haryana, India </small>
+                    </div>
+                    <div class="project-info">
+                      <a class="proj-title" href="loconav.com">Loconav.com</a><small class="text-muted ml-2"> 5nd Feb 2018 - Present</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    <ul>
+                      <li> Entirely wrote scalable android backend with <a href="https://github.com/ruby-grape/grape">Grape</a></li>
+                      <li> Helped team to scale things - launching ALBs, choosing correct AWS instace type based on services launched</li>
+                      <li> Did setup for app analytics using Ahoy. Moved this to separately hosted database when main DB became large in size</li>
+                      <li> Resolved endless minor / major bugs in the application.</li>
+                      <li> Did various integrations -  Equitas, YesBank (Fastags and prepaid cards)</li>
+                        <li> Doing more awesome things</li>
+                      </ul>
+                    </p>
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge"><i class="material-icons">work</i></div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title">Senior Software Developer</h4>
+                      <div class="timeline-sub-heading">
+                        <div class="company-info">
+                          <span class="company-title"> JTG E-Business Software Pvt. Ltd. </span>
+                          <small class="text-muted ml-2 company-location"> Gurugram, Haryana, India </small>
+                        </div>
+                        <div class="project-info">
+                          <a class="proj-title" href="https://copperegg.com">Uptime Cloud Monitor</a><small class="text-muted ml-2"> Oct 2016 to 2nd Feb 2018</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        <ul>
+                          <li> Added AWS lambda integrations (Node JS) to make AWS infrastructure more robust. </li>
+                          <li> Optimized existing infrastructure which led to <strong>huge cost savings</strong>.</li>
+                          <li> Added new features and fixed bugs in native android application of the product.</li>
+                          <li> Handled backlog cleanup, poker planning call, diving work among team members, etc.</li>
+                          <li> Managing a team of 4 and supervising work of 2 team members.</li>
+                          <li> Integrated Microsoft Azure cloud monitoring with the product and moved entire infrastructure to VPC.</li>
+                          <li> Working on renewal of AWS EC2 reseravations, further optimizations in infra, supervising work of shadow devs.</li>
+                          <li> Helped moving from Sendgrid to Amazon SES for sending mails and ensured minimum bounce percentage.</li>
+                        </ul>
+                      </p>
+                    </div>
 
-<script type="text/javascript">
-  // $(function() {
-  //   $.scrollify({
-  //     section : ".cd-section",
-  //     scrollSpeed: 500,
-  //   });
-  // })
-</script>
+                    <div class="timeline-heading">
+                      <div class="timeline-sub-heading">
+                        <div class="project-info">
+                          <a class="proj-title" href="https://gethealthy.store">Gethealthy</a><small class="text-muted ml-2"> Nov 2017 - Dec 2017</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        <ul>
+                          <li>The product was based on Magento 2 framework (PHP) and requirement was to integrate
+                            <a href="http://hubspot.com/">Hubspot</a> with the product to push doctor and patient information
+                            to hubspot. Apart from basic information, an Email template was also pushed which was used by marketing
+                            team to send promotional mails to end users. I investigated magento event observers and wrote the entire integration
+                          in PHP. </li>
+                        </ul>
+                      </p>
+                    </div>
+
+                    <div class="timeline-heading">
+                      <div class="timeline-sub-heading">
+                        <div class="project-info">
+                          <a class="proj-title" href="https://mentorcloud.com">Mentorcloud</a><small class="text-muted ml-2"> Dec 2017 to 2nd Feb 2018</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        <ul>
+                          <li> Did Jenkins setup (AWS EC2), added required plugins, configured SES,
+                            added Node integrations, created jobs for deploying Angular code to S3 and Django code to
+                          respective environments (Dev, Stage and Prod)</li>
+                          <li> Spinned up dev environment (using staging environment), did VPC peering for the same
+                          , created security groups, required subnets, etc </li>
+                        </ul>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="timeline-badge"><i class="material-icons">work</i></div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title">Software Developer</h4>
+                      <div class="timeline-sub-heading">
+                        <div class="company-info">
+                          <span class="company-title">JTG E-Business Software Pvt. Ltd.</span>
+                          <small class="text-muted ml-2 company-location"> Gurugram, Haryana, India </small>
+                        </div>
+                        <div class="project-info">
+                          <a class="proj-title" href="https://copperegg.com">Uptime Cloud Monitor</a><small class="text-muted ml-2">Jun 2015 to Oct 2016</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        <ul>
+                          <li> Worked primarily with Ruby on Rails and a good mix of other technologies as well.</li>
+                          <li> Improved product – fixed various complex bugs and refactored existing code.</li>
+                          <li> Documentated various crucial subsystems and did critical switchovers in production.</li>
+                          <li> Debugged server issues and derived useful stats from system / access logs.</li>
+                          <li> Protected redis from getting hacked on linode servers.</li>
+                          <li> Integrated new monitoring features within the existing application.</li>
+                          <li> Handled sprints, deployments, client communication and daily standups.</li>
+                        </ul>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+                <li class="timeline-inverted">
+                  <div class="timeline-badge"><i class="material-icons">school</i></div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title">Graduated from GGSIPU, Delhi</h4>
+                      <div class="timeline-sub-heading">
+                        <div class="company-info">
+                          <span class="company-title">B.Tech Computer Science and Engineering</span><small class="text-muted ml-2 company-location">GTBIT</small>
+                        </div>
+                        <div class="project-info">
+                          <span class="proj-title">Student</span>
+                          <small class="text-muted ml-2">August 2011 - June 2015</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        <ul>
+                          <li>Primarily worked in Technical Society of GTBIT (TSG) and handled over 35 technical events during college fest (GATES)</li>
+                        </ul>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

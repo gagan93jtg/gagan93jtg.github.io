@@ -170,6 +170,7 @@ Vertical navigation
   transform: rotate(135deg);
   bottom: 0;
 }
+
 @media only screen and (min-width: 800px) {
   .cd-vertical-nav {
     /* reset style */
@@ -397,6 +398,7 @@ Content Sections - basic style
   width: 100%;
   height: 100vh;
   background: white;
+  margin-left: 50px;
 }
 .cd-section:nth-of-type(odd) {
   background-color: #EEE;
@@ -499,4 +501,16 @@ no-js
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
+}
+
+@media only screen and (max-width: 1137px) {
+  .cd-section {
+    margin-left: 37.5px;
+  }
+}
+
+@media only screen and (max-width: 805px) {
+  .cd-section {
+    margin-left: 0px;
+  }
 }

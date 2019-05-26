@@ -70,6 +70,7 @@ a {
 
 .hz_image_box > a > img {
   margin-right: 15px;
+  transition: all .2s ease-in-out;
 }
 
 .vt_image_box > a > img {
@@ -227,9 +228,20 @@ i.bronze_badge {
 @media only screen and (max-width: 805px) {
   .links {
     display: block;
+    background: #EEE;
   }
 
   .left_bar {
     display: none;
+  }
+
+  .skills {
+    border-bottom: 1px solid #EEE;
+  }
+}
+
+@media only screen and (max-width: 766px) {
+  #section2 {
+    margin-top: 20px;
   }
 }
