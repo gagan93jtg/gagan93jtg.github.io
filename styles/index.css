@@ -98,6 +98,10 @@ a {
   margin: 50px;
 }
 
+.timeline > a {
+  color: #2C3E50;
+}
+
 #view-timeline-btn {
   font-size: 24px;
   background-color: #2C3E50;
@@ -290,5 +294,33 @@ i.bronze_badge {
 
   .first-li {
     margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .designation > span {
+    font-size: 0.65em;
+  }
+
+  .skill > span {
+    font-size: 0.85em;
+  }
+
+  .badge_meanings_row {
+    font-size: 0.5em;
+  }
+
+  .badge_meanings_row > span {
+    position: relative;
+    top: -1px;
+    left: 2px;
+  }
+
+  .hz_image_box > a > img {
+    margin: 0px;
+  }
+
+  .company-info, .project-info, .timeline-body {
+    font-size: 0.7em;
   }
 }
