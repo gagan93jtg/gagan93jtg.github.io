@@ -10,6 +10,10 @@ a {
   text-decoration: none !important;
 }
 
+.section-1-row {
+  box-shadow: 0px 0px 20px rgba(0,0,0, 0.5);
+}
+
 .left_bar {
   background-color: #111;
   color: white;
@@ -88,6 +92,17 @@ a {
 .links {
   margin-top: 25px;
   display: none;
+}
+
+.timeline-navigation {
+  margin: 50px;
+}
+
+#view-timeline-btn {
+  font-size: 24px;
+  background-color: #2C3E50;
+  color: white;
+  box-shadow: 0px 0px 10px grey;
 }
 
 #section2 > .content-wrapper > .container > .row {
@@ -174,6 +189,14 @@ i.bronze_badge {
   font-weight: 600;
 }
 
+.first-li {
+  margin-top: 100px;
+}
+
+.text-muted {
+  color: #DDD !important;
+}
+
 @media only screen and (max-width: 1339px) {
   .name, .designation, .skill > span {
     font-size: 0.8em;
@@ -201,6 +224,14 @@ i.bronze_badge {
   .image_box > a > img {
     transform: scale(0.75);
   }
+
+  #view-timeline-btn {
+    font-size: 20px;
+  }
+
+  .first-li {
+    margin-top: 75px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -215,6 +246,14 @@ i.bronze_badge {
   .badge_meanings {
     position: static;
     margin-top: 20px;
+  }
+
+  #view-timeline-btn {
+    font-size: 18px;
+  }
+
+  .first-li {
+    margin-top: 60px;
   }
 }
 
@@ -238,10 +277,18 @@ i.bronze_badge {
   .skills {
     border-bottom: 1px solid #EEE;
   }
+
+  #view-timeline-btn {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (max-width: 766px) {
-  #section2 {
-    margin-top: 20px;
+  #view-timeline-btn {
+    display: none;
+  }
+
+  .first-li {
+    margin-top: 50px;
   }
 }
