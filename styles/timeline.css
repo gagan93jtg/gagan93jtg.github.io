@@ -241,3 +241,9 @@ ul>li {
     right: auto;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .timeline-body {
+    padding: 5px;
+  }
+}
