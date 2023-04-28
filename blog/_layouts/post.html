@@ -1,0 +1,78 @@
+---
+layout: default
+---
+
+<article class="post detailed">
+  <div>
+    <p class="author-title">
+      <!-- <a href="https://gagan93.me" target="_blank" >
+        Gagandeep Singh
+      </a>
+      &nbsp;&nbsp;&nbsp; --> Published {{ page.published_on }}
+    </p>
+    <p class="post-title">{{ page.title }}</p>
+
+    {% if page.last_modified_at %}
+    <p class="author_title" datetime="{{ page.last_modified_at | date_to_xmlschema }}">(Updated: {{ page.last_modified_at | date: "%b %-d, %Y" }})</p>
+    {% endif %}
+    <div class="post-tags">
+      {% if post %}
+        {% assign categories = post.categories %}
+      {% else %}
+        {% assign categories = page.categories %}
+      {% endif %}
+      {% for category in categories %}
+        <a href="{{site.baseurl}}/categories/#{{category|slugize}}" class="category">{{category}}</a>
+        {% unless forloop.last %}&nbsp;{% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    {{ content }}
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="{{site.url}}{{page.url}}"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    color: black;
+  }
+
+  .category {
+    background-color: #DDD;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: black;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+

@@ -1,0 +1,5 @@
+/blog/_site
+/blog/.sass-cache
+/blog/.jekyll-cache
+/blog/.jekyll-metadata
+/blog/vendor

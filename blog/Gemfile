@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+
+ruby '2.4.10'
+
+gem "jekyll"
+gem "jekyll-sitemap"
+gem "jekyll-feed"
+gem "jekyll-seo-tag"
+gem "minima"

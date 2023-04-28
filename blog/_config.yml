@@ -1,0 +1,31 @@
+title: Gagandeep Singh — Blog
+email: gagan93gtbit@gmail.com
+description: >-
+  I write on Engineering, Culture, Leadership and much more
+baseurl: "/blog"
+url: "https://gagan93.me"
+github_username:  gagan93jtg
+
+footer-links:
+  email: gagan93gtbit@gmail.com
+  facebook: https://www.fb.com/gagan93
+  github: gagan93jtg
+  instagram: https://www.instagram.com/gagan0893/
+  linkedin: https://www.linkedin.com/in/gagan93/
+  stackoverflow: https://stackoverflow.com/users/2753864/gagan93
+
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude these files from your production _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
