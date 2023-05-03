@@ -1,6 +1,6 @@
 title: Gagandeep Singh — Blog
 email: gagan93gtbit@gmail.com
-description: >-
+deription: >-
   I write on Engineering, Culture, Leadership and much more
 baseurl: "/blog"
 url: "https://gagan93.me"
@@ -17,6 +17,10 @@ footer-links:
 
 # Build settings
 theme: minima
+
+sass:
+  style: :expanded
+
 plugins:
   - jekyll-sitemap
   - jekyll-feed
