@@ -1,0 +1,81 @@
+.text-center-align {
+  text-align: center;
+}
+
+.text-4em {
+  font-size: 4em;
+}
+
+.text-3em {
+  font-size: 3em;
+}
+
+.text-2em {
+  font-size: 2em;
+}
+
+.text-1em {
+  font-size: 1em;
+}
+
+.post-cover {
+  float: left;
+  clear: both;
+  width: 15em;
+}
+
+@media screen and (max-width: 800px) {
+  .post-cover {
+    display: none;
+  }
+  .post-details {
+    padding: 10px !important;
+  }
+}
+
+.post-link, .post-details, .post-excerpt, .post-link-container {
+  margin-bottom: 0;
+}
+
+.post-excerpt {
+  padding-bottom: 15px;
+  display: inline-block;
+}
+
+.post-link-container {
+  margin-top: 20px;
+}
+
+.the-post {
+  margin-bottom: 4em !important;
+}
+
+.post-details {
+  padding-left: 16.5em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* Overrides */
+.post-title {
+  font-size: 3em !important;
+}
+
+article.detailed {
+  padding-top: 75px;
+  margin-top: -35px;
+}
+
+main.page-content {
+  padding: 0px !important;
+}
+
+.footer-heading {
+  visibility: hidden;
+}
+
+.post-list-heading {
+  font-size: 3em !important;
+  margin: 1em auto;
+}
+
+/*# sourceMappingURL=styles.css.map */
