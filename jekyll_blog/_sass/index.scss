@@ -19,14 +19,21 @@
 }
 
 .post-cover {
-  float: left;
-  clear: both;
-  width: 15em;
+  width: 40em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 9px;
+}
+
+.post-container {
+  width: 40em;
 }
 
 @media screen and (max-width: 800px) {
   .post-cover {
     display: none;
+  }
+
+  .post-container {
+    width: 100%;
   }
 
   .post-details {
@@ -38,13 +45,19 @@
   margin-bottom: 0;
 }
 
-.post-excerpt {
-  padding-bottom: 15px;
-  display: inline-block;
+.post-link {
+  float: left;
+  clear: both;
+  width: 70%;
 }
 
-.post-link-container {
-  margin-top: 20px;
+.post-meta {
+  float: right;
+}
+
+.post-excerpt {
+  margin: 15px 0px;
+  display: inline-block;
 }
 
 .the-post {
@@ -52,7 +65,7 @@
 }
 
 .post-details {
-  padding-left: 16.5em;
+  padding: 10px 10px 5px 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 

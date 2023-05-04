@@ -16,18 +16,18 @@ layout: default
       <li class="the-post">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <div class="post-container">
-          <p>
-            <img class="post-cover" src={{post.cover}}>
-          </p>
+          <img class="post-cover" src={{post.cover}}>
 
           <div class="post-details">
-            <span class="post-meta">{{ post.date | date: date_format }}</span>
             <h3 class="post-link-container">
-              <a class="post-link" href="{{ post.url | relative_url }}">
+              <p>
+                <a class="post-link" href="{{ post.url | relative_url }}">
                 {{ post.title | escape }}
-              </a>
+                </a>
+                <span class="post-meta">{{ post.date | date: date_format }}</span>
+              </p>
             </h3>
-            <span class="post-excerpt"> {{ post.excerpt }} </span>
+            <div class="post-excerpt"> {{ post.excerpt }} </div>
           </div>
         </div>
       </li>

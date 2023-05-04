@@ -30,3 +30,5 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+
+permalink: /:year/:month/:day/:title.html
