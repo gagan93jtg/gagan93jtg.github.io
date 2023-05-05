@@ -10,9 +10,9 @@
 
 .post-cover { width: 40em; box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 9px; }
 
-.post-container { width: 40em; }
+.post-container { margin: 0 auto; width: 40em; }
 
-@media screen and (max-width: 800px) { .post-cover { display: none; } .post-container { width: 100%; } .post-details { padding: 10px !important; } }
+@media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } }
 
 .post-link, .post-details, .post-excerpt, .post-link-container { margin-bottom: 0; }
 
