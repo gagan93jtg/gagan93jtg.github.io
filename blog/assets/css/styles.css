@@ -1,3 +1,5 @@
+.post-link, .post-link:visited, .post-link:active { color: #222 !important; font-weight: 700; }
+
 .text-center-align { text-align: center; }
 
 .text-4em { font-size: 4em; }
@@ -12,11 +14,13 @@
 
 .post-container { margin: 0 auto; width: 40em; }
 
+header.post-header { visibility: hidden; }
+
 @media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } }
 
 .post-link, .post-details, .post-excerpt, .post-link-container { margin-bottom: 0; }
 
-.post-link { float: left; clear: both; width: 70%; }
+.post-link { float: left; clear: both; width: 70%; text-decoration: none !important; }
 
 .post-meta { float: right; }
 
@@ -27,6 +31,16 @@
 .post-details { padding: 10px 10px 5px 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; }
 
 /* Overrides */
+body, * { font-family: 'Raleway' !important; }
+
+a:hover { text-decoration: none !important; }
+
+header, footer { background-color: #222; }
+
+a.site-title, a.page-link, .contact-list, .footer-col { color: white !important; }
+
+.social-media-list > li > a:hover, .contact-list > li > a:hover { color: white !important; }
+
 .post-title { font-size: 3em !important; }
 
 article.detailed { padding-top: 75px; margin-top: -35px; }
@@ -36,5 +50,7 @@ main.page-content { padding: 0px !important; }
 .footer-heading { visibility: hidden; }
 
 .post-list-heading { font-size: 3em !important; margin: 1em auto; }
+
+a.category:hover { color: white !important; }
 
 /*# sourceMappingURL=styles.css.map */
