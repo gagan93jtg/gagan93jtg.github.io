@@ -16,7 +16,7 @@
 
 header.post-header { visibility: hidden; }
 
-@media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } }
+@media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } a.page-link { color: black !important; } }
 
 .post-link, .post-details, .post-excerpt, .post-link-container { margin-bottom: 0; }
 
@@ -37,9 +37,11 @@ a:hover { text-decoration: none !important; }
 
 header, footer { background-color: #222; }
 
-a.site-title, a.page-link, .contact-list, .footer-col { color: white !important; }
+a.site-title { color: #555 !important; }
 
-.social-media-list > li > a:hover, .contact-list > li > a:hover { color: white !important; }
+a.page-link, .contact-list, .footer-col { color: #AAA !important; }
+
+.social-media-list > li > a:hover, .contact-list > li > a:hover { color: #AAA !important; }
 
 .post-title { font-size: 3em !important; }
 
@@ -52,5 +54,7 @@ main.page-content { padding: 0px !important; }
 .post-list-heading { font-size: 3em !important; margin: 1em auto; }
 
 a.category:hover { color: white !important; }
+
+@media screen and (max-width: 600px) { a.page-link { color: black !important; } }
 
 /*# sourceMappingURL=styles.css.map */
