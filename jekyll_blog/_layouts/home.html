@@ -16,8 +16,9 @@ layout: default
       <li class="the-post">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <div class="post-container">
-          <img class="post-cover" src={{post.cover}}>
-
+          <a href="{{ post.url | relative_url }}">
+            <img class="post-cover" src={{post.cover}}>
+          </a>
           <div class="post-details">
             <h3 class="post-link-container">
               <p>

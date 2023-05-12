@@ -5,11 +5,17 @@ date: 2023-04-15
 published_on: "25th Apr, 2023"
 author: Gagandeep Singh
 categories: hello beginning blogging
-cover: "/blog/assets/images/2023-04-15-hello-world-cover.png"
+cover: "/blog/assets/images/2023-04-15-hello-world-cover.jpg"
 excerpt: I'm starting this blog to give back my learnings to the community. I've thanklessly contributed much less in the past as I was mostly occupied with my work. This was primarily because I got a chance to work only in ...
 ---
 
-![cover-photo](/blog/assets/images/2023-04-15-hello-world-cover.png)
+![cover-photo](/blog/assets/images/2023-04-15-hello-world-cover.jpg)
+
+Photo by <a href="https://unsplash.com/@lemonvlad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vladislav Klapin</a> on <a href="https://unsplash.com/photos/PVr9Gsj93Pc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+---
+{: style="text-align: center;font-size: 0.8em"}
+
+
 
 I'm starting this blog to give back my learnings to the community. I've thanklessly contributed much less in the past as I was mostly occupied with my work. This was primarily because I got a chance to work only in startup environment, where the [TTM](https://en.wikipedia.org/wiki/Time_to_market) is generally very less.
 
