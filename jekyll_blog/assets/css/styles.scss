@@ -48,6 +48,10 @@ header.post-header {
   .post-details {
     padding: 10px !important;
   }
+
+  a.page-link {
+    color: black !important;
+  }
 }
 
 .post-link, .post-details, .post-excerpt, .post-link-container {
@@ -92,12 +96,16 @@ header, footer {
   background-color: #222;
 }
 
-a.site-title, a.page-link, .contact-list, .footer-col {
-  color: white !important;
+a.site-title {
+  color: #555 !important;
+}
+
+a.page-link, .contact-list, .footer-col {
+  color: #AAA !important;
 }
 
 .social-media-list>li>a:hover, .contact-list>li>a:hover {
-  color: white !important;
+  color: #AAA !important;
 }
 
 .post-title {
@@ -125,3 +133,10 @@ main.page-content {
 a:hover.category {
   color: white !important;
 }
+
+@media screen and (max-width: 600px) {
+  a.page-link {
+    color: black !important;
+  }
+}
+
