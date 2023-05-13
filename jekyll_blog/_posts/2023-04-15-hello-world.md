@@ -10,6 +10,10 @@ excerpt: I'm starting this blog to give back my learnings to the community. I've
 ---
 
 ![cover-photo](/blog/assets/images/2023-04-15-hello-world-cover.jpg)
+---
+{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
+}
+
 
 Photo by <a href="https://unsplash.com/@lemonvlad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vladislav Klapin</a> on <a href="https://unsplash.com/photos/PVr9Gsj93Pc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---
