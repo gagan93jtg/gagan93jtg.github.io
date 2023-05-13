@@ -109,6 +109,10 @@ a {
   box-shadow: 0px 0px 10px grey;
 }
 
+#view-timeline-btn>a:hover {
+  color: white !important;
+}
+
 #section2 > .content-wrapper > .container > .row {
   border-radius: 10px;
 }
