@@ -24,8 +24,8 @@
 <meta property="og:title" content="Small testing loops" />
 <meta name="author" content="Gagandeep Singh" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If you are a software developer, you must have spent a considerable part of your life debugging the code you/someone else wrote." />
-<meta property="og:description" content="If you are a software developer, you must have spent a considerable part of your life debugging the code you/someone else wrote." />
+<meta name="description" content="If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to…" />
+<meta property="og:description" content="If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to…" />
 <link rel="canonical" href="https://gagan93.me/blog/2023/05/01/small-testing-loops.html" />
 <meta property="og:url" content="https://gagan93.me/blog/2023/05/01/small-testing-loops.html" />
 <meta property="og:site_name" content="Gagandeep Singh — Blog" />
@@ -34,10 +34,11 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Small testing loops" />
 <script type="application/ld+json">
-{"description":"If you are a software developer, you must have spent a considerable part of your life debugging the code you/someone else wrote.","author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2023/05/01/small-testing-loops.html","headline":"Small testing loops","dateModified":"2023-05-01T00:00:00+05:30","datePublished":"2023-05-01T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2023/05/01/small-testing-loops.html"},"@context":"https://schema.org"}</script>
+{"description":"If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to…","author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2023/05/01/small-testing-loops.html","headline":"Small testing loops","dateModified":"2023-05-01T00:00:00+05:30","datePublished":"2023-05-01T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2023/05/01/small-testing-loops.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
-<body><header class="site-header" role="banner">
+<body>
+    <base target="_blank"><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -78,11 +79,30 @@
     <hr>
   </div>
   <div class="entry">
-    <p style="text-align: center;font-size: 0.8em"><img src="/blog/assets/images/2023-05-01-small-testing-loops-cover.jpg" alt="cover-photo" />
-Photo by <a href="https://unsplash.com/it/@nublson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Nubelson Fernandes</a> on <a href="https://unsplash.com/photos/CO6r5hbt1jg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-—</p>
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2023-05-01-small-testing-loops-cover.jpg" alt="cover-photo" /></h2>
 
-<p>If you are a software developer, you must have spent a considerable part of your life debugging the code you, or someone else write.</p>
+<h2 style="text-align: center;font-size: 0.8em" id="photo-by-nubelson-fernandes-on-unsplash">Photo by <a href="https://unsplash.com/it/@nublson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Nubelson Fernandes</a> on <a href="https://unsplash.com/photos/CO6r5hbt1jg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></h2>
+
+<p>If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to it’s current state, and you find the need to <a href="https://refactoring.com/">refactor it</a>. But in a hurry to finish the task on time, we start solving the problem directly and testing it out, often wasting a lot of time that could be easily saved. Had we spent some time on understanding the moving parts, our “testing loops” could have been shorter.</p>
+
+<p>At the time of writing this, I found out that “testing loop” is not a defined terminology in software engineering, so this is what I mean by it</p>
+<blockquote style="letter-spacing: 0.1px">
+  <p>“The process of changing a piece of code, and testing it out by some means” forms a loop. Smaller the loop, the faster we change and test our code, and our frustration is minimum.</p>
+</blockquote>
+
+<p>Let’s assume you’re a web developer who is doing a code change in a service class that is called by a REST API to serve the response. Now in order to test this change, you can:</p>
+<ol>
+  <li>Update an automated test that was testing this API and can check the response.</li>
+  <li>Use cURL/Postman to test your code and ensure that the response is updated.</li>
+  <li>Test a small piece of change inside a <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL shell</a>, if your language/framework provides that, and verify that the class method is returning the change as expected. Some examples of such shells as <code class="language-plaintext highlighter-rouge">rails c</code> for a rails app, <code class="language-plaintext highlighter-rouge">python</code> for a django app, <code class="language-plaintext highlighter-rouge">jshell</code> for a java app, or a browser developer console  for Javascript apps.</li>
+</ol>
+
+<p>Here, step 1 and 2 can be very slow if you have a medium/large application because your web server/test suite will take time to boot, whereas step 3 will be very fast. Being a rails developer, I always test such changes inside <code class="language-plaintext highlighter-rouge">rails c</code>. This might seem like a very small optimization but there are times when you end up testing the change multiple times. If something takes time (eg. a web server reloading after change), we might also switch to other tasks (or distractions) in the interim.</p>
+
+<p>This is just one example of improving our productivity as a developer (frustration and productivity are inversely proportional). I’d recommend you to spend more time in finding shorter ways of testing things out than wasting time in longer testing loops. That would help you for years. Although I strongly believe that developers are solely responsible for their code (no reviewers, no QAs) and by no means I’m saying that we should abandon testing code via test cases and postman. But yes, while you’re in the middle of debugging, use shorter ways and in the end test out things by normal means.</p>
+
+<p>The motive of this post is not to promote use of REPL shells, but I’ve used them for about 8 years now and they are great tools to learn the language fast, and also to debug things. If your language supports this and you never used it, you must try this once. Try this out next time you get into debugging something time consuming and let me know if this helped.</p>
+
 
   </div>
   <br>
