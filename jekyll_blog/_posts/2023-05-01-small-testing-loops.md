@@ -18,7 +18,7 @@ Photo by <a href="https://unsplash.com/it/@nublson?utm_source=unsplash&utm_mediu
 ---
 {: style="text-align: center;font-size: 0.8em"}
 
-If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to it's current state, and you find the need to [refactor it](https://refactoring.com/). But in a hurry to finish the task on time, we start solving the problem directly and testing it out, often wasting a lot of time that could be easily saved. Had we spent some time on understanding the moving parts, our "testing loops" could have been shorter.
+If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to its current state, and you find the need to [refactor it](https://refactoring.com/). But in a hurry to finish the task on time, we start solving the problem directly and testing it out, often wasting a lot of time that could be easily saved. Had we spent some time on understanding the moving parts, our "testing loops" could have been shorter.
 
 At the time of writing this, I found out that "testing loop" is not a defined terminology in software engineering, so this is what I mean by it
 >"The process of changing a piece of code, and testing it out by some means" forms a loop. Smaller the loop, the faster we change and test our code, and our frustration is minimum.
