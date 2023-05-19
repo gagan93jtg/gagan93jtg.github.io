@@ -1,4 +1,3 @@
-cd jekyll_blog
 rm -rf _site .jekyll-cache
 bundle exec jekyll build
 cd ..
