@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZKG2EDMK4C');
+      </script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+  </head><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fixing code exceptions | Gagandeep Singh — Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Fixing code exceptions" />
+<meta name="author" content="Gagandeep Singh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds" />
+<meta property="og:description" content="A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds" />
+<link rel="canonical" href="https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html" />
+<meta property="og:url" content="https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html" />
+<meta property="og:site_name" content="Gagandeep Singh — Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-01T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fixing code exceptions" />
+<script type="application/ld+json">
+{"description":"A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds","author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html","headline":"Fixing code exceptions","dateModified":"2023-07-01T00:00:00+05:30","datePublished":"2023-07-01T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post detailed">
+  <div>
+    <p class="author-title">
+      Published 1st July, 2023
+    </p>
+    <p class="post-title">Fixing code exceptions</p>
+
+    
+    <div class="post-tags">
+      
+      
+        <a href="/blog/categories/#bug-fixing" class="category">bug-fixing</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#data-issues" class="category">data-issues</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#stability" class="category">stability</a>
+        
+      
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2023-07-01-fixing-code-exceptions.jpg" alt="cover-photo" /></h2>
+
+<h2 style="text-align: center;font-size: 0.8em" id="photo-by-joshua-hoehne-on-unsplash">Photo by <a href="https://unsplash.com/@mrthetrain?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joshua Hoehne</a> on <a href="https://unsplash.com/photos/LndcUO8Z-IM?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></h2>
+
+<p>A regular day in the life of a software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds:</p>
+<ol>
+  <li>A feature was built wrong but is not throwing a code level exception.</li>
+  <li>A corner case exists in the feature causing an exception in the code flow.</li>
+</ol>
+
+<p>Today, we’ll discuss about the second case i.e. exception scenarios. Software teams integrate tools in their code repositories to capture such exceptions. These tools can be self hosted or commercially hosted by some company. Sentry and Bugsnag are the most common tools I’ve heard in this space. I’ve also used tools like <a href="https://www.rubydoc.info/gems/exception_notification/4.1.4">exception notification</a> for my personal projects. At LocoNav, we’ve been using Bugsnag for more than 5 years now. We have also integrated Bugsnag with our JIRA. So all the exceptions get tracked as JIRA tickets.</p>
+
+<p>Interestingly, I often see developers “just trying to fix the bug” in order to close a bugsnag issue. So I’m trying to pen down what we should be focussed on when we see an exception assigned to us:</p>
+
+<ol>
+  <li>
+    <p><strong>It’s both good and bad</strong> - Softwares become complex, and we miss out testing specific cases, so exceptions can occur. It is not a sin. But the severity of that issue depends on what is broken. You might be running a software for life-critical operations. So your bug can cause a greater damage. Or a stock market trading website, so a bug makes you or your customer loose real money. For large organisations, bugs and downtimes cause loss of millions of dollars. So in brief, it’s might be fine to cause such issues once in a while, and in very corner cases. But not OK to normalize it. Developers often put blames on QAs for missing the specific test case. But I personally believe that your code is your responsibility. No CR mistake, no QA mistake. Test it well using both automation and manual flows before taking forward.</p>
+  </li>
+  <li>
+    <p><strong>Prioritize bug fixing</strong> - It might become an attitude to have many open bugs in your module in the name of “bandwidth crunch”. This simply means that you don’t prioritize bugs. On one hand, developers talk about “users dropping from a website due to slow page load” (<a href="https://kinsta.com/blog/ttfb/">reference to this context</a>) and on the other hand they normalize broken features. Crazy, no? Convince your leaders and product teams to prioritize these bugs as a part of every sprint.</p>
+  </li>
+  <li>
+    <p><strong>Don’t just fix the issues</strong> - Please understand the issues before doing a fix - find the user(s) who are facing this, reproduce the issue on production, then do the same on your local machine (if possible), do your investigation and discuss the fix with your team. Make sure you understand that the bug completely before doing any fix. Also check if it is only a missing null-check or some design issue. Simplest fix can do a greater damange (discussed more in point 5).</p>
+  </li>
+  <li>
+    <p><strong>Please fix bugs, not bugsnags</strong> - I wrote this line in the past in our slack channel. I had to write this because I saw people raising pull requests to fix null pointer issues by <a href="https://blog.shiftasia.com/better-null-check-with-safe-navigation-operator-in-ruby/">safe handling the null check</a>. This is the worst thing you can do to fix the issue. It simply means that the feature might still not work perfectly, but atleast it will not throw an exception now 😑.</p>
+  </li>
+  <li>
+    <p><strong>Long term data issues</strong> - Sometimes, having bugs in your code do a greater damage. They either hide data issues, or cause data issues. I’ll give examples of both below (code samples in Ruby):</p>
+  </li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># code hiding a data issue</span>
+
+<span class="n">classs</span> <span class="no">MyService</span>
+  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span>
+      <span class="n">user</span><span class="p">.</span><span class="nf">do_this</span>
+      <span class="n">user</span><span class="p">.</span><span class="nf">do_that</span>
+      <span class="n">user</span><span class="p">.</span><span class="nf">send_some_email</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Now this code will never report any issue if an invalid <code class="language-plaintext highlighter-rouge">user_id</code> is passed to it. If this sounds like a feature to you, then you might be mistaken (read this <a href="https://en.wikipedia.org/wiki/Fail-fast">philosophy</a>). Do you get an error if you try to insert some data into a table with wrong column names? Or does SQL simply ignore the wrong column and insert rest of the data? While your code should work as expected for expected cases, you should also make sure that it raises the required alarms in case it is not given the correct input. Here, the <code class="language-plaintext highlighter-rouge">if</code> statement is hiding an error inside it. So in case a user_id stored as a foreign key in some other table is passed to this service, and incase that user is missing from the database, nothing would report it. Probably some developer added this if statement just to fix the issue (point 3). But this is what damage it can cause.</p>
+
+<p>Coming to the second case:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># code causing a data issue</span>
+
+<span class="k">class</span> <span class="nc">MyService</span>
+  <span class="k">def</span> <span class="nf">track_activity</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="no">Activity</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">start_time: </span><span class="o">&lt;&gt;</span><span class="p">,</span> <span class="ss">end_time: </span><span class="o">&lt;&gt;</span><span class="p">,</span> <span class="ss">user_id: </span><span class="n">user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Looks like some developer added safe navigation to avoid an exception. The implication of that fix is a data issue that you can probably never solve. Clearly, a null user can be passed to this service and nothing will break. And that’s not a feature but a very huge bug. You can have activities in your database that contain null in <code class="language-plaintext highlighter-rouge">user_id</code> column, and there are chances that you can never associate that to a genuine user. So you’ll be left with customer issues telling that some activities are not tracked, and some entries with null <code class="language-plaintext highlighter-rouge">user_id</code>.</p>
+
+<hr />
+<p><br />
+Fortunately, I’ve been part of both the words - the teams where we started from scratch and did very fast development, and the teams where the software was built by someone else and we did only maintenance / bug fixing. And after seeing issues in both the worlds, I can infer that bug fixing is a serious matter, and it needs more attention than building something from scratch. Do understand the scope of the feature and bug before you raise a pull request for the fix.</p>
+
+<p>Happy bug bashing 😁</p>
+
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="https://gagan93.me/2023/07/01/fixing-code-exceptions.html"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    color: black;
+  }
+
+  .category {
+    background-color: #2C3E50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gagandeep Singh — Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gagandeep Singh — Blog</li><li><a class="u-email" href="mailto:gagan93gtbit@gmail.com">gagan93gtbit@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gagan93jtg"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gagan93jtg</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Posts on Engineering, Culture, Leadership</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
