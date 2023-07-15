@@ -1,0 +1,43 @@
+---
+layout: post
+title: "Monolith → Microservices"
+date: 2023-07-14
+published_on: "14th July, 2023"
+author: Gagandeep Singh
+cover: "/blog/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg"
+categories: architecture monolith microservices mindset
+excerpt: At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the...
+---
+
+![cover-photo](/blog/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg)
+---
+{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
+}
+
+Photo from <a href="https://news.stanford.edu/2018/06/11/four-ways-human-mind-shapes-reality/">Standford News Website</a>
+---
+{: style="text-align: center;font-size: 0.8em"}
+
+At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java, but the web part was still a large monolith. It had almost every functionality we provided and the developers kept adding more functionalities to it. We knew that we're building a strongly coupled system that would need untangling very soon.
+
+Around mid 2021, we started our discussions to break this application. Fast forward to today, the large application still exists. Few parts of the system were extracted out, many are still in-progress, while some got deprioritized, but the knowledge gained from the process was immense. I'm sharing a few points from that knowledge:
+
+1. **Keep frontend out as soon as possible** - Our monolith is a fullstack application. That means we had the entire frontend code is inside this repo. Our oldest stack was Embedded Ruby and jQuery with Bootstrap. But soon we started moving part of system to React. For the longest time (including now), our deployment process included management of both ruby and react based frontends. If you have seen the deployment of a frontend / fullstack application, then you might be aware of the processes that happen to make frontend assets production ready (transpilation, minification, compression and much more). Our frontend part of deployment (known as asset precompilation in rails) takes 50-60% of the total deployment time. We're in process of taking out React frontend completely from this repo, but this is the debt we pay everytime we need to deploy our app.
+
+2. **Read alot before starting** - Monolith to microservices is a complete subject on it's own. You might be a very experienced senior developer, but I'd not recommend doing anything without reading enough on the topic. I found [this book](https://www.oreilly.com/library/view/monolith-to-microservices/9781492047834/) quite helpful in understanding the challenges and the journey. By reading enough, you'll make sure that you don't get trapped into issues like [distributed monolith](https://www.techtarget.com/searchapparchitecture/tip/The-distributed-monolith-What-it-is-and-how-to-escape-it) or data inconsistency. Also, unlike before when the entire system went down or came back as a whole, now parts of system can fail. So we need to make sure that the dependent services handle these situations (eg. adding required timeouts).
+
+3. **Align enough resources** - Often companies with small team of developers assume that they can align some bandwidth for microservices migration but even after months they don't see any significant progress. Please understand that microservice migration needs a dedicated effort. That doesn't mean 2x of your developer strength, but atleast more than what you currently have (or deprioritize some tasks for existing developers for a long time).
+
+4. **Train people for now and future** - The developers (like me) who have been working on monolith over the years will need a mindset shift to start working on microservices in a productive manner. Some people might not agree to it, but the idea of microservices is modularlity. If you bring the same mindset of monolith system while writing services, you might end up with a few small monolith applications. You'll need to develop a lot of libraries and tooling in order to avoid repetition of work across services. Some use cases of such libraries are - consistent logging, request-response handling, inter-service authentication, deployment tooling, etc. Accordingly, developers need to learn how to use these to avoid duplicate effort. Anything that sounds outside scope of your business logic should be taken out in a library so that someone else can use it in future, if needed. This habit also allows you to write functionalities that are decoupled from business logic ([Click here](https://cloudcomputingtechnologies.com/the-importance-of-decoupling-in-software-development/) to read more about _Benefits of Decoupling_).
+
+5. **Leverage OpenAPI autogeneration** - If you're aware of OpenAPI documentation (more popularly known as [Swagger documentation](https://blog.hubspot.com/website/what-is-swagger)) and you don't know about the autogeneration that comes free with it, then you're missing something great. Although this could be a detailed post on it's own, but in brief - if you are defining a nice API documentation for your service, and have documented all the request and response schemas along with it, then you can generate a client in any popular programming languge without much effort and start using it without any hassle. I'm leaving two links here to help you get started with this (don't miss this): [The tool](https://github.com/OpenAPITools/openapi-generator) and [The documentation](https://openapi-generator.tech/docs/usage/)
+
+
+6. **Think twice whenever you're building something new** - Whenever you're building a feature that sounds somewhat large, just think if you can draw clear boundries on the needs of this feature and take it out right away. This might be easily possible for some features while an overkill for others. I'll leave this to the understanding of Engineering manager who is building this. Incase you still plan to build this inside the monolith app, use required service layer ([facade layer](https://en.wikipedia.org/wiki/Facade_pattern)) to access this feature so that your controller layer doesn't heavily depend on the model layer (ORM) to CRUD on the data.
+
+7. **Refactor, Refactor, Refactor** - Read a book around design patterns if you can. When you plan to take out a module from your large app, you will introduce some layers of abstractions that might be temporary or permanent in order to decouple it from rest of app. This is true for any part that you're taking out from a monolith (you are be blessed if you don't need to do this). This effort might be under-estimated if you're doing this activity for the first time.
+
+8. **Costs will increase in two ways** - True microservices system is not for small teams. You need people to manage production grade services. Although the ratio between developer and services varies from one organisation to the other, but generally the need of developer increases as you move to services. You might want to rethink your decision of moving to microservices if you don't want to invest in a larger team (Read [this](https://www.fullstacklabs.co/blog/modular-monolithic-vs-microservices) for an alternative architecture). Another direction in which cost increases is the **cloud cost**. More services will lead to more costs - costs for servers (or containers, or pods), databases, infrastructural maintenance of these systems, test, deployment and so on.
+
+
+Above are the best insights I can share from my experience. See you guys later!
