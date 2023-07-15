@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZKG2EDMK4C');
+      </script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+  </head><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Monolith → Microservices | Gagandeep Singh — Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Monolith → Microservices" />
+<meta name="author" content="Gagandeep Singh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the…" />
+<meta property="og:description" content="At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the…" />
+<link rel="canonical" href="https://gagan93.me/blog/2023/07/14/mindset-shift-monolith-to-microservices.html" />
+<meta property="og:url" content="https://gagan93.me/blog/2023/07/14/mindset-shift-monolith-to-microservices.html" />
+<meta property="og:site_name" content="Gagandeep Singh — Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-14T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Monolith → Microservices" />
+<script type="application/ld+json">
+{"description":"At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the…","author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2023/07/14/mindset-shift-monolith-to-microservices.html","headline":"Monolith → Microservices","dateModified":"2023-07-14T00:00:00+05:30","datePublished":"2023-07-14T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2023/07/14/mindset-shift-monolith-to-microservices.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post detailed">
+  <div>
+    <p class="author-title">
+      Published 14th July, 2023
+    </p>
+    <p class="post-title">Monolith → Microservices</p>
+
+    
+    <div class="post-tags">
+      
+      
+        <a href="/blog/categories/#architecture" class="category">architecture</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#monolith" class="category">monolith</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#microservices" class="category">microservices</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#mindset" class="category">mindset</a>
+        
+      
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg" alt="cover-photo" /></h2>
+
+<h2 style="text-align: center;font-size: 0.8em" id="photo-from-standford-news-website">Photo from <a href="https://news.stanford.edu/2018/06/11/four-ways-human-mind-shapes-reality/">Standford News Website</a></h2>
+
+<p>At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java, but the web part was still a large monolith. It had almost every functionality we provided and the developers kept adding more functionalities to it. We knew that we’re building a strongly coupled system that would need untangling very soon.</p>
+
+<p>Around mid 2021, we started our discussions to break this application. Fast forward to today, the large application still exists. Few parts of the system were extracted out, many are still in-progress, while some got deprioritized, but the knowledge gained from the process was immense. I’m sharing a few points from that knowledge:</p>
+
+<ol>
+  <li>
+    <p><strong>Keep frontend out as soon as possible</strong> - Our monolith is a fullstack application. That means we had the entire frontend code is inside this repo. Our oldest stack was Embedded Ruby and jQuery with Bootstrap. But soon we started moving part of system to React. For the longest time (including now), our deployment process included management of both ruby and react based frontends. If you have seen the deployment of a frontend / fullstack application, then you might be aware of the processes that happen to make frontend assets production ready (transpilation, minification, compression and much more). Our frontend part of deployment (known as asset precompilation in rails) takes 50-60% of the total deployment time. We’re in process of taking out React frontend completely from this repo, but this is the debt we pay everytime we need to deploy our app.</p>
+  </li>
+  <li>
+    <p><strong>Read alot before starting</strong> - Monolith to microservices is a complete subject on it’s own. You might be a very experienced senior developer, but I’d not recommend doing anything without reading enough on the topic. I found <a href="https://www.oreilly.com/library/view/monolith-to-microservices/9781492047834/">this book</a> quite helpful in understanding the challenges and the journey. By reading enough, you’ll make sure that you don’t get trapped into issues like <a href="https://www.techtarget.com/searchapparchitecture/tip/The-distributed-monolith-What-it-is-and-how-to-escape-it">distributed monolith</a> or data inconsistency. Also, unlike before when the entire system went down or came back as a whole, now parts of system can fail. So we need to make sure that the dependent services handle these situations (eg. adding required timeouts).</p>
+  </li>
+  <li>
+    <p><strong>Align enough resources</strong> - Often companies with small team of developers assume that they can align some bandwidth for microservices migration but even after months they don’t see any significant progress. Please understand that microservice migration needs a dedicated effort. That doesn’t mean 2x of your developer strength, but atleast more than what you currently have (or deprioritize some tasks for existing developers for a long time).</p>
+  </li>
+  <li>
+    <p><strong>Train people for now and future</strong> - The developers (like me) who have been working on monolith over the years will need a mindset shift to start working on microservices in a productive manner. Some people might not agree to it, but the idea of microservices is modularlity. If you bring the same mindset of monolith system while writing services, you might end up with a few small monolith applications. You’ll need to develop a lot of libraries and tooling in order to avoid repetition of work across services. Some use cases of such libraries are - consistent logging, request-response handling, inter-service authentication, deployment tooling, etc. Accordingly, developers need to learn how to use these to avoid duplicate effort. Anything that sounds outside scope of your business logic should be taken out in a library so that someone else can use it in future, if needed. This habit also allows you to write functionalities that are decoupled from business logic (<a href="https://cloudcomputingtechnologies.com/the-importance-of-decoupling-in-software-development/">Click here</a> to read more about <em>Benefits of Decoupling</em>).</p>
+  </li>
+  <li>
+    <p><strong>Leverage OpenAPI autogeneration</strong> - If you’re aware of OpenAPI documentation (more popularly known as <a href="https://blog.hubspot.com/website/what-is-swagger">Swagger documentation</a>) and you don’t know about the autogeneration that comes free with it, then you’re missing something great. Although this could be a detailed post on it’s own, but in brief - if you are defining a nice API documentation for your service, and have documented all the request and response schemas along with it, then you can generate a client in any popular programming languge without much effort and start using it without any hassle. I’m leaving two links here to help you get started with this (don’t miss this): <a href="https://github.com/OpenAPITools/openapi-generator">The tool</a> and <a href="https://openapi-generator.tech/docs/usage/">The documentation</a></p>
+  </li>
+  <li>
+    <p><strong>Think twice whenever you’re building something new</strong> - Whenever you’re building a feature that sounds somewhat large, just think if you can draw clear boundries on the needs of this feature and take it out right away. This might be easily possible for some features while an overkill for others. I’ll leave this to the understanding of Engineering manager who is building this. Incase you still plan to build this inside the monolith app, use required service layer (<a href="https://en.wikipedia.org/wiki/Facade_pattern">facade layer</a>) to access this feature so that your controller layer doesn’t heavily depend on the model layer (ORM) to CRUD on the data.</p>
+  </li>
+  <li>
+    <p><strong>Refactor, Refactor, Refactor</strong> - Read a book around design patterns if you can. When you plan to take out a module from your large app, you will introduce some layers of abstractions that might be temporary or permanent in order to decouple it from rest of app. This is true for any part that you’re taking out from a monolith (you are be blessed if you don’t need to do this). This effort might be under-estimated if you’re doing this activity for the first time.</p>
+  </li>
+  <li>
+    <p><strong>Costs will increase in two ways</strong> - True microservices system is not for small teams. You need people to manage production grade services. Although the ratio between developer and services varies from one organisation to the other, but generally the need of developer increases as you move to services. You might want to rethink your decision of moving to microservices if you don’t want to invest in a larger team (Read <a href="https://www.fullstacklabs.co/blog/modular-monolithic-vs-microservices">this</a> for an alternative architecture). Another direction in which cost increases is the <strong>cloud cost</strong>. More services will lead to more costs - costs for servers (or containers, or pods), databases, infrastructural maintenance of these systems, test, deployment and so on.</p>
+  </li>
+</ol>
+
+<p>Above are the best insights I can share from my experience. See you guys later!</p>
+
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="https://gagan93.me/2023/07/14/mindset-shift-monolith-to-microservices.html"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    color: black;
+  }
+
+  .category {
+    background-color: #2C3E50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gagandeep Singh — Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gagandeep Singh — Blog</li><li><a class="u-email" href="mailto:gagan93gtbit@gmail.com">gagan93gtbit@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gagan93jtg"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gagan93jtg</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Posts on Engineering, Culture, Leadership</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
