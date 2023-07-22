@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZKG2EDMK4C');
+      </script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+  </head><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Migrating data across services | Gagandeep Singh — Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Migrating data across services" />
+<meta name="author" content="Gagandeep Singh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Today, I’m explaining how we planned to transfer millions of rows “reliably” to a different service during on journey to services architecture." />
+<meta property="og:description" content="Today, I’m explaining how we planned to transfer millions of rows “reliably” to a different service during on journey to services architecture." />
+<link rel="canonical" href="https://gagan93.me/blog/2023/07/22/migrating-data-across-services.html" />
+<meta property="og:url" content="https://gagan93.me/blog/2023/07/22/migrating-data-across-services.html" />
+<meta property="og:site_name" content="Gagandeep Singh — Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-22T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Migrating data across services" />
+<script type="application/ld+json">
+{"description":"Today, I’m explaining how we planned to transfer millions of rows “reliably” to a different service during on journey to services architecture.","author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2023/07/22/migrating-data-across-services.html","headline":"Migrating data across services","dateModified":"2023-07-22T00:00:00+05:30","datePublished":"2023-07-22T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2023/07/22/migrating-data-across-services.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post detailed">
+  <div>
+    <p class="author-title">
+      Published 22nd July, 2023
+    </p>
+    <p class="post-title">Migrating data across services</p>
+
+    
+    <div class="post-tags">
+      
+      
+        <a href="/blog/categories/#architecture" class="category">architecture</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#data-migration" class="category">data-migration</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#kafka" class="category">kafka</a>
+        
+      
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2023-07-22-migrating-data-across-services.jpg" alt="cover-photo" /></h2>
+
+<h2 style="text-align: center;font-size: 0.8em" id="photo-from-datanami">Photo from <a href="https://www.datanami.com/2019/12/12/google-launches-transfer-service-for-on-prem-data/">Datanami</a></h2>
+
+<p>With reference to my <a href="https://gagan93.me/blog/2023/07/14/mindset-shift-monolith-to-microservices.html">last post</a> and comment on the corresponding <a href="https://www.linkedin.com/feed/update/urn:li:activity:7085911288056299520?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7085911288056299520%2C7085935059165192192%29&amp;replyUrn=urn%3Ali%3Acomment%3A%28activity%3A7085911288056299520%2C7086039096455815168%29">LinkedIn post</a>, I’m explaining how we planned migrating data while transitioning to microservices architecture. There can be multiple approaches to do the same. In a nutshell - we simply want to replicate the data to the new service in a reliable manner at scale.</p>
+
+<ol>
+  <li>
+    <p><strong>Dump and restore the table on database level</strong> - Whatever database you’re using, there should be some utility that allows you to do the same. But this is a one time operation, and doesn’t ensure continuous sync of data. For the systems that hardly change, we can do this. Another thing that we assume here is that schema is exactly the same. Often, when we transition to services, some columns change or get removed (eg. foreign keys that no longer exist in new system). So this is very less likely to be used.</p>
+  </li>
+  <li>
+    <p><strong>Setup hooks in old service &amp; continuously sync data</strong> - I assume that your MVC architecture would help you to setup such hooks. Eg. we use <code class="language-plaintext highlighter-rouge">after_commit</code> callbacks in Rails models to replicate such data. And some custom scripts (or rails console) to backfill existing data. Depending on size of data this might take a lot of time to backfill existing data, but should replicate the complete data on the new system.</p>
+  </li>
+</ol>
+
+<p>We used the second approach, architected by Nimish Mehta (Senior Staff Engineer @ LocoNav). Even to implement this approach, there are multiple ways, where each has it’s own complexity and reliability:</p>
+
+<ol>
+  <li><strong>Directly replicate data</strong> - Here, we’ll simply use the hook in the first application to hit some REST/grPC endpoint of the second application. This should work well till the second system is up and running. Incase the second system goes down, our application should have sufficient retry mechanism before it considers to stop sending further data, or to mark the current packet as <code class="language-plaintext highlighter-rouge">failed</code>. There are more things that can happen. Considering a large system, where many such use cases will exist, it was inefficient to build this intelligence in all of them. We needed a better solution.
+<img src="/blog/assets/images/2023-07-22-data_migration_arch_1.jpg" alt="cover-photo" style="margin-bottom: 40px;" /></li>
+  <li><strong>Producer-consumer pattern</strong> - We thought of setting up a queueing mechanism using Kafka topics. The primary app (<em>producer</em>) shall publish the data on kafka topic and the new app (<em>consumer</em>) shall read the data from kafka topic whenever it is available. Though this sounded good, it would mean that all such consumer applications shall have the logic to read kafka topic and maintain success/failure logs. This was again adding complexity to each consumer application, and hence this solution was not optimized for the long run.
+<img src="/blog/assets/images/2023-07-22-data_migration_arch_2.jpg" alt="cover-photo" style="margin-bottom: 40px;" /></li>
+  <li><strong>Setup an app in the middle</strong> - The best solution that we found was to have an app in between producer and consumer. So it goes like - your producer app publishes the data on kafka topic and your consumer app exposes a REST endpoint that accepts data in a known format. In the middle, we have an application that takes care of:
+    <ul>
+      <li>Reading data from Kafka.</li>
+      <li>Formatting it to JSON (from optimization perspective, we published in <a href="https://github.com/protocolbuffers/protobuf">protobuf format</a>).</li>
+      <li>Pushing to consumer application’s REST endpoint.</li>
+      <li>Having enough retries and a lot of configuration around the same.</li>
+      <li>Scalable, partitioned database that stored logs of all requests sent to the REST endpoint.</li>
+      <li>Provision to retry upto <code class="language-plaintext highlighter-rouge">MAX_RETRIES</code> (configurable) per use case.</li>
+      <li>Provision to retain success/failure logs upto certain hours/days (configurable), and much more.
+<img src="/blog/assets/images/2023-07-22-data_migration_arch_3.jpg" alt="cover-photo" style="margin-bottom: 40px;" /></li>
+    </ul>
+  </li>
+</ol>
+
+<p>We found the third architecture best for our use case because it has almost zero duplication of code/optimizations on producer or consumer end. Also, in case we need to build anything in future (eg. a UI to query failure logs, or a button to retry), we’d just need to build in the central app. From our experience, I can say that it has solved a lot of pain for other teams because success/failure logs become large with time and none of the team need to worry about it because the team maintaining this central app (“developer productivity team”) takes care of that. This simplifies both apps and life of other developers 😇.</p>
+
+<p>See you guys in the next post.</p>
+
+
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="https://gagan93.me/2023/07/22/migrating-data-across-services.html"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    color: black;
+  }
+
+  .category {
+    background-color: #2C3E50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gagandeep Singh — Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gagandeep Singh — Blog</li><li><a class="u-email" href="mailto:gagan93gtbit@gmail.com">gagan93gtbit@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gagan93jtg"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gagan93jtg</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Posts on Engineering, Culture, Leadership</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
