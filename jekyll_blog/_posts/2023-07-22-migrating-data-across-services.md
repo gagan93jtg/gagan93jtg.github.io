@@ -6,7 +6,7 @@ published_on: "22nd July, 2023"
 author: Gagandeep Singh
 cover: "/blog/assets/images/2023-07-22-migrating-data-across-services.jpg"
 categories: architecture data-migration kafka
-excerpt: Today, I'm explaining how we planned to transfer millions of rows "reliably" to a different service during on journey to services architecture.
+excerpt: Today, I'm explaining how we planned to transfer millions of rows "reliably" to a different service during our journey to services architecture.
 ---
 
 ![cover-photo](/blog/assets/images/2023-07-22-migrating-data-across-services.jpg)
