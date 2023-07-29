@@ -40,6 +40,10 @@ header.post-header {
   visibility: hidden;
 }
 
+ul {
+  margin-bottom: 15px !important;
+}
+
 @media screen and (max-width: 800px) {
   .post-container {
     width: 100%;
