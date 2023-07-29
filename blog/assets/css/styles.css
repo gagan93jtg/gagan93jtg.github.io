@@ -16,6 +16,8 @@
 
 header.post-header { visibility: hidden; }
 
+ul { margin-bottom: 15px !important; }
+
 @media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } a.page-link { color: black !important; } }
 
 .post-link, .post-details, .post-excerpt, .post-link-container { margin-bottom: 0; }
