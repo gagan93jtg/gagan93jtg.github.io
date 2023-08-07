@@ -5,7 +5,7 @@ date: 2023-08-06
 published_on: "06th August, 2023"
 author: Gagandeep Singh
 cover: "/blog/assets/images/2023-08-06-asking-good-questions.jpg"
-categories: questions context
+categories: questions context efficiency
 excerpt: On a daily basis, we communicate with a lot of people - family, friends, office colleagues and often with end customers. A lot of this communication is in the form of asking questions and getting answers.
 ---
 
