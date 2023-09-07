@@ -1,15 +1,15 @@
 ---
 layout: post
 title: "Testing an app"
-date: 2023-08-30
-published_on: "30th August, 2023"
+date: 2023-09-07
+published_on: "07th September, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-08-30-testing-an-app.jpg"
-categories: complexity system engineering
+cover: "/blog/assets/images/2023-09-07-testing-an-app.jpg"
+categories: development process testing
 excerpt: For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true.
 ---
 
-![cover-photo](/blog/assets/images/2023-08-30-why-write-tests.jpg)
+![cover-photo](/blog/assets/images/2023-09-07-why-write-tests.jpg)
 ---
 {: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
