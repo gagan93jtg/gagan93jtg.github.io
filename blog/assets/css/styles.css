@@ -33,7 +33,7 @@ ul { margin-bottom: 15px !important; }
 .post-details { padding: 10px 10px 5px 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; }
 
 /* Overrides */
-body, * { font-family: 'Raleway' !important; }
+body, * { font-family: 'Raleway'; letter-spacing: 0.4px; }
 
 a:hover { text-decoration: none !important; }
 
@@ -56,6 +56,8 @@ main.page-content { padding: 0px !important; }
 .post-list-heading { font-size: 3em !important; margin: 1em auto; }
 
 a.category:hover { color: white !important; }
+
+.post p { font-size: 1.05em; }
 
 @media screen and (max-width: 600px) { a.page-link { color: black !important; } }
 
