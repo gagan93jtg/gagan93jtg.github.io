@@ -89,7 +89,8 @@ ul {
 
 /* Overrides */
 body, * {
-  font-family: 'Raleway' !important;
+  font-family: 'Raleway';
+  letter-spacing: 0.4px;
 }
 
 a:hover {
@@ -136,6 +137,12 @@ main.page-content {
 
 a:hover.category {
   color: white !important;
+}
+
+.post {
+  p {
+    font-size: 1.05em;
+  }
 }
 
 @media screen and (max-width: 600px) {
