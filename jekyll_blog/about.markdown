@@ -25,4 +25,5 @@ I'm Gagandeep Singh, a Staff Engineer based out of  New Delhi, India and current
 
 Being a part of startup environment, my role has not been limited to only tech. I've been involved in handling people, hiring and trainning, managing appraisals, handling end to end delivery of features, acting as a project manager at times, talking to multiple other departments as per work, and optimizing a lot of stuff that was badly written in the past by myself or by someone else.
 
-I write here and on my LinkedIn handle in my free time. More details about my work is shared [here](https://gagan93.me).
+All the blogs are cross-posted on [my hashnode](https://blog.gagan93.me) blog as well.
+More details about my work is shared [here](https://gagan93.me).
