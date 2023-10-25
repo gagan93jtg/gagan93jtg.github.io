@@ -296,10 +296,6 @@ i.bronze_badge {
 }
 
 @media only screen and (max-width: 766px) {
-  #view-timeline-btn {
-    display: none;
-  }
-
   .first-li {
     margin-top: 50px;
   }
