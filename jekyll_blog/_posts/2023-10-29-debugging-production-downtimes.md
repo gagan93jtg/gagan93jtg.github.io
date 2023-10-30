@@ -41,10 +41,9 @@ When you see an application outage, two things to do are:
 
 2. Retrospect and improve.
 
-
 Let's look into these one by one
 
-### Understanding and fixing the issue
+## Understanding and fixing the issue
 
 If you don't have a very good monitoring setup, you'll get a text like this from your friend in the product or business team:
 
