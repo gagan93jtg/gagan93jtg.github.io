@@ -1,4 +1,169 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2023-10-04T16:28:42+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Efficient Remote Teams</title><link href="https://gagan93.me/blog/2023/10/04/efficient-remote-teams.html" rel="alternate" type="text/html" title="Efficient Remote Teams" /><published>2023-10-04T00:00:00+05:30</published><updated>2023-10-04T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/10/04/efficient-remote-teams</id><content type="html" xml:base="https://gagan93.me/blog/2023/10/04/efficient-remote-teams.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-10-04-efficient-remote-teams.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2023-10-30T14:06:21+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Debugging Production downtimes</title><link href="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html" rel="alternate" type="text/html" title="Debugging Production downtimes" /><published>2023-10-29T00:00:00+05:30</published><updated>2023-10-29T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/10/29/debugging-production-downtimes</id><content type="html" xml:base="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-daniel-tausis-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@greatmalinco?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Daniel Tausis&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/fireman-watering-fire-loeqHoa1uWY?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Downtime&lt;/em&gt; refers to a period when a system/service is partially or completely unavailable. Based on the criticality of service and the customers you’re serving, this can cause a loss of millions of dollars. I’ve been on the frontline for debugging and fixing such downtimes for many years. Although most of my experience covers startup tech and you might have a different setup, I still believe that the general way of solving things remains the same.&lt;/p&gt;
+
+&lt;p&gt;Before going into details of how we can solve (or assist in solving) a downtime, let’s see a few reasons that cause downtimes:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;DOS/DDOS attacks&lt;/strong&gt; - An unexpectedly large number of requests can cause systems to become slow and eventually go down.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Network glitches&lt;/strong&gt; - Changes done to security groups, route tables or other similar network layers can cause a system to be unavailable for use.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Downtime due to deployment&lt;/strong&gt; - This happens when some heavily used system (or an API endpoint) gets slow due to some recent changes that introduced slowness. Because this is heavily used, this can occupy all the available bandwidth of the app server and take it down.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cascading failures&lt;/strong&gt; - If there is a system on which your service highly depends, and that becomes too slow or goes down, then there are high chances that it will take your system down as well. We can debate on “missing timeouts” and “coupling” in this setup, but for now, let’s agree that this can cause downtime.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cross A/Z deployments/changes&lt;/strong&gt; - Sometimes, we mistakenly introduce latency by choosing a different availability zone for some latency-critical systems. The impact of such changes is noticed only when the usage scales.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;When you see an application outage, two things to do are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Fix it asap.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Retrospect and improve.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Let’s look into these one by one&lt;/p&gt;
+
+&lt;h3 id=&quot;understanding-and-fixing-the-issue&quot;&gt;Understanding and fixing the issue&lt;/h3&gt;
+
+&lt;p&gt;If you don’t have a very good monitoring setup, you’ll get a text like this from your friend in the product or business team:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hey, the customer reported 503 error on the website, can you check?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Congratulations 🥳. Your journey starts now. Let’s try to navigate it together.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Check alerts&lt;/strong&gt; 🔴 - If you have some red signs already through email, chat or some other medium, you might get some idea of what’s wrong. I remember in my previous project we had a cluster of Redis servers (one master, multiple replicas) and There was an alert configured for replication lag of more than 10 seconds. Whenever someone ran a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS *something*&lt;/code&gt; command on it, we use to get plenty of alerts instantaneously. (You might be blaming the developer for not knowing that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS&lt;/code&gt; command is &lt;a href=&quot;https://redis.io/commands/keys/&quot;&gt;blocking and runs in O(n)&lt;/a&gt;, but the issue was that usage of that redis was not documented at all and most of us maintaining the project were junior engineers).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Get the right people&lt;/strong&gt; 🧑‍🤝‍🧑 - So there are two outcomes of step 1:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;You know what’s wrong and which team owns this - Get those people on call.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Or you’re not sure what is down, or if the app is a monolith - There should be some people in the team who generally debug such things. Like old engineers of the team (god bless you if you’re the one). Get them on the call.&lt;/p&gt;
+
+        &lt;p&gt;You might want to add some experts like DevOps (if you have a dedicated team), or database experts (if the database looks like a bottleneck) from your team. Although I agree that it might be hard to get people on call at odd hours.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Someone has to lead&lt;/strong&gt; 🤵 - Probably you were the first person to notice the downtime, and someone else knows the system better than you. Let them lead if that’s the case. Although fixing this situation would need collaboration from everyone, there has to be a person who’s doing primary debugging, sharing their screen, and delegating some tasks to someone else.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Know your tools&lt;/strong&gt; 🛠️ - I’ve debugged downtimes in those situations also where we had very minimal tooling setup, but it’s good if you have at least:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;A centralized logging solution (eliminates the time required to SSH to all servers to check logs).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;An APM tool with distributed tracing (reduces the time to understand the root cause in many cases).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Basic Pod/VM monitoring (helps to understand if RAM/CPU/Network/IO is the bottleneck).&lt;/p&gt;
+
+        &lt;p&gt;Having these tools is important, but knowing how to use them is even more important. If you’re not familiar with your tools, please learn them. Downtime is not a good time to learn about them. If you don’t have such tools, you should be hands-on with some unix commands. For eg. I’d use a combination of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tail&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grep&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;awk&lt;/code&gt; commands to debug access logs if I don’t have a logging solution available. Similarly, there are commands to see running processes (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ps aux&lt;/code&gt;), free memory (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free -h&lt;/code&gt;) and disk usage (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;df -h&lt;/code&gt; ) but these won’t show you historical data which is useful for debugging.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Thinking from First Principles&lt;/strong&gt; 🤔 - Although I talk about some common issues later, anything beyond these four points would be different for different projects/architectures. Here, we need to start thinking from the very basic things we know. The following statements should help to build some understanding:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;If the database is causing issues being a bottleneck, one/more of these might be true:&lt;/p&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;
+            &lt;p&gt;Is there some cron job or custom script running that can cause this?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Has some table table recently exploded in size that was being used&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Are we creating an index that might have locked the entire table?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Is this (locked) table heavily used?&lt;/p&gt;
+
+            &lt;p&gt;To answer any such question, we’d want to see the running queries. I’ve &lt;a href=&quot;https://gist.github.com/rgreenjr/3637525&quot;&gt;bookmarked this&lt;/a&gt; years ago to debug running queries on Postgres.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If some specific endpoint is running slow:&lt;/p&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;
+            &lt;p&gt;Is there a specific query that is running slow here?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Can we quickly see what we need to fix? (Maybe add an index).&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Is there any downstream service that is slow/down, causing the slowness? Can we &lt;a href=&quot;https://microservices.io/patterns/reliability/circuit-breaker.html&quot;&gt;short-circuit&lt;/a&gt; the broken downstream for a while?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;If the reasons are complex, can we isolate the endpoint to some specific servers/pods only? This should be configurable at the Ingress/API gateway or Load balancer based on your setup.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If a recent deployment caused slowness:&lt;/p&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;Can we revert to the last stable release? (your releases should be backwards compatible to do this)&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If a recent infra change caused this:&lt;/p&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;If you’re using &lt;a href=&quot;https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac&quot;&gt;IaC&lt;/a&gt;, can we revert to the last stable setup? Infra changes can cause network disruptions (eg. modifying a security group rule) and reverting the same should generally help.&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If the app servers are slow due to some surge of requests:&lt;/p&gt;
+
+        &lt;ol&gt;
+          &lt;li&gt;
+            &lt;p&gt;Can we restart the app server processes to clear the queue? (this might lead to a loss of requests unless done gracefully)&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Should we set up some rate limiting here?&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+
+        &lt;p&gt;The above list can go long according to your architecture and common issues faced but we’ll stop here. The idea is that once you scope the problem to a specific section, assume minimal correctness in the system and validate everything one by one.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Debugging downtimes is a hard problem, but solving one gives much more satisfaction than any feature release 😁 (at least to me). The learning that we get only by being present in such discussions/calls is very different (and deep) as compared to regular work. As a junior engineer, you get to see how your production is set up and what are the moving parts. If you’re a senior engineer, you see how your service interacts (and depends) on other components of the system. System outages frequently highlight areas that are vulnerable and require improvement. There are even more complicated reasons (like automation) that can cause hours of downtime (like &lt;a href=&quot;https://www.youtube.com/watch?v=dsHyUgGMht0&amp;amp;t=646s&quot;&gt;Github’s 2018 outage&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;I’m sure you must also have your two cents to add here. Please share your experiences in comments.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="production" /><category term="outage" /><category term="debugging" /><summary type="html">Downtime refers to a period when a system/service is partially or completely unavailable. Based on the criticality of service and the customers you're serving, this can cause a loss of millions of dollars. I've been on the...</summary></entry><entry><title type="html">Efficient Remote Teams</title><link href="https://gagan93.me/blog/2023/10/04/efficient-remote-teams.html" rel="alternate" type="text/html" title="Efficient Remote Teams" /><published>2023-10-04T00:00:00+05:30</published><updated>2023-10-04T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/10/04/efficient-remote-teams</id><content type="html" xml:base="https://gagan93.me/blog/2023/10/04/efficient-remote-teams.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-10-04-efficient-remote-teams.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-chris-montgomery-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@cwmonty?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Chris Montgomery&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/smgTvepind4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -405,70 +570,4 @@
 &lt;p&gt;&lt;br /&gt;
 Fortunately, I’ve been part of both the words - the teams where we started from scratch and did very fast development, and the teams where the software was built by someone else and we did only maintenance / bug fixing. And after seeing issues in both the worlds, I can infer that bug fixing is a serious matter, and it needs more attention than building something from scratch. Do understand the scope of the feature and bug before you raise a pull request for the fix.&lt;/p&gt;
 
-&lt;p&gt;Happy bug bashing 😁&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bug-fixing" /><category term="data-issues" /><category term="stability" /><summary type="html">A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds</summary></entry><entry><title type="html">‘Classify’ Your Codebase</title><link href="https://gagan93.me/blog/2023/06/20/classify-your-codebase.html" rel="alternate" type="text/html" title="‘Classify’ Your Codebase" /><published>2023-06-20T00:00:00+05:30</published><updated>2023-06-20T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/06/20/classify-your-codebase</id><content type="html" xml:base="https://gagan93.me/blog/2023/06/20/classify-your-codebase.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-06-20-classify-your-codebase-cover.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-chuttersnap-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;CHUTTERSNAP&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/7eQlPra81zQ?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Most of the software engineers have a strong (theoratical) grip on OOPs concepts right from the college days but few still struggle to apply them while working. There was a time in my career when I realized that my code is doing everything it is expected to do but I was unhappy with how it looked. I have written methods that were even 200-300 lines long, and classes 1000 lines long. But today if I see any such code, I call it &lt;strong&gt;unmaintainable&lt;/strong&gt; and &lt;strong&gt;untestable&lt;/strong&gt;. In this post, I want to share one thing that helped me transform my mindset, i.e. &lt;strong&gt;The power of small changes&lt;/strong&gt;. It took me months to understand how this habit is more impactful because earlier I thought this is counter-productive.&lt;/p&gt;
-
-&lt;p&gt;Few years ago, I worked on upgrading Rails major version of a monolith project (an app that powers most of LocoNav website). Most of the changes here were pushed in one large pull request (&lt;em&gt;100+ commits, 270+ file changes, 1300+ additions, 1600+ deletions&lt;/em&gt;, all by just me). Although it didn’t break anything related to code on production, but I was quite nervous at the time of release. No one even reviewed this PR much because it was hard to review (as discussed in the first point &lt;a href=&quot;https://gagan93.me/blog/2023/06/09/things-code-reviewers-hate.html&quot;&gt;here&lt;/a&gt;). Also, I found out that while raising large PRs worked for me, it did not scale for my team. Many such PRs sent by others caused production bugs.&lt;/p&gt;
-
-&lt;p&gt;We had a senior engineer who always advocated for small PRs and slowly I got influenced to follow the same. Being in a startup environment, we had to be fast enough in terms of delivery, so the main concern was - &lt;em&gt;How can we break changes into small parts and still deliver fast?&lt;/em&gt;. We started looking in the PRs on how we were organising our classes. We found out that we’re mixing a lot of responsibilities and not following SOLID principles at all (forget design principles!). You might think that I’m mixing basic OOPS with SOLID and other design principles (eg. prototype, builder or composite). But if you think carefully – it’s all about creating small classes that can talk to each other to complete a task. Let’s talk about a simple inheritance example that we studied during college days (code sample is in Ruby but should be basic enough to understand):&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;eat&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sleep&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Animal&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bark&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;BARK!&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here, we clearly see that one class is doing one task (just defining a specific Animal, or adding more behaviour in subclass). Now let’s move to a real-world example of processing an order on an ecommerce website:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Inheriting from ApplicationRecord means this is a model ('M' in MVC)&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sell&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;check_inventory&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;apply_discount&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;make_bill&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;process_order&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;send_to_dispatch_team&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;check_inventory&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# logic here&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;apply_discount&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# logic here&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;make_bill&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# logic here&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process_order&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# logic here&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;send_to_dispatch_team&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# logic here&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;There are multiple questions that come to my mind when I see such a code, but the fundamental one is - Why did we keep this method (and all it’s associated methods) inside a model (or inside one class)? While this might look simple for once, it is doing a very complicated task. It’s clearly visible that we might be calling other services or a payment system while processing an order, and hence any step can fail. There seems no defined way to rollback the previous steps if any step fails. And if we want to build such a process, would we want to put those methods also in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; class? (The above code is influenced from &lt;em&gt;Fat models Thin Controllers&lt;/em&gt; philosophy).&lt;/p&gt;
-
-&lt;h1 id=&quot;the-answer&quot;&gt;The Answer&lt;/h1&gt;
-&lt;p&gt;What do you think? Should you take a course on Design Patterns in order to refactor this? Few months ago I read a &lt;a href=&quot;https://refactoring.guru/design-patterns/book&quot;&gt;book&lt;/a&gt; on the same, and I’m sure that there are a lot of improvements we can do before applying design patterns.  Developers often shy away from doing this but the only solution to have a maintainable codebase is to &lt;strong&gt;break such classes&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Whenever you see a logical chunk in a class, that is not related to rest of the code and can be taken out, please take that out. We often think that we can do all this later, but that time never comes till we see some serious issues with the code. Due to this delay, the methods inside the class become more coupled to each other and the effort of taking that out becomes much larger. The above is a very simple example where you could have a plain ruby class (&lt;a href=&quot;https://sulmanweb.com/plain-old-ruby-objects-poros-in-rails-fat-models/&quot;&gt;PORO&lt;/a&gt;) called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderProcessingService&lt;/code&gt; that has all the business logic for processing an order. And obviously, if needed, we’ll have more classes for performing other steps (checking inventory, applying discount, etc). It’s good to know about SOLID Principles and Design patterns, but at the end of the day you see - it’s all about distributing responsibilities, reducing coupling and creating more (small) classes. If you know how to apply this, you can apply design patterns as well. Otherwise everything is theory!&lt;/p&gt;
-
-&lt;p&gt;So the next time you see yourself or a colleague writing methods in a class that should be separated out, please make sure you do that. That will pay you in future 😀. Another way of knowing about your code’s health is to write test cases for it. If it’s easy to write test cases for a class without mocking a lot of things (except external services), then it’s ok. Otherwise you might want to refactor your classes. Happy coding!&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="modularity" /><category term="low-level-design" /><category term="maintainability" /><summary type="html">Most of the software engineers have a strong (theoratical) grip on OOPs concepts right from the college days but few still struggle to apply them while working. If you are someone who see a large number of small classes in your codebase that are well...</summary></entry></feed>
+&lt;p&gt;Happy bug bashing 😁&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bug-fixing" /><category term="data-issues" /><category term="stability" /><summary type="html">A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds</summary></entry></feed>
