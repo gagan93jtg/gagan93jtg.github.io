@@ -2,7 +2,7 @@
 layout: post
 title: "Debugging Production downtimes"
 date: 2023-10-29
-published_on: 29th October, 2023"
+published_on: 29th October, 2023
 author: Gagandeep Singh
 cover: "/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg"
 categories: production outage debugging
