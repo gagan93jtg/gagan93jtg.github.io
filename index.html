@@ -1,412 +1,288 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZKG2EDMK4C');
-  </script>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gagandeep Singh</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gagandeep Singh - Developer Portfolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
 
-  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="scripts/index.js"></script>
-  <script type="text/javascript" src="scripts/vertical_navigation.js"></script>
-  <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+  <style type="text/css">
+    body {
+      padding-top: 56px;
+    }
 
-  <link rel="stylesheet" type="text/css" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="styles/index.css">
-  <link rel="stylesheet" href="styles/vertical_navigation.css">
-  <link rel="stylesheet" href="styles/timeline.css">
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('resources/images/cover.jpg') center/cover no-repeat;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5em;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+    }
+
+    .section-heading {
+      color: #007bff;
+      margin-bottom: 0.75em;
+    }
+
+    .skill-headings {
+      margin-bottom: 0.25em;
+      margin-top: 0.5em;
+    }
+
+    .bg-light {
+      background-color: #f8f9fa !important;
+    }
+
+    .card {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .card-title {
+      color: #007bff;
+    }
+
+    .card-text {
+      color: #555;
+      margin: 0.25em;
+    }
+
+    .social-icons {
+      font-size: 24px;
+      margin-left: 1em;
+    }
+
+    .social-icons a {
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #343a40;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="left_bar clearfix image_box vt_image_box">
-    <a href="https://github.com/gagan93jtg" target="_blank"> <img src="resources/images/github.png"> </a>
-    <a href="https://stackoverflow.com/users/2753864/gagan93" target="_blank"> <img src="resources/images/so.png"> </a>
-    <a href="https://in.linkedin.com/in/gagan93" target="_blank"> <img src="resources/images/linkedin.svg"> </a>
-    <a href="https://github.com/gagan93jtg/gagan93jtg.github.io/raw/master/resources/GagandeepSinghResume.pdf" target="_blank"> <img src="resources/images/resume.png"> </a>
-    <a href="https://fb.com/gagan93" target="_blank"> <img src="resources/images/fb.svg"> </a>
-  </div>
-  <div class="content">
-    <section id="section1" class="cd-section">
-      <div class="content-wrapper">
-        <div class="container">
-          <div class="row section-1-row">
-            <div class="about col-lg-6">
-              <div class="profile_image">
-                <img src="https://avatars.githubusercontent.com/u/13852061">
-              </div>
-              <div class="name">
-                Gagandeep Singh
-              </div>
-              <div class="designation">
-                <span>
-                  Staff Software Engineer
-                </span>
-              </div>
-              <div class="row details_row">
-                <div class="col-md-6">
-                  <i class="material-icons">location_on</i>
-                  <span>New Delhi, India</span>
-                </div>
-                <div class="col-md-6">
-                  <i class="material-icons">work</i>
-                  <span>LocoNav, Gurgaon, India</span>
-                </div>
-                <div class="col-md-6">
-                  <i class="material-icons">assignment_ind</i>
-                  <span>Staff Engineer</span>
-                </div>
-                <div class="col-md-6">
-                  <i class="material-icons">email</i>
-                  <span>gagan93gtbit@gmail.com</span>
-                </div>
-              </div>
-            </div>
-            <div class="skills col-lg-6">
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Ruby</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Rails</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Monolith to Microservices</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>AWS</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Cloud Cost Optimization</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>PostgreSQL</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Git</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Unix (Ubuntu)</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>Redis</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge gold_badge"></i>
-                <span>API Design</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Docker & compose</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Docker & compose</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Hiring/Mentoring</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Team/Sprint Management </span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Modular code</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Release automation</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>Jenkins</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge silver_badge"></i>
-                <span>UI/UX & Product Sense</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge bronze_badge"></i>
-                <span>Kubernetes & helm</span>
-              </div>
-              <div class="skill">
-                <i class="circle_badge bronze_badge"></i>
-                <span>Datadog/Prometheus/Grafana</span>
-              </div>
-              <div class="links">
-                <div class="image_box hz_image_box">
-                  <a href="https://github.com/gagan93jtg" target="_blank"> <img src="resources/images/github.png"> </a>
-                  <a href="https://stackoverflow.com/users/2753864/gagan93" target="_blank"> <img src="resources/images/so.png"> </a>
-                  <a href="https://in.linkedin.com/in/gagan93" target="_blank"> <img src="resources/images/linkedin.svg"> </a>
-                  <a href="https://github.com/gagan93jtg/gagan93jtg.github.io/raw/master/resources/GagandeepSinghResume.pdf" target="_blank"> <img src="resources/images/resume.png"> </a>
-                  <a href="https://fb.com/gagan93" target="_blank"> <img src="resources/images/fb.svg"> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-navigation">
-            <button class="btn btn-lg" id="view-timeline-btn" style="margin: 0.5em;"> <a href="http://gagan93.me/blog?ref=homepage" target="_blank">Self Hosted Blog </a> </button>
-            <button class="btn btn-lg" id="view-timeline-btn"> <a href="http://blog.gagan93.me/?ref=homepage" target="_blank">Hashnode Blog</a> </button>
-          </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Gagandeep Singh</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#experience">Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero text-center text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="display-4">Gagandeep Singh</h1>
+          <p class="lead">Senior Software Engineer</p>
         </div>
       </div>
-    </section>
-    <section id="section2" class="cd-section">
-      <div class="content_wrapper">
-        <div class="container">
-          <ul class="timeline">
-            <li class="first-li">
-              <div class="timeline-badge"><i class="material-icons">work</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Staff Engineer</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title">BT TechLabs Pvt Ltd</span>
-                      <small class="text-muted ml-2 company-location"> Gurgaon, India </small>
-                    </div>
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://loconav.com">Loconav.com</a><small class="text-muted ml-2"> 1st Dec 2020 - Present</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li>Involved in discussing overall global architecture of logistics based Saas Product.</li>
-                      <li> Helped team to build micro-services by contributing to style guide and creating many gems.</li>
-                      <li>Took the first microservice out of a 6+ year old monolith, reducing a decent load from database.</li>
-                      <li>Built interfaces and assisted other teams to entangle the remaining monolith app.</li>
-                      <li>Handed over fastag product to junior team members and removed my dependency.</li>
-                      <li>Worked on reducing cloud spend by analyzing usage of servers and using other methods.</li>
-                      <li>Defined git branching and release strategy for a monolith that is worked upon by 40+ devs. Later implemented end to end release automation</li>
-                      <li>Collaborated with other teams as needed, and helped them adopting tooling built by us.</li>
-                      <li>Optimized API consumption from frontend, added caching on some client-facing APIs bringing
-                      visible impact to database and dependent services.</li>
-                      <li>Lead various other initiatives like removing huge chunks of dead code, managing minor/major
-                      database upgrades, docker builds speedup, test suite speedup, handling hot-fix and outage
-                      situations and managing overall website uptime.</li>
-                      <li> Building role and permissions-based permission user architecture.</li>
-                      <li> Scaling fastag backend to 2Cr worth daily txn.</li>
-                      <li> Scaling the team: involved in hiring for Engineers/Sr. Engineers/EMs and Devops.</li>
-                      <li> Enabling new experienced engineers to onboard on products.</li>
-                      <li> Working on engineering excellence side - improving development process, breaking monolith into services, improving test coverage, etc.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
+    </div>
+  </header>
 
-            <li class="timeline-inverted">
-              <div class="timeline-badge"><i class="material-icons">work</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Tech Lead</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title">BT TechLabs Pvt Ltd</span>
-                      <small class="text-muted ml-2 company-location"> Gurgaon, India </small>
-                    </div>
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://loconav.com">Loconav.com</a><small class="text-muted ml-2"> 5th Feb 2019 - 30 Nov 2020</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li> Working to move from a stringent, multiple-entity based, convoluted user architecture to a simple, role-based architecture.</li>
-                      <li> Simplified how the main entity of system (vehicle) is accessed by various components.</li>
-                      <li> Integrated Yesbank fastags and scaled to a <b>daily transaction of 62L</b> in about a year.</li>
-                      <li> Integrated Mobikwik Payment Gateway and scaled to a <b>monthly transaction of 55L</b> in the first month.</li>
-                      <li> Worked on moving current email provider to SES without impacting existing mailers. Also implemented a generic Email/SMS blocking functionality over entire app layer.</li>
-                      <li> Single handedly implemented multi-lingual, extensible push notifications backend architecture for mobile applications.</li>
-                      <li> Decoupled a webhook based service from a monolith website to ensure no loss of data during downtimes/migrations.</li>
-                      <li> Handling communications with different internal and external product teams independently.</li>
-                      <li> Constantly working to deprecate and remove old (dead) code without affecting running functionalities.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="section-heading">About</h2>
+          <p class="text-muted"> Hello 👋 <br>I am a Senior Backend Engineer with over 8 years of experience. Over the years, I've seamlessly transitioned between individual contributor and managerial roles, cultivating a rich skill set and an adept understanding of the engineering landscape. Having played a pivotal role in projects that achieved successful scaling, I bring a profound understanding of when to re-architect, rewrite, refactor, or optimize systems.
+          <br>
 
-            <li class="timeline">
-              <div class="timeline-badge"><i class="material-icons">work</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Senior Software Developer</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title">BT TechLabs Pvt Ltd</span>
-                      <small class="text-muted ml-2 company-location"> Gurgaon, India </small>
-                    </div>
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://loconav.com">Loconav.com</a><small class="text-muted ml-2"> 5th Feb 2018 - 4th Feb 2019</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li>Wrote entire scalable backend for Android app (Rails, Grape). This app served > 80% of entire traffic.</li>
-                      <li>Worked as a devops too - Helped in scale infra as our userbase grew. Launching ALBs, choosing correct AWS instace type based on services, adding private hosted zones, using AWS lambda functions for automation, setting up jenkins, wrote bash scripts for setting up servers when autoscaled, setting up VPCs, VPC peering, public/private subnets, etc.</li>
-                      <li> Helped team to scale things - launching ALBs, choosing correct AWS instace type based on services launched.</li>
-                      <li> Did setup for app analytics using Ahoy. Moved this to separately hosted database when main DB became large in size.</li>
-                      <li> Did various integrations -  Equitas, YesBank Fastags.</li>
-                      <li>Worked with team in building and releasing new user interface. Apart from skin, the backend for the same was also optimized.</li>
-                      <li> Resolved endless minor / major bugs in the application.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-inverted">
-              <div class="timeline-badge"><i class="material-icons">work</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Senior Software Developer</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title"> JTG E-Business Software Pvt. Ltd. </span>
-                      <small class="text-muted ml-2 company-location"> Gurgaon, India </small>
-                    </div>
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://copperegg.com">Uptime Cloud Monitor</a><small class="text-muted ml-2"> Oct 2016 to 2nd Feb 2018</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li> Added AWS lambda integrations (Node JS) to make AWS infrastructure more robust. </li>
-                      <li> Optimized existing infrastructure which led to <strong>huge cost savings</strong>.</li>
-                      <li> Added new features and fixed bugs in native android application of the product.</li>
-                      <li> Handled backlog cleanup, poker planning call, diving work among team members, etc.</li>
-                      <li> Managing a team of 4 and supervising work of 2 team members.</li>
-                      <li> Integrated Microsoft Azure cloud monitoring with the product and moved entire infrastructure to VPC.</li>
-                      <li> Working on renewal of AWS EC2 reseravations, further optimizations in infra, supervising work of shadow devs.</li>
-                      <li> Helped moving from Sendgrid to Amazon SES for sending mails and ensured minimum bounce percentage.</li>
-                    </ul>
-                  </p>
-                </div>
+          In addition to backend engineering, I have a solid foundation in Unix fundamentals and proficiency in AWS Cloud. This diverse skill set allows me to approach challenges with a holistic perspective, ensuring robust and efficient solutions.
+          <br><br>
 
-                <div class="timeline-heading">
-                  <div class="timeline-sub-heading">
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://gethealthy.store">Gethealthy</a><small class="text-muted ml-2"> Nov 2017 - Dec 2017</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li>The product was based on Magento 2 framework (PHP) and requirement was to integrate
-                        Hubspot with the product to push doctor and patient information
-                        to hubspot. Apart from basic information, an Email template was also pushed which was used by marketing
-                        team to send promotional mails to end users. I investigated magento event observers and wrote the entire integration
-                      in PHP. </li>
-                    </ul>
-                  </p>
-                </div>
-
-                <div class="timeline-heading">
-                  <div class="timeline-sub-heading">
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://mentorcloud.com">Mentorcloud</a><small class="text-muted ml-2"> Dec 2017 to 2nd Feb 2018</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li> Did Jenkins setup (AWS EC2), added required plugins, configured SES,
-                        added Node integrations, created jobs for deploying Angular code to S3 and Django code to
-                      respective environments (Dev, Stage and Prod).</li>
-                      <li> Spinned up dev environment (using staging environment), did VPC peering for the same
-                      , created security groups, required subnets, etc.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="timeline">
-              <div class="timeline-badge"><i class="material-icons">work</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Software Developer</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title">JTG E-Business Software Pvt. Ltd.</span>
-                      <small class="text-muted ml-2 company-location"> Gurgaon, India </small>
-                    </div>
-                    <div class="project-info">
-                      <a class="proj-title" target="_blank" href="https://copperegg.com">Uptime Cloud Monitor</a><small class="text-muted ml-2">Jun 2015 to Oct 2016</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li> Worked primarily with Ruby on Rails and a good mix of other technologies as well.</li>
-                      <li> Improved product – fixed various complex bugs and refactored existing code.</li>
-                      <li> Documentated various crucial subsystems and did critical switchovers in production.</li>
-                      <li> Debugged server issues and derived useful stats from system / access logs.</li>
-                      <li> Protected redis from getting hacked on linode servers.</li>
-                      <li> Integrated new monitoring features within the existing application.</li>
-                      <li> Handled sprints, deployments, client communication and daily standups.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-inverted">
-              <div class="timeline-badge"><i class="material-icons">school</i></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4 class="timeline-title">Graduated from GGSIPU, Delhi</h4>
-                  <div class="timeline-sub-heading">
-                    <div class="company-info">
-                      <span class="company-title">B.Tech Computer Science and Engineering</span><small class="text-muted ml-2 company-location">GTBIT</small>
-                    </div>
-                    <div class="project-info">
-                      <span class="proj-title">Student</span>
-                      <small class="text-muted ml-2">August 2011 - June 2015</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    <ul>
-                      <li>Primarily worked in Technical Society of GTBIT (TSG) and handled over 35 technical events during college fest (GATES).</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
+          Explore my thoughts and insights on various topics by visiting <a href="https://blog.gagan93.me/" target="_blank">my blog</a>. Dive into my contributions on <a href="https://github.com/gagan93jtg" target="_blank">GitHub</a> to explore the projects and code I've been working on. Let's connect and engage in professional discussions on <a href="https://in.linkedin.com/in/gagan93" target="_blank">LinkedIn</a>. Looking forward to connecting with you!
         </div>
       </div>
-    </section>
-  </div>
-</div>
+    </div>
+  </section>
+  <section id="skills" class="bg-light py-5">
+    <div class="container">
+      <h2 class="section-heading">Skills</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="skill-headings">Languages</h4>
+          <p>Ruby, Java, JavaScript</p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="skill-headings">Frameworks</h4>
+          <p>Rails, Bootstrap</p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="skill-headings">Datastores</h4>
+          <p>Postgres, Redis, Kafka</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="skill-headings">Cloud / Servers</h4>
+          <p>AWS, Ubuntu, MacOS, Nginx</p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="skill-headings">Containerization</h4>
+          <p>Docker, Docker-Compose, Kubernetes</p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="skill-headings">Observability</h4>
+          <p>Prometheus, Grafana, Datadog, NewRelic, Bugsnag, ELK</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="skill-headings">Collaboration</h4>
+          <p>JIRA, Confluence, Slack, GitHub</p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="skill-headings">Team Skills</h4>
+          <p>Team management, Stakeholder management, Setting team direction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="py-5">
+    <div class="container">
+      <h2 class="section-heading">Professional Summary</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">LocoNav India Private Limited</h5>
+          <p class="card-text">
+            <strong>Staff Software Engineer</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="card-text text-muted">Dec 2020 - Present</span>
+          </p>
+          <p class="card-text">
+            <strong>Member of Technical Staff</strong>&nbsp;&nbsp;&nbsp;
+            <span class="card-text text-muted">Feb 2018 - Nov 2020</span>
+          </p>
+          <p class="card-text">
+            <strong>Work Mode</strong>&nbsp;&nbsp;
+            <span class="text-muted"> Hybrid (Gurgaon, Haryana, India)</span>
+          </p>
+          <br>
+          <p class="card-text">
+            Having spent ~ 6 years in the organization, I've taken up various roles and responsibilities.
+            <ul>
+              <li>
+                <b>As a Lead</b> - I'm mentoring a team of 7 members, taking care of high level design, requirement analysis, code review and delivery. Beyond my team, I'm also a part of enablement team where we work on the productivity of engineering team. I've contributed to team scaling initiatives by taking over 250 interviews for the role of Jr./Sr. Engineers, QAs and Devops. I engage with the leadership team to define technical roadmap and address tech debt.
+              </li>
+              <li>
+                <b>As an Individual Contributor</b> - I was spearheading the development of the Fastag product from its inception. Handling 2.6Cr daily transactions, I played a key role in its successful scaling and optimizing the product, including transitioning parts of system to microservices architecture. Beyond this, I've contributed to refactoring of core system entities to improve system's maintainability. Additionally, I wrote entire API layer for mobile apps, that serve ~ 80% of total website traffic. Another notable work was developing a pipeline for handling 10 million daily push notifications. Furthermore, I also integrated payment gateway and payment link products.
+              </li>
+              <li>
+                <b>As a Devops</b> - During very initial days, I worked on setting up our first Jenkins and slowly moving all deployments to it. After this, I worked on making system more reliable by moving a lot of traffic behind load balancers, that was initially running as single machines. With time, I also worked on making architecture more secure by creating separate VPCs, configuring route tables, subnets and security groups. I've also made and executed plans for EC2 instance reservations for two years. I've carried out Operating System and instance type upgrades for our applications multiple times.
+              </li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">JTG E-Business Software Pvt. Ltd.</h5>
+          <p class="card-text">
+            <strong>Sr. Software Engineer</strong>&nbsp;&nbsp;
+            <span class="card-text text-muted">Oct 2016 - Feb 2018</span>
+          </p>
+          <p class="card-text">
+            <strong>Software Engineer</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="card-text text-muted">Jun 2015 - Oct 2016</span>
+          </p>
+          <p class="card-text">
+            <strong>Work Mode</strong>&nbsp;&nbsp;
+            <span class="text-muted"> Onsite (Gurgaon, Haryana, India)</span>
+          </p>
+          <br>
+          <p class="card-text">
+            During most of my time in this organisation, I've worked on Uptime Cloud Monitor tool (formerly CopperEgg). Following contributions were made:
+            <ul>
+              <li>
+                Led a collaborative effort within a 4-member team, overseeing the work of 2 developers for the Uptime Cloud Monitor Project.
+              </li>
+              <li>
+                Successfully implemented comprehensive monitoring solutions for Azure cloud products, enhancing the product offering.
+              </li>
+              <li>
+                Strategically planned and migrated infrastructure from AWS EC2 Classic to AWS VPC in a phased manner.
+              </li>
+              <li>
+                Worked on the android app and resolved bugs in the “Issues” feature.
+              </li>
+              <li>
+                Enhanced the Box collector tool written in C, by configuring it to intelligently ignore docker network interfaces.
+              </li>
+              <li>
+                Diligently documented critical subsystems, providing comprehensive insights for team members and stakeholders.
+              </li>
+              <li>
+                Strengthened Redis security after ransomware attack on AWS and Linode servers.
+              </li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      <div class="mb-4">
+        <h6><a href="resources/documents/GagandeepSinghResume.pdf" target="_blank">Check my resume</a> to know more about my professional journey</h6>
+      </div>
+      <p class="text-muted">
+    </div>
+  </section>
+
+  <section id="contact" class="bg-light py-5">
+    <div class="container">
+      <h2 class="section-heading">Contact</h2>
+      <div class="social-icons">
+        <a href="https://in.linkedin.com/in/gagan93" target="_blank" class="fab fa-linkedin" style="color: black;"></a>
+        <a href="https://github.com/gagan93jtg" target="_blank" class="fab fa-github" style="color: black;"></a>
+        <a href="mailto:gagan93gtbit@gmail.com" target="_blank" class="fa fa-message" style="color: black;"></a>
+        <a href="https://api.whatsapp.com/send?phone=+919810124416&text=Hello" target="_blank" class="fab fa-whatsapp" style="color: black;"></a>
+        <a href="https://gagan93.me" target="_blank" class="fa fa-globe" style="color: black;"></a>
+        <a href="https://blog.gagan93.me" target="_blank" class="fa fa-blog" style="color: black;"></a>
+        <a href="tel:+919810124416" target="_blank" class="fa fa-phone" style="color: black;"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-light text-center py-3">
+    <p>&copy; 2023 Gagandeep Singh</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
