@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gagandeep Singh - Developer Portfolio</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
 
   <style type="text/css">
@@ -76,6 +75,20 @@
       color: #ffffff;
       text-align: center;
       padding: 10px;
+    }
+
+    @media only screen and (max-width: 805px) {
+      .card-text {
+        font-size: 0.75em;
+      }
+
+      .card-text-body {
+        font-size: 0.8em;
+      }
+
+      .card-body {
+        padding: 0.5em;
+      }
     }
   </style>
 </head>
@@ -195,16 +208,16 @@
             <span class="text-muted"> Hybrid (Gurgaon, Haryana, India)</span>
           </p>
           <br>
-          <p class="card-text">
-            Having spent ~ 6 years in the organization, I've taken up various roles and responsibilities.
+          <p class="card-text-body">
+            Spent close to 6 years in the organization and took up various roles and responsibilities.
             <ul>
-              <li>
+              <li class="card-text-body">
                 <b>As a Lead</b> - I'm mentoring a team of 7 members, taking care of high level design, requirement analysis, code review and delivery. Beyond my team, I'm also a part of enablement team where we work on the productivity of engineering team. I've contributed to team scaling initiatives by taking over 250 interviews for the role of Jr./Sr. Engineers, QAs and Devops. I engage with the leadership team to define technical roadmap and address tech debt.
               </li>
-              <li>
+              <li class="card-text-body">
                 <b>As an Individual Contributor</b> - I was spearheading the development of the Fastag product from its inception. Handling 2.6Cr daily transactions, I played a key role in its successful scaling and optimizing the product, including transitioning parts of system to microservices architecture. Beyond this, I've contributed to refactoring of core system entities to improve system's maintainability. Additionally, I wrote entire API layer for mobile apps, that serve ~ 80% of total website traffic. Another notable work was developing a pipeline for handling 10 million daily push notifications. Furthermore, I also integrated payment gateway and payment link products.
               </li>
-              <li>
+              <li class="card-text-body">
                 <b>As a Devops</b> - During very initial days, I worked on setting up our first Jenkins and slowly moving all deployments to it. After this, I worked on making system more reliable by moving a lot of traffic behind load balancers, that was initially running as single machines. With time, I also worked on making architecture more secure by creating separate VPCs, configuring route tables, subnets and security groups. I've also made and executed plans for EC2 instance reservations for two years. I've carried out Operating System and instance type upgrades for our applications multiple times.
               </li>
             </ul>
@@ -227,28 +240,28 @@
             <span class="text-muted"> Onsite (Gurgaon, Haryana, India)</span>
           </p>
           <br>
-          <p class="card-text">
+          <p class="card-text-body">
             During most of my time in this organisation, I've worked on Uptime Cloud Monitor tool (formerly CopperEgg). Following contributions were made:
             <ul>
-              <li>
+              <li class="card-text-body">
                 Led a collaborative effort within a 4-member team, overseeing the work of 2 developers for the Uptime Cloud Monitor Project.
               </li>
-              <li>
+              <li class="card-text-body">
                 Successfully implemented comprehensive monitoring solutions for Azure cloud products, enhancing the product offering.
               </li>
-              <li>
+              <li class="card-text-body">
                 Strategically planned and migrated infrastructure from AWS EC2 Classic to AWS VPC in a phased manner.
               </li>
-              <li>
+              <li class="card-text-body">
                 Worked on the android app and resolved bugs in the “Issues” feature.
               </li>
-              <li>
+              <li class="card-text-body">
                 Enhanced the Box collector tool written in C, by configuring it to intelligently ignore docker network interfaces.
               </li>
-              <li>
+              <li class="card-text-body">
                 Diligently documented critical subsystems, providing comprehensive insights for team members and stakeholders.
               </li>
-              <li>
+              <li class="card-text-body">
                 Strengthened Redis security after ransomware attack on AWS and Linode servers.
               </li>
             </ul>
@@ -284,5 +297,11 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).on('click',function(){
+      $('.navbar .collapse').collapse('hide');
+    });
+  </script>
 </body>
 </html>
