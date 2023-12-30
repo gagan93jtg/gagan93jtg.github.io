@@ -49,5 +49,3 @@ Over time, I've had the opportunity to work in both multitasking and focused wor
 
 
 Every team wants to move fast - Developers want to be as productive as possible, and managers also need tasks to be delivered sooner. Unless your role grows from a developer who has faced productivity issues, as a manager, it takes time to understand that multitasking is not everyone's cup of tea. As a developer, it is equally important to communicate and solve your productivity issues.
-
-If you're someone who has faced these issues, please share your experiences. If you're someone who is still facing this, let's talk in the comments :)
