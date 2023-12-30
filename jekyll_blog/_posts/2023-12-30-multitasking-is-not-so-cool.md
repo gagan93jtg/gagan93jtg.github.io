@@ -4,12 +4,12 @@ title: "Multi-tasking is not so cool"
 date: 2023-12-30
 published_on: 30th December, 2023
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-12-30-multitasking.jpg"
+cover: "/blog/assets/images/2023-12-30-multitasking.png"
 categories: multitasking planning opinion
 excerpt: Multitasking refers to working on more than one task at a time. Although, as per research, it is not possible for humans to truly multitask like computers, we often hear this term at work. Among engineers, it comes up when...
 ---
 
-![cover-photo](/blog/assets/images/2023-12-30-multitasking.jpg)
+![cover-photo](/blog/assets/images/2023-12-30-multitasking.png)
 ---
 {: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
