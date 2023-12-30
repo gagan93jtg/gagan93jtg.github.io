@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2023-10-30T14:10:17+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Debugging Production downtimes</title><link href="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html" rel="alternate" type="text/html" title="Debugging Production downtimes" /><published>2023-10-29T00:00:00+05:30</published><updated>2023-10-29T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/10/29/debugging-production-downtimes</id><content type="html" xml:base="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2023-12-30T19:11:14+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Multi-tasking is not so cool</title><link href="https://gagan93.me/blog/2023/12/30/multitasking-is-not-so-cool.html" rel="alternate" type="text/html" title="Multi-tasking is not so cool" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/12/30/multitasking-is-not-so-cool</id><content type="html" xml:base="https://gagan93.me/blog/2023/12/30/multitasking-is-not-so-cool.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-12-30-multitasking.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-from-clockwise&quot;&gt;Photo from &lt;a href=&quot;https://www.getclockwise.com/blog/multitasking-impacts-productivity&quot;&gt;Clockwise&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Multitasking refers to working on more than one task at a time. Although, as per research, it is not possible for humans to truly multitask like computers, we often hear this term at work. Among engineers, it comes up when there’s more than one task assigned to them for the day. Typically, they spend a few hours (or probably minutes) on one task, then switch to another task by pausing the first one. With senior developers/managers, the degree (and expectation) of multitasking increases. If you have grown in a startup environment, you’ve likely done a lot of multitasking already (even beyond your job role).&lt;/p&gt;
+
+&lt;p&gt;Upon joining LocoNav, one of the concerns I raised with my seniors was my struggle to dedicate ample time to a single task, as I found myself constantly juggling multiple responsibilities. There was a time when I was assigned 4 tasks (mostly coding), and all of those were “on priority” for the respective stakeholders. I remember writing long emails back in 2018/19 regarding “context switching and productivity.” I thought it’s a planning problem (somewhat it was), but it was more to do with how fast-moving startups generally operate, and my mind took some time to get habitual.&lt;/p&gt;
+
+&lt;p&gt;Over time, I’ve had the opportunity to work in both multitasking and focused work environments. Additionally, I serve as an individual contributor or manager as needed. Given all this experience, I’ve developed some opinions around multitasking:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re given a second task when you’re already in the middle of something, make sure to leave the first task in a state that it is efficient to continue again. For example, if you’re in the middle of an investigation and it takes 1h to complete that, ask the team, “Can the second task wait for an hour?” If yes, close your investigation, log that in a comment, and then switch. Don’t just abruptly switch. Sometimes, the second task takes so long that your manager would want someone else to continue on the first time. This is efficiently possible only if they can continue from where you left (without you explaining everything on a call).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re almost done in your current task or need 1-2h to complete, discuss and close this task first. Unless the second task is a P0 production bug, it should be possible to push back.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Multitasking productively is hard. Even with a lot of experience, we shouldn’t expect that everyone can efficiently multitask. There are people who prefer to close one task and then pick the other one. Managers need to understand this.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You can’t avoid multitasking. Even if your sprints are planned nicely, there are chances that you’ll be assigned a production bug or some other escalation. So if you’re in a team that faces such issues, don’t think that an ideal world exists. This happens almost everywhere :)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You could feel burn out in the long run if you’re multitasking regularly. This is so because your mind overworked and couldn’t rest. After work, you might not have the mental energy for anything else. I’ve experienced this personally.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Regular multitasking might put you in a situation where you don’t actually complete anything at the end of the day. All the tasks move a little bit, but nothing real gets delivered. None of the stakeholders are happy in this situation. Rather, we could have prioritised/completed 3 tasks out of 10 (for example).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Don’t just accept tasks because they’re coming to you. If you’re working with multiple teams (shared resources), you might be assigned tasks from multiple managers where one manager might not know the complexity and priority of someone else’s tasks. Pushing back some tasks works sometimes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have so many tasks on your plate and you think you’re just jumping from one to another, you should work on prioritizing them with your manager/team. As an example:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;If you are a developer who mostly codes, try not to switch in more than 2-3 tasks.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If you are a manager (mostly delegating tasks), you can probably switch between 3-5 tasks also (depending on the complexity of tasks).&lt;/p&gt;
+
+        &lt;p&gt;The numbers shared above are just examples. Sometimes senior engineers are working on architecture designs that require dedicating more time on a stretch. So they prefer to go on “Do Not Disturb (DND) mode” and not pick any other task. It all depends on the specific task and team setup.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Every team wants to move fast - Developers want to be as productive as possible, and managers also need tasks to be delivered sooner. Unless your role grows from a developer who has faced productivity issues, as a manager, it takes time to understand that multitasking is not everyone’s cup of tea. As a developer, it is equally important to communicate and solve your productivity issues.&lt;/p&gt;
+
+&lt;p&gt;If you’re someone who has faced these issues, please share your experiences. If you’re someone who is still facing this, let’s talk in the comments :)&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="multitasking" /><category term="planning" /><category term="opinion" /><summary type="html">Multitasking refers to working on more than one task at a time. Although, as per research, it is not possible for humans to truly multitask like computers, we often hear this term at work. Among engineers, it comes up when...</summary></entry><entry><title type="html">Debugging Production downtimes</title><link href="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html" rel="alternate" type="text/html" title="Debugging Production downtimes" /><published>2023-10-29T00:00:00+05:30</published><updated>2023-10-29T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/10/29/debugging-production-downtimes</id><content type="html" xml:base="https://gagan93.me/blog/2023/10/29/debugging-production-downtimes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-daniel-tausis-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@greatmalinco?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Daniel Tausis&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/fireman-watering-fire-loeqHoa1uWY?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -505,69 +555,4 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Above are the best insights I can share from my experience. See you guys later!&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="architecture" /><category term="monolith" /><category term="microservices" /><category term="mindset" /><summary type="html">At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the...</summary></entry><entry><title type="html">Fixing code exceptions</title><link href="https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html" rel="alternate" type="text/html" title="Fixing code exceptions" /><published>2023-07-01T00:00:00+05:30</published><updated>2023-07-01T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/07/01/fixing-code-exceptions</id><content type="html" xml:base="https://gagan93.me/blog/2023/07/01/fixing-code-exceptions.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-07-01-fixing-code-exceptions.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-joshua-hoehne-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@mrthetrain?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Joshua Hoehne&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/LndcUO8Z-IM?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;A regular day in the life of a software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;A feature was built wrong but is not throwing a code level exception.&lt;/li&gt;
-  &lt;li&gt;A corner case exists in the feature causing an exception in the code flow.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Today, we’ll discuss about the second case i.e. exception scenarios. Software teams integrate tools in their code repositories to capture such exceptions. These tools can be self hosted or commercially hosted by some company. Sentry and Bugsnag are the most common tools I’ve heard in this space. I’ve also used tools like &lt;a href=&quot;https://www.rubydoc.info/gems/exception_notification/4.1.4&quot;&gt;exception notification&lt;/a&gt; for my personal projects. At LocoNav, we’ve been using Bugsnag for more than 5 years now. We have also integrated Bugsnag with our JIRA. So all the exceptions get tracked as JIRA tickets.&lt;/p&gt;
-
-&lt;p&gt;Interestingly, I often see developers “just trying to fix the bug” in order to close a bugsnag issue. So I’m trying to pen down what we should be focussed on when we see an exception assigned to us:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;It’s both good and bad&lt;/strong&gt; - Softwares become complex, and we miss out testing specific cases, so exceptions can occur. It is not a sin. But the severity of that issue depends on what is broken. You might be running a software for life-critical operations. So your bug can cause a greater damage. Or a stock market trading website, so a bug makes you or your customer loose real money. For large organisations, bugs and downtimes cause loss of millions of dollars. So in brief, it’s might be fine to cause such issues once in a while, and in very corner cases. But not OK to normalize it. Developers often put blames on QAs for missing the specific test case. But I personally believe that your code is your responsibility. No CR mistake, no QA mistake. Test it well using both automation and manual flows before taking forward.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Prioritize bug fixing&lt;/strong&gt; - It might become an attitude to have many open bugs in your module in the name of “bandwidth crunch”. This simply means that you don’t prioritize bugs. On one hand, developers talk about “users dropping from a website due to slow page load” (&lt;a href=&quot;https://kinsta.com/blog/ttfb/&quot;&gt;reference to this context&lt;/a&gt;) and on the other hand they normalize broken features. Crazy, no? Convince your leaders and product teams to prioritize these bugs as a part of every sprint.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Don’t just fix the issues&lt;/strong&gt; - Please understand the issues before doing a fix - find the user(s) who are facing this, reproduce the issue on production, then do the same on your local machine (if possible), do your investigation and discuss the fix with your team. Make sure you understand that the bug completely before doing any fix. Also check if it is only a missing null-check or some design issue. Simplest fix can do a greater damange (discussed more in point 5).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Please fix bugs, not bugsnags&lt;/strong&gt; - I wrote this line in the past in our slack channel. I had to write this because I saw people raising pull requests to fix null pointer issues by &lt;a href=&quot;https://blog.shiftasia.com/better-null-check-with-safe-navigation-operator-in-ruby/&quot;&gt;safe handling the null check&lt;/a&gt;. This is the worst thing you can do to fix the issue. It simply means that the feature might still not work perfectly, but atleast it will not throw an exception now 😑.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Long term data issues&lt;/strong&gt; - Sometimes, having bugs in your code do a greater damage. They either hide data issues, or cause data issues. I’ll give examples of both below (code samples in Ruby):&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# code hiding a data issue&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;classs&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MyService&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;do_this&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;do_that&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send_some_email&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now this code will never report any issue if an invalid &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_id&lt;/code&gt; is passed to it. If this sounds like a feature to you, then you might be mistaken (read this &lt;a href=&quot;https://en.wikipedia.org/wiki/Fail-fast&quot;&gt;philosophy&lt;/a&gt;). Do you get an error if you try to insert some data into a table with wrong column names? Or does SQL simply ignore the wrong column and insert rest of the data? While your code should work as expected for expected cases, you should also make sure that it raises the required alarms in case it is not given the correct input. Here, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement is hiding an error inside it. So in case a user_id stored as a foreign key in some other table is passed to this service, and incase that user is missing from the database, nothing would report it. Probably some developer added this if statement just to fix the issue (point 3). But this is what damage it can cause.&lt;/p&gt;
-
-&lt;p&gt;Coming to the second case:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# code causing a data issue&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyService&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;track_activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;start_time: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;end_time: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;user_id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Looks like some developer added safe navigation to avoid an exception. The implication of that fix is a data issue that you can probably never solve. Clearly, a null user can be passed to this service and nothing will break. And that’s not a feature but a very huge bug. You can have activities in your database that contain null in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_id&lt;/code&gt; column, and there are chances that you can never associate that to a genuine user. So you’ll be left with customer issues telling that some activities are not tracked, and some entries with null &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user_id&lt;/code&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;br /&gt;
-Fortunately, I’ve been part of both the words - the teams where we started from scratch and did very fast development, and the teams where the software was built by someone else and we did only maintenance / bug fixing. And after seeing issues in both the worlds, I can infer that bug fixing is a serious matter, and it needs more attention than building something from scratch. Do understand the scope of the feature and bug before you raise a pull request for the fix.&lt;/p&gt;
-
-&lt;p&gt;Happy bug bashing 😁&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bug-fixing" /><category term="data-issues" /><category term="stability" /><summary type="html">A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds</summary></entry></feed>
+&lt;p&gt;Above are the best insights I can share from my experience. See you guys later!&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="architecture" /><category term="monolith" /><category term="microservices" /><category term="mindset" /><summary type="html">At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the...</summary></entry></feed>
