@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZKG2EDMK4C');
+      </script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+  </head><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Optimising docker builds | Gagandeep Singh — Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Optimising docker builds" />
+<meta name="author" content="Gagandeep Singh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application" />
+<meta property="og:description" content="A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application" />
+<link rel="canonical" href="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html" />
+<meta property="og:url" content="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html" />
+<meta property="og:site_name" content="Gagandeep Singh — Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-28T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Optimising docker builds" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html"},"author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","url":"https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html","description":"A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application","headline":"Optimising docker builds","dateModified":"2024-02-28T00:00:00+05:30","datePublished":"2024-02-28T00:00:00+05:30","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post detailed">
+  <div>
+    <p class="author-title">
+      Published 28th February, 2024
+    </p>
+    <p class="post-title">Optimising docker builds</p>
+
+    
+    <div class="post-tags">
+      
+      
+        <a href="/blog/categories/#Docker" class="category">Docker</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#Optimization" class="category">Optimization</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#Dockerfile" class="category">Dockerfile</a>
+        
+      
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2024-02-28-dockers.jpg" alt="cover-photo" /></h2>
+
+<h2 style="text-align: center;font-size: 0.8em" id="photo-by-ian-taylor-on-unsplash">Photo by <a href="https://unsplash.com/@carrier_lost?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Ian Taylor</a> on <a href="https://unsplash.com/photos/blue-and-red-cargo-ship-on-sea-during-daytime-jOqJbvo1P9g?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></h2>
+
+<h2 id="background">Background</h2>
+
+<p>This month I worked on optimising docker build for an app. But before delving into the specifics of my optimisation efforts, let me provide you with a overview of the application:</p>
+
+<ol>
+  <li>
+    <p>It’s a medium size, fullstack Rails application (400+ models)</p>
+  </li>
+  <li>
+    <p>It has 300+ dependencies (a.k.a ruby gems).</p>
+  </li>
+  <li>
+    <p>It contains rails views (activeadmin majorly) and assets.</p>
+  </li>
+  <li>
+    <p>It uses react on the frontend and uses webpacker to transpile those into JS.</p>
+  </li>
+  <li>
+    <p>We had two dockerfiles - one for the web app and one for background job processor (<a href="https://github.com/sidekiq/sidekiq">sidekiq</a>, similar to <a href="https://docs.celeryq.dev/en/stable/getting-started/introduction.html">celary</a>, <a href="https://github.com/jobrunr/jobrunr">jobrunr</a>, etc). These could be combined now to some extent but were different due to different base images initially.</p>
+  </li>
+</ol>
+
+<p>We can think of optimising a docker image in two ways:</p>
+
+<p><strong>☑</strong> Optimising build time.
+<strong>☑</strong> Optimising image size.</p>
+
+<p>I had to tick both the boxes and optimise as much as possible in the next few days. The first and very obvious step was to understand the steps in the <code class="language-plaintext highlighter-rouge">Dockerfile</code> and read some good blogs on how people have been doing it for their app. I had already been reading this <a href="https://diamol.net/">excellent book</a> earlier this month, that helped me build strong fundamentals around Docker as a technology. The first part of this book talks about the very basic things (needed to build and optimise images), while rest of the parts talk about operating Docker. While there were some excellent case studies talking specifically about optimising for Rails apps, most of the techniques were already applied back in 2022 when I picked the optimisation activity for the first time. To make sure that you get the most out of this post, I’ll share the older optimisations also.</p>
+
+<h2 id="the-basics">The basics</h2>
+
+<ol>
+  <li>
+    <p><strong>Understanding layering</strong> - A <code class="language-plaintext highlighter-rouge">Dockerfile</code> typically starts with a <code class="language-plaintext highlighter-rouge">FROM</code> instruction that points to a base image specific to your language/framework. Beyond this, there are many more instructions like <code class="language-plaintext highlighter-rouge">ARG</code>, <code class="language-plaintext highlighter-rouge">ENV</code>, <code class="language-plaintext highlighter-rouge">RUN</code>, <code class="language-plaintext highlighter-rouge">COPY</code>, <code class="language-plaintext highlighter-rouge">ADD</code>. It generally ends with <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code> &amp; <code class="language-plaintext highlighter-rouge">CMD</code> instructions (unless we’re passing <code class="language-plaintext highlighter-rouge">CMD</code> from outside). The instructions that actually create heavy layers are <code class="language-plaintext highlighter-rouge">RUN</code>, <code class="language-plaintext highlighter-rouge">COPY</code> &amp; <code class="language-plaintext highlighter-rouge">ADD</code> because we run some commands or copy some files/directories from the host machine to the docker image using these commands. From an optimisation perspective, “least changing layers should remain on top and most changing layers should be at the bottom”. This is because when you run the <code class="language-plaintext highlighter-rouge">docker build</code> command multiple times and if you haven’t cleared the build caches, the unchanged layers do not get computed again and subsequent builds are faster. This is the single most useful concept I used multiple times to get most out of caching.</p>
+  </li>
+  <li>
+    <p><strong>Understanding base images</strong> - Our app used ruby 2.5.9 so we used the <a href="https://hub.docker.com/layers/library/ruby/2.5.9/images/sha256-0ed9d1839df4d5c08c98a0a7315519694c5da80b0885d6a5b96d5d5bb564d5a5?context=explore">official ruby 2.5.9 image</a> as our base image to start with. Digging deep on the tags, we found that there are multiple tags for the same version also (like <code class="language-plaintext highlighter-rouge">slim</code>, <code class="language-plaintext highlighter-rouge">alpine</code>, <code class="language-plaintext highlighter-rouge">buster</code>, etc). Some of these have a different unix flavour as the base OS, while some of these have less system packages installed. For example, <code class="language-plaintext highlighter-rouge">alpine</code> is the lightest image but it uses <code class="language-plaintext highlighter-rouge">alpine linux</code> as the base operating system. We did not move to it as we have always ran our app on <code class="language-plaintext highlighter-rouge">debian</code> unix (<code class="language-plaintext highlighter-rouge">ubuntu</code> mostly). In the end we settled for <code class="language-plaintext highlighter-rouge">slim</code> version of the image that uses debian as the base OS but doesn’t bloat the image with a lot of pre-installed packages. Someone <a href="https://github.com/rails/rails/issues/46855">opened an issue</a> on Rails official repo that has a detailed discussion on how these images are different and what native packages we generally need to run our apps.</p>
+  </li>
+  <li>
+    <p><strong>Understanding docker stages</strong> - A <code class="language-plaintext highlighter-rouge">Dockerfile</code> can contain multiple <code class="language-plaintext highlighter-rouge">FROM</code> instructions where each of them starts another “stage”. This small yet powerful concept allows you to optimize your build size by copying only required things from one stage to another stage. We’ll discuss it in detail below.</p>
+  </li>
+  <li>
+    <p><strong>Understanding caching</strong> - Docker allows caching in multiple ways. As mentioned in the first point, docker caches all the layers so that unchanged layers are not rebuilt on subsequent runs. Docker also allows caching steps of some intermediate layers so that those are not computed again from scratch. This can be done using cache mounts. Docker’s <a href="https://docs.docker.com/build/guide/mounts/#add-a-cache-mount">official explanation</a> of cache mounts is excellent. Another small optimisation on layering can be done using <a href="https://docs.docker.com/build/guide/mounts/#add-bind-mounts">bind mounts</a> where you can skip a <code class="language-plaintext highlighter-rouge">COPY</code> instruction incase you need files to just run an intermediate step.</p>
+  </li>
+</ol>
+
+<p>I hope the above helped in building some ground. Sharing the actual details below.</p>
+
+<h2 id="our-final-dockerfiles">Our final Dockerfiles</h2>
+
+<p>I’m pasting three Dockerfiles here as a reference. We’ll go through each line of all the three files to deeply understand why we did each change. While these are related to a Ruby on Rails fullstack application, I’ll explain this in a general context and use examples from multiple languages.</p>
+
+<p><strong>Base Dockerfile</strong> - We built our own ruby-2.5.9 image on the top of the official image. The reason for doing this is - although docker’s build cache optimises a lot of steps, our build machine (a jenkins slave) periodically runs <code class="language-plaintext highlighter-rouge">docker system prune</code> to clear old images and save disk space. And that is done because a lot of apps build their image on the build machine, eating up all the disk space. This is how the base image looks like:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ruby:2.5.9-slim</span>
+<span class="k">RUN </span>apt update <span class="o">&amp;&amp;</span> apt <span class="nb">install</span> <span class="nt">-y</span> curl  <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> curl <span class="nt">-fsSL</span> https://deb.nodesource.com/setup_14.x | bash - <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> apt <span class="nb">install</span> <span class="nt">-y</span> gcc g++ make git nodejs <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> apt autoremove <span class="nt">-y</span> <span class="o">&amp;&amp;</span> apt clean <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> <span class="nb">rm</span> <span class="nt">-rf</span> /var/cache/apt/archives/<span class="k">*</span> <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> <span class="nb">rm</span> <span class="nt">-rf</span> /var/lib/apt/lists/<span class="k">*</span> /tmp/<span class="k">*</span> /var/tmp/<span class="k">*</span> <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> <span class="nb">truncate</span> <span class="nt">-s</span> 0 /var/log/<span class="k">*</span>log <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> gem <span class="nb">install </span>bundler:2.3.26 <span class="nt">--no-document</span> <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> bundle config <span class="nt">--local</span> without <span class="s2">"development test"</span>
+
+<span class="k">RUN </span><span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>Gemfile,target<span class="o">=</span>Gemfile <span class="se">\
+</span>    <span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>Gemfile.lock,target<span class="o">=</span>Gemfile.lock <span class="se">\
+</span>    bundle <span class="nb">install</span> <span class="nt">--jobs</span> <span class="sb">`</span>getconf _NPROCESSORS_ONLN<span class="sb">`</span>
+</code></pre></div></div>
+
+<p>Sidekiq dockerfile - Sidekiq is our background job processor. This file uses the above image in the <code class="language-plaintext highlighter-rouge">FROM</code> instruction, installs more dependencies and copies code</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ARG</span><span class="s"> BASE_IMAGE</span>
+<span class="k">FROM</span><span class="s"> $BASE_IMAGE</span>
+<span class="k">WORKDIR</span><span class="s"> /home/app/my_app</span>
+<span class="k">RUN </span><span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>Gemfile,target<span class="o">=</span>Gemfile <span class="se">\
+</span>    <span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>Gemfile.lock,target<span class="o">=</span>Gemfile.lock <span class="se">\
+</span>    <span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>gems,target<span class="o">=</span>gems <span class="se">\
+</span>    bundle <span class="nb">install</span> <span class="nt">--jobs</span> <span class="sb">`</span>getconf _NPROCESSORS_ONLN<span class="sb">`</span>
+
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["/home/app/my_app/entrypoint.sh"]</span>
+</code></pre></div></div>
+
+<p>WebApp dockerfile - This file uses the sidekiq dockerfile as the base image and adds frontend assets on the top of it. This one is a multistage build, where we do building assets in one stage and copy only the required artifacts to the final stage. This is done to ensure that no bloat exists in the final stage.</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ARG</span><span class="s"> BASE_IMAGE</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">$BASE_IMAGE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">frontend-pipeline</span>
+<span class="k">RUN </span>npm <span class="nb">install</span> <span class="nt">-g</span> yarn
+<span class="k">RUN </span>yarn <span class="nb">install</span> <span class="nt">--production</span><span class="o">=</span><span class="nb">true</span>
+<span class="k">RUN </span><span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span>cache,target<span class="o">=</span>/home/app/my_app/tmp/ <span class="se">\
+</span>  <span class="nt">--mount</span><span class="o">=</span><span class="nb">type</span><span class="o">=</span><span class="nb">bind</span>,source<span class="o">=</span>config/database.yml.example,target<span class="o">=</span>config/database.yml <span class="se">\
+</span>  bundle <span class="nb">exec </span>rake assets:precompile <span class="nv">DB_ADAPTER</span><span class="o">=</span>nulldb <span class="nv">RAILS_ENV</span><span class="o">=</span>production <span class="nv">NODE_ENV</span><span class="o">=</span>production <span class="nv">NODE_OPTIONS</span><span class="o">=</span><span class="s2">"--max-old-space-size=28672"</span>
+
+<span class="k">FROM</span><span class="s"> $BASE_IMAGE</span>
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> &lt;whatever&gt;</span>
+<span class="k">COPY</span><span class="s"> --from=frontend-pipeline /home/app/my_app/public /home/app/my_app/public</span>
+</code></pre></div></div>
+
+<h2 id="digging-deep">Digging deep</h2>
+
+<ol>
+  <li>
+    <p><strong>Why we switched to</strong> <code class="language-plaintext highlighter-rouge">slim</code> <strong>image of ruby 2.5.9 and how it impacted us?</strong></p>
+
+    <ul>
+      <li>
+        <p>We were sure that we don’t need those 500+ system packages that are pre-installed inside 2.5.9 image. Additionally, on my macos, if I pull both the images (slim and non-slim), there is a huge difference of 82% (140MB vs 790MB).</p>
+      </li>
+      <li>
+        <p>We knew what specific system packages we needed. Figuring this out is not hard. If your docker image is building successfully and all major features are working, you can conclude that easily. Having working experience on this repo of more than 5 years, I exactly knew what native dependencies we need here so we were able to move to slim image.</p>
+      </li>
+      <li>
+        <p>It led to a build size reduction of about 450MB on AWS ECR (where we host the images).</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Why we built our own base image?</strong></p>
+
+    <ul>
+      <li>
+        <p>As explained above, our build machine purges docker caches regularly because of which the ruby docker image is pulled again and all the system packages are install again. This wasted roughly 3-4 minutes. Also, pulling the image from ECR should be faster than pulling from dockerhub (as build machine is on AWS).</p>
+      </li>
+      <li>
+        <p>If you check carefully, we install gems from Gemfiles in first two Dockerfiles. They point to different Gemfiles. In the first dockerfile, we use a Gemfile that has only those gems which are installed with native dependencies (and hence take time). This was done to ensure build time reduction. We save roughly a minute here. This technique can be used in all frameworks; if your package manager has some dependencies that hardly change and take time to install, move them to the base image. You might want to avoid this if you use one base image for multiple dependencies.</p>
+      </li>
+      <li>
+        <p>We have some tooling for configuration management that is built using golang base image. That is also present in the base image. When we were not having base <code class="language-plaintext highlighter-rouge">Dockerfile</code>, that took about a minute to build in the sidekiq <code class="language-plaintext highlighter-rouge">Dockerfile</code>.
+  <strong>Note</strong>: I’ve not mentioned those lines in the Dockerfile as that tooling is proprietary. In real world, the first dockerfile is also multistage :)</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>How did we make dependency installation fast?</strong></p>
+
+    <ul>
+      <li>
+        <p>All languages have some dependency manager: <code class="language-plaintext highlighter-rouge">bundler</code> for Ruby, <code class="language-plaintext highlighter-rouge">pip</code> for Python, <code class="language-plaintext highlighter-rouge">maven/gradle</code> for Java and so on. Modern computers are multi-core and most of the new tools have ways to utilise multiple cores for tasks that can be parallelized. We used <code class="language-plaintext highlighter-rouge">--jobs</code> argument to parallelize the installation for ruby’s bundler. Earlier we had hardcoded <code class="language-plaintext highlighter-rouge">4</code> as the number of parallel jobs. But because our build machine is large now (it can be small in future), it makes sense to get this value dynamically. Hence you see this <code class="language-plaintext highlighter-rouge">getconf _NPROCESSORS_ONLN</code> in the <code class="language-plaintext highlighter-rouge">bundle install</code> step (this command works well in both unix and mac).</p>
+      </li>
+      <li>
+        <p>We installed some gems like <code class="language-plaintext highlighter-rouge">nokogiri</code>, <code class="language-plaintext highlighter-rouge">bcrypt</code>, <code class="language-plaintext highlighter-rouge">oj</code>, <code class="language-plaintext highlighter-rouge">pg</code> in the base image because they’re built with native dependencies and take time. Also, we don’t upgrade them regularly and hence won’t need to revisit them in the base image. Due to this reason, there’s a special Gemfile for base image (different from the app’s Gemfile).</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Why did we combine many commands in a single RUN instruction?</strong></p>
+
+    <ul>
+      <li>Because each RUN command creates a new layer and we want to minimize the number of layers. Most importantly, if we create some files in one layer and delete them in other layer, it won’t reduce the image size as docker would maintain both of these layers (even the one that added the file). In brief, if there’s a RUN command that only deletes something, it might not bring a change in size of your image. As a clever trick, we’re deleting some logs related to package installation and other system logs (<code class="language-plaintext highlighter-rouge">rm -rf /var/cache/apt/archives/* &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* &amp;&amp; truncate -s 0 /var/log/*log</code> ) inside the same RUN instruction so that those are never inserted in the docker’s layer.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Why are we not copying the</strong> <code class="language-plaintext highlighter-rouge">Gemfile</code><strong>,</strong> <code class="language-plaintext highlighter-rouge">Gemfile.lock</code> <strong>in the image and then running the</strong> <code class="language-plaintext highlighter-rouge">bundle install</code> <strong>command?</strong></p>
+
+    <ul>
+      <li>We don’t need these files so we won’t copy them inside the docker’s layer. Rather, we’re using docker’s bind mounts to bind these files temporarily for the RUN instruction. You can use the same technique in other frameworks as well. For example, for <code class="language-plaintext highlighter-rouge">npm</code> based projects, you can bind <code class="language-plaintext highlighter-rouge">yarn.lock</code> and <code class="language-plaintext highlighter-rouge">package.json</code> before running the <code class="language-plaintext highlighter-rouge">yarn install</code> command (or mount <code class="language-plaintext highlighter-rouge">requirements.txt</code> before running <code class="language-plaintext highlighter-rouge">pip</code> for a python project, and so on).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>In the second Dockerfile, why we add codebase later and just bind Gemfiles first?</strong></p>
+
+    <ul>
+      <li>
+        <p>Earlier, our instructions looked like this:</p>
+      </li>
+      <li>
+        <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  COPY Gemfile .
+  COPY Gemfile.lock .
+  RUN bundle install
+
+  WORKDIR /home/app/my-app
+  COPY . . # copies entire source code
+</code></pre></div>        </div>
+
+        <p>Now, we’re using the bind mount. But the question is same - why would we first copy files that define dependencies and copy rest of the code later. Reason is simple - There are more chances that something else in entire codebase will change than the dependencies. So if we copy everything and them run the dependency manager (bundler/maven/pip/yarn), then the cache of that layer will always be rebuilt. Whereas, if we copy package files first, there are more chances that the cached layer will be used.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Why our files don’t have a CMD defined?</strong></p>
+
+    <ul>
+      <li>We have multiple entry points that can run on the top of these docker images (eg. <a href="https://github.com/puma/puma/">puma</a>, <a href="https://github.com/anycable/anycable">anycable</a>, <a href="https://github.com/sidekiq/sidekiq">sidekiq</a>). So we prefer to pass CMD from outside. There are multiple ways to do so based on the way you’re running the container. For example, if you’re running the image using plain <code class="language-plaintext highlighter-rouge">docker run</code> command then just write the command to be run in CMD after this (Eg. <code class="language-plaintext highlighter-rouge">docker run -it ruby:2.5.9-slim irb)</code> . Similarly, you can provide CMD argument through docker-compose, docker-swarm or through helm charts (for kubernetes).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>There are many special things happening in asset precompile step. I’ll explain them one by one</strong></p>
+
+    <ul>
+      <li>
+        <p>We mount a sample <code class="language-plaintext highlighter-rouge">database.yml</code> file (dummy database configuration file, doesn’t contain any credentials) using bind mounts because <code class="language-plaintext highlighter-rouge">rake</code> commands sets up entire rails environment and that is needed.</p>
+      </li>
+      <li>
+        <p>To make sure database is not connected, we also use a <a href="https://github.com/nulldb/nulldb">special library</a> during precompile step.</p>
+      </li>
+      <li>
+        <p>We use docker’s cache mounts (<code class="language-plaintext highlighter-rouge">--mount=type=cache</code>) to cache the results of this step so that next time only changed steps get recomputed.</p>
+      </li>
+      <li>
+        <p>We supply specific <code class="language-plaintext highlighter-rouge">NODE_OPTIONS</code> so that build machine’s memory can be utilized to compile as fast as possible.</p>
+      </li>
+      <li>
+        <p>Assets are compiled in an intermediate stage and only required artifacts are copied to the final layer.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="results">Results</h2>
+
+<p>The results in our case were outstanding, specially in terms of image size. Image time did improve when I did optimizations in 2022, but this time there was no drastic increase. Time for numbers 🎉</p>
+
+<ol>
+  <li>
+    <p><strong>Build size</strong>: Earlier we were maintaining two docker images - 2.4G and 1.5G. So on any node in the kubernetes nodepool, if both of our images are needed, we were required to download ~ 4G of files. Only common thing among these two was the ruby base image. So probably we were downloading ~ 3.5G if we take that out. After optimization, the image size was 1.1G and 1.5G. More importantly, this 1.1G was common as one image was used in second image. So technically, we’ll be downloading only 1.5G on any node where we need both the images. That’s an improvement of <strong>over 57%.</strong> And this difference is only of our current optimization. If we compare it back to 2022, the difference was even large.</p>
+  </li>
+  <li>
+    <p><strong>Build time</strong>: The current build time is 12-15min. A month ago it was around 14-18min. Back in 2022, it was about 30min. So from that time it has been a significant improvement but comparing from last month, the build time has not improved much. A major time goes into transpiling react code to JS, and pushing images to ECR.</p>
+  </li>
+</ol>
+
+<h2 id="impact">Impact</h2>
+
+<ol>
+  <li>
+    <p><strong>Build size</strong>: At LocoNav, we have staging, preprod and production environments. We have our oldest production environment (on AWS) and few small production deployments in other countries where we operate on some other cloud providers. On AWS, we deploy daily but in other clusters we deploy weekly or fortnightly. Because we’re copying docker images from AWS ECR to other cloud providers, reduction of &gt;50% would mean faster image pulls and faster deployments. In the long run, because we’re pushing lesser GBs from the build machine to ECR, and from ECR to EKS (and even outside AWS), it would lead to lesser S3 cost (for storing images) and lesser network transfer cost.</p>
+  </li>
+  <li>
+    <p><strong>Build time</strong>: As developers build and deploy multiple times to staging environment(s), shorter build times encourage them to iterate faster and not lose context of things. When build times were higher, developers often switched to other tasks after triggering builds.</p>
+  </li>
+</ol>
+
+<h2 id="bonus">Bonus</h2>
+
+<p>There’s a very nice tool that helps to analyze docker images layer-by-layer. Although it didn’t help me a lot to reduce the size, it was a good experience diving deeply into layers. It’s known as <a href="https://github.com/wagoodman/dive">dive</a> and it’s an open source tool that you can install on your machine to analyze any docker image. It also made me understand how docker ignores the intermediate stages of a multi-stage build and just copies the artifacts.</p>
+
+<h2 id="closing-thoughts">Closing thoughts</h2>
+
+<p>Docker build time/size reduction is an interesting activity. There are some thumb rules (like moving less changing layers above) and some experimentation according to your app’s setup. You need to experiment a lot to understand what works for you. If you have a similar experience, or any suggestions on the above - please do comment.</p>
+
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="https://gagan93.me/2024/02/28/optimising-docker-builds.html"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    color: black;
+  }
+
+  .category {
+    background-color: #2C3E50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gagandeep Singh — Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gagandeep Singh — Blog</li><li><a class="u-email" href="mailto:gagan93gtbit@gmail.com">gagan93gtbit@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gagan93jtg"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gagan93jtg</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Posts on Engineering, Culture, Leadership</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

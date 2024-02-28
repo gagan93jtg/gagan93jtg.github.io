@@ -1,4 +1,248 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-01-27T21:48:42+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Cloud pricing &amp;amp; Vendor lock-ins</title><link href="https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins.html" rel="alternate" type="text/html" title="Cloud pricing &amp;amp; Vendor lock-ins" /><published>2024-01-27T00:00:00+05:30</published><updated>2024-01-27T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins</id><content type="html" xml:base="https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-01-27-lock-in.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-02-28T13:56:19+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Optimising docker builds</title><link href="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html" rel="alternate" type="text/html" title="Optimising docker builds" /><published>2024-02-28T00:00:00+05:30</published><updated>2024-02-28T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/02/28/optimising-docker-builds</id><content type="html" xml:base="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-02-28-dockers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-ian-taylor-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@carrier_lost?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Ian Taylor&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/blue-and-red-cargo-ship-on-sea-during-daytime-jOqJbvo1P9g?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;This month I worked on optimising docker build for an app. But before delving into the specifics of my optimisation efforts, let me provide you with a overview of the application:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s a medium size, fullstack Rails application (400+ models)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It has 300+ dependencies (a.k.a ruby gems).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It contains rails views (activeadmin majorly) and assets.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It uses react on the frontend and uses webpacker to transpile those into JS.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We had two dockerfiles - one for the web app and one for background job processor (&lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;sidekiq&lt;/a&gt;, similar to &lt;a href=&quot;https://docs.celeryq.dev/en/stable/getting-started/introduction.html&quot;&gt;celary&lt;/a&gt;, &lt;a href=&quot;https://github.com/jobrunr/jobrunr&quot;&gt;jobrunr&lt;/a&gt;, etc). These could be combined now to some extent but were different due to different base images initially.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We can think of optimising a docker image in two ways:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;☑&lt;/strong&gt; Optimising build time.
+&lt;strong&gt;☑&lt;/strong&gt; Optimising image size.&lt;/p&gt;
+
+&lt;p&gt;I had to tick both the boxes and optimise as much as possible in the next few days. The first and very obvious step was to understand the steps in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; and read some good blogs on how people have been doing it for their app. I had already been reading this &lt;a href=&quot;https://diamol.net/&quot;&gt;excellent book&lt;/a&gt; earlier this month, that helped me build strong fundamentals around Docker as a technology. The first part of this book talks about the very basic things (needed to build and optimise images), while rest of the parts talk about operating Docker. While there were some excellent case studies talking specifically about optimising for Rails apps, most of the techniques were already applied back in 2022 when I picked the optimisation activity for the first time. To make sure that you get the most out of this post, I’ll share the older optimisations also.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-basics&quot;&gt;The basics&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Understanding layering&lt;/strong&gt; - A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; typically starts with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instruction that points to a base image specific to your language/framework. Beyond this, there are many more instructions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ARG&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENV&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ADD&lt;/code&gt;. It generally ends with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENTRYPOINT&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD&lt;/code&gt; instructions (unless we’re passing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD&lt;/code&gt; from outside). The instructions that actually create heavy layers are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ADD&lt;/code&gt; because we run some commands or copy some files/directories from the host machine to the docker image using these commands. From an optimisation perspective, “least changing layers should remain on top and most changing layers should be at the bottom”. This is because when you run the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build&lt;/code&gt; command multiple times and if you haven’t cleared the build caches, the unchanged layers do not get computed again and subsequent builds are faster. This is the single most useful concept I used multiple times to get most out of caching.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Understanding base images&lt;/strong&gt; - Our app used ruby 2.5.9 so we used the &lt;a href=&quot;https://hub.docker.com/layers/library/ruby/2.5.9/images/sha256-0ed9d1839df4d5c08c98a0a7315519694c5da80b0885d6a5b96d5d5bb564d5a5?context=explore&quot;&gt;official ruby 2.5.9 image&lt;/a&gt; as our base image to start with. Digging deep on the tags, we found that there are multiple tags for the same version also (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buster&lt;/code&gt;, etc). Some of these have a different unix flavour as the base OS, while some of these have less system packages installed. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine&lt;/code&gt; is the lightest image but it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine linux&lt;/code&gt; as the base operating system. We did not move to it as we have always ran our app on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debian&lt;/code&gt; unix (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ubuntu&lt;/code&gt; mostly). In the end we settled for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt; version of the image that uses debian as the base OS but doesn’t bloat the image with a lot of pre-installed packages. Someone &lt;a href=&quot;https://github.com/rails/rails/issues/46855&quot;&gt;opened an issue&lt;/a&gt; on Rails official repo that has a detailed discussion on how these images are different and what native packages we generally need to run our apps.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Understanding docker stages&lt;/strong&gt; - A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; can contain multiple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instructions where each of them starts another “stage”. This small yet powerful concept allows you to optimize your build size by copying only required things from one stage to another stage. We’ll discuss it in detail below.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Understanding caching&lt;/strong&gt; - Docker allows caching in multiple ways. As mentioned in the first point, docker caches all the layers so that unchanged layers are not rebuilt on subsequent runs. Docker also allows caching steps of some intermediate layers so that those are not computed again from scratch. This can be done using cache mounts. Docker’s &lt;a href=&quot;https://docs.docker.com/build/guide/mounts/#add-a-cache-mount&quot;&gt;official explanation&lt;/a&gt; of cache mounts is excellent. Another small optimisation on layering can be done using &lt;a href=&quot;https://docs.docker.com/build/guide/mounts/#add-bind-mounts&quot;&gt;bind mounts&lt;/a&gt; where you can skip a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt; instruction incase you need files to just run an intermediate step.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I hope the above helped in building some ground. Sharing the actual details below.&lt;/p&gt;
+
+&lt;h2 id=&quot;our-final-dockerfiles&quot;&gt;Our final Dockerfiles&lt;/h2&gt;
+
+&lt;p&gt;I’m pasting three Dockerfiles here as a reference. We’ll go through each line of all the three files to deeply understand why we did each change. While these are related to a Ruby on Rails fullstack application, I’ll explain this in a general context and use examples from multiple languages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Base Dockerfile&lt;/strong&gt; - We built our own ruby-2.5.9 image on the top of the official image. The reason for doing this is - although docker’s build cache optimises a lot of steps, our build machine (a jenkins slave) periodically runs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker system prune&lt;/code&gt; to clear old images and save disk space. And that is done because a lot of apps build their image on the build machine, eating up all the disk space. This is how the base image looks like:&lt;/p&gt;
+
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; ruby:2.5.9-slim&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; curl  &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://deb.nodesource.com/setup_14.x | bash - &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; gcc g++ make git nodejs &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt autoremove &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt clean &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; /var/cache/apt/archives/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; /var/lib/apt/lists/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; /tmp/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; /var/tmp/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;truncate&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; 0 /var/log/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;log &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler:2.3.26 &lt;span class=&quot;nt&quot;&gt;--no-document&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bundle config &lt;span class=&quot;nt&quot;&gt;--local&lt;/span&gt; without &lt;span class=&quot;s2&quot;&gt;&quot;development test&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--jobs&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;getconf _NPROCESSORS_ONLN&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sidekiq dockerfile - Sidekiq is our background job processor. This file uses the above image in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instruction, installs more dependencies and copies code&lt;/p&gt;
+
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ARG&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; BASE_IMAGE&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; $BASE_IMAGE&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /home/app/my_app&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gems,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gems &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;    bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--jobs&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;getconf _NPROCESSORS_ONLN&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; . .&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ENTRYPOINT&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; [&quot;/home/app/my_app/entrypoint.sh&quot;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;WebApp dockerfile - This file uses the sidekiq dockerfile as the base image and adds frontend assets on the top of it. This one is a multistage build, where we do building assets in one stage and copy only the required artifacts to the final stage. This is done to ensure that no bloat exists in the final stage.&lt;/p&gt;
+
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ARG&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; BASE_IMAGE&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$BASE_IMAGE&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;frontend-pipeline&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; yarn
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--production&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;cache,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/app/my_app/tmp/ &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;config/database.yml.example,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;config/database.yml &lt;span class=&quot;se&quot;&gt;\
+&lt;/span&gt;  bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;rake assets:precompile &lt;span class=&quot;nv&quot;&gt;DB_ADAPTER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;nulldb &lt;span class=&quot;nv&quot;&gt;RAILS_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production &lt;span class=&quot;nv&quot;&gt;NODE_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production &lt;span class=&quot;nv&quot;&gt;NODE_OPTIONS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--max-old-space-size=28672&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; $BASE_IMAGE&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;EXPOSE&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; 3000&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;CMD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &amp;lt;whatever&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; --from=frontend-pipeline /home/app/my_app/public /home/app/my_app/public&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;digging-deep&quot;&gt;Digging deep&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why we switched to&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt; &lt;strong&gt;image of ruby 2.5.9 and how it impacted us?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;We were sure that we don’t need those 500+ system packages that are pre-installed inside 2.5.9 image. Additionally, on my macos, if I pull both the images (slim and non-slim), there is a huge difference of 82% (140MB vs 790MB).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We knew what specific system packages we needed. Figuring this out is not hard. If your docker image is building successfully and all major features are working, you can conclude that easily. Having working experience on this repo of more than 5 years, I exactly knew what native dependencies we need here so we were able to move to slim image.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;It led to a build size reduction of about 450MB on AWS ECR (where we host the images).&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why we built our own base image?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;As explained above, our build machine purges docker caches regularly because of which the ruby docker image is pulled again and all the system packages are install again. This wasted roughly 3-4 minutes. Also, pulling the image from ECR should be faster than pulling from dockerhub (as build machine is on AWS).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If you check carefully, we install gems from Gemfiles in first two Dockerfiles. They point to different Gemfiles. In the first dockerfile, we use a Gemfile that has only those gems which are installed with native dependencies (and hence take time). This was done to ensure build time reduction. We save roughly a minute here. This technique can be used in all frameworks; if your package manager has some dependencies that hardly change and take time to install, move them to the base image. You might want to avoid this if you use one base image for multiple dependencies.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We have some tooling for configuration management that is built using golang base image. That is also present in the base image. When we were not having base &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;, that took about a minute to build in the sidekiq &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;.
+  &lt;strong&gt;Note&lt;/strong&gt;: I’ve not mentioned those lines in the Dockerfile as that tooling is proprietary. In real world, the first dockerfile is also multistage :)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;How did we make dependency installation fast?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;All languages have some dependency manager: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler&lt;/code&gt; for Ruby, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; for Python, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maven/gradle&lt;/code&gt; for Java and so on. Modern computers are multi-core and most of the new tools have ways to utilise multiple cores for tasks that can be parallelized. We used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--jobs&lt;/code&gt; argument to parallelize the installation for ruby’s bundler. Earlier we had hardcoded &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4&lt;/code&gt; as the number of parallel jobs. But because our build machine is large now (it can be small in future), it makes sense to get this value dynamically. Hence you see this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getconf _NPROCESSORS_ONLN&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; step (this command works well in both unix and mac).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We installed some gems like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nokogiri&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bcrypt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oj&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pg&lt;/code&gt; in the base image because they’re built with native dependencies and take time. Also, we don’t upgrade them regularly and hence won’t need to revisit them in the base image. Due to this reason, there’s a special Gemfile for base image (different from the app’s Gemfile).&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why did we combine many commands in a single RUN instruction?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Because each RUN command creates a new layer and we want to minimize the number of layers. Most importantly, if we create some files in one layer and delete them in other layer, it won’t reduce the image size as docker would maintain both of these layers (even the one that added the file). In brief, if there’s a RUN command that only deletes something, it might not bring a change in size of your image. As a clever trick, we’re deleting some logs related to package installation and other system logs (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rm -rf /var/cache/apt/archives/* &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* &amp;amp;&amp;amp; truncate -s 0 /var/log/*log&lt;/code&gt; ) inside the same RUN instruction so that those are never inserted in the docker’s layer.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why are we not copying the&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;&lt;strong&gt;,&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; &lt;strong&gt;in the image and then running the&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; &lt;strong&gt;command?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;We don’t need these files so we won’t copy them inside the docker’s layer. Rather, we’re using docker’s bind mounts to bind these files temporarily for the RUN instruction. You can use the same technique in other frameworks as well. For example, for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm&lt;/code&gt; based projects, you can bind &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn.lock&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; before running the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn install&lt;/code&gt; command (or mount &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; before running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; for a python project, and so on).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;In the second Dockerfile, why we add codebase later and just bind Gemfiles first?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Earlier, our instructions looked like this:&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  COPY Gemfile .
+  COPY Gemfile.lock .
+  RUN bundle install
+
+  WORKDIR /home/app/my-app
+  COPY . . # copies entire source code
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+
+        &lt;p&gt;Now, we’re using the bind mount. But the question is same - why would we first copy files that define dependencies and copy rest of the code later. Reason is simple - There are more chances that something else in entire codebase will change than the dependencies. So if we copy everything and them run the dependency manager (bundler/maven/pip/yarn), then the cache of that layer will always be rebuilt. Whereas, if we copy package files first, there are more chances that the cached layer will be used.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why our files don’t have a CMD defined?&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;We have multiple entry points that can run on the top of these docker images (eg. &lt;a href=&quot;https://github.com/puma/puma/&quot;&gt;puma&lt;/a&gt;, &lt;a href=&quot;https://github.com/anycable/anycable&quot;&gt;anycable&lt;/a&gt;, &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;sidekiq&lt;/a&gt;). So we prefer to pass CMD from outside. There are multiple ways to do so based on the way you’re running the container. For example, if you’re running the image using plain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run&lt;/code&gt; command then just write the command to be run in CMD after this (Eg. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -it ruby:2.5.9-slim irb)&lt;/code&gt; . Similarly, you can provide CMD argument through docker-compose, docker-swarm or through helm charts (for kubernetes).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;There are many special things happening in asset precompile step. I’ll explain them one by one&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;We mount a sample &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database.yml&lt;/code&gt; file (dummy database configuration file, doesn’t contain any credentials) using bind mounts because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rake&lt;/code&gt; commands sets up entire rails environment and that is needed.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;To make sure database is not connected, we also use a &lt;a href=&quot;https://github.com/nulldb/nulldb&quot;&gt;special library&lt;/a&gt; during precompile step.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We use docker’s cache mounts (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mount=type=cache&lt;/code&gt;) to cache the results of this step so that next time only changed steps get recomputed.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We supply specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NODE_OPTIONS&lt;/code&gt; so that build machine’s memory can be utilized to compile as fast as possible.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Assets are compiled in an intermediate stage and only required artifacts are copied to the final layer.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;The results in our case were outstanding, specially in terms of image size. Image time did improve when I did optimizations in 2022, but this time there was no drastic increase. Time for numbers 🎉&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Build size&lt;/strong&gt;: Earlier we were maintaining two docker images - 2.4G and 1.5G. So on any node in the kubernetes nodepool, if both of our images are needed, we were required to download ~ 4G of files. Only common thing among these two was the ruby base image. So probably we were downloading ~ 3.5G if we take that out. After optimization, the image size was 1.1G and 1.5G. More importantly, this 1.1G was common as one image was used in second image. So technically, we’ll be downloading only 1.5G on any node where we need both the images. That’s an improvement of &lt;strong&gt;over 57%.&lt;/strong&gt; And this difference is only of our current optimization. If we compare it back to 2022, the difference was even large.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Build time&lt;/strong&gt;: The current build time is 12-15min. A month ago it was around 14-18min. Back in 2022, it was about 30min. So from that time it has been a significant improvement but comparing from last month, the build time has not improved much. A major time goes into transpiling react code to JS, and pushing images to ECR.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;impact&quot;&gt;Impact&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Build size&lt;/strong&gt;: At LocoNav, we have staging, preprod and production environments. We have our oldest production environment (on AWS) and few small production deployments in other countries where we operate on some other cloud providers. On AWS, we deploy daily but in other clusters we deploy weekly or fortnightly. Because we’re copying docker images from AWS ECR to other cloud providers, reduction of &amp;gt;50% would mean faster image pulls and faster deployments. In the long run, because we’re pushing lesser GBs from the build machine to ECR, and from ECR to EKS (and even outside AWS), it would lead to lesser S3 cost (for storing images) and lesser network transfer cost.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Build time&lt;/strong&gt;: As developers build and deploy multiple times to staging environment(s), shorter build times encourage them to iterate faster and not lose context of things. When build times were higher, developers often switched to other tasks after triggering builds.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;bonus&quot;&gt;Bonus&lt;/h2&gt;
+
+&lt;p&gt;There’s a very nice tool that helps to analyze docker images layer-by-layer. Although it didn’t help me a lot to reduce the size, it was a good experience diving deeply into layers. It’s known as &lt;a href=&quot;https://github.com/wagoodman/dive&quot;&gt;dive&lt;/a&gt; and it’s an open source tool that you can install on your machine to analyze any docker image. It also made me understand how docker ignores the intermediate stages of a multi-stage build and just copies the artifacts.&lt;/p&gt;
+
+&lt;h2 id=&quot;closing-thoughts&quot;&gt;Closing thoughts&lt;/h2&gt;
+
+&lt;p&gt;Docker build time/size reduction is an interesting activity. There are some thumb rules (like moving less changing layers above) and some experimentation according to your app’s setup. You need to experiment a lot to understand what works for you. If you have a similar experience, or any suggestions on the above - please do comment.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="Docker" /><category term="Optimization" /><category term="Dockerfile" /><summary type="html">A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application</summary></entry><entry><title type="html">Cloud pricing &amp;amp; Vendor lock-ins</title><link href="https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins.html" rel="alternate" type="text/html" title="Cloud pricing &amp;amp; Vendor lock-ins" /><published>2024-01-27T00:00:00+05:30</published><updated>2024-01-27T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins</id><content type="html" xml:base="https://gagan93.me/blog/2024/01/27/cloud-pricing-and-vendor-lock-ins.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-01-27-lock-in.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-micah-williams-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@mr_williams_photography?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Micah Williams&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-gray-code-padlock-anchored-on-chain-link-fence-selective-focus-photo-lmFJOx7hPc4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -530,51 +774,4 @@
 
 &lt;p&gt;Some of the above points might not be applicable to all issues, but this is what comes to my mind generally. Such questions help in building a clear understanding of the problem and proposing a fix that makes sense. You get half of the solution by understanding the problem clearly. When you’re seeking solution of your problem from someone else, make sure you can show what you have tried before reaching them out. Have answers to all the obviou questions. This is an underrated skill but optimizes much of the communication cycle.&lt;/p&gt;
 
-&lt;p&gt;This post is just an introduction to asking good questions. There’s a very detailed, opinionated post (might sound little rude) on this topic already. &lt;a href=&quot;http://www.catb.org/~esr/faqs/smart-questions.html&quot;&gt;Click here&lt;/a&gt; to read the same. Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="questions" /><category term="context" /><category term="efficiency" /><summary type="html">On a daily basis, we communicate with a lot of people - family, friends, office colleagues and often with end customers. A lot of this communication is in the form of asking questions and getting answers.</summary></entry><entry><title type="html">Efficient Fullstack Delivery</title><link href="https://gagan93.me/blog/2023/07/29/efficient-fullstack-delivery.html" rel="alternate" type="text/html" title="Efficient Fullstack Delivery" /><published>2023-07-29T00:00:00+05:30</published><updated>2023-07-29T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/07/29/efficient-fullstack-delivery</id><content type="html" xml:base="https://gagan93.me/blog/2023/07/29/efficient-fullstack-delivery.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-07-29-efficient-fullstack-delivery.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-cherrydeck-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@cherrydeck&quot;&gt;Cherrydeck&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/rMILC1PIwM0&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Many organisations face the issue of missed deadlines. The reasons for this might be a one-off case or repeated scenarios. Today, I’ll share how we’ve optimized full-stack product delivery through years of learning.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Clarity of thought&lt;/strong&gt; - The leaders (product &amp;amp; engineering leads) involved in building a specific product should have a very clear thought on what we’re trying to build. If the product is in very initial phase, this can be somewhat hazy. It is not a problem to “not have a well thought product”. But don’t let the hazy-ness propagate to development teams, otherwise everyone will have their own interpretation of the idea. Engineers are programmed mentally to work on exact requirements. The sense of ambiguity doesn’t let them work efficiently, at least in initial years. To get the best output from them, give them clear requirements.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Get everyone on the same page&lt;/strong&gt; - I don’t generally encourage meetings that involves many people, be it remote, or in person. Most of the things my team work on are communicated on JIRA tickets and clarified by chat, or short calls. But there’s a phase when you are starting on something new. The walkthrough of initial idea should be done over a call (or in-person meeting if working from office). This is the point when product and design have almost finalized the workflows, the engineering leads have given a go-ahead on feasibility of product and the story is ready. Set-up a meeting with the team, explain them the idea, take their inputs, do the required changes (if any), see if everyone has clarity and then &lt;strong&gt;freeze the story&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Don’t exclude testers&lt;/strong&gt; - In point 2, the “team” doesn’t mean only backend and frontend engineers. QAs are often shared across multiple product teams, so we think we’ll share the story with them once development is complete. This is an unoptimized process. We had been doing this in the past and it just brings confusions. Some of the issues that happen are:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Corner cases in product flows are not figured out initially as QA was not present in initial meeting.&lt;/li&gt;
-      &lt;li&gt;Some engineers might explain the product to QA team in their own way when it comes for testing. The interpretation can be very different. Even if product team explains the flow, it’s waste of effort as they already did it initially.&lt;/li&gt;
-      &lt;li&gt;Fixing corner cases might mean change in flows, design and hence code.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Walking on water and developing software from specifications are easy if both are frozen&lt;/strong&gt; - This is a very famous quote in software engineering. Change is inevitable in software projects, and this doesn’t mean that our software shouldn’t expect future changes, but the point is that current development cycle should have fixed set of requirements. Product teams should have enough discussions with the required stakeholders to make sure that they are aware of what is “actually needed”. Cost of change in a “software under development” is usually high - because product team updates the story, design teams update their designs, developers change their code (often ending up adding hacks because they already built the previous version), QA needs to test all impacted areas, and the overall deadline shifts.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Estimations&lt;/strong&gt; - There are two things we’ll discuss: Dev estimates and overall estimates. Assuming the designs are ready, the expectation is that developers should start working on the product right away. But don’t miss the estimation part, specially when you’re working with a new team. My team was doing &lt;a href=&quot;https://projectmanagementacademy.net/resources/blog/a-three-point-estimating-technique-pert/&quot;&gt;PERT estimates&lt;/a&gt; in the past to do task breakdown and estimating individual tasks. Once we got enough idea on our speed, we now share a ball-park (rough) estimate mostly. IMO, all freshers should learn doing PERT estimates. Apart from just estimates, it also helps you to break your tasks into subtasks. Once dev estimates are complete, product team needs to take QA estimates as well, add some buffer (this comes by experience) and share overall estimates as a delivery date (&lt;strong&gt;Bonus point&lt;/strong&gt;: Don’t forget to consider everyone’s leave plans at the start of development).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Realistic Parallelism and team motivation&lt;/strong&gt; - &lt;a href=&quot;https://planningengineer.net/9-women-cannot-deliver-a-baby-in-one-month/&quot;&gt;9 women cannot deliver a baby in a month&lt;/a&gt;. This phrase is used in software engineering to explain that we shouldn’t expect “faster delivery” just because we have the option to put more people. If your team is new, or the organisation itself is a startup, I’d always recommend to start with less people (or you’ll just be solving their conflicts). People management is a task in itself when you’re managing a development team that has multiple sub-teams. I remember, back in 2018 when I was developing APIs for our new mobile app, I was the only one from backend team, 2 were from frontend, 1 QA and 1 Product guy. Even then we faced a lot of issues because none of us were experienced to work at that pace, and with less clarity. Our initial app took months to take off. Revised dates and unrealistic expectations of parallelism often affect team’s motivation because leaders can’t see the needle moving and developers are expected to overwork for days (and sometimes weeks).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Technical perspective&lt;/strong&gt; - Most of the above pointers are related to overall team, so sharing some tips for the developers here:&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Once product discussion is complete, backend and frontend leads should connect separately to finalize set of APIs.&lt;/li&gt;
-      &lt;li&gt;Make sure that error codes, error responses are consistent and clearly understood by both the parties. This is for the long term, not just for current product.&lt;/li&gt;
-      &lt;li&gt;Create separate sub-tasks for backend and frontend so that JIRA tracking is clear. Backend should start building models/APIs while frontend should make designs meanwhile.&lt;/li&gt;
-      &lt;li&gt;If backend needs some Devops assistance to launch a new server, database or something similar, do include that in the estimates. Create task(s) for infra team with priority mentioned.&lt;/li&gt;
-      &lt;li&gt;If backend development is expected to take much longer due to some initial setup of things, clarify the same. You might need to build some mock API responses so that frontend team can integrate the same meanwhile. We have used &lt;a href=&quot;https://github.com/iridakos/duckrails&quot;&gt;this tool&lt;/a&gt; in the past for the same. If this is not possible, atleast mention exact API responses in your tickets so that frontend team can write code against it and integration testing can be done later.&lt;/li&gt;
-      &lt;li&gt;Don’t skip writing tests. No software system has been constructed in a way that it remains unchanged in the future. Your manual testing effort is going to exponentially increase as more changes come.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Above insights are from my experience working on multiple full-stack products @ LocoNav, both for mobile and web clients. I’ve contributed both as a developer and as a manager, so I’ve seen the situation from both the lenses. If you think that your delivery dates are still shifting despite following best standards, consider doing a &lt;a href=&quot;https://www.aha.io/roadmapping/guide/agile/what-is-an-agile-retrospective&quot;&gt;retrospective meeting&lt;/a&gt; after the delivery.&lt;/p&gt;
-
-&lt;p&gt;Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="full-stack" /><category term="efficiency" /><category term="product" /><summary type="html">Many organisations face the issue of missed deadlines. The reasons for this might be a one-off case or repeated scenarios. Today, we&apos;ll try to understand how can we optimize full-stack product delivery as a team</summary></entry></feed>
+&lt;p&gt;This post is just an introduction to asking good questions. There’s a very detailed, opinionated post (might sound little rude) on this topic already. &lt;a href=&quot;http://www.catb.org/~esr/faqs/smart-questions.html&quot;&gt;Click here&lt;/a&gt; to read the same. Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="questions" /><category term="context" /><category term="efficiency" /><summary type="html">On a daily basis, we communicate with a lot of people - family, friends, office colleagues and often with end customers. A lot of this communication is in the form of asking questions and getting answers.</summary></entry></feed>
