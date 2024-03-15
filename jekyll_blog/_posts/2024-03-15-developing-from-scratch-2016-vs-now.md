@@ -5,7 +5,7 @@ date: 2024-03-15
 published_on: 15th March, 2024
 author: Gagandeep Singh
 cover: "/blog/assets/images/2024-03-15-developing-from-scratch.jpg"
-categories: Devops Cloud Developers
+categories: Development Scratch BuildingAndLearning
 excerpt: One year into the industry, I wasn't sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of ...
 ---
 
