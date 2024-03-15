@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Devops Essentials for Developers"
-date: 2024-03-08
+date: 2024-03-05
 published_on: 5th March, 2024
 author: Gagandeep Singh
 cover: "/blog/assets/images/2024-03-05-devops-servers.jpg"

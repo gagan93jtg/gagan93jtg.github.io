@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-03-08T22:15:24+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Devops Essentials for Developers</title><link href="https://gagan93.me/blog/2024/03/08/devops-essentials-for-developers.html" rel="alternate" type="text/html" title="Devops Essentials for Developers" /><published>2024-03-08T00:00:00+05:30</published><updated>2024-03-08T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/08/devops-essentials-for-developers</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/08/devops-essentials-for-developers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-05-devops-servers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-03-15T17:41:53+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Developing From Scratch: 2016 vs. now</title><link href="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html" rel="alternate" type="text/html" title="Developing From Scratch: 2016 vs. now" /><published>2024-03-15T00:00:00+05:30</published><updated>2024-03-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-15-developing-from-scratch.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-brandspeople-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@brandsandpeople?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Brands&amp;amp;People&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/person-writing-on-white-paper-Ax8IA8GAjVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;One year into the industry, I wasn’t sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of debugging and writing a little bit of new code. I visited my college in 2016 where I met some juniors and placement head. I discussed the idea of creating an Alumni website for our college because no such connection existed between the college and it’s alumni. While I was into full-stack development but I didn’t like doing frontend a lot. So I discussed the idea with my friend &lt;a href=&quot;https://www.linkedin.com/in/ekas/&quot;&gt;Ekas&lt;/a&gt; (a year junior to me and just out of college) and we both started working on it. This was completely out of fun, not for profit project. This was our tech stack at that time:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Backend&lt;/strong&gt; - Ruby on Rails,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Frontend&lt;/strong&gt; - JQuery/Bootstrap,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Database&lt;/strong&gt; - MySQL (all user data), Redis (for some caching, probably redundant),&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cloud provider&lt;/strong&gt; - Linode (Reason: Non fancy platform &amp;amp; straight forward billing),&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Issue tracker&lt;/strong&gt; - Trello,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Version control&lt;/strong&gt; - Gitlab initially (now Github, at that time it didn’t support private repos, &lt;a href=&quot;https://github.com/gagan93jtg/gtbit_alumni/&quot;&gt;source code&lt;/a&gt;),&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Communication&lt;/strong&gt; - Gmail/Whatsapp,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Domain&lt;/strong&gt; - Godaddy,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;CDN&lt;/strong&gt; - Cloudflare (Wasn’t needed, but I needed a free SSL Cert that they provided).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Like many other side projects, the stack was pretty straight forward - We chose what the best we knew. For example, if I knew about &lt;a href=&quot;https://letsencrypt.org/&quot;&gt;LetsEncrypt&lt;/a&gt; I’d not have used Cloudflare because CDN was not required at that time.&lt;/p&gt;
+
+&lt;h2 id=&quot;developing-something-in-2024&quot;&gt;Developing something in 2024&lt;/h2&gt;
+
+&lt;p&gt;In past 8 years, software landscape has seen major changes. And with recent advancements in AI, we’re able to write code faster. Many low-code and no-code tools are also available if you’re developing simple things (even beyond static websites). For example, I had to revamp my portfolio website from &lt;a href=&quot;https://gagan93.me/v2/&quot;&gt;this&lt;/a&gt; to &lt;a href=&quot;https://gagan93.me/&quot;&gt;current&lt;/a&gt; two months ago. It took me a few hours to create the current version because the skeleton and design was &lt;a href=&quot;https://www.linkedin.com/posts/gagan93_some-good-prompts-on-chatgpt-helped-me-revamp-activity-7145825841346674688-4ssY&quot;&gt;generated by ChatGPT&lt;/a&gt;. As recent as this week, &lt;a href=&quot;https://www.youtube.com/watch?v=AgyJv2Qelwk&quot;&gt;Devin is released&lt;/a&gt;, who is world’s first AI Software Engineer (although a bold claim to make).&lt;/p&gt;
+
+&lt;p&gt;Given all the improvements over time, let’s discuss the choices we have if you are (or even I am) developing an MVP or side project today:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Backend&lt;/strong&gt; - Although my major backend experience has been in Rails and it will be a biased opinion if I say Rails is faster to develop than any other framework. But I’ve seen many people and organisations use Rails to quickly build MVPs. So if I was building something that really needs a complete dynamic and full-stack website of it’s own (with UI), I’d still prefer Rails. If there’s a simpler requirement where I just need to develop APIs on the backend, and frontend is a mobile platform, I might be inclined to use serverless platform to start with. Reason for choosing serverless is simple - the deployment strategies are simpler and I’d pay for the time I’m using the backend, rather than running servers full-time. &lt;a href=&quot;https://docs.rubyonjets.com/&quot;&gt;Ruby on Jets&lt;/a&gt; is one such option if you’re a Rails developer. It’s just a wrapper over AWS Lambda, Gateway and databases. You can also use Lambda directly rather than using this fancy wrapper, and write your functions in Java, NodeJS, Python, Go and other &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported&quot;&gt;platforms supported by Lambda&lt;/a&gt;. Another stack is very popular these days that uses Google Cloud services like Cloud functions as backend, Firestore as a NoSQL database. If you’re planning to use AWS, you might want to consider serverless databases like &lt;a href=&quot;https://aws.amazon.com/rds/aurora/serverless/&quot;&gt;Aurora Serverless&lt;/a&gt; (for SQL) and &lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2023/11/amazon-elasticache-serverless/&quot;&gt;Elasticache Serverless&lt;/a&gt; (for Redis/Memcached) or the famous &lt;a href=&quot;https://aws.amazon.com/dynamodb/&quot;&gt;DynamoDB&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Frontend&lt;/strong&gt; - In the past 4-5 years, I’ve worked quite less on the frontend side. My project’s frontend is in ReactJS and I’ve never written code in it. For some internal portals and for my personal portfolio, I still get to work on HTML, CSS (sass), Bootstrap and Jquery. If I get someone to handle the frontend part, I might want to use React/Next/Vue on the frontend side with a modern CSS framework like Tailwind. But if I’m handling the frontend myself, I’d still use the old stack. It’s not that I don’t want to learn something new, but because I’d prioritise delivery speed over anything for the MVP. This is the single most important thing to consider when building MVP. &lt;strong&gt;Unless there’s a significant speed boost in using a new technology, don’t run towards it while validating your idea/product.&lt;/strong&gt; AFAIK, if I use a modern framework and write code in Typescript, I’d need a transpiler like webpack to convert it into JS code before deploying. And I’d not want to &lt;a href=&quot;https://blog.gagan93.me/avoid-redundant-complexity&quot;&gt;add more complexity&lt;/a&gt; in the beginning unless it’s worth.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Deployment / Hosting -&lt;/strong&gt; If you plan to use cloud functions / lambdas for your backend, you might not need any place to host your server. Your code could be deployed easily by the UI provided by the platform. Incase you’re still need to run your app server on a virtual machine, there are a few options like&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;Deploying app directly on VM.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Deploying app as a container on VM (behind Nginx proxy maybe)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Deploying app as a container on managed platform (like AWS ECS)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Deploying app as a container on orchestration platform (like AWS EKS)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;If you don’t have experience with Docker or Kubernetes, just use the first option. it’s like deploying app on the server in the same way you’d setup on your local machine (with minimal differences). If you have experience with Docker and Kubernetes, still prefer to choose a service that’s cheap to start with. For example, you don’t need a full-blown EKS cluster to start with as it would cost $70-75 per month just to have the cluster running (while you could get a t4g.xlarge [4CPU / 16GB] machine in that cost). Given my expertise with containers and ease of deployment, I’d prefer 2nd or 3rd option.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Database&lt;/strong&gt; - I see a lot of new folks preferring NoSQL databases for all kinds of use cases. All new shiny tech looks good unless you fall face operational complexities. That being said, I’d prefer SQL database if following conditions are satisfied:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;The requirements enforce some relation between the entities (that can be easily modelled as foreign keys).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;The data is not just append only (i.e. it probably needs updation).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;There are (probably) transactional requirements.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;Even if 2/3 are true, it makes sense to use an SQL database. If not, you can go for a NoSQL database. There are many choices in both of these, which are already discussed in the first point.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cloud Provider&lt;/strong&gt; - If you’re having experience with any cloud provider and understand their billing well, choose them blindly (just kidding). Cloud billing is the most complex thing ever invented by these guys. I’ve seen people struggling on their personal account (with their own credit card) when they’re not able to understand what they’re getting billed for. Even if you sit with your project’s Devops team and ask them to explain the components of this month’s bill, I bet there will be parts they can’t explain completely. Discussing cloud bills is a complete topic on it’s own and the subject is so complex that there are dedicated companies that help you lower your cloud bill (eg. &lt;a href=&quot;https://www.duckbillgroup.com/&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;https://www.builder.ai/builder-cloud&quot;&gt;2&lt;/a&gt;). So if you have experience using AWS and you either understand their billing, or at least know how you can terminate everything and remove your credit card, then choose that provider. For your use case (i.e. an MVP), there won’t be huge difference in cloud costs. If you don’t have experience with cloud providers, do one of the following:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;Choose any one provider, learn how to setup budget alerts and remove your credit card if something goes out of hands.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Find a dead simple one - I chose Linode because I had used it in my project and they gave only one service (plain unix VM). There was no additional service provided by them (like machine images, container hosting, security groups, load balancers) and hence billing was very simple. The server I ran back in 2016 costed me $10 per month (nothing more, nothing less).&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Issue tracker&lt;/strong&gt; - Use anything that’s free. You could even use google sheets to keep things simple.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Communication&lt;/strong&gt; - Whatsapp has grown into a very nice communication tool but nothing beats a tool like Slack 😍. I just checked that they provide a free plan with limited features and 3 month message history. If that works for you, spin a new slack instance.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Version control&lt;/strong&gt; - Github is a popular choice here. I’d happily use it because they now allow private repos for free. So incase you’re building something that could grow into a paid product later, you’d want to keep your code private. I’ve used Gitlab and bitbucket also. Almost all of them support CI/CD setup incase you’re looking to have that for your project.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Domain&lt;/strong&gt; - You need a domain for your project unless you’re happy hosting as a subdomain of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.herokuapp&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.netlify&lt;/code&gt; . I have a few domains and I find Godaddy cheap for domains. You can compare providers and see whatever works for you. There’s nothing special with domain providers. There are ways to migrate from one provider to another (it takes 1-2 days) if you need to do that in future. Also, you can move DNS management (that routing thing) to some other provider if you want. So in my organisation, we have DNS on AWS Route 53 while domain management is with Godaddy. That’s doable if you need to do that in future.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;CDN&lt;/strong&gt; - I think to start with, I won’t need it unless I’m creating paid videos for my DSA/System Design course 🤣 (jokes apart: because videos are static resources that could be served fast using a CDN). If we need a CDN, we can choose between popular ones like Akamai, Cloudflare or AWS Cloudfront. I don’t have any strong opinions here.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;More things? Of course, we did not talk about Load balancers, API Gateways, Firewalls and many other components. In most of the cases, you won’t need them when starting up. The idea was to outline the choices available today vs those available back then. There were lesser cloud providers with fewer services, Docker was fairly new, managed docker services were limited, and Linode was dead simple (and not owned by Akamai). While choosing your stack, just make sure you’re not too much locked into one provider. For example, while Google’s stack sounds simple and cheap to begin with, you’ll be locked with it completely if you build on it. It’s not impossible to migrate but it could be hard or expensive. Another example could be of AWS RDS - If you’re using a Postgres/MySQL database hosted on RDS, that doesn’t completely lock you with AWS as Postgres could be self hosted outside AWS also. But if you use something like DynamoDB, then you can’t move outside AWS unless you find an alternative, change your code and move all your data to the new datastore. If you write your code in a modular fashion and follow good design patterns (like a &lt;a href=&quot;https://refactoring.guru/design-patterns/facade&quot;&gt;facade&lt;/a&gt; over the classes that interact with DynamoDB), you could easily switch to new database. But if your code is coupled deeply, it could take time to refactor everything and &lt;a href=&quot;https://blog.gagan93.me/cloud-pricing-vendor-lock-ins&quot;&gt;take yourself out from AWS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;As software developers, we often face &lt;a href=&quot;https://en.wikipedia.org/wiki/Impostor_syndrome&quot;&gt;imposter syndrome&lt;/a&gt; and feel like we don’t know nothing beyond our company projects. Building something in parallel could be a way to sharpen your skills and increase confidence. If you have time, you can build something in a new tech stack. If not, feel free to choose your existing stack and build it. Sadly, I got too busy with my work that I did not spare enough time to build anything else like the Alumni website. But thankfully I started writing last year and I enjoy that (I hope you too enjoy reading the blogs 😊).&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="Devops" /><category term="Cloud" /><category term="Developers" /><summary type="html">One year into the industry, I wasn&apos;t sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of ...</summary></entry><entry><title type="html">Devops Essentials for Developers</title><link href="https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers.html" rel="alternate" type="text/html" title="Devops Essentials for Developers" /><published>2024-03-05T00:00:00+05:30</published><updated>2024-03-05T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-05-devops-servers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-taylor-vick-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@tvick?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Taylor Vick&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/cable-network-M5tzZtFCOfs?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -818,38 +941,4 @@
 
 &lt;p&gt;Testing is a serious business. Think of any product you use - if you get a good user experience, there are high chances that it is an outcome of a good process and a lot of testing. Everyone wants their product to get loved by their users, but few are willing to invest substantial effort in the testing and in improving the overall delivery process. To build a better product, hook the testing in your overall development cycle, not just in the end.&lt;/p&gt;
 
-&lt;p&gt;Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="development" /><category term="process" /><category term="testing" /><summary type="html">For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true.</summary></entry><entry><title type="html">Avoid Redundant Complexity</title><link href="https://gagan93.me/blog/2023/08/19/avoid-redundant-complexity.html" rel="alternate" type="text/html" title="Avoid Redundant Complexity" /><published>2023-08-19T00:00:00+05:30</published><updated>2023-08-19T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/08/19/avoid-redundant-complexity</id><content type="html" xml:base="https://gagan93.me/blog/2023/08/19/avoid-redundant-complexity.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-08-19-avoid-redundant-complexity.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-timo-volz-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@magict1911?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Timo Volz&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/9Psb5Q1TLD4?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;During my college days, I came across a code in C++ that prints map of India. The code was obfuscated and hence very hard to understand. It took me days to understand what magic it was doing, but at that time I thought &lt;strong&gt;complexity is good&lt;/strong&gt; as it sparks curiousity in the mind of the reader, like it did for me. Little I knew that it’s just fancy stuff that no one writes in production.&lt;/p&gt;
-
-&lt;p&gt;Fast forward to 2023: Having worked on multiple products and with multiple teams, I completely understand how much developers hate complexity (atleast mentally, if not otherwise). The art of system design is to fulfil the requirements without introducing a lot of moving parts. For example, if you are writing a fresh system that will not have 1 million users in the first month, don’t introduce a caching layer in your first version. Have some monitoring in place for everything possible and let the numbers speak if you need more specialized systems here.&lt;/p&gt;
-
-&lt;p&gt;Although what I just wrote is very obvious for most of the developers, we still end up introducing un-needed moving parts sometimes (for fun / learning purpose). Developing a new system requires comparitively larger team than what we need when we’re just maintaining it. But that is true only if the system is &lt;em&gt;simple&lt;/em&gt; enough. If we have extra technologies put in place, then we’ll need people who:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Have working knowledge of those systems.&lt;/li&gt;
-  &lt;li&gt;Can tune the systems on scale, if needed.&lt;/li&gt;
-  &lt;li&gt;Handle version upgrades.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;and so on.&lt;/p&gt;
-
-&lt;p&gt;In 2021, we expanded our engineering team @ LocoNav and people joined us with different technical expertise in databases, languages, frameworks and cloud providers. We saw this complexity coming in our way very early, so we planned to reduce the decisions our team will take in future while building new systems, or refactoring existing ones. For example, for a relational use case, someone from enterprise background had experience using Oracle database, while some had experience with MySQL. Even I was using MySQL before joining LocoNav. But here we’re using Postgres for all our relational use cases. We have expertise in tuning this according to our needs and have seen some challenges in the past that made us somewhat expert in managing this. We also run self managed Postgres on EC2 machines where we need more flexibility, and even understand the challenges that come with self-hosted databases. Additionally, we use PGBouncer for connection pooling in one of our major apps. As developers, we know that almost 90% (or even more) use cases can be solved with equal complexity in all SQL databases. And if we have a good ORM adapter, there’s zero difference in the way our app interacts with the database. Given all the experience with have with Postgres, it doesn’t make a lot of sense to let individual teams choose their own SQL database. Staying on single SQL database helped us &lt;strong&gt;reduce complexity&lt;/strong&gt; as an engineering team, specially when we launched new LocoNav clusters for countries that have data residency laws.&lt;/p&gt;
-
-&lt;p&gt;The same is true for many other things. If your team prefers ELK (for example) to keep application logs, and there’s some new technology out that sounds promising and cheap, don’t go for it unless you’ve done the POC for your use case and you’re planning to slowly shift everyone on the new stack. Teams often get excited to try new tech (which is not bad for learning purpose) and end up maintaining 3-4 stacks for the same use case.&lt;/p&gt;
-
-&lt;p&gt;There’s another perspective in which we can reduce complexity - don’t introduce specific technologies unless you really need them. This helps to keep your technology stack easily maintainable in the long run. Sharing some (opinionated) conclusions from my experience:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Don’t introduce a caching layer unless your database needs it. Caching done in a bad way can create more bugs than benefits.&lt;/li&gt;
-  &lt;li&gt;Don’t launch a NoSQL database to serve 1-2 non-relational use cases. Use JSON columns if that works for you. That eliminates maintenance of one new component. Only if you think you are introducing more complexity in the system by using JSON columns, or if you have more use cases now, shift to a NoSQL database.&lt;/li&gt;
-  &lt;li&gt;Don’t use a NoSQL database just because you think you need “some flexibility”. Schema helps to enforce an expected design. Stick to it if possible.&lt;/li&gt;
-  &lt;li&gt;Don’t introduce complex things like API gateways, CDNs in early stage of your app. That might be completely redundant.&lt;/li&gt;
-  &lt;li&gt;Reduce the no. of programming languages in the engineering team unless you have a really large (&amp;gt;500 engineers) team. Stick to 2-3 max.&lt;/li&gt;
-  &lt;li&gt;Try not to lock yourself with a single cloud provider. Try to architect your system with components that are available in all the clouds, or as system binaries. Docker/Kubernetes are good examples of platform independent components. Whereas, building a completely serverless system using Lambdas and other AWS components might lock you with AWS cloud provider.&lt;/li&gt;
-  &lt;li&gt;Don’t follow what sounds cool on discussion forums. For example, few things that sound very cool are: &lt;strong&gt;microservices&lt;/strong&gt;, &lt;strong&gt;multi-cloud setup&lt;/strong&gt;, and &lt;strong&gt;moving from cloud to self hosted infrastructure&lt;/strong&gt;. Each of this requires very specific expertise, and should be chosen if the needs are very specific. Otherwise it’s just &lt;em&gt;adding to the complexity&lt;/em&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Complex systems are harder to explain to new developers. Redundant complexity is a huge tech debt and we should try to avoid it. And this applies to all walks of life, not just tech. For example, for many years I kept using a simple text file in Sublime text editor to note down pending tasks. I simply removed the task from the list once it was done. Although it did not give me a lot of features that a specialized tool would give, but it was dead simple to use. As my team grew, I was required to keep the track current and future tasks. So I moved to Notion. These days I use mix of both 😁.&lt;/p&gt;
-
-&lt;p&gt;I hope I was able to explain what is complexity and why we should avoid it. Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="complexity" /><category term="system" /><category term="engineering" /><summary type="html">During my college days, I came across a code in C++ that prints map of India. The code was obfuscated and hence very hard to understand. It took me days to understand what magic it is doing, but at that time I thought complexity is good....</summary></entry></feed>
+&lt;p&gt;Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="development" /><category term="process" /><category term="testing" /><summary type="html">For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true.</summary></entry></feed>
