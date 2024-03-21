@@ -1,0 +1,117 @@
+---
+layout: post
+title: "Cloud, SaaS Cost Reduction"
+date: 2024-03-21
+published_on: 21st March, 2024
+author: Gagandeep Singh
+cover: "/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg"
+categories: cloud saas pricing optimisation
+excerpt: Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we're not paying extra for any service. In the past 1.5 years, we planned and executed a lot ...
+---
+
+![cover-photo](/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg)
+---
+{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
+
+Photo by <a href="https://unsplash.com/@ussamaazam?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ussama Azam</a> on <a href="https://unsplash.com/photos/pink-arrow-neon-sign-26h317_UMYM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+---
+{: style="text-align: center;font-size: 0.8em"}
+
+## Background
+
+Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we're not paying extra for any service. In the past 1.5 years, we planned and executed a lot of tasks to reduce our spends. This included what we pay to:
+
+1. Cloud platforms,
+
+2. Observability platforms,
+
+3. Collaboration platforms,
+
+4. And other SaaS tool (eg. we use location related services heavily in our products as we're a [fleet management product](https://loconav.com/)).
+
+
+This task was taken up by multiple people including myself and we had to figure out our usage of each tool in a way that we can either optimise them or (possibly) replace them. So the thought process was broken into these categories:
+
+1. **Unused resources** - Are there unused resources lying that can be freed to save some 💰? This includes unused Github seats, a server that was mistakenly left running, a disk volume that's lying unattached after terminating a machine, etc.
+
+2. **Optimising Data volume** - Are there tools where we could send less data without impacting the usage? For example, you can control how much data is sent to APM tools and save some cost here because general trend still remains (almost) same and they bill you for the amount of data you send.
+
+3. **Finding alternative tools** - Are there tools that can be replaced with cheaper or open source (self-hosted) alternatives?
+
+4. **Architectural optimisations** - Can we plan short term and long term architectural changes that would help us save cost? We knew a few things that could be architected better. So we prioritised tasks in a way that have high ROI in the short term were picked first while others were parked for the long term.
+
+
+The above thought process looks very structured. Frankly, we did not start like this but this is how it eventually turned out to be.
+
+## Figuring out everything
+
+### Unused resources
+
+1. **SaaS platforms** - Most of the SaaS applications have pricing based on no. of users. While onboarding new team members is a usual activity and happens sooner or later, but it's equally important to offboard them once they leave. In small teams, this leak often remains undetected for months. Beyond cost, this could have other risks unless the user logs in through SSO. So make sure to deactivate accounts and free those seats when users leave. It might have a small impact on monthly bills but it is important to have a complete list of apps where you need to deactivate user accounts.
+
+2. **Cloud platforms** - It's hard to accurately understand and justify cloud spends but members of the team should still have an idea on how many databases, virtual machines and other cloud resources they're using. If you have a single cloud account that multiple teams use, I'd recommend you to [tag the resources](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) used by respective teams. Once done, it becomes easy to discuss and optimise the cost for each team. Beyond this, you could figure out things that are not used or could be combined. For example, we figured out and did all this:
+
+    1. **Buckets** - Check unused S3 buckets and deleted them. Modified storage class for a few of them and set intelligent tiering to a few.
+
+    2. **EC2/EBS** - We moved to EKS for many apps so we deleted [AMIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) for those apps, that helped us free up a lot of space used by snapshots. Apart from this - basic optimisation like deleting unused machines that were left mistakenly, checking instance usage and resizing machines were also done.
+
+    3. **Merging few deployments** - There were a lot of small projects (both internal and customer facing) which used individual databases, caches and machines. We consolidated databases for a lot of internal tools on a single RDS that still didn't peak to even 50% of CPU after combining. Thankfully all our relational use cases are on Postgres that helped in this consolidation (read about [embracing simplicity](https://blog.gagan93.me/avoid-redundant-complexity)). This was planned for some other projects also that were customer facing but very much related to each other and could be combined.
+        Note: Don't overdo this as this has one potential downside - incase you upgrade this RDS in future in a way that it needs a downtime, you'd need to take downtime on all the apps that use this RDS.
+
+
+### Optimising data volume
+
+Before understanding what we optimised, I'll share some background on data transfer (ingress and outgress) costs. Data transfer is one of the most trickiest component in a cloud provider's bill. For many managed resources, you pay for the amount of data transferred through them (apart from the basic cost of running them). [AWS load balancer](https://aws.amazon.com/elasticloadbalancing/pricing/) is a perfect example of this where you pay a monthly cost of using it and another cost for the amount of data transferred. Even beyond this, if the data goes out to the public internet (outside AWS) or a [different region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), you get charged extra. The data transfer cost is negligible for personal projects / small apps but it becomes a considerable part of your bill if your apps have a lot of data flowing outside the AZ/Region. The point is - how do I know if the data goes out of cloud provider 🤔? The answer is not so simple and it varies from [one provider](https://babatrucks.atlassian.net/browse/INTAKE-7424) to [another](https://azure.microsoft.com/en-in/pricing/details/bandwidth/). As a thumb rule, assume you'll be charged for data if:
+
+1. It goes out of your AZ (availability zone) or region.
+
+2. You connect to a service that runs on another cloud provider (or generally on public internet).
+
+
+Coming back to optimising data volume - We use Datadog for Application Performance Monitoring (APM). Some of our large applications send a lot of data to Datadog. If you check their [APM billing](https://docs.datadoghq.com/account_management/billing/pricing/#apm), you'll realise that they consider *amount of spans ingested* for charging the user. Because the data can be very large for mid-large applications, they give an [option to control](https://docs.datadoghq.com/tracing/guide/ingestion_sampling_use_cases/#reducing-ingestion-for-high-volume-services) how much percentage of data we want to sample. This reduces costs in two ways: data received at the APM layer is lower (hence less bill) and data emitted from our system is also less (hence less transfer charges). But cost would only reduce if Datadog doesn't run in the same region and same cloud provider as us. As of March 2023, when someone [unofficially investigated](https://www.linkedin.com/pulse/datadog-outage-multi-cloud-reliability-dylan-ratcliffe/) Datadog's outage, he found out that Datadog uses multi-cloud deployment strategy, i.e. they deploy in AWS, Azure and GCP. So you can believe that your data is most probably going out of the cloud provider.
+
+For your apps - If you start with this basic knowledge of 'how your cloud provider charges for data transfer', you can optimise a few things on the bill 😀.
+
+### Finding Alternative tools
+
+This was a medium-hard problem because shifting people to a new tool is hard. Being a team of ~ 100 software engineers, we use a lot of industry standard tools like APM tools, error trackers, server and website monitoring tools, communication tools and what not. We moved from NewRelic to Datadog for APM back in 2021 (due to cost reasons) and I remember the switch was not easy. While both are very good tools and best in industry, we were habitual of using NewRelic for debugging our slowness and outage cases. It took some time to adjust to Datadog's features and UX and now we find it quite useful to debug such cases (specially the [Watchdog](https://docs.datadoghq.com/monitors/types/watchdog/?tab=apm) feature 👌). Still we tried to find alternate platforms for whatever was possible to replace and started using [this tool](https://www.getoutline.com/) for documentations.
+
+**Can you also do this ? -** It depends on how much your team is flexible in moving to the new tool. It also depends on the pricing model of your current tool. Like if you've already committed or paid for next few months or an year, then you could defer the plan to move. But always try to use tools that allow exporting data into common (non-proprietary) formats. For example, although JIRA is a industry standard tool for managing team sprints, there is [no way to export all the issues](https://community.atlassian.com/t5/Jira-Software-questions/How-to-export-Jira-issues-to-CSV/qaq-p/175115) as CSV. The best answer on this community post allows to export max 1000 issues at once. Although importing data to JIRA is easy and explained [here](https://support.atlassian.com/jira-cloud-administration/docs/migrate-from-other-issue-trackers/) 🤓.
+
+### Architectural optimisations
+
+These optimisations majorly depend on your own project. For medium-large projects that are live in production from years, the teams are already aware of tech debt and architectural debt. Beyond debt, there could be technological advancements that you can leverage. As an example, Redis is a popular in-memory key-value database. The initial version of Redis was released almost 15 years ago. While there have been a lot of changes and features additions even recently, the basic architecture of command processing remains the same - a single threaded command execution thread. Don't underestimate the speed of Redis after reading *single threaded.* While Redis works well for applications of all sizes, there have been a lot of choices now, as Paypal open sourced it's [key value store](https://github.com/paypal/junodb), a team of developers released a new key value database called [Dragonfly](https://www.dragonflydb.io/) and Microsoft introduced [Garnet](https://www.microsoft.com/en-us/research/blog/introducing-garnet-an-open-source-next-generation-faster-cache-store-for-accelerating-applications-and-services/) this week. Not everyone wants to move their existing systems to new (promising) databases and you should actually never do that, but I was surprised to see a very stable and [popular Ruby library](https://github.com/sidekiq/sidekiq/commit/250cc1e4dde44e84d9b607a2ded84ec0835a3ef1) offering choice between Redis and DragonflyDB as a queueing backend for background jobs 😃.
+
+Developers rewrite systems all the time, but that choice is not always available. Even when allowed, large rewrites often fail to replace existing (stable) systems due to one or the other reason. To optimise our costs, we tried to rewrite parts of the systems that we were sure of. Some infrastructure changes also helped us save cost but that impacted our architecture and also how our team debugs production issues. We tried and did the following:
+
+1. We moved a lot of our applications to Kubernetes cluster. The apps were tested for more than an year on non production environments before moving. Using a combination of AWS on-demand and spot instances clubbed with Kubernetes' [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/), we were able to save on cloud costs. Spot instances helped us using same infra on a cheaper price, while some on-demand nodes balanced out for stability. HPA allowed us to turn off pods when load on the system was less (eg. at night).
+
+2. We planned, tested and moved our ruby application server from a single threaded ([passenger](https://github.com/phusion/passenger)) to multi-threaded ([puma](https://github.com/puma/puma)). We had to validate thread safety of our code and third party libraries before doing this.
+
+3. We refactored our [background job server](https://github.com/sidekiq/sidekiq) setup to lesser number of queues that simplified our deployment one EC2 and eventually on k8s. This also helped in saving cost as pods were getting utilised to their maximum extent and HPA scaling pods up and down as needed.
+
+4. Other optimisations included rewriting a few systems, details of which cannot be shared (and also won't be helpful to anyone). These were mostly long term optimisations.
+
+
+# Conclusion
+
+This was by no means a single person's work. A lot of senior engineers and devops collaborated to plan and execute all these activities but the gains were rewarding and for the long term. These are recurring bills, so saving even $500 a month means saving $6000 annually. After seeing all these optimisations, I often think - *were we really wasting this much money per month* 🤔? The answer for this might depend on the team/company. In a growing team, such scenarios often happen. New teams, new projects, new deployments can lead to some inefficiencies over time. Regular consolidations and some approval flow from centralised teams can help in reducing this. For teams that have dedicated people for optimising costs and ensuring efficient use of resources, these instances should be minimum. If you're a team that has not yet focussed on optimising such costs, do try a few things mentioned here.
+
+# Bonus
+
+1. **Budget alerts** - Many platforms allow setting alerts on user defined thresholds ([example 1](https://docs.github.com/en/billing/managing-billing-for-github-actions/managing-your-spending-limit-for-github-actions), [example 2](https://aws.amazon.com/aws-cost-management/aws-budgets/)). You can set these up to catch anomalies in costs. We have some of these setup that often help us.
+
+2. **Dedicated ownership -** Software teams rely on many tools. As the team grows, it's hard for one person to keep a track of everything. At the same time, keeping a basic check on costs and anomalies doesn't require a lot of expertise. If you assign some people to dedicatedly monitor some tools, it will not burden anyone and will ensure catching such leaks early.
+
+3. **Continuous monitoring** \- In the past, we use to ignore a lot of platforms and were optimising only cloud bills. This was our first mistake as other bills were not negligible. Second mistake was to check for optimisations only a month before our reservations expired. Cost optimisation is not an annual activity. We should be continuously monitoring these costs.
+
+
+---
+
+Thanks for reading. I hope this would help you to optimise some SaaS cost for your organisation. If you liked this post, do check out the following:
+
+1. Make sure your stack is [not vendor locked-in](https://blog.gagan93.me/cloud-pricing-vendor-lock-ins) if you want flexibility of moving out in future (or maybe otherwise also)
+
+2. A detailed post on [optimising docker build time and build size](https://blog.gagan93.me/optimising-docker-builds).
+
+3. Working in a team requires asking for help every now and then. Learn [how to ask good questions](https://blog.gagan93.me/asking-good-questions).

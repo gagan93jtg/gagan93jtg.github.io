@@ -1,4 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-03-15T18:10:22+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Developing From Scratch: 2016 vs. now</title><link href="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html" rel="alternate" type="text/html" title="Developing From Scratch: 2016 vs. now" /><published>2024-03-15T00:00:00+05:30</published><updated>2024-03-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-15-developing-from-scratch.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-03-21T10:52:13+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Cloud, SaaS Cost Reduction</title><link href="https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction.html" rel="alternate" type="text/html" title="Cloud, SaaS Cost Reduction" /><published>2024-03-21T00:00:00+05:30</published><updated>2024-03-21T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-ussama-azam-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@ussamaazam?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Ussama Azam&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/pink-arrow-neon-sign-26h317_UMYM?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we’re not paying extra for any service. In the past 1.5 years, we planned and executed a lot of tasks to reduce our spends. This included what we pay to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Cloud platforms,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Observability platforms,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Collaboration platforms,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;And other SaaS tool (eg. we use location related services heavily in our products as we’re a &lt;a href=&quot;https://loconav.com/&quot;&gt;fleet management product&lt;/a&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This task was taken up by multiple people including myself and we had to figure out our usage of each tool in a way that we can either optimise them or (possibly) replace them. So the thought process was broken into these categories:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Unused resources&lt;/strong&gt; - Are there unused resources lying that can be freed to save some 💰? This includes unused Github seats, a server that was mistakenly left running, a disk volume that’s lying unattached after terminating a machine, etc.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Optimising Data volume&lt;/strong&gt; - Are there tools where we could send less data without impacting the usage? For example, you can control how much data is sent to APM tools and save some cost here because general trend still remains (almost) same and they bill you for the amount of data you send.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Finding alternative tools&lt;/strong&gt; - Are there tools that can be replaced with cheaper or open source (self-hosted) alternatives?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Architectural optimisations&lt;/strong&gt; - Can we plan short term and long term architectural changes that would help us save cost? We knew a few things that could be architected better. So we prioritised tasks in a way that have high ROI in the short term were picked first while others were parked for the long term.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The above thought process looks very structured. Frankly, we did not start like this but this is how it eventually turned out to be.&lt;/p&gt;
+
+&lt;h2 id=&quot;figuring-out-everything&quot;&gt;Figuring out everything&lt;/h2&gt;
+
+&lt;h3 id=&quot;unused-resources&quot;&gt;Unused resources&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;SaaS platforms&lt;/strong&gt; - Most of the SaaS applications have pricing based on no. of users. While onboarding new team members is a usual activity and happens sooner or later, but it’s equally important to offboard them once they leave. In small teams, this leak often remains undetected for months. Beyond cost, this could have other risks unless the user logs in through SSO. So make sure to deactivate accounts and free those seats when users leave. It might have a small impact on monthly bills but it is important to have a complete list of apps where you need to deactivate user accounts.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cloud platforms&lt;/strong&gt; - It’s hard to accurately understand and justify cloud spends but members of the team should still have an idea on how many databases, virtual machines and other cloud resources they’re using. If you have a single cloud account that multiple teams use, I’d recommend you to &lt;a href=&quot;https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html&quot;&gt;tag the resources&lt;/a&gt; used by respective teams. Once done, it becomes easy to discuss and optimise the cost for each team. Beyond this, you could figure out things that are not used or could be combined. For example, we figured out and did all this:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Buckets&lt;/strong&gt; - Check unused S3 buckets and deleted them. Modified storage class for a few of them and set intelligent tiering to a few.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;EC2/EBS&lt;/strong&gt; - We moved to EKS for many apps so we deleted &lt;a href=&quot;https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html&quot;&gt;AMIs&lt;/a&gt; for those apps, that helped us free up a lot of space used by snapshots. Apart from this - basic optimisation like deleting unused machines that were left mistakenly, checking instance usage and resizing machines were also done.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Merging few deployments&lt;/strong&gt; - There were a lot of small projects (both internal and customer facing) which used individual databases, caches and machines. We consolidated databases for a lot of internal tools on a single RDS that still didn’t peak to even 50% of CPU after combining. Thankfully all our relational use cases are on Postgres that helped in this consolidation (read about &lt;a href=&quot;https://blog.gagan93.me/avoid-redundant-complexity&quot;&gt;embracing simplicity&lt;/a&gt;). This was planned for some other projects also that were customer facing but very much related to each other and could be combined.
+ Note: Don’t overdo this as this has one potential downside - incase you upgrade this RDS in future in a way that it needs a downtime, you’d need to take downtime on all the apps that use this RDS.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;optimising-data-volume&quot;&gt;Optimising data volume&lt;/h3&gt;
+
+&lt;p&gt;Before understanding what we optimised, I’ll share some background on data transfer (ingress and outgress) costs. Data transfer is one of the most trickiest component in a cloud provider’s bill. For many managed resources, you pay for the amount of data transferred through them (apart from the basic cost of running them). &lt;a href=&quot;https://aws.amazon.com/elasticloadbalancing/pricing/&quot;&gt;AWS load balancer&lt;/a&gt; is a perfect example of this where you pay a monthly cost of using it and another cost for the amount of data transferred. Even beyond this, if the data goes out to the public internet (outside AWS) or a &lt;a href=&quot;https://aws.amazon.com/about-aws/global-infrastructure/regions_az/&quot;&gt;different region&lt;/a&gt;, you get charged extra. The data transfer cost is negligible for personal projects / small apps but it becomes a considerable part of your bill if your apps have a lot of data flowing outside the AZ/Region. The point is - how do I know if the data goes out of cloud provider 🤔? The answer is not so simple and it varies from &lt;a href=&quot;https://babatrucks.atlassian.net/browse/INTAKE-7424&quot;&gt;one provider&lt;/a&gt; to &lt;a href=&quot;https://azure.microsoft.com/en-in/pricing/details/bandwidth/&quot;&gt;another&lt;/a&gt;. As a thumb rule, assume you’ll be charged for data if:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;It goes out of your AZ (availability zone) or region.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You connect to a service that runs on another cloud provider (or generally on public internet).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Coming back to optimising data volume - We use Datadog for Application Performance Monitoring (APM). Some of our large applications send a lot of data to Datadog. If you check their &lt;a href=&quot;https://docs.datadoghq.com/account_management/billing/pricing/#apm&quot;&gt;APM billing&lt;/a&gt;, you’ll realise that they consider &lt;em&gt;amount of spans ingested&lt;/em&gt; for charging the user. Because the data can be very large for mid-large applications, they give an &lt;a href=&quot;https://docs.datadoghq.com/tracing/guide/ingestion_sampling_use_cases/#reducing-ingestion-for-high-volume-services&quot;&gt;option to control&lt;/a&gt; how much percentage of data we want to sample. This reduces costs in two ways: data received at the APM layer is lower (hence less bill) and data emitted from our system is also less (hence less transfer charges). But cost would only reduce if Datadog doesn’t run in the same region and same cloud provider as us. As of March 2023, when someone &lt;a href=&quot;https://www.linkedin.com/pulse/datadog-outage-multi-cloud-reliability-dylan-ratcliffe/&quot;&gt;unofficially investigated&lt;/a&gt; Datadog’s outage, he found out that Datadog uses multi-cloud deployment strategy, i.e. they deploy in AWS, Azure and GCP. So you can believe that your data is most probably going out of the cloud provider.&lt;/p&gt;
+
+&lt;p&gt;For your apps - If you start with this basic knowledge of ‘how your cloud provider charges for data transfer’, you can optimise a few things on the bill 😀.&lt;/p&gt;
+
+&lt;h3 id=&quot;finding-alternative-tools&quot;&gt;Finding Alternative tools&lt;/h3&gt;
+
+&lt;p&gt;This was a medium-hard problem because shifting people to a new tool is hard. Being a team of ~ 100 software engineers, we use a lot of industry standard tools like APM tools, error trackers, server and website monitoring tools, communication tools and what not. We moved from NewRelic to Datadog for APM back in 2021 (due to cost reasons) and I remember the switch was not easy. While both are very good tools and best in industry, we were habitual of using NewRelic for debugging our slowness and outage cases. It took some time to adjust to Datadog’s features and UX and now we find it quite useful to debug such cases (specially the &lt;a href=&quot;https://docs.datadoghq.com/monitors/types/watchdog/?tab=apm&quot;&gt;Watchdog&lt;/a&gt; feature 👌). Still we tried to find alternate platforms for whatever was possible to replace and started using &lt;a href=&quot;https://www.getoutline.com/&quot;&gt;this tool&lt;/a&gt; for documentations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Can you also do this ? -&lt;/strong&gt; It depends on how much your team is flexible in moving to the new tool. It also depends on the pricing model of your current tool. Like if you’ve already committed or paid for next few months or an year, then you could defer the plan to move. But always try to use tools that allow exporting data into common (non-proprietary) formats. For example, although JIRA is a industry standard tool for managing team sprints, there is &lt;a href=&quot;https://community.atlassian.com/t5/Jira-Software-questions/How-to-export-Jira-issues-to-CSV/qaq-p/175115&quot;&gt;no way to export all the issues&lt;/a&gt; as CSV. The best answer on this community post allows to export max 1000 issues at once. Although importing data to JIRA is easy and explained &lt;a href=&quot;https://support.atlassian.com/jira-cloud-administration/docs/migrate-from-other-issue-trackers/&quot;&gt;here&lt;/a&gt; 🤓.&lt;/p&gt;
+
+&lt;h3 id=&quot;architectural-optimisations&quot;&gt;Architectural optimisations&lt;/h3&gt;
+
+&lt;p&gt;These optimisations majorly depend on your own project. For medium-large projects that are live in production from years, the teams are already aware of tech debt and architectural debt. Beyond debt, there could be technological advancements that you can leverage. As an example, Redis is a popular in-memory key-value database. The initial version of Redis was released almost 15 years ago. While there have been a lot of changes and features additions even recently, the basic architecture of command processing remains the same - a single threaded command execution thread. Don’t underestimate the speed of Redis after reading &lt;em&gt;single threaded.&lt;/em&gt; While Redis works well for applications of all sizes, there have been a lot of choices now, as Paypal open sourced it’s &lt;a href=&quot;https://github.com/paypal/junodb&quot;&gt;key value store&lt;/a&gt;, a team of developers released a new key value database called &lt;a href=&quot;https://www.dragonflydb.io/&quot;&gt;Dragonfly&lt;/a&gt; and Microsoft introduced &lt;a href=&quot;https://www.microsoft.com/en-us/research/blog/introducing-garnet-an-open-source-next-generation-faster-cache-store-for-accelerating-applications-and-services/&quot;&gt;Garnet&lt;/a&gt; this week. Not everyone wants to move their existing systems to new (promising) databases and you should actually never do that, but I was surprised to see a very stable and &lt;a href=&quot;https://github.com/sidekiq/sidekiq/commit/250cc1e4dde44e84d9b607a2ded84ec0835a3ef1&quot;&gt;popular Ruby library&lt;/a&gt; offering choice between Redis and DragonflyDB as a queueing backend for background jobs 😃.&lt;/p&gt;
+
+&lt;p&gt;Developers rewrite systems all the time, but that choice is not always available. Even when allowed, large rewrites often fail to replace existing (stable) systems due to one or the other reason. To optimise our costs, we tried to rewrite parts of the systems that we were sure of. Some infrastructure changes also helped us save cost but that impacted our architecture and also how our team debugs production issues. We tried and did the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;We moved a lot of our applications to Kubernetes cluster. The apps were tested for more than an year on non production environments before moving. Using a combination of AWS on-demand and spot instances clubbed with Kubernetes’ &lt;a href=&quot;https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/&quot;&gt;HPA&lt;/a&gt;, we were able to save on cloud costs. Spot instances helped us using same infra on a cheaper price, while some on-demand nodes balanced out for stability. HPA allowed us to turn off pods when load on the system was less (eg. at night).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We planned, tested and moved our ruby application server from a single threaded (&lt;a href=&quot;https://github.com/phusion/passenger&quot;&gt;passenger&lt;/a&gt;) to multi-threaded (&lt;a href=&quot;https://github.com/puma/puma&quot;&gt;puma&lt;/a&gt;). We had to validate thread safety of our code and third party libraries before doing this.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We refactored our &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;background job server&lt;/a&gt; setup to lesser number of queues that simplified our deployment one EC2 and eventually on k8s. This also helped in saving cost as pods were getting utilised to their maximum extent and HPA scaling pods up and down as needed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Other optimisations included rewriting a few systems, details of which cannot be shared (and also won’t be helpful to anyone). These were mostly long term optimisations.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;This was by no means a single person’s work. A lot of senior engineers and devops collaborated to plan and execute all these activities but the gains were rewarding and for the long term. These are recurring bills, so saving even $500 a month means saving $6000 annually. After seeing all these optimisations, I often think - &lt;em&gt;were we really wasting this much money per month&lt;/em&gt; 🤔? The answer for this might depend on the team/company. In a growing team, such scenarios often happen. New teams, new projects, new deployments can lead to some inefficiencies over time. Regular consolidations and some approval flow from centralised teams can help in reducing this. For teams that have dedicated people for optimising costs and ensuring efficient use of resources, these instances should be minimum. If you’re a team that has not yet focussed on optimising such costs, do try a few things mentioned here.&lt;/p&gt;
+
+&lt;h1 id=&quot;bonus&quot;&gt;Bonus&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Budget alerts&lt;/strong&gt; - Many platforms allow setting alerts on user defined thresholds (&lt;a href=&quot;https://docs.github.com/en/billing/managing-billing-for-github-actions/managing-your-spending-limit-for-github-actions&quot;&gt;example 1&lt;/a&gt;, &lt;a href=&quot;https://aws.amazon.com/aws-cost-management/aws-budgets/&quot;&gt;example 2&lt;/a&gt;). You can set these up to catch anomalies in costs. We have some of these setup that often help us.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Dedicated ownership -&lt;/strong&gt; Software teams rely on many tools. As the team grows, it’s hard for one person to keep a track of everything. At the same time, keeping a basic check on costs and anomalies doesn’t require a lot of expertise. If you assign some people to dedicatedly monitor some tools, it will not burden anyone and will ensure catching such leaks early.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Continuous monitoring&lt;/strong&gt; - In the past, we use to ignore a lot of platforms and were optimising only cloud bills. This was our first mistake as other bills were not negligible. Second mistake was to check for optimisations only a month before our reservations expired. Cost optimisation is not an annual activity. We should be continuously monitoring these costs.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Thanks for reading. I hope this would help you to optimise some SaaS cost for your organisation. If you liked this post, do check out the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make sure your stack is &lt;a href=&quot;https://blog.gagan93.me/cloud-pricing-vendor-lock-ins&quot;&gt;not vendor locked-in&lt;/a&gt; if you want flexibility of moving out in future (or maybe otherwise also)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A detailed post on &lt;a href=&quot;https://blog.gagan93.me/optimising-docker-builds&quot;&gt;optimising docker build time and build size&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Working in a team requires asking for help every now and then. Learn &lt;a href=&quot;https://blog.gagan93.me/asking-good-questions&quot;&gt;how to ask good questions&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="cloud" /><category term="saas" /><category term="pricing" /><category term="optimisation" /><summary type="html">Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we&apos;re not paying extra for any service. In the past 1.5 years, we planned and executed a lot ...</summary></entry><entry><title type="html">Developing From Scratch: 2016 vs. now</title><link href="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html" rel="alternate" type="text/html" title="Developing From Scratch: 2016 vs. now" /><published>2024-03-15T00:00:00+05:30</published><updated>2024-03-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/15/developing-from-scratch-2016-vs-now.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-15-developing-from-scratch.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-brandspeople-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@brandsandpeople?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Brands&amp;amp;People&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/person-writing-on-white-paper-Ax8IA8GAjVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -890,55 +1034,4 @@
 
 &lt;p&gt;I’ve never been a smartphone addict, but I still work on reducing that time even further. A few months ago, I read a book called &lt;a href=&quot;https://www.amazon.in/AM-Club-Your-Morning-Elevate/dp/9387944891&quot;&gt;The 5AM club&lt;/a&gt; by Robin Sharma. The author talks about how a very small percentage of people achieve things that others just dream of. Such people prioritize their tasks and expose their minds to things that matter. Because they invest time in themselves, their knowledge compounds over months and years, and they see what others can’t.&lt;/p&gt;
 
-&lt;p&gt;Time is uniquely expensive. The faster you realize this, the more you’ll invest in yourself and reduce all the social media distractions. Thanks for reading this.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="time" /><category term="behaviour" /><category term="psychology" /><summary type="html">Time is precious. Even billionaires can not get back in time. Not even by a second. That&apos;s why all of us like to enjoy life by spending time and money on things we like. And that&apos;s good. Different people get peace by doing different things - singing, dancing, travelling...</summary></entry><entry><title type="html">Testing an app</title><link href="https://gagan93.me/blog/2023/09/07/testing-an-app.html" rel="alternate" type="text/html" title="Testing an app" /><published>2023-09-07T00:00:00+05:30</published><updated>2023-09-07T00:00:00+05:30</updated><id>https://gagan93.me/blog/2023/09/07/testing-an-app</id><content type="html" xml:base="https://gagan93.me/blog/2023/09/07/testing-an-app.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2023-09-07-testing-an-app.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-scott-graham-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@homajob?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Scott Graham&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/5fNmWej4tAA?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true. Typically, engineers are involved in:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Requirement feasability&lt;/strong&gt; - Along with product, design, business team(s).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Estimation&lt;/strong&gt; - Giving ballpark/detailed estimates based on approximate/exact requirements.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Design&lt;/strong&gt; - Building the technical design (LLD/HLD), finding out cross team dependencies, etc.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Code&lt;/strong&gt; - The implementation (&lt;em&gt;most exciting one&lt;/em&gt;).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Dev testing&lt;/strong&gt; - Devs should test their solution using manual and automated tests.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;QA Testing&lt;/strong&gt; - QA team should also test the application using tools like Postman and also end to end testing on frontend (if available).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Documentation&lt;/strong&gt; - Making or updating technical documentation.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Communication&lt;/strong&gt; - Supporting other engineers for integration, attending scrum calls, updating everyone on status of things and blockers (if any).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Post release support&lt;/strong&gt; - Error monitoring, performance monitoring, support for bug-fixing, etc.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Seeing the above can seem overwhelming, but this is what happens in real world projects. Also, it can now be said that implementation is probably not even half of the total time or effort. You might be thinking - &lt;strong&gt;what’s here to talk specifically about test-cases?&lt;/strong&gt; Testing is one of the most under-rated bit of SDLC. Although it is very obvious to test your product before delivering to the end user, and testing happens everywhere, but the emphasis of this post is on importance of testing in the overall framework.&lt;/p&gt;
-
-&lt;p&gt;Just to explain - &lt;em&gt;testing is not when your developers give the product to your QA team and they start testing&lt;/em&gt;. Testing should be hooked in your framework at various levels:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;When a story is being discussed between product and tech team(s), the QA team should also be part of discussion and they should understand the product to write test scenarios.&lt;/li&gt;
-  &lt;li&gt;Everyone should go through the test cases to make sure nothing is missed.&lt;/li&gt;
-  &lt;li&gt;Product team should make sure that product and design have handled all the cases in the product as mentioned by the QA team.&lt;/li&gt;
-  &lt;li&gt;Developers should make sure that their design covers all of these scenarios.&lt;/li&gt;
-  &lt;li&gt;Once development is complete, developers should manually test their code through some interface to make sure all these cases are covered. Later, they should add automated test cases for all the cases.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;From my experience, the above is a rock solid way to ensure that:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Everyone is on same page in understanding the product and possible scenarios.&lt;/li&gt;
-  &lt;li&gt;Feedback from everyone is incorporated as early as possible.&lt;/li&gt;
-  &lt;li&gt;Testers start documenting the test cases even before developers write code, avoiding the need of design change in the later phase(s).&lt;/li&gt;
-  &lt;li&gt;Cost of change is minimum and delivery is fast (due to 2 and 3).&lt;/li&gt;
-  &lt;li&gt;It is easy to see which layer missed the test case(s) and caused a specific bug, which otherwise can become a blame-game within the team.&lt;/li&gt;
-  &lt;li&gt;Above all, team motivation is maintained.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr style=&quot;margin-bottom: 10px;&quot; /&gt;
-&lt;p&gt;Although above section talks about the impact of good testing framework for the entire lifecycle, I’d also like to talk about how a good test suite helps developer teams:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Language and Framework version upgrades&lt;/strong&gt; - I’ve got to work on Ruby and Rails upgrades multiple times in my career. One of the primary requirements for such upgrades is to have a &lt;strong&gt;good test coverage&lt;/strong&gt;. If you don’t have one, you’ll need to get your app deeply tested. Although you’ll do that otherwise also, but having a good test suite adds to the confidence and helps to show a lot of issues early.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Database version upgrades&lt;/strong&gt; - Same thing applies here also. Although for upgrading database versions, people generally dump a production snapshot to a new instance (to see if data and extensions are compatible with the next version), but a test suite would add to the confidence here also.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Feature enhancements&lt;/strong&gt; - Often the first version of the application is released as a small product to gather customer feedback. While building the second version, there can be both incremental changes and some changes in the existing product. At this point, we need to ensure that existing functionality doesn’t break, and automated test cases help to ensure the same.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Refactoring&lt;/strong&gt; - Refactoring is inevitable part of maintenance phase. You’ll find need to refactor a lot of things that might be written in an inefficient manner due to deadlines or other reasons. Without test cases, refactoring can easily mess up the code and introduce bugs.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Enforcing Better low-level design&lt;/strong&gt; - It’s very common for developers to write long methods and classes, spanning hundreds and thousands of lines. Such classes contain model layer, service layer, external API calls, and many other things coupled together. When you write unit tests, you often mock some part of the code to test the other independently, but when it is hard to write tests of a specific class or method, there are high chances that your structure is not good. In order to write tests efficiently, you’ll often end up splitting the class (this realization comes by some practice). Follow the rule - &lt;em&gt;If it is hard to write tests, better refactor the code for which you’re writing tests.&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Testing is a serious business. Think of any product you use - if you get a good user experience, there are high chances that it is an outcome of a good process and a lot of testing. Everyone wants their product to get loved by their users, but few are willing to invest substantial effort in the testing and in improving the overall delivery process. To build a better product, hook the testing in your overall development cycle, not just in the end.&lt;/p&gt;
-
-&lt;p&gt;Take care and see you guys in the next post.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="development" /><category term="process" /><category term="testing" /><summary type="html">For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true.</summary></entry></feed>
+&lt;p&gt;Time is uniquely expensive. The faster you realize this, the more you’ll invest in yourself and reduce all the social media distractions. Thanks for reading this.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="time" /><category term="behaviour" /><category term="psychology" /><summary type="html">Time is precious. Even billionaires can not get back in time. Not even by a second. That&apos;s why all of us like to enjoy life by spending time and money on things we like. And that&apos;s good. Different people get peace by doing different things - singing, dancing, travelling...</summary></entry></feed>
