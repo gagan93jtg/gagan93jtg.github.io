@@ -19,20 +19,29 @@
       padding-top: 56px;
     }
 
+    .display-picture {
+      border-radius: 50%;
+      width: 200px;
+    }
+
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('resources/images/cover.jpg') center/cover no-repeat;
-      height: 75vh;
+      padding-top: 2em;
+      background-color: #f5ebff;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    .display-4, .lead {
+      color: black;
+    }
+
     .hero h1 {
-      font-size: 3.5em;
+      font-size: 2em;
     }
 
     .hero p {
-      font-size: 1.5em;
+      font-size: 1em;
     }
 
     .section-heading {
@@ -78,10 +87,13 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      background-color: #343a40;
       color: #ffffff;
       text-align: center;
       padding: 10px;
+    }
+
+    .navbar-dark, footer.bg-dark {
+      background-color: #2b104a !important;
     }
 
     @media only screen and (max-width: 805px) {
@@ -129,6 +141,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
+          <img src="https://avatars.githubusercontent.com/u/13852061" alt="display-picture" class="display-picture">
           <h1 class="display-4">Gagandeep Singh</h1>
           <p class="lead">Senior Software Engineer</p>
         </div>
