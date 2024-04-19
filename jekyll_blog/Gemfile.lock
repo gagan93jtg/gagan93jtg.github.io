@@ -80,7 +80,7 @@ DEPENDENCIES
   webrick (~> 1.8)
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 2.7.8p225
 
 BUNDLED WITH
-   2.3.15
+   2.3.26
