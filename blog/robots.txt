@@ -1,1 +1,1 @@
-Sitemap: https://gagan93.me/blog/sitemap.xml
+Sitemap: http://localhost:4000/blog/sitemap.xml
