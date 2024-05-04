@@ -172,7 +172,7 @@ Now coming to some bad parts:
 
 1. I didn't spend time in checking existing questions asked by them. Later I googled more and found that Atlassian is one of the companies that is known to repeat questions many times. One should always spend time in checking previously asked questions.
 
-2. I should have taken about a month to prepare because I my practice was not enough. I was shy to task for time.
+2. I should have taken about a month to prepare because I my practice was not enough. I was shy to ask for more time.
 
 
 ## Conclusion
