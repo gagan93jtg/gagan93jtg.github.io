@@ -20,7 +20,7 @@ Photo by <a href="https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&
 
 Hello people. I've you're reading this, you might be looking to build a better resume. It's important to keep your resume updated even if you're not looking out for a change. Sadly, not many people like me realise this on time. And because of this, we end up doing major changes in our resume when we actually start looking out. For example, I started looking out from my previous job in late 2017 and this time in late 2023. In this six years, almost everything changed - from my role to market expectations.
 
-## The versions of my resume
+## The versions
 
 Feel free to laugh but the 2017 resume looked like this (that got me into LocoNav). Before LocoNav, I applied to [RedDoorz](https://www.reddoorz.com/) also and got a call from this resume. So probably it was good according to that time and my YOE.
 
