@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-05-13T14:07:30+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Improving your resume</title><link href="https://gagan93.me/blog/2024/05/13/improving-your-resume.html" rel="alternate" type="text/html" title="Improving your resume" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/improving-your-resume</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/improving-your-resume.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-improving-your-resume.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-05-13T15:36:28+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Improving your resume</title><link href="https://gagan93.me/blog/2024/05/13/improving-your-resume.html" rel="alternate" type="text/html" title="Improving your resume" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/improving-your-resume</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/improving-your-resume.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-improving-your-resume.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;João Ferrão&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -88,8 +88,9 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Took the first microservice out of a 6+ year old monolith, reducing a decent load from database&lt;/em&gt;
- &lt;strong&gt;After&lt;/strong&gt;&lt;em&gt;: *Pioneered the transition of critical components to a microservices architecture, achieving a 75% speedup in the five slowest endpoints.&lt;/em&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Took the first microservice out of a 6+ year old monolith, reducing a decent load from database&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Pioneered the transition of critical components to a microservices architecture, achieving a 75% speedup in the five slowest endpoints.&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Scaled Fastag payments product from 0 to 2.5Cr daily transaction amount. This is almost 2% of India’s total daily toll.&lt;/em&gt;&lt;/p&gt;
@@ -102,15 +103,17 @@
     &lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt; &lt;em&gt;Strategically reduced from 70+ to 5 queues based on latency/memory requirements, optimizing approximately 25% of infra costs.&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Simplified how the main entity of system (vehicle) is accessed by various components.&lt;/em&gt;
- &lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Planned and executed refactoring of core system entities, streamlining the access over 200+ reports and APIs.&lt;/em&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Simplified how the main entity of system (vehicle) is accessed by various components.&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Planned and executed refactoring of core system entities, streamlining the access over 200+ reports and APIs.&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Migrated Email provider to AWS SES with bounce/complaint list handling flow.&lt;/em&gt;
- &lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Efficiently migrated ~ 150 different kinds of emails from Sparkpost to Amazon SES implementing bounce handling for increased reliability.&lt;/em&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Migrated Email provider to AWS SES with bounce/complaint list handling flow.&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Efficiently migrated ~ 150 different kinds of emails from Sparkpost to Amazon SES implementing bounce handling for increased reliability.&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Removed points like that could not be modified to show impact. Like:&lt;/p&gt;
+    &lt;p&gt;Removed points that could not be modified to show impact. Like:&lt;/p&gt;
 
     &lt;ol&gt;
       &lt;li&gt;
@@ -134,13 +137,11 @@
     &lt;p&gt;I’ve seen many senior people adding Objective / Career Summary on the top.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Things like Strengths, Hobbies and Languages.&lt;/p&gt;
+    &lt;p&gt;Or adding things like Strengths, Hobbies and Languages.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interviews. People also write cover letters to describe their current role and expected role (somewhat overlaps with &lt;strong&gt;Objective&lt;/strong&gt; section). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;
-
-&lt;hr /&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="resume-building" /><summary type="html">Hello people. I've you're reading this, you might be looking to build a better resume. It's important to keep your resume updated even if you're not looking out for a change. Sadly, not many people like me realise this on time.</summary></entry><entry><title type="html">Bain and Co. Interview Experience</title><link href="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html" rel="alternate" type="text/html" title="Bain and Co. Interview Experience" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="resume-building" /><summary type="html">Hello people. I've you're reading this, you might be looking to build a better resume. It's important to keep your resume updated even if you're not looking out for a change. Sadly, not many people like me realise this on time.</summary></entry><entry><title type="html">Bain and Co. Interview Experience</title><link href="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html" rel="alternate" type="text/html" title="Bain and Co. Interview Experience" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
 

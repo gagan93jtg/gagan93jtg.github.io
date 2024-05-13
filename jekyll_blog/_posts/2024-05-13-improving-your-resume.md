@@ -79,7 +79,8 @@ In comparison to the two column fancy resume, this is easier to modify because t
 Again highlighting the most important point - talk of impact. I'll share a few examples on how I modified the points to show impact:
 
 1. **Before**: *Took the first microservice out of a 6+ year old monolith, reducing a decent load from database*
-    **After***: *Pioneered the transition of critical components to a microservices architecture, achieving a 75% speedup in the five slowest endpoints.*
+
+    **After**: *Pioneered the transition of critical components to a microservices architecture, achieving a 75% speedup in the five slowest endpoints.*
 
 2. **Before**: *Scaled Fastag payments product from 0 to 2.5Cr daily transaction amount. This is almost 2% of India's total daily toll.*
 
@@ -90,12 +91,14 @@ Again highlighting the most important point - talk of impact. I'll share a few e
     **After:** *Strategically reduced from 70+ to 5 queues based on latency/memory requirements, optimizing approximately 25% of infra costs.*
 
 4. **Before**: *Simplified how the main entity of system (vehicle) is accessed by various components.*
+
     **After**: *Planned and executed refactoring of core system entities, streamlining the access over 200+ reports and APIs.*
 
 5. **Before**: *Migrated Email provider to AWS SES with bounce/complaint list handling flow.*
+
     **After**: *Efficiently migrated ~ 150 different kinds of emails from Sparkpost to Amazon SES implementing bounce handling for increased reliability.*
 
-6. Removed points like that could not be modified to show impact. Like:
+6. Removed points that could not be modified to show impact. Like:
 
     1. *Involved in discussing overall global architecture of logistics based Saas Product.*
 
@@ -110,9 +113,6 @@ Many of the points mentioned above are subjective, like:
 
 1. I've seen many senior people adding Objective / Career Summary on the top.
 
-2. Things like Strengths, Hobbies and Languages.
+2. Or adding things like Strengths, Hobbies and Languages.
 
-
-And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interviews. People also write cover letters to describe their current role and expected role (somewhat overlaps with **Objective** section). At the end, it's not about *that one way of building it*, but for *what works for you*. Good luck for your Resume building journey.
-
----
+And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with **Objective** section of the resume). At the end, it's not about *that one way of building it*, but for *what works for you*. Good luck for your Resume building journey.
