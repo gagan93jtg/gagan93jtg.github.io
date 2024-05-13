@@ -5,7 +5,7 @@ date: 2024-04-19
 published_on: 19th April, 2024
 author: Gagandeep Singh
 cover: "/blog/assets/images/2024-04-19-title-inflation-downlevelling.jpg"
-categories: title title-inflation downlevelling
+categories: title title-inflation downlevelling interview
 excerpt: If you're confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company...
 ---
 
