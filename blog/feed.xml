@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-05-17T16:31:00+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Low Level Design Interviews</title><link href="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html" rel="alternate" type="text/html" title="Low Level Design Interviews" /><published>2024-05-17T00:00:00+05:30</published><updated>2024-05-17T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/17/low-level-design-interviews</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-17-lld.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-05-24T14:09:22+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Tech Interview Mistakes</title><link href="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html" rel="alternate" type="text/html" title="Tech Interview Mistakes" /><published>2024-05-24T00:00:00+05:30</published><updated>2024-05-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/24/tech-interview-mistakes</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Francisco De Legarreta C.&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected). Generally speaking, rejections shouldn’t hurt you because they teach you a lot. But in tech interviews, there are scenarios when things are outside your control, despite the best preparation. We’ll discuss about such scenarios in the end of this post.&lt;/p&gt;
+
+&lt;p&gt;To start with, I’ll divide this post into two parts:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Preparation mistakes (during preparation).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Execution mistakes (during interview).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;during-preparation&quot;&gt;During Preparation&lt;/h3&gt;
+
+&lt;p&gt;When I started looking out, I was completely unaware of industry expectations. I got in touch with a few people who had switched roles in last few years to understand the same. Apart from industry expectations, there were many other things that I had to know, like:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;How titles work in different companies?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to prepare for the specific rounds? What sources are good (free / paid)?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How interviews are different from real work?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Will the companies hire me if my tech stack doesn’t overlap much with theirs?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The more you know about all these things, the better you can prepare and manage your expectations. Let’s talk about all these things one by one:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Not understanding industry expectations&lt;/strong&gt; - There are two types of companies (or roles that are open). Some roles explicitly mention that you need to be an expert in a specific technology stack to even get shortlisted. The other category is of roles that require you to be a good problem solver who can learn the tech stack and get things done. Both the roles have their own significance and we cannot blame the hiring team for being stringent in the first case. If the product is in early stage, the company would prefer to hire someone who is familiar with the stack so that they can contribute fast without the need of ramping up. If the product is in later stage, it’s upto the choice of hiring team - they could hire people from a different technology stack, or they may still prefer to hire people with the same stack only. It depends on the stack also - incase they’re using something very niche (for which developers are not available easily), the hiring team relaxes the tech stack expectations. But incase hiring for that tech stack is easy, they’d prefer someone who knows the stack. In my experience, it’s easier for companies to find Java developers so rather than hiring for &lt;em&gt;Senior Software Engineer&lt;/em&gt;, they put the job title as &lt;em&gt;Senior Java Engineer&lt;/em&gt;. For medium-large organisations, the positions are tech stack agnostic for candidates who are good at problem solving. In the first case, some interview rounds focus on specific technologies (e.g., Core Java, Spring Boot). In the second case, you can choose your favorite programming language for the coding rounds.
+ The above information is from my job hunt experience in the last 6-8 months. Obviously, exceptions are always there.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Strong tech stack inclination&lt;/strong&gt; - This point is interesting because, deep down, programmers have strong opinions about languages. For example, some people hate PHP (&lt;a href=&quot;https://www.reddit.com/r/PHP/comments/1fy71s/why_do_so_many_developers_hate_php/&quot;&gt;example&lt;/a&gt;) while some make fun of java for it’s verbosity (&lt;a href=&quot;https://www.youtube.com/watch?v=kdMG40wUCm4&quot;&gt;example 1&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=m4-HM_sCvtQ&quot;&gt;example 2&lt;/a&gt;, &lt;a href=&quot;https://github.com/Hello-World-EE/Java-Hello-World-Enterprise-Edition/tree/master/src/com/example&quot;&gt;example 3&lt;/a&gt;). This could still be seen as a personal choice. The bigger issue comes when people &lt;strong&gt;associate themselves&lt;/strong&gt; with one tech stack only. Let’s take my example - I’ve been majorly writing Ruby for the past 9 years but I’ve also written a little bit of C, Java for Android, Powershell, Bash, jQuery, BackboneJS, and a few other languages in my current and previous role. While I too have opinions about what languages to avoid, I did not limit my job search to Ruby/Rails openings only. Limiting my job search to only Ruby/Rails positions would have been stupid, especially in the current market where openings are less. I’d recommend the same to everyone - do not call yourself a Ruby developer, Java developer or GoLang developer. Call yourself a Software Engineer who can learn syntax and be productive in any language. Having this mindset helps a lot in the long run.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Confusion in job titles&lt;/strong&gt; - This is the most important thing to know when you’re searching for a new role. Some websites allow you to search jobs with years of experience, while some websites (like LinkedIn) allow you to search with job titles. LinkedIn also helps you to set job alerts for specific titles. Based on multiple factors, you could be eligible for multiple roles. Taking my example again - I work as a Staff Software Engineer in a small team but when it comes to job search, I search for Software Engineer, Senior Software Engineer, Staff Engineer, Team lead and Engineering manager roles. All these roles overlap with my experience range based on the size of organisation where I’m applying. I’ve already explained this point in a &lt;a href=&quot;https://blog.gagan93.me/titles-inflation-and-down-levelling&quot;&gt;detailed blog post&lt;/a&gt;, so I’ll rather leave you with a link to read the same.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Building Resume only once&lt;/strong&gt; - Resume building is an underrated exercise. When you’re looking out, there are high chances that you’re applying to many positions without a referral. In such cases, your resume is your first impression. If you’ve not spent enough time in build the same, there are high chances that you’ll not get calls from good companies. Resume building is not a one time effort. You need to work on it continuously to reword your tasks in a more impactful manner. Just like job titles, I’ve already written a &lt;a href=&quot;https://blog.gagan93.me/improving-your-resume&quot;&gt;detailed blog post&lt;/a&gt; on how I did more than 5 iterations on my resume in past 8-9 months. Even today, I don’t think my resume is the best it can be, so I keep improving it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Not preparing an Introduction&lt;/strong&gt; - In all the companies, the first thing people ask is to introduce yourself. In some companies, each interviewer asks this question (although that sounds repetitive). Generally, you get a minute or less to talk about yourself before they ask about your specific projects or give you a problem to solve. You might have built a lot of products but it’s important to summarise your journey in this one minute and talk about everything that you find important. Write a long introduction of yourself, use AI to summarise it and keep improving it (just like your resume). I skipped this initially and found myself struggling while explaining my role/journey. I clearly remember that I forgot to explain to one employer that I manage a team of seven people in my current role. So my role might have sounded more of an &lt;strong&gt;IC&lt;/strong&gt; than a &lt;strong&gt;Manager&lt;/strong&gt; that could have good/bad impact based on what they were hiring for.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Applying directly to dream companies&lt;/strong&gt; - If you’re interviewing after a long time, do not get discouraged by rejections. Despite building a lot of things and being hands-on after 9 years of total experience (6+ in my current role), I faced a lot of rejections in the beginning. The current way of tech hiring is not the best way to hire good candidates, it’s a way to filter out candidates who are not interview ready. And being interview ready means something else for technical roles. You might not have built anything in real world but if you are prepared for the interviews, you’ll get the job. And the reverse is also true. For this reason, it is important to not apply for your dream companies directly (in case you are targeting some). Do many interviews at different companies to see if you can handle the questions under pressure before applying to your target company. Given the competitive nature of the market, I’ve heard from many experienced people that you should give a few interviews every year even if you’re not looking out. It’s just to bridge the gap between your current preparation and market expectations.Another way of practising to a decent level is by taking mock interviews. While there are many paid websites for the same, a free solution for the same is by using ChatGPT as your interviewer. I’ve tried it and it is decently good, if not the best. You need to do some initial conversation with it to explain what it is supposed to do (otherwise it will give you both question and answer). I’ll share my prompt for reference:&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes-chatgpt.png&quot; alt=&quot;chatgpt&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;The above screenshot is of my conversation with ChatGPT when I was preparing for my final round at Bain &amp;amp; Co (read the &lt;a href=&quot;https://blog.gagan93.me/bain-and-company-interview-experience&quot;&gt;complete interview experience&lt;/a&gt;). It’s important to set context for ChatGPT before you start the conversation. You can modify the above prompt for technical roles as well. I also prepared for System Design interview using this format.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Overconfidence&lt;/strong&gt; - Assuming that you already know everything can be bad. It happened with me when I was learning LLD and HLD. Because the problems seemed familiar/simple, I thought I’ll be able to crack the rounds (till I failed 1-2 of them initially). Everything demands your time and some practice. Tech interviews demand even more practice because you’re expected to build (LLD) or talk about a MVP (HLD) within a period of 40-50 minutes. Although problems seem simple, thinking about the models, APIs, writing code, or talking about high level design, databases, protocols, challenges within this time period is very hard if you’ve not spent time in practising the same. I always recommend everyone to solve at least 5-10 problems for both LLD/HLD (without looking at the solutions) before appearing for any company.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These are the top six things that came to my mind from my experience. Now let’s talk about mistakes during interviews.&lt;/p&gt;
+
+&lt;h3 id=&quot;during-interviews&quot;&gt;During Interviews&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Not talking enough / talking a lot&lt;/strong&gt; - In an interview, you have an hour to talk about yourself and showcase your skills. It’s important that you portray best of your skills. A good technical interview is a collaborative exercise where you and your interviewer solve a particular problem. In most of the cases, the interviewer has a fair idea around possible solution(s) because they have asked the same problem many times. A good candidate would ask questions (not cleverly seek hints) to understand the problem in depth before jumping towards the solution. There are generally three technical rounds - Data Structures, LLD and HLD. While Data structures question is a mathematical question (i.e. can be judged as right or wrong), the other two are somewhat open-ended. In many cases, ambiguities are present in the problem statement (even in DS round) to see how the candidate interprets the problem and asks questions. It’s our responsibility to make sure that we’re querying the interviewer to frame the problem better, scope the boundaries of the problem and present a solution that works for it. It’s quite possible that some iterations are needed to tailor the solution to cover edge cases or changing requirements. I’ll just recommend to keep on talking with your interviewer to make share what’s going on your mind. On the opposite side, don’t keep talking so much that you don’t leave space for them to talk or share their feedback on your solution. A balance is important here. In my experience as an interviewer, very few candidates talk more than what is required, but talking less is a common problem.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Assuming without discussing&lt;/strong&gt; - While you’re talking, make sure that you don’t &lt;strong&gt;assume&lt;/strong&gt; anything in your mind. Assumptions can lead to different solutions, hence it is important to speak about your assumptions. If that assumption is wrong, your interviewer will point out the same. For example: In most of the LLD problems if I’m talking about APIs, I assume that authentication is always in place and some header is coming in all the requests that is interpreted by the server for identifying the user. While most of the interviewers agree to this assumption, one of the interviewer asked this question- &lt;em&gt;What are the different authentication mechanisms you know about, and which one you’d like to use here (and why)?&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;(Design Interviews) Stubborn with choices&lt;/strong&gt; - In design interviews, you try to solve a problem by using some components like Databases, Load balancers, API Gateways, Firewalls, Protocols, API Servers, etc. Let’s take an example of a System Design interview. The most common discussion that happens in almost all the interviews is around the choice of database - SQL vs NoSQL (let’s assume we’re comparing SQL databases with Document oriented databases like Mongo/Elastic). We need to have strong reasons to choose one kind of database for the specific use case rather than &lt;a href=&quot;https://www.youtube.com/watch?v=b2F-DItXtZs&quot;&gt;this guy&lt;/a&gt; who is a MongoDB fan. There are many more places in a design interview where we need to make choices (eg. protocols). Just choosing one side is not enough - you need to justify your choice (or your interviewer will ask you to). Stubborn candidates leave a very bad impression on the interviewer and usually get rejected.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;(Design Interviews) Finding the core problem / not catching hints -&lt;/strong&gt; In both LLD and HLD interviews, there is &lt;strong&gt;one core problem&lt;/strong&gt; that we’re solving. As we talk more with our interviewer and frame the actual problem from that &lt;em&gt;one liner ambiguous problem statement,&lt;/em&gt; we get closer to the problem. For example:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;In a cab booking platform like Uber, matching the driver with rider could be a core problem because you need to choose the drivers using some algorithm (you can’t just search them based on displacement as they might be a river apart).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;In a movie booking platform like BookMyShow, holding the seats while user is in process of paying for the tickets, or releasing the seats when payment fails / times out could be the core problems.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;Similarly, your problem statement has one core problem which you need to identity. Although other parts of the systems are also important but this is one part that interests the interviewer. While you’re talking with your interviewer, try to see if they’re impressed with your design or are they like - &lt;em&gt;there’s something more to the problem.&lt;/em&gt; Incase you’re missing something important or are going wrong, they try to give you a hint (eg. &lt;em&gt;How are you making sure that &amp;lt;this&amp;gt; problem is also addressed?&lt;/em&gt; ). Do not miss these inputs, they may impact your overall design.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Bad luck -&lt;/strong&gt; In the beginning of this post, I wrote about a problem that is outside your control. That’s bad luck. I’ll share some scenarios to explain this:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Untrained interviewers -&lt;/strong&gt; This usually happens in small companies where they’re trying to expand the team. The interviewers might not be trained to conduct the discussion properly. Generally, some senior person &lt;a href=&quot;https://www.metaview.ai/resources/blog/interviewer-shadowing-the-secret-of-the-most-effective-hiring-machines-in-the-world&quot;&gt;shadows the new interviewer&lt;/a&gt; to make sure they are ready to interview but in small companies (due to multiple things running in parallel) such processes are not mature and training is not sufficient.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Stubborn interviewers&lt;/strong&gt; - Not only candidates, interviewers can be stubborned. It’s hard not only to work with them but even harder to do an interview. Such interviewers have one approach in mind and would expect you to give exactly same solution. I’ve faced this once where despite doing everything well, I was rejected. And this was because there was &lt;strong&gt;one thing&lt;/strong&gt; that they wanted to happen in a certain way and I suggested something else (with a valid reason). This person also gave me feedback (I generally ask for the same at the end of interview) that I should have asked about scale of system (in a LLD problem) so that I had modified that one thing in my solution early. I’ve &lt;strong&gt;never seen&lt;/strong&gt; anyone else talking about “scale of system” in a LLD interview. We generally go into details of API design, database design and the core problem.
+ The best part - they were junior to me by designation, years of experience, and attitude towards better solutions :)&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Apart from this, many other things (like mood of the interviewer) can impact your performance. Such things are generally not in your hands. Just like for candidates, interviewers also need training and feedback. In the organisations where interview process is more formalised and where interview calls are recorded, there are high chances that the interviewer would get feedback(s) if they need to improve on certain axes. In many organisations the feedback process is completely missing, which leads to bad candidate experience. If you face such a situation, you can also share your feedback with the recruiter / hiring manager. Make sure your tone is professional and not rude if you want them to consider your feedback.&lt;/p&gt;
+
+&lt;p&gt;I hope the above points would help you to avoid mistakes that people (including myself) generally make. Good luck for your preparation 👍.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="mistakes" /><category term="software-design" /><summary type="html">There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected). Generally speaking, rejections shouldn't hurt...</summary></entry><entry><title type="html">Low Level Design Interviews</title><link href="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html" rel="alternate" type="text/html" title="Low Level Design Interviews" /><published>2024-05-17T00:00:00+05:30</published><updated>2024-05-17T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/17/low-level-design-interviews</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-17-lld.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@sambourke?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Samuel Bourke&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/woman-in-gray-hoodie-sitting-on-chair-in-front-of-laptop-computer-foH9owaHXng?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -1107,248 +1221,4 @@
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Other Platforms&lt;/strong&gt; - Almost all the platforms have free tier where they won’t charge you unless you’re pushing a lot of data (eg. a lot of traces to NewRelic or a lot of errors to Bugsnag, or many GBs of log data to Scalyr). Even they want people to use their platform so they encourage such free plans. Otherwise they at least have 15-30 day trial plans. Wherever you put your credit card, make sure your to setup some budget alert and remove the card after you are done practising. To avoid any mistakes that can cost you some dollars, concentrate and learn 1-2 things rather than picking 10 things at once.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="Devops" /><category term="Cloud" /><category term="Developers" /><summary type="html">In my ~ 9 years of experience, my work has been a mix of Backend and Devops. Getting my hands dirty on Devops side has given me a lot of edge in understanding things related to deployment, cloud, servers and operating systems that other developers couldn't easily understand. For example...</summary></entry><entry><title type="html">Optimising docker builds</title><link href="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html" rel="alternate" type="text/html" title="Optimising docker builds" /><published>2024-02-28T00:00:00+05:30</published><updated>2024-02-28T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/02/28/optimising-docker-builds</id><content type="html" xml:base="https://gagan93.me/blog/2024/02/28/optimising-docker-builds.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-02-28-dockers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-ian-taylor-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@carrier_lost?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Ian Taylor&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/blue-and-red-cargo-ship-on-sea-during-daytime-jOqJbvo1P9g?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;This month I worked on optimising docker build for an app. But before delving into the specifics of my optimisation efforts, let me provide you with a overview of the application:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;It’s a medium size, fullstack Rails application (400+ models)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It has 300+ dependencies (a.k.a ruby gems).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It contains rails views (activeadmin majorly) and assets.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It uses react on the frontend and uses webpacker to transpile those into JS.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;We had two dockerfiles - one for the web app and one for background job processor (&lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;sidekiq&lt;/a&gt;, similar to &lt;a href=&quot;https://docs.celeryq.dev/en/stable/getting-started/introduction.html&quot;&gt;celary&lt;/a&gt;, &lt;a href=&quot;https://github.com/jobrunr/jobrunr&quot;&gt;jobrunr&lt;/a&gt;, etc). These could be combined now to some extent but were different due to different base images initially.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;We can think of optimising a docker image in two ways:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;☑&lt;/strong&gt; Optimising build time.
-&lt;strong&gt;☑&lt;/strong&gt; Optimising image size.&lt;/p&gt;
-
-&lt;p&gt;I had to tick both the boxes and optimise as much as possible in the next few days. The first and very obvious step was to understand the steps in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; and read some good blogs on how people have been doing it for their app. I had already been reading this &lt;a href=&quot;https://diamol.net/&quot;&gt;excellent book&lt;/a&gt; earlier this month, that helped me build strong fundamentals around Docker as a technology. The first part of this book talks about the very basic things (needed to build and optimise images), while rest of the parts talk about operating Docker. While there were some excellent case studies talking specifically about optimising for Rails apps, most of the techniques were already applied back in 2022 when I picked the optimisation activity for the first time. To make sure that you get the most out of this post, I’ll share the older optimisations also.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-basics&quot;&gt;The basics&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Understanding layering&lt;/strong&gt; - A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; typically starts with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instruction that points to a base image specific to your language/framework. Beyond this, there are many more instructions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ARG&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENV&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ADD&lt;/code&gt;. It generally ends with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENTRYPOINT&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD&lt;/code&gt; instructions (unless we’re passing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD&lt;/code&gt; from outside). The instructions that actually create heavy layers are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt; &amp;amp; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ADD&lt;/code&gt; because we run some commands or copy some files/directories from the host machine to the docker image using these commands. From an optimisation perspective, “least changing layers should remain on top and most changing layers should be at the bottom”. This is because when you run the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build&lt;/code&gt; command multiple times and if you haven’t cleared the build caches, the unchanged layers do not get computed again and subsequent builds are faster. This is the single most useful concept I used multiple times to get most out of caching.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Understanding base images&lt;/strong&gt; - Our app used ruby 2.5.9 so we used the &lt;a href=&quot;https://hub.docker.com/layers/library/ruby/2.5.9/images/sha256-0ed9d1839df4d5c08c98a0a7315519694c5da80b0885d6a5b96d5d5bb564d5a5?context=explore&quot;&gt;official ruby 2.5.9 image&lt;/a&gt; as our base image to start with. Digging deep on the tags, we found that there are multiple tags for the same version also (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buster&lt;/code&gt;, etc). Some of these have a different unix flavour as the base OS, while some of these have less system packages installed. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine&lt;/code&gt; is the lightest image but it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alpine linux&lt;/code&gt; as the base operating system. We did not move to it as we have always ran our app on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debian&lt;/code&gt; unix (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ubuntu&lt;/code&gt; mostly). In the end we settled for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt; version of the image that uses debian as the base OS but doesn’t bloat the image with a lot of pre-installed packages. Someone &lt;a href=&quot;https://github.com/rails/rails/issues/46855&quot;&gt;opened an issue&lt;/a&gt; on Rails official repo that has a detailed discussion on how these images are different and what native packages we generally need to run our apps.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Understanding docker stages&lt;/strong&gt; - A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; can contain multiple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instructions where each of them starts another “stage”. This small yet powerful concept allows you to optimize your build size by copying only required things from one stage to another stage. We’ll discuss it in detail below.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Understanding caching&lt;/strong&gt; - Docker allows caching in multiple ways. As mentioned in the first point, docker caches all the layers so that unchanged layers are not rebuilt on subsequent runs. Docker also allows caching steps of some intermediate layers so that those are not computed again from scratch. This can be done using cache mounts. Docker’s &lt;a href=&quot;https://docs.docker.com/build/guide/mounts/#add-a-cache-mount&quot;&gt;official explanation&lt;/a&gt; of cache mounts is excellent. Another small optimisation on layering can be done using &lt;a href=&quot;https://docs.docker.com/build/guide/mounts/#add-bind-mounts&quot;&gt;bind mounts&lt;/a&gt; where you can skip a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY&lt;/code&gt; instruction incase you need files to just run an intermediate step.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I hope the above helped in building some ground. Sharing the actual details below.&lt;/p&gt;
-
-&lt;h2 id=&quot;our-final-dockerfiles&quot;&gt;Our final Dockerfiles&lt;/h2&gt;
-
-&lt;p&gt;I’m pasting three Dockerfiles here as a reference. We’ll go through each line of all the three files to deeply understand why we did each change. While these are related to a Ruby on Rails fullstack application, I’ll explain this in a general context and use examples from multiple languages.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Base Dockerfile&lt;/strong&gt; - We built our own ruby-2.5.9 image on the top of the official image. The reason for doing this is - although docker’s build cache optimises a lot of steps, our build machine (a jenkins slave) periodically runs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker system prune&lt;/code&gt; to clear old images and save disk space. And that is done because a lot of apps build their image on the build machine, eating up all the disk space. This is how the base image looks like:&lt;/p&gt;
-
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; ruby:2.5.9-slim&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; curl  &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://deb.nodesource.com/setup_14.x | bash - &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; gcc g++ make git nodejs &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt autoremove &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt clean &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; /var/cache/apt/archives/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; /var/lib/apt/lists/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; /tmp/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; /var/tmp/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;truncate&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; 0 /var/log/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;log &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler:2.3.26 &lt;span class=&quot;nt&quot;&gt;--no-document&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bundle config &lt;span class=&quot;nt&quot;&gt;--local&lt;/span&gt; without &lt;span class=&quot;s2&quot;&gt;&quot;development test&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--jobs&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;getconf _NPROCESSORS_ONLN&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Sidekiq dockerfile - Sidekiq is our background job processor. This file uses the above image in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM&lt;/code&gt; instruction, installs more dependencies and copies code&lt;/p&gt;
-
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ARG&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; BASE_IMAGE&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; $BASE_IMAGE&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /home/app/my_app&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Gemfile.lock &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gems,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gems &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;    bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--jobs&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;getconf _NPROCESSORS_ONLN&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; . .&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;ENTRYPOINT&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; [&quot;/home/app/my_app/entrypoint.sh&quot;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;WebApp dockerfile - This file uses the sidekiq dockerfile as the base image and adds frontend assets on the top of it. This one is a multistage build, where we do building assets in one stage and copy only the required artifacts to the final stage. This is done to ensure that no bloat exists in the final stage.&lt;/p&gt;
-
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ARG&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; BASE_IMAGE&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$BASE_IMAGE&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;frontend-pipeline&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; yarn
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;yarn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--production&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;cache,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/app/my_app/tmp/ &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;--mount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bind&lt;/span&gt;,source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;config/database.yml.example,target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;config/database.yml &lt;span class=&quot;se&quot;&gt;\
-&lt;/span&gt;  bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;rake assets:precompile &lt;span class=&quot;nv&quot;&gt;DB_ADAPTER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;nulldb &lt;span class=&quot;nv&quot;&gt;RAILS_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production &lt;span class=&quot;nv&quot;&gt;NODE_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production &lt;span class=&quot;nv&quot;&gt;NODE_OPTIONS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--max-old-space-size=28672&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; $BASE_IMAGE&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;EXPOSE&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; 3000&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;CMD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &amp;lt;whatever&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; --from=frontend-pipeline /home/app/my_app/public /home/app/my_app/public&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;digging-deep&quot;&gt;Digging deep&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Why we switched to&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slim&lt;/code&gt; &lt;strong&gt;image of ruby 2.5.9 and how it impacted us?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;We were sure that we don’t need those 500+ system packages that are pre-installed inside 2.5.9 image. Additionally, on my macos, if I pull both the images (slim and non-slim), there is a huge difference of 82% (140MB vs 790MB).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We knew what specific system packages we needed. Figuring this out is not hard. If your docker image is building successfully and all major features are working, you can conclude that easily. Having working experience on this repo of more than 5 years, I exactly knew what native dependencies we need here so we were able to move to slim image.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;It led to a build size reduction of about 450MB on AWS ECR (where we host the images).&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Why we built our own base image?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;As explained above, our build machine purges docker caches regularly because of which the ruby docker image is pulled again and all the system packages are install again. This wasted roughly 3-4 minutes. Also, pulling the image from ECR should be faster than pulling from dockerhub (as build machine is on AWS).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;If you check carefully, we install gems from Gemfiles in first two Dockerfiles. They point to different Gemfiles. In the first dockerfile, we use a Gemfile that has only those gems which are installed with native dependencies (and hence take time). This was done to ensure build time reduction. We save roughly a minute here. This technique can be used in all frameworks; if your package manager has some dependencies that hardly change and take time to install, move them to the base image. You might want to avoid this if you use one base image for multiple dependencies.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We have some tooling for configuration management that is built using golang base image. That is also present in the base image. When we were not having base &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;, that took about a minute to build in the sidekiq &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt;.
-  &lt;strong&gt;Note&lt;/strong&gt;: I’ve not mentioned those lines in the Dockerfile as that tooling is proprietary. In real world, the first dockerfile is also multistage :)&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;How did we make dependency installation fast?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;All languages have some dependency manager: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler&lt;/code&gt; for Ruby, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; for Python, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maven/gradle&lt;/code&gt; for Java and so on. Modern computers are multi-core and most of the new tools have ways to utilise multiple cores for tasks that can be parallelized. We used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--jobs&lt;/code&gt; argument to parallelize the installation for ruby’s bundler. Earlier we had hardcoded &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4&lt;/code&gt; as the number of parallel jobs. But because our build machine is large now (it can be small in future), it makes sense to get this value dynamically. Hence you see this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getconf _NPROCESSORS_ONLN&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; step (this command works well in both unix and mac).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We installed some gems like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nokogiri&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bcrypt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oj&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pg&lt;/code&gt; in the base image because they’re built with native dependencies and take time. Also, we don’t upgrade them regularly and hence won’t need to revisit them in the base image. Due to this reason, there’s a special Gemfile for base image (different from the app’s Gemfile).&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Why did we combine many commands in a single RUN instruction?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Because each RUN command creates a new layer and we want to minimize the number of layers. Most importantly, if we create some files in one layer and delete them in other layer, it won’t reduce the image size as docker would maintain both of these layers (even the one that added the file). In brief, if there’s a RUN command that only deletes something, it might not bring a change in size of your image. As a clever trick, we’re deleting some logs related to package installation and other system logs (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rm -rf /var/cache/apt/archives/* &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* &amp;amp;&amp;amp; truncate -s 0 /var/log/*log&lt;/code&gt; ) inside the same RUN instruction so that those are never inserted in the docker’s layer.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Why are we not copying the&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;&lt;strong&gt;,&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; &lt;strong&gt;in the image and then running the&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; &lt;strong&gt;command?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;We don’t need these files so we won’t copy them inside the docker’s layer. Rather, we’re using docker’s bind mounts to bind these files temporarily for the RUN instruction. You can use the same technique in other frameworks as well. For example, for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm&lt;/code&gt; based projects, you can bind &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn.lock&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; before running the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn install&lt;/code&gt; command (or mount &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; before running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; for a python project, and so on).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;In the second Dockerfile, why we add codebase later and just bind Gemfiles first?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Earlier, our instructions looked like this:&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  COPY Gemfile .
-  COPY Gemfile.lock .
-  RUN bundle install
-
-  WORKDIR /home/app/my-app
-  COPY . . # copies entire source code
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-
-        &lt;p&gt;Now, we’re using the bind mount. But the question is same - why would we first copy files that define dependencies and copy rest of the code later. Reason is simple - There are more chances that something else in entire codebase will change than the dependencies. So if we copy everything and them run the dependency manager (bundler/maven/pip/yarn), then the cache of that layer will always be rebuilt. Whereas, if we copy package files first, there are more chances that the cached layer will be used.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Why our files don’t have a CMD defined?&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;We have multiple entry points that can run on the top of these docker images (eg. &lt;a href=&quot;https://github.com/puma/puma/&quot;&gt;puma&lt;/a&gt;, &lt;a href=&quot;https://github.com/anycable/anycable&quot;&gt;anycable&lt;/a&gt;, &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;sidekiq&lt;/a&gt;). So we prefer to pass CMD from outside. There are multiple ways to do so based on the way you’re running the container. For example, if you’re running the image using plain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run&lt;/code&gt; command then just write the command to be run in CMD after this (Eg. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -it ruby:2.5.9-slim irb)&lt;/code&gt; . Similarly, you can provide CMD argument through docker-compose, docker-swarm or through helm charts (for kubernetes).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;There are many special things happening in asset precompile step. I’ll explain them one by one&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;We mount a sample &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database.yml&lt;/code&gt; file (dummy database configuration file, doesn’t contain any credentials) using bind mounts because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rake&lt;/code&gt; commands sets up entire rails environment and that is needed.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;To make sure database is not connected, we also use a &lt;a href=&quot;https://github.com/nulldb/nulldb&quot;&gt;special library&lt;/a&gt; during precompile step.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We use docker’s cache mounts (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mount=type=cache&lt;/code&gt;) to cache the results of this step so that next time only changed steps get recomputed.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We supply specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NODE_OPTIONS&lt;/code&gt; so that build machine’s memory can be utilized to compile as fast as possible.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Assets are compiled in an intermediate stage and only required artifacts are copied to the final layer.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;The results in our case were outstanding, specially in terms of image size. Image time did improve when I did optimizations in 2022, but this time there was no drastic increase. Time for numbers 🎉&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Build size&lt;/strong&gt;: Earlier we were maintaining two docker images - 2.4G and 1.5G. So on any node in the kubernetes nodepool, if both of our images are needed, we were required to download ~ 4G of files. Only common thing among these two was the ruby base image. So probably we were downloading ~ 3.5G if we take that out. After optimization, the image size was 1.1G and 1.5G. More importantly, this 1.1G was common as one image was used in second image. So technically, we’ll be downloading only 1.5G on any node where we need both the images. That’s an improvement of &lt;strong&gt;over 57%.&lt;/strong&gt; And this difference is only of our current optimization. If we compare it back to 2022, the difference was even large.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Build time&lt;/strong&gt;: The current build time is 12-15min. A month ago it was around 14-18min. Back in 2022, it was about 30min. So from that time it has been a significant improvement but comparing from last month, the build time has not improved much. A major time goes into transpiling react code to JS, and pushing images to ECR.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;impact&quot;&gt;Impact&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Build size&lt;/strong&gt;: At LocoNav, we have staging, preprod and production environments. We have our oldest production environment (on AWS) and few small production deployments in other countries where we operate on some other cloud providers. On AWS, we deploy daily but in other clusters we deploy weekly or fortnightly. Because we’re copying docker images from AWS ECR to other cloud providers, reduction of &amp;gt;50% would mean faster image pulls and faster deployments. In the long run, because we’re pushing lesser GBs from the build machine to ECR, and from ECR to EKS (and even outside AWS), it would lead to lesser S3 cost (for storing images) and lesser network transfer cost.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Build time&lt;/strong&gt;: As developers build and deploy multiple times to staging environment(s), shorter build times encourage them to iterate faster and not lose context of things. When build times were higher, developers often switched to other tasks after triggering builds.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;bonus&quot;&gt;Bonus&lt;/h2&gt;
-
-&lt;p&gt;There’s a very nice tool that helps to analyze docker images layer-by-layer. Although it didn’t help me a lot to reduce the size, it was a good experience diving deeply into layers. It’s known as &lt;a href=&quot;https://github.com/wagoodman/dive&quot;&gt;dive&lt;/a&gt; and it’s an open source tool that you can install on your machine to analyze any docker image. It also made me understand how docker ignores the intermediate stages of a multi-stage build and just copies the artifacts.&lt;/p&gt;
-
-&lt;h2 id=&quot;closing-thoughts&quot;&gt;Closing thoughts&lt;/h2&gt;
-
-&lt;p&gt;Docker build time/size reduction is an interesting activity. There are some thumb rules (like moving less changing layers above) and some experimentation according to your app’s setup. You need to experiment a lot to understand what works for you. If you have a similar experience, or any suggestions on the above - please do comment.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="Docker" /><category term="Optimization" /><category term="Dockerfile" /><summary type="html">A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="Devops" /><category term="Cloud" /><category term="Developers" /><summary type="html">In my ~ 9 years of experience, my work has been a mix of Backend and Devops. Getting my hands dirty on Devops side has given me a lot of edge in understanding things related to deployment, cloud, servers and operating systems that other developers couldn't easily understand. For example...</summary></entry></feed>
