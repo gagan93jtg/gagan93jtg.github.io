@@ -21,9 +21,9 @@ permalink: /about/
 
 
 ## Hey!
-I'm Gagandeep Singh, a Staff Engineer based out of  New Delhi, India and currently working with [LocoNav India Private Limited](https://loconav.com/). I've been a full-stack developer in the past but now I majorly focus on backend and cloud. I primarily write code in Ruby, build websites in Rails and deploy them on AWS EC2, or dockers, or kubernetes. Devops has been a decent part of my journey, so I've developed a decent expertise in cloud also.
+I'm Gagandeep Singh, a Senior Software Engineer based out of New Delhi, India and currently working with [Branch International](https://branchapp.in/). I've been a full-stack developer in the past but now I majorly focus on backend and cloud. I primarily write code in Ruby, build websites in Rails and deploy them on AWS EC2, or dockers, or kubernetes. Devops has been a decent part of my journey, so I've developed a decent expertise in cloud also.
 
 Being a part of startup environment, my role has not been limited to only tech. I've been involved in handling people, hiring and trainning, managing appraisals, handling end to end delivery of features, acting as a project manager at times, talking to multiple other departments as per work, and optimizing a lot of stuff that was badly written in the past by myself or by someone else.
 
-All the blogs are cross-posted on [my hashnode](https://blog.gagan93.me) blog as well.
+All the blogs are cross-posted on my [hashnode blog](https://blog.gagan93.me) as well.
 More details about my work is shared [here](https://gagan93.me).

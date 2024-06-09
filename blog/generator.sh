@@ -1,5 +1,5 @@
 rm -rf _site .jekyll-cache
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
 cd ..
 rm -rf blog
 mkdir -p blog
