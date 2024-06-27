@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-06-09T17:14:00+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Tech Interview Mistakes</title><link href="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html" rel="alternate" type="text/html" title="Tech Interview Mistakes" /><published>2024-05-24T00:00:00+05:30</published><updated>2024-05-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/24/tech-interview-mistakes</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-06-27T10:56:29+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Branch International Interview Experience</title><link href="https://gagan93.me/blog/2024/06/27/branch-interview-experience.html" rel="alternate" type="text/html" title="Branch International Interview Experience" /><published>2024-06-27T00:00:00+05:30</published><updated>2024-06-27T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/06/27/branch-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/06/27/branch-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-06-27-branch-international-interview-experience.png&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;After giving a lot of interviews in small and large companies, I’ve &lt;a href=&quot;https://www.linkedin.com/feed/update/urn:li:activity:7203321685398212609/&quot;&gt;joined Branch International&lt;/a&gt; this month. As I’ve shared my past interview experiences &lt;a href=&quot;https://blog.gagan93.me/tag/interview&quot;&gt;here&lt;/a&gt;, I’m sharing this one too. My profile was shortlisted for the position of &lt;strong&gt;Senior Software Engineer&lt;/strong&gt; through the &lt;a href=&quot;https://tophire.co/&quot;&gt;Tophire&lt;/a&gt; platform. After that, their account executive contacted me. Once they finished, I was connected to a recruiter from Branch, who explained the company and the role to me. Those who do not know much about the company:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Branch is a &lt;strong&gt;registered non-banking financial company&lt;/strong&gt; (NBFC) regulated by the RBI, offering services in India and select international markets&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Branch’s &lt;strong&gt;fully-remote team&lt;/strong&gt; is spread across India, the US, and Africa, bringing together diverse expertise.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We offer a range of financial solutions, including &lt;strong&gt;micro-loans&lt;/strong&gt; and &lt;strong&gt;investment products&lt;/strong&gt;, to help you achieve your financial goals&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;interview-process&quot;&gt;Interview Process&lt;/h2&gt;
+
+&lt;p&gt;After speaking with the Tophire account manager and the company’s recruiter, these were the interview rounds:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Hiring Manager Conversation&lt;/strong&gt; - This round was scheduled with the Chief Technology Officer. The aim of this round was to understand my current role, aspirations and what I am looking for in the next role. We discussed about my projects and about a few more technical things briefly. I took this as a chance to learn more about the company and their tech stack.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Technical Screening Round&lt;/strong&gt; - This round was scheduled with a Senior Engineer from the India team. It consisted of two parts - a data structures problem (easy) and rapid questions and answers based on web. I solved the data structures problem on &lt;a href=&quot;https://coderpad.io/&quot;&gt;Coderpad platform&lt;/a&gt; where I could choose any language to implement the solution. I was able to wind up with a working solution in 18-20 mins. There were no modifications done in the problem statement to make it harder so we moved to the next part. The rapid fire QnA part was quite unique. The questions were related to databases, security, scalability, low-level design, authentication mechanisms, etc. No coding was required to answer these questions, but they were great for assessing someone’s experience in backend development.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Low Level Design Round&lt;/strong&gt; - This round was scheduled with a Senior Engineer from the US team. The problem statement was designed in a way to see how would someone design APIs. I did not write any code in this round. We picked one problem and discussed how the APIs would look for that problem. Apart from a few APIs, rest of them were quite simple. In these (slightly complex) APIs, there were multiple ways to implement but I chose the RESTful method and explained the reasoning behind my decision. For a very specific requirement, I was also asked to write a SQL query.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;High Level Design Round&lt;/strong&gt; - This round was scheduled with an Engineering Manager from the India team. The problem statement was around one of their products. I started sketching the system after understanding the initial requirements. They asked about the role of each box (the service) in my design, the choice of database, protocols etc. After discussing each design decision in detail, we also discussed how I would test, deploy and monitor this system. We winded up the discussion in an hour.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Presentation Round&lt;/strong&gt; - This round was very unique where I was asked to prepare a presentation on my past projects and present that in front of a panel. The panel included all the previous round interviewers, and a few more people. I had submitted the presentation to company recruiter few days before the round. I presented 3-4 major projects and the panel cross questioned me wherever they needed more details. According to their job description, this round was to better understand:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;Verbal and written communication skills, and ability to handle questions,&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Complexity and scale of work,&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Ability to execute on a project, in particular around evaluating tradeoffs and making decisions&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Final Discussion Round&lt;/strong&gt; - After clearing all the rounds, the company recruiter informed me that they want to extend an offer and scheduled a call with the hiring manager again. During this call, the hiring manager asked for any feedback I had about the overall process. They explained the compensation structure, and I asked a few questions that I had noted down. They gave me time to think before accepting the offer.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;After careful consideration, I accepted the offer and resigned from my position at LocoNav where I had worked for over six years. It was a tough decision to leave after spending such a long time. I joined Branch on June 3, 2024, and it has been great since then.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="branch" /><category term="interview" /><category term="senior-software-engineer" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry><entry><title type="html">Tech Interview Mistakes</title><link href="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html" rel="alternate" type="text/html" title="Tech Interview Mistakes" /><published>2024-05-24T00:00:00+05:30</published><updated>2024-05-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/24/tech-interview-mistakes</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Francisco De Legarreta C.&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -261,128 +318,7 @@
   &lt;li&gt;
     &lt;p&gt;I wrote a post last year about the &lt;a href=&quot;https://blog.gagan93.me/classify-your-codebase&quot;&gt;benefits of building small classes&lt;/a&gt;, a practice I embraced years ago when I began refactoring systems.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="lld" /><category term="software-design" /><summary type="html">I work as a Staff Software Engineer at LocoNav. When I give interviews with my current experience (that is close to 9 years), I am considered for these roles...</summary></entry><entry><title type="html">Bain and Co. Interview Experience</title><link href="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html" rel="alternate" type="text/html" title="Bain and Co. Interview Experience" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;I interviewed for the position of &lt;strong&gt;Staff Engineer II&lt;/strong&gt; at &lt;strong&gt;Bain and Company&lt;/strong&gt; in &lt;strong&gt;Jan-Feb 2024&lt;/strong&gt;. They were hiring engineers for the &lt;strong&gt;Gurgaon team&lt;/strong&gt; (that’s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to their website where I applied. For those who haven’t heard much about the company:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Popularly abbreviated as &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_Three_(management_consultancies)&quot;&gt;MBB&lt;/a&gt;, McKinsey, Boston Consulting Group and Bain &amp;amp; Company are known as the Big three management consultant firms.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;As the name suggests, these are mostly into consultancy and not in product development. And unlike other consultant firms where developers are outsourced by the company to build something, these big firms mostly “plan” the execution. Generally, the actual implementation (code) is not done by these companies. They just meet clients to understand the problem, document everything and make plans.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Most of the roles are &lt;strong&gt;Individual Contributor&lt;/strong&gt; roles where you’re expected to travel for 20-50% of your time (based on role/seniority). This is true for engineering roles as well.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;interview-process&quot;&gt;Interview process&lt;/h2&gt;
-
-&lt;p&gt;I got an email from their recruitment team that they want to schedule a hiring manager call to begin with. Except for one instance, entire communication happened over emails and the team was quite responsive. There were &lt;strong&gt;five rounds&lt;/strong&gt; in total. I cleared all of them but because there was a single vacancy and high competition, I was informed that they chose someone else. Overall, it was a good learning experience as this was the first time I went through all the rounds for any company’s process.&lt;/p&gt;
-
-&lt;h3 id=&quot;hiring-manager-round&quot;&gt;Hiring manager round&lt;/h3&gt;
-
-&lt;p&gt;This was scheduled with Sr. Director of Global Engineering team who was based out of Singapore. There are many companies that put you through the evaluation process directly but I like the organisations where we have a human interaction with a senior person before starting with the interview rounds. They make sure that they understand your current role, future growth path/expectations and also explain the new role in the best possible way. For example, most of us work with product/service based companies where travel is almost negligible for engineers. This was very different for Bain. Another thing was that we get to code less in consultant roles. He made sure that I completely understand these two things before starting with the evaluation process. He sounded calm and “not in a hurry” like many directors/senior managers. We did some technical discussion around my projects but only on surface level.&lt;/p&gt;
-
-&lt;h3 id=&quot;live-coding-round&quot;&gt;Live coding round&lt;/h3&gt;
-
-&lt;p&gt;This was scheduled with a &lt;strong&gt;Senior Engineer&lt;/strong&gt; who just got promoted to &lt;strong&gt;Staff&lt;/strong&gt;. Generally, when you talk to Engineers during interviews, you might find them less expressive but people at Bain are much more open (and somewhat more professional) when it comes to communication. This is because Engineers also deal with the clients and are expected/trained to be good on communication skills. A junior engineer also joined the interview as an observer. He dropped mid way due to a clashing meeting. The problem statement was based on strings and 1D arrays (quite simple, but I don’t remember exactly). While the problem was simple to solve, the platform they chose was not good. Most of the coding interviews I gave were on platforms like Coderbyte that has a wide choice of languages. Being a Ruby Engineer, I prefer to solve DS questions in &lt;strong&gt;Ruby&lt;/strong&gt; but here, the choice was among &lt;strong&gt;Python, Java and Javascript&lt;/strong&gt;. This was not communicated by HR team in advance. Somehow I ended up coding the solution in Java, which is my second language of choice, and that ran without any issues. I expected another question but the interviewer preferred to play around with minor changes in requirements and edge cases, all of which were passing. This sounded easier than I expected and what I faced in other companies.&lt;/p&gt;
-
-&lt;h3 id=&quot;technical-assessment&quot;&gt;Technical Assessment&lt;/h3&gt;
-
-&lt;p&gt;This was basically a &lt;strong&gt;System Design / HLD round&lt;/strong&gt; with another &lt;strong&gt;Staff Engineer II.&lt;/strong&gt; I prefer interviews during morning hours because I’m fresh at that time. But because of interviewer’s preference/availability, this was scheduled in the evening. I’m generally mentally-saturated by that time (6PM IST). The problem statement was around designing a &lt;strong&gt;blob&lt;/strong&gt; &lt;strong&gt;storage platform&lt;/strong&gt; like &lt;strong&gt;Dropbox / Google Drive&lt;/strong&gt;. Although this is a common HLD problem, I had not solved it before. The only way was to think from first principles. I’m good at cloud related things and protocols so that never remains an issue for me when I’m solving a HLD problem. I’m also good at databases but my major exposure is around SQL databases only. Considering the numbers shared by them, I tried to propose a NoSQL database for the metadata storage. They immediately pointed this out and asked me why I chose a NoSQL database here. When I started pointing out the reasons, I figured out that I was not having strong reasons to go for NoSQL. Within next two minutes, both of us mutually agreed to start with a SQL database like PostgreSQL. The major discussion in a blob storage backend (from a functional perspective) is to think about:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Breaking file(s) into chunks for both uploading/downloading.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Hashing these parts to see if it already exists on the backend (can happen frequently for large platforms or when people upload duplicate files).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Encryption/Decryption on client/server side (this was one of the requirements).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Talk about Disk, storage, cost, etc.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I had read read an article on &lt;a href=&quot;https://www.allthingsdistributed.com/2023/07/building-and-operating-a-pretty-big-storage-system.html&quot;&gt;Amazon S3&lt;/a&gt; (not full, it’s a long one for me to absorb). I took some ideas from it when talking about low level storage. Although S3 is much more complex and I was not supposed to talk about things like storage tiers. We didn’t conclude our discussion around all the points (can happen in a HLD round, that is more open ended in comparison to coding rounds) but he asked me to talk around APIs, schema design and draw some boxes on &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Excalidraw&lt;/a&gt; (my choice for drawing diagrams) before the time ends. The overall discussion went very well. Hence, I qualified.&lt;/p&gt;
-
-&lt;h3 id=&quot;technical-assessment-case-study&quot;&gt;Technical Assessment (Case Study)&lt;/h3&gt;
-
-&lt;p&gt;This was another HLD round scheduled with &lt;strong&gt;Director of Engineering, India team&lt;/strong&gt;. He wanted to understand about my projects in great depth and probe around choices. Then we moved to designing an app that we regularly use - like &lt;strong&gt;Zomato&lt;/strong&gt;. He asked some problems specific to:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;How we’ll show restaurants/branches near customer’s current location?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What tables will you make to store restaurants, branches, etc?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you build Zomato’s homepage (gave some requirements, similar to the actual app)? Write SQL queries and see what things should be cached for fast page load.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;While the previous round was centered around a single problem (Blob storage), this included my projects, a case study, discussion around databases, discussion around other technology choices, and a lisuttle bit on the product side.&lt;/p&gt;
-
-&lt;p&gt;--&lt;/p&gt;
-
-&lt;p&gt;After this round, I got a phone call from the recruiter (for the first time). They gave me feedback on all my previous rounds which was very positive. The only negative she pointed out that I sounded comfortable with only Ruby programming language. She concluded this because I had mailed them about the platform issue in live coding round that did not have sufficient language options to choose from. I explained the same and I told that I was comfortable enough with Java to solve the problem within time. I again explained that I consider myself as a &lt;em&gt;Sr. Engineer&lt;/em&gt;, and not a &lt;em&gt;Ruby Engineer&lt;/em&gt; but their platform should have had more options available. Otherwise they should inform the same before the interview. It was important for them to clear this expectation from their side, as for client projects languages keep on changing. Moreover, most of their enterprise clients were using Java/C#.&lt;/p&gt;
-
-&lt;p&gt;They told me that next round is with an Expert Partner. This will be a Behavioural Round (kind of cultural fit round). Because the partner is generally travelling, I’ll have to provide my availability over multiple slots in a week and they’ll schedule in any of these slots.&lt;/p&gt;
-
-&lt;h3 id=&quot;behavioural-round&quot;&gt;Behavioural Round&lt;/h3&gt;
-
-&lt;p&gt;As explained, this was held with an &lt;strong&gt;Expert Partner&lt;/strong&gt; from &lt;strong&gt;APAC region&lt;/strong&gt;. The interview was scheduled for 45 minutes but in the beginning they told me that they just have 30 minutes because of a last minute meeting setup with a client. This was the first time I was giving Behavioural Round in my life so I had spent considerable time in understanding what this round is meant for. Obviously, I couldn’t fool this person if I was not a cultural fit because they had 21 years of experience and 16+ years within Bain. But I said to myself - If I fail in this round after clearing 4 technical rounds, this would be the worst thing. I checked a lot of videos to learn about the STAR approach, making stories out of things you’ve done in your career. There was one short video that suggested to build stories around (at least) these axes:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Stories that indicate good leadership,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Where you acted as a great team player,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Accomplishment story to show that you can tick off your goals,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Overcoming hurdles to show that you can surpass challenges,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Failure story to show that you learn from your mistakes and bounce back.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;When I say “stories”, don’t take me wrong. It doesn’t mean creating fake stories. Because the interviews are structured in a way that you’re evaluated on a lot of things in a short interval, it’s good to know the axes on which you should prepare before-hand. Otherwise you might have showcased all the skills but you’d still forget those when you’re asked during an interview.&lt;/p&gt;
-
-&lt;p&gt;The interview started with our introductions. He talked a little bit around Logistics business (i.e. around LocoNav). Then they said “&lt;em&gt;You’ve worked at LocoNav for 6 years, can you explain me one big task that you completed each year&lt;/em&gt;”. This was the moment when all the preparation felt useless. While I’ve done a lot of work at LocoNav and everybody around me knows that, I felt blank for 2-3 seconds. After that I started explaining my contributions. There were a few more questions that were no where related to what I had expected. At the end, they asked if I had questions for them. I asked a few questions and we wrapped with the interview.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;The interview at Bain took slightly longer than other companies. The overall process took close to 2 months as rounds happened within a gap of 1-2 weeks, specially for the last round where availability of Expert Partner was very limited. Even after the last round, they took 2-3 weeks before sharing the result. I was informed that there was &lt;strong&gt;only one opening&lt;/strong&gt; for this position and they shortlisted some other candidate. I probed for more details during the month of March because this feedback seemed like a generic &lt;em&gt;platform generated email&lt;/em&gt;. The HR added the hiring manager to the email and they both confirmed the same. It sounded somewhat like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;From HR:&lt;/p&gt;
-
-  &lt;p&gt;Thank you for reaching out. We had multiple candidates, including yourself, who progressed to the final stages of the interview. It’s important to note that while you demonstrated strong skills and abilities, the candidate who ultimately succeeded in the final round performed exceptionally well. This outcome doesn’t reflect any deficiency in your skills; rather, it’s a testament to the competitive nature of the final selection process.&lt;/p&gt;
-
-  &lt;p&gt;--&lt;/p&gt;
-
-  &lt;p&gt;From the Hiring Manager:&lt;/p&gt;
-
-  &lt;p&gt;Thanks for reaching out. Yes, we liked your candidature and got good feedback from the interviewers. Unfortunately we only had one open position at this point of time and had a tough decision to select one candidate. We will surely reach out to you if we open more positions in the future.&lt;/p&gt;
-
-  &lt;p&gt;Once again, really appreciate the time and effort you spent for the interview process with us.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bain" /><category term="interview" /><category term="staff-software-engineer" /><category term="consultant" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry><entry><title type="html">Improving your resume</title><link href="https://gagan93.me/blog/2024/05/13/improving-your-resume.html" rel="alternate" type="text/html" title="Improving your resume" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/improving-your-resume</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/improving-your-resume.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-improving-your-resume.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="lld" /><category term="software-design" /><summary type="html">I work as a Staff Software Engineer at LocoNav. When I give interviews with my current experience (that is close to 9 years), I am considered for these roles...</summary></entry><entry><title type="html">Improving your resume</title><link href="https://gagan93.me/blog/2024/05/13/improving-your-resume.html" rel="alternate" type="text/html" title="Improving your resume" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/improving-your-resume</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/improving-your-resume.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-improving-your-resume.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;João Ferrão&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -525,7 +461,128 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="resume-building" /><summary type="html">Hello people. I&apos;ve you&apos;re reading this, you might be looking to build a better resume. It&apos;s important to keep your resume updated even if you&apos;re not looking out for a change. Sadly, not many people like me realise this on time.</summary></entry><entry><title type="html">Stripe Interview Experience</title><link href="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html" rel="alternate" type="text/html" title="Stripe Interview Experience" /><published>2024-05-07T00:00:00+05:30</published><updated>2024-05-07T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/07/stripe-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-07-stripe-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="resume-building" /><summary type="html">Hello people. I&apos;ve you&apos;re reading this, you might be looking to build a better resume. It&apos;s important to keep your resume updated even if you&apos;re not looking out for a change. Sadly, not many people like me realise this on time.</summary></entry><entry><title type="html">Bain and Co. Interview Experience</title><link href="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html" rel="alternate" type="text/html" title="Bain and Co. Interview Experience" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;I interviewed for the position of &lt;strong&gt;Staff Engineer II&lt;/strong&gt; at &lt;strong&gt;Bain and Company&lt;/strong&gt; in &lt;strong&gt;Jan-Feb 2024&lt;/strong&gt;. They were hiring engineers for the &lt;strong&gt;Gurgaon team&lt;/strong&gt; (that’s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to their website where I applied. For those who haven’t heard much about the company:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Popularly abbreviated as &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_Three_(management_consultancies)&quot;&gt;MBB&lt;/a&gt;, McKinsey, Boston Consulting Group and Bain &amp;amp; Company are known as the Big three management consultant firms.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;As the name suggests, these are mostly into consultancy and not in product development. And unlike other consultant firms where developers are outsourced by the company to build something, these big firms mostly “plan” the execution. Generally, the actual implementation (code) is not done by these companies. They just meet clients to understand the problem, document everything and make plans.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Most of the roles are &lt;strong&gt;Individual Contributor&lt;/strong&gt; roles where you’re expected to travel for 20-50% of your time (based on role/seniority). This is true for engineering roles as well.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;interview-process&quot;&gt;Interview process&lt;/h2&gt;
+
+&lt;p&gt;I got an email from their recruitment team that they want to schedule a hiring manager call to begin with. Except for one instance, entire communication happened over emails and the team was quite responsive. There were &lt;strong&gt;five rounds&lt;/strong&gt; in total. I cleared all of them but because there was a single vacancy and high competition, I was informed that they chose someone else. Overall, it was a good learning experience as this was the first time I went through all the rounds for any company’s process.&lt;/p&gt;
+
+&lt;h3 id=&quot;hiring-manager-round&quot;&gt;Hiring manager round&lt;/h3&gt;
+
+&lt;p&gt;This was scheduled with Sr. Director of Global Engineering team who was based out of Singapore. There are many companies that put you through the evaluation process directly but I like the organisations where we have a human interaction with a senior person before starting with the interview rounds. They make sure that they understand your current role, future growth path/expectations and also explain the new role in the best possible way. For example, most of us work with product/service based companies where travel is almost negligible for engineers. This was very different for Bain. Another thing was that we get to code less in consultant roles. He made sure that I completely understand these two things before starting with the evaluation process. He sounded calm and “not in a hurry” like many directors/senior managers. We did some technical discussion around my projects but only on surface level.&lt;/p&gt;
+
+&lt;h3 id=&quot;live-coding-round&quot;&gt;Live coding round&lt;/h3&gt;
+
+&lt;p&gt;This was scheduled with a &lt;strong&gt;Senior Engineer&lt;/strong&gt; who just got promoted to &lt;strong&gt;Staff&lt;/strong&gt;. Generally, when you talk to Engineers during interviews, you might find them less expressive but people at Bain are much more open (and somewhat more professional) when it comes to communication. This is because Engineers also deal with the clients and are expected/trained to be good on communication skills. A junior engineer also joined the interview as an observer. He dropped mid way due to a clashing meeting. The problem statement was based on strings and 1D arrays (quite simple, but I don’t remember exactly). While the problem was simple to solve, the platform they chose was not good. Most of the coding interviews I gave were on platforms like Coderbyte that has a wide choice of languages. Being a Ruby Engineer, I prefer to solve DS questions in &lt;strong&gt;Ruby&lt;/strong&gt; but here, the choice was among &lt;strong&gt;Python, Java and Javascript&lt;/strong&gt;. This was not communicated by HR team in advance. Somehow I ended up coding the solution in Java, which is my second language of choice, and that ran without any issues. I expected another question but the interviewer preferred to play around with minor changes in requirements and edge cases, all of which were passing. This sounded easier than I expected and what I faced in other companies.&lt;/p&gt;
+
+&lt;h3 id=&quot;technical-assessment&quot;&gt;Technical Assessment&lt;/h3&gt;
+
+&lt;p&gt;This was basically a &lt;strong&gt;System Design / HLD round&lt;/strong&gt; with another &lt;strong&gt;Staff Engineer II.&lt;/strong&gt; I prefer interviews during morning hours because I’m fresh at that time. But because of interviewer’s preference/availability, this was scheduled in the evening. I’m generally mentally-saturated by that time (6PM IST). The problem statement was around designing a &lt;strong&gt;blob&lt;/strong&gt; &lt;strong&gt;storage platform&lt;/strong&gt; like &lt;strong&gt;Dropbox / Google Drive&lt;/strong&gt;. Although this is a common HLD problem, I had not solved it before. The only way was to think from first principles. I’m good at cloud related things and protocols so that never remains an issue for me when I’m solving a HLD problem. I’m also good at databases but my major exposure is around SQL databases only. Considering the numbers shared by them, I tried to propose a NoSQL database for the metadata storage. They immediately pointed this out and asked me why I chose a NoSQL database here. When I started pointing out the reasons, I figured out that I was not having strong reasons to go for NoSQL. Within next two minutes, both of us mutually agreed to start with a SQL database like PostgreSQL. The major discussion in a blob storage backend (from a functional perspective) is to think about:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Breaking file(s) into chunks for both uploading/downloading.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hashing these parts to see if it already exists on the backend (can happen frequently for large platforms or when people upload duplicate files).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Encryption/Decryption on client/server side (this was one of the requirements).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Talk about Disk, storage, cost, etc.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I had read read an article on &lt;a href=&quot;https://www.allthingsdistributed.com/2023/07/building-and-operating-a-pretty-big-storage-system.html&quot;&gt;Amazon S3&lt;/a&gt; (not full, it’s a long one for me to absorb). I took some ideas from it when talking about low level storage. Although S3 is much more complex and I was not supposed to talk about things like storage tiers. We didn’t conclude our discussion around all the points (can happen in a HLD round, that is more open ended in comparison to coding rounds) but he asked me to talk around APIs, schema design and draw some boxes on &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Excalidraw&lt;/a&gt; (my choice for drawing diagrams) before the time ends. The overall discussion went very well. Hence, I qualified.&lt;/p&gt;
+
+&lt;h3 id=&quot;technical-assessment-case-study&quot;&gt;Technical Assessment (Case Study)&lt;/h3&gt;
+
+&lt;p&gt;This was another HLD round scheduled with &lt;strong&gt;Director of Engineering, India team&lt;/strong&gt;. He wanted to understand about my projects in great depth and probe around choices. Then we moved to designing an app that we regularly use - like &lt;strong&gt;Zomato&lt;/strong&gt;. He asked some problems specific to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;How we’ll show restaurants/branches near customer’s current location?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What tables will you make to store restaurants, branches, etc?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How would you build Zomato’s homepage (gave some requirements, similar to the actual app)? Write SQL queries and see what things should be cached for fast page load.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While the previous round was centered around a single problem (Blob storage), this included my projects, a case study, discussion around databases, discussion around other technology choices, and a lisuttle bit on the product side.&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;After this round, I got a phone call from the recruiter (for the first time). They gave me feedback on all my previous rounds which was very positive. The only negative she pointed out that I sounded comfortable with only Ruby programming language. She concluded this because I had mailed them about the platform issue in live coding round that did not have sufficient language options to choose from. I explained the same and I told that I was comfortable enough with Java to solve the problem within time. I again explained that I consider myself as a &lt;em&gt;Sr. Engineer&lt;/em&gt;, and not a &lt;em&gt;Ruby Engineer&lt;/em&gt; but their platform should have had more options available. Otherwise they should inform the same before the interview. It was important for them to clear this expectation from their side, as for client projects languages keep on changing. Moreover, most of their enterprise clients were using Java/C#.&lt;/p&gt;
+
+&lt;p&gt;They told me that next round is with an Expert Partner. This will be a Behavioural Round (kind of cultural fit round). Because the partner is generally travelling, I’ll have to provide my availability over multiple slots in a week and they’ll schedule in any of these slots.&lt;/p&gt;
+
+&lt;h3 id=&quot;behavioural-round&quot;&gt;Behavioural Round&lt;/h3&gt;
+
+&lt;p&gt;As explained, this was held with an &lt;strong&gt;Expert Partner&lt;/strong&gt; from &lt;strong&gt;APAC region&lt;/strong&gt;. The interview was scheduled for 45 minutes but in the beginning they told me that they just have 30 minutes because of a last minute meeting setup with a client. This was the first time I was giving Behavioural Round in my life so I had spent considerable time in understanding what this round is meant for. Obviously, I couldn’t fool this person if I was not a cultural fit because they had 21 years of experience and 16+ years within Bain. But I said to myself - If I fail in this round after clearing 4 technical rounds, this would be the worst thing. I checked a lot of videos to learn about the STAR approach, making stories out of things you’ve done in your career. There was one short video that suggested to build stories around (at least) these axes:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Stories that indicate good leadership,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Where you acted as a great team player,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Accomplishment story to show that you can tick off your goals,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overcoming hurdles to show that you can surpass challenges,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Failure story to show that you learn from your mistakes and bounce back.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When I say “stories”, don’t take me wrong. It doesn’t mean creating fake stories. Because the interviews are structured in a way that you’re evaluated on a lot of things in a short interval, it’s good to know the axes on which you should prepare before-hand. Otherwise you might have showcased all the skills but you’d still forget those when you’re asked during an interview.&lt;/p&gt;
+
+&lt;p&gt;The interview started with our introductions. He talked a little bit around Logistics business (i.e. around LocoNav). Then they said “&lt;em&gt;You’ve worked at LocoNav for 6 years, can you explain me one big task that you completed each year&lt;/em&gt;”. This was the moment when all the preparation felt useless. While I’ve done a lot of work at LocoNav and everybody around me knows that, I felt blank for 2-3 seconds. After that I started explaining my contributions. There were a few more questions that were no where related to what I had expected. At the end, they asked if I had questions for them. I asked a few questions and we wrapped with the interview.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;The interview at Bain took slightly longer than other companies. The overall process took close to 2 months as rounds happened within a gap of 1-2 weeks, specially for the last round where availability of Expert Partner was very limited. Even after the last round, they took 2-3 weeks before sharing the result. I was informed that there was &lt;strong&gt;only one opening&lt;/strong&gt; for this position and they shortlisted some other candidate. I probed for more details during the month of March because this feedback seemed like a generic &lt;em&gt;platform generated email&lt;/em&gt;. The HR added the hiring manager to the email and they both confirmed the same. It sounded somewhat like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;From HR:&lt;/p&gt;
+
+  &lt;p&gt;Thank you for reaching out. We had multiple candidates, including yourself, who progressed to the final stages of the interview. It’s important to note that while you demonstrated strong skills and abilities, the candidate who ultimately succeeded in the final round performed exceptionally well. This outcome doesn’t reflect any deficiency in your skills; rather, it’s a testament to the competitive nature of the final selection process.&lt;/p&gt;
+
+  &lt;p&gt;--&lt;/p&gt;
+
+  &lt;p&gt;From the Hiring Manager:&lt;/p&gt;
+
+  &lt;p&gt;Thanks for reaching out. Yes, we liked your candidature and got good feedback from the interviewers. Unfortunately we only had one open position at this point of time and had a tough decision to select one candidate. We will surely reach out to you if we open more positions in the future.&lt;/p&gt;
+
+  &lt;p&gt;Once again, really appreciate the time and effort you spent for the interview process with us.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bain" /><category term="interview" /><category term="staff-software-engineer" /><category term="consultant" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry><entry><title type="html">Stripe Interview Experience</title><link href="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html" rel="alternate" type="text/html" title="Stripe Interview Experience" /><published>2024-05-07T00:00:00+05:30</published><updated>2024-05-07T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/07/stripe-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-07-stripe-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.google.com/search?sca_esv=87522dea2824ff52&amp;amp;sca_upv=1&amp;amp;sxsrf=ADLYWILkvvPEaLSLta0vbUlLLiSxs0BWaw:1715080024675&amp;amp;q=stripe&amp;amp;uds=ADvngMjTNPKEE-q7I44lun7GC2_xSBJakMDKk-zKP558UX3sGFgOo0obkT031nY191A6wYa4TKscNMz9nP09qudeXs6qjCVIMuAYWsNeUj1s-4H7nT9Qe8VwqZDmCXUj1j6FA1u2k2VYrDv3nso5ytnOUTS-I_q57ncjE0lSWYQOUjGzhq2Q6jSJwajnI5-4O-5SG-GId7Ebxmrab0S7tl0xBLhPcrufYwvgG_qRMVkigo81MJHwaHwu31KwhIxtySTCHOFpjrTG_mwsclx4pnuJ8YDWgoKJb-w717k6A5s5toPiq-guPtM&amp;amp;udm=2&amp;amp;prmd=isvnmbtz&amp;amp;sa=X&amp;amp;ved=2ahUKEwi0_Ib9svuFAxWybmwGHTv9D0QQtKgLegQIDBAB&amp;amp;biw=1496&amp;amp;bih=812&amp;amp;dpr=2#vhid=LKToaxY8zwIc8M&amp;amp;vssid=mosaic&quot;&gt;Stripe Engineering&lt;/a&gt;&lt;/p&gt;
 
@@ -1092,133 +1149,4 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;As software developers, we often face &lt;a href=&quot;https://en.wikipedia.org/wiki/Impostor_syndrome&quot;&gt;imposter syndrome&lt;/a&gt; and feel like we don’t know nothing beyond our company projects. Building something in parallel could be a way to sharpen your skills and increase confidence. If you have time, you can build something in a new tech stack. If not, feel free to choose your existing stack and build it. Sadly, I got too busy with my work that I did not spare enough time to build anything else like the Alumni website. But thankfully I started writing last year and I enjoy that (I hope you too enjoy reading the blogs 😊).&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="Development" /><category term="Scratch" /><category term="BuildingAndLearning" /><summary type="html">One year into the industry, I wasn&apos;t sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of ...</summary></entry><entry><title type="html">Devops Essentials for Developers</title><link href="https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers.html" rel="alternate" type="text/html" title="Devops Essentials for Developers" /><published>2024-03-05T00:00:00+05:30</published><updated>2024-03-05T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/05/devops-essentials-for-developers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-05-devops-servers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-taylor-vick-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@tvick?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Taylor Vick&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/cable-network-M5tzZtFCOfs?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;There are multiple definitions of the term &lt;strong&gt;DevOps&lt;/strong&gt; throughout the industry. I’ll share a few and then we’ll discuss more on them:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Philosophical definition (by AWS)&lt;/strong&gt;: DevOps is the combination of cultural philosophies, practices, and tools that increases an organisation’s ability to deliver applications and services at high velocity: evolving and improving products at a faster pace than organisations using traditional software development and infrastructure management processes.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;In relation to code&lt;/strong&gt;: DevOps involves some coding, but it’s not primarily about writing code. It’s more about improving processes, collaboration, and automation in software development and IT operations. While coding is essential for creating automation scripts and tools, it’s just one aspect of DevOps.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;As a career / job profile&lt;/strong&gt;: Depending on kind of organisation, there might be different expectations. A decade ago, the work was more around physical server administration when the Devops team was responsible for handling physical servers (and later, cloud servers). In the recent years, most of the organisations have delegated the server administration to cloud providers. And the expectations have shifted to knowledge of technologies like &lt;strong&gt;Containerization&lt;/strong&gt; (Docker, Kubernetes), &lt;strong&gt;Observability&lt;/strong&gt; (Grafana, NewRelic, Datadog), &lt;strong&gt;IaaC&lt;/strong&gt; (Terraform, Ansible), &lt;strong&gt;Cloud cost optimisation&lt;/strong&gt; (planning infra reservation), etc.
- By job titles, organisations can have different profiles like Cloud Engineer, Site Reliability Engineers, IaaC Engineer, Automation Engineer, System Administrator etc.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;In my ~ 9 years of experience, my work has been a mix of &lt;strong&gt;Backend&lt;/strong&gt; and &lt;strong&gt;Devops&lt;/strong&gt;. Getting my hands dirty on Devops side has given me a lot of edge in understanding things related to deployment, cloud, servers and operating systems that other developers couldn’t easily understand. For example - whenever I was working on a new project, I had a decent idea of what memory/CPU we’d allocate to it in staging and production environment. Not only this, I use to go ahead and provision the infrastructure myself. Someone might see this negatively, specially when you have had dedicated Devops team(s) in your company. In most of the organisations, there’s a clear separation between the responsibilities of Developers and Devops. And developers never get into infra related things. In my case, there were two major reasons why I got into Devops:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://copperegg.com/&quot;&gt;My first project&lt;/a&gt; in first organisation was a monitoring product for Devops (similar to Datadog/NewRelic). When I started working on it, it was acquired by a larger company and we were mostly maintaining it. Because we were not building new features, the customer base was not growing and our sprint tasks often involved assessing current infra and downsizing the infra. Around the same time, we planned a long migration from AWS Classic to AWS VPC (it was a big deal back in 2016-17). Most of these tasks were on the Devops side and there was 1 only Devops resource allocated to us. As a result of all these activities, all the developers (we were 3 people) became Devops experts. Within 2.5 years of work, I was hands on with AWS EC2, S3, RDS, R53, VPC, SQS and Unix servers.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In my second job (&lt;a href=&quot;https://loconav.com/&quot;&gt;LocoNav&lt;/a&gt;), we did not have a dedicated Devops team for first few years. We had at max 0-1 Devops on and off, so some engineers like me (who knew cloud &amp;amp; servers) took care of the Devops side. As a result, we mentored many developers to work as Devops (while we were primarily Rails, Java and Golang Developers).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;For me there is not even a thin line between Developer tasks and Devops tasks. I swiftly switch between those as needed. But rest of the developers (who are not into Devops) feel like they’re missing something. During 1:1 meetings, we’ve got this feedback from many Developers that they want to learn at least some part of Devops things we do. We encourage and guide people as needed because we feel this is a good added skill. I often see job descriptions where companies expect some understanding of Devops philosophy even from SDE candidates. Today, I’ll try to bridge the path between these two disciplines so that you have an idea on how to start.&lt;/p&gt;
-
-&lt;h2 id=&quot;things-to-know&quot;&gt;Things to know&lt;/h2&gt;
-
-&lt;p&gt;I’d assume you are a typical SE/SSE who is majorly writing code, writing test cases, raising pull requests and merging pull requests. You might also be using something like &lt;em&gt;Jenkins&lt;/em&gt; to build and deploy your code to an environment. You might be deploying on VMs (eg. physical / EC2), some wrapper around it (eg. Heroku / Elastic Beanstalk) or as docker containers on kubernetes (EKS / AKS / self hosted).&lt;/p&gt;
-
-&lt;p&gt;First of all, you need &lt;strong&gt;genuine curiosity&lt;/strong&gt; to learn anything not just Devops. Here, by &lt;em&gt;curiosity&lt;/em&gt; I mean you should be curious to know:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;What happens after you click the &lt;em&gt;Build now&lt;/em&gt; button on Jenkins (for example).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What is a Jenkins project? How do we configure one?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Where do we mention the steps that execute to build a project?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Do you understand the logs (specially errors) that come in the console output of your build tool? Are you able to debug the errors or you call the Devops guy? Knowing how to interpret logs and debug issues is an underrated skill. It can take you miles ahead from others.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Once you have that curiosity, you’ll try to &lt;strong&gt;look beyond code&lt;/strong&gt;. &lt;a href=&quot;https://blog.gagan93.me/asking-good-questions&quot;&gt;Ask questions&lt;/a&gt; to learn more about your overall architecture:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Which cloud provider(s) your team uses to deploy the code?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How are different components (eg. servers, databases, caches) connected to each other in a production environment? Is it different for staging, preprod or dev environment?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How does your service interact with rest of the services? Is there an architecture diagram of the system that you can refer?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Do you guys deploy on bare metal servers or cloud servers? Or do we deploy as containers?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What operating system is used to deploy your code? Even if you’re using containers, there should be one OS that is actually base image of your containers.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;By asking these questions, you’ll get to hear a lot of buzzwords like “dockers”, “AWS”, “kubernetes”, “API Gateway”. Now it depends on what you want to learn and what you want to skip. At a minimum, I’d recommend knowing something around:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;DNS / Networking&lt;/strong&gt; - &lt;em&gt;“What happen within the time when you write google.com in your browser and when the page renders on your browser window?”&lt;/em&gt;. For years, this has been my favourite interview question. I’ve asked this to all levels of engineers, and (obviously) got different level of detail in the answer. If your answer mentions DNS servers, IP resolution, proxy servers/load balancers/API gateways, Application server, request parsing, routing the request to specific handler (&lt;em&gt;controllers&lt;/em&gt; in &lt;strong&gt;MVC&lt;/strong&gt;), querying the backend (if a dynamic page), and rendering the response in the browser, then you know most of it. If not, please read about each of these things. Beyond this, you should know about basic networking like LAN (eg. your mobile/laptop are within the same network at home/office, i.e. a LAN). Also have some basic knowledge around IPv4/IPv6, &lt;a href=&quot;https://www.google.com/search?q=class+A+to+E+IP+addresses&amp;amp;oq=class+A+to+E+IP+addresses&amp;amp;gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDM1NzhqMGo3qAIAsAIA&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8&quot;&gt;IP Address classes&lt;/a&gt;, &lt;a href=&quot;https://www.tutorialspoint.com/ipv4/ipv4_reserved_addresses.htm&quot;&gt;reserved address spaces&lt;/a&gt;, etc. It will help you later understand subnets and VPC in the cloud.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Cloud Provider&lt;/strong&gt; - There major ones are &lt;a href=&quot;https://aws.amazon.com/&quot;&gt;AWS&lt;/a&gt;, &lt;a href=&quot;https://azure.microsoft.com/en-in&quot;&gt;Azure&lt;/a&gt; and &lt;a href=&quot;https://cloud.google.com/&quot;&gt;GCP&lt;/a&gt;. There are many more like &lt;a href=&quot;https://www.linode.com/&quot;&gt;Linode&lt;/a&gt;, &lt;a href=&quot;https://try.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt;, &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt; and newer ones like &lt;a href=&quot;https://vercel.com/&quot;&gt;Vercel&lt;/a&gt; and &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt;. On a fundamental level, they all started with the same thing - providing you an easy way to provision a computer (i.e. a server) with required RAM, CPU, Disk and networking. Later, they evolved into more sophisticated platforms, providing variety of servers based on use case like general compute, memory heavy tasks, gaming, machine learning, etc. Beyond this, nowadays they also provide managed SQL/NoSQL databases, email service, DNS management, API Gateways, Docker image repositories, managed kubernetes service and practically everything you would need to run a medium-large app on the cloud. AWS alone provides 200+ managed services in the cloud 🤯.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Data-centers, regions and lags&lt;/strong&gt; - Let’s assume that most of your customers are in India and your servers are also in India. By India, I mean your servers are either physically managed by you in a datacenter, or are running on a managed provider like &lt;a href=&quot;https://aws.amazon.com/blogs/aws/now-open-aws-asia-pacific-mumbai-region/&quot;&gt;AWS in mumbai&lt;/a&gt; or &lt;a href=&quot;https://www.digitalocean.com/blog/introducing-our-bangalore-region-blr1&quot;&gt;DigitalOcean in Bangalore&lt;/a&gt;. Here, the &lt;a href=&quot;https://en.wikipedia.org/wiki/Time_to_first_byte&quot;&gt;TTFB&lt;/a&gt; and overall request will be fast, in an ideal scenario where other factors like server load and network congestion are low. Incase your customers are in India and servers run in Singapore, then it will be slightly slower. Similarly, if you go even far and move your servers to North America, then the request latency can increase. I think you got a basic idea of physical distance here but this is more related to DNS hops. Cloud providers provision a server for you in a specific region chosen by you (eg. Mumbai). Even in Mumbai, they will not have a single data center. So they can allow you to choose a specific data center (AWS calls them &lt;a href=&quot;https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones&quot;&gt;availability zones&lt;/a&gt;) where you want to run your server. If two servers are running within the same data center, the network transfer speed among them will be maximum. But this doesn’t mean that you should run all your API servers and databases in a single data center because if one data center goes down (&lt;a href=&quot;https://www.reddit.com/r/aws/comments/b90kof/how_often_does_a_region_go_down_what_about_azs/&quot;&gt;although rare&lt;/a&gt;), your entire application will go down. From a stability and fault tolerance perspective, these cloud providers isolate the regions from each other completely.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Build and Deployment process&lt;/strong&gt; - For many developers, deployment process is magical and “just happens”.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Learn what happens during build and deployment of your app. Based on the size/complexity, this can take some time to dive deep but trust me, you’ll learn &lt;strong&gt;a lot&lt;/strong&gt; in this process.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Understand what are the artifacts (output) of your build process. If it’s a Java project, you’ll possibly get a JAR/WAR file after the build is complete. For a Golang project, you’ll get a executable binary. For interpreted ones like Python and Ruby, your raw code is the artifact. This could be docker image (irrespective of the tech stack) if you’re building docker images and deploying them to swarm/kubernetes.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Learn about your build tool. &lt;a href=&quot;https://www.jenkins.io/&quot;&gt;Jenkins&lt;/a&gt; is a widely used build tool. If you’re also using this, learn how to create projects, understand what is a build script, learn about pipelines, read about jenkins slaves and farms.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Containerisation technologies&lt;/strong&gt; - Everyone is doing micro-services these days (although that &lt;a href=&quot;https://adevait.com/software/why-most-startups-dont-need-microservices-yet&quot;&gt;might not be the best choice&lt;/a&gt; if you’re a startup). In a micro-services architecture, the teams are free to choose their own tech stack to develop services. While it gives you this freedom, it makes hard to choose and manage the deployment tooling. Containerisation technologies streamline the build and release process for multiple technology stacks. For example, Docker provides standardised containerisation framework for applications, while Docker Swarm / Kubernetes offer orchestration to efficiently manage deployment, scaling, and communication across services. Knowing these technologies would help you to write efficient Dockerfiles, &lt;a href=&quot;https://blog.gagan93.me/optimising-docker-builds&quot;&gt;create optimised images&lt;/a&gt; and write helm charts. These things will help to take new projects beyond the dev environment.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Operating system knowledge&lt;/strong&gt; - It’s important to have knowledge of the specific OS where your apps get deployed. Here I’m not focussing on core OS concepts like mutex, semaphores or process scheduling. We should have operational knowledge of the OS so that we can easily debug issues as required. For example, we’ve been deploying our apps on Debian (Unix) for years. So we have a decent idea around &lt;a href=&quot;https://systemd.io/https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd&quot;&gt;systemd&lt;/a&gt;, &lt;a href=&quot;https://www.techtarget.com/searchdatacenter/definition/crontab&quot;&gt;crontabs&lt;/a&gt;, &lt;a href=&quot;https://www.sumologic.com/syslog/&quot;&gt;syslog&lt;/a&gt;, &lt;a href=&quot;https://unix.stackexchange.com/questions/545083/auth-log-entries-how-do-you-interpret-this-log&quot;&gt;authlog&lt;/a&gt;, &lt;a href=&quot;https://wiki.debian.org/Apt&quot;&gt;apt&lt;/a&gt; (our package manager), &lt;a href=&quot;https://neo4j.com/developer/kb/linux-out-of-memory-killer/&quot;&gt;OOM&lt;/a&gt; and bunch of unix commands that ease our debugging. Without this knowledge, you’d want someone to hold your hand while debugging a server issue.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Observability&lt;/strong&gt; - Let’s assume you wrote a module that has bunch of REST APIs integrated with mobile and web apps. The product was initially rolled out to 100 users, then 1000, and finally to everyone (say 1 million users). With time you’d see that some API calls fail with HTTP 500 due to an edge case that was never thought of. Once 10K entries are made in a SQL table, you might see a query slowing down because you forgot to add an index on specific table column and initially the data was not large enough to cause slowness. While debugging some cases, you’d need exact request parameters that came in a POST request to see what caused it to fail. And once there are 100 request per second, you will find a need to add more servers for your service. With system architectures becoming more distributed and on cloud, there’s a need to be able to measure internal state of the system based on external inputs like logs, metrics and traces. This comes under &lt;em&gt;Observability.&lt;/em&gt; Coming back to the specific examples: you would need an &lt;strong&gt;error reporting&lt;/strong&gt; tool like Bugsnag/Sentry, to see the class/method/line where your code failed. You should have an &lt;strong&gt;APM tool&lt;/strong&gt; like Datadog/NewRelic to see if some API calls or database queries are slowing down recently. It’s important to have &lt;strong&gt;centalized logging tools&lt;/strong&gt; (like ELK/Scalyr) in a distributed environment so that we can trace a request that routes through different micro-services to process a request. Similarly, &lt;strong&gt;infrastructure monitoring&lt;/strong&gt; tools like Prometheus are important to have a high-level overview of your servers/containers. Observability is a very wide topic, and while all this sounds overwhelming, it is actually very easy to understand if you really get the core of the problem. For example, if we don’t integrate an error reporting tool, how would we know what part of code is failing and on what line of code? Each tool solves a problem that might or might not be important to you based on needs of your product but it’s important to know broadly what all tools exist.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;There are more things I can talk about (like IaaC) but I think this much should be good to start with. The best way to learn anything is to be hands-on. I’d suggest the following ways to get your hands dirty:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Open source tools&lt;/strong&gt; (includes Jenkins, Grafana, Prometheus, Docker, Kubernetes, etc.) - All these tools are &lt;a href=&quot;https://en.wikipedia.org/wiki/Free_and_open-source_software&quot;&gt;FOSS&lt;/a&gt; and can be easily downloaded on your local machine. These are not heavy and many of them (eg. first three) come as docker images so you can uninstall them without bloating your machine.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Cloud Platforms&lt;/strong&gt; - Most of the cloud providers have free-tier (eg. &lt;a href=&quot;https://aws.amazon.com/free&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;https://cloud.google.com/free/docs/free-cloud-features&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;https://azure.microsoft.com/en-in/pricing/offers/ms-azr-0044p&quot;&gt;3&lt;/a&gt;) so that you can learn things by doing (that’s the best way I believe). Aim towards learning 3-4 specific services than randomly trying out services. Keep budget alerts so that you don’t accidentally hit a &lt;a href=&quot;https://www.youtube.com/watch?v=N6lYcXjd4pg&quot;&gt;cloud overflow&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Other Platforms&lt;/strong&gt; - Almost all the platforms have free tier where they won’t charge you unless you’re pushing a lot of data (eg. a lot of traces to NewRelic or a lot of errors to Bugsnag, or many GBs of log data to Scalyr). Even they want people to use their platform so they encourage such free plans. Otherwise they at least have 15-30 day trial plans. Wherever you put your credit card, make sure your to setup some budget alert and remove the card after you are done practising. To avoid any mistakes that can cost you some dollars, concentrate and learn 1-2 things rather than picking 10 things at once.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="Devops" /><category term="Cloud" /><category term="Developers" /><summary type="html">In my ~ 9 years of experience, my work has been a mix of Backend and Devops. Getting my hands dirty on Devops side has given me a lot of edge in understanding things related to deployment, cloud, servers and operating systems that other developers couldn&apos;t easily understand. For example...</summary></entry></feed>
+&lt;p&gt;As software developers, we often face &lt;a href=&quot;https://en.wikipedia.org/wiki/Impostor_syndrome&quot;&gt;imposter syndrome&lt;/a&gt; and feel like we don’t know nothing beyond our company projects. Building something in parallel could be a way to sharpen your skills and increase confidence. If you have time, you can build something in a new tech stack. If not, feel free to choose your existing stack and build it. Sadly, I got too busy with my work that I did not spare enough time to build anything else like the Alumni website. But thankfully I started writing last year and I enjoy that (I hope you too enjoy reading the blogs 😊).&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="Development" /><category term="Scratch" /><category term="BuildingAndLearning" /><summary type="html">One year into the industry, I wasn&apos;t sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of ...</summary></entry></feed>
