@@ -1,4 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-09-22T15:23:02+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-09-22T17:06:51+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-kier-in-sight-archives-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Kier in Sight Archives&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;I’m a Senior Engineer with nearly 9 years of experience in the Software Industry. In my first year at my previous job, I had to migrate the background job processing engine from &lt;a href=&quot;https://github.com/collectiveidea/delayed_job&quot;&gt;delayed-job&lt;/a&gt; to &lt;a href=&quot;https://github.com/sidekiq/sidekiq/&quot;&gt;sidekiq&lt;/a&gt;. For those not familiar with Ruby, think of these as two libraries that help you run async jobs in a distributed system, similar to &lt;a href=&quot;https://www.jobrunr.io/en/&quot;&gt;JobRunr&lt;/a&gt; in Java projects or &lt;a href=&quot;https://docs.celeryq.dev/en/stable/&quot;&gt;Celery&lt;/a&gt; in Python projects. We encountered several issues with delayed-job and realized that Sidekiq would be a much better option as we scaled. To summarize:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sidekiq runs multiple threads per process to execute jobs, while Delayed Job runs one thread per process. This means Delayed Job uses more memory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Delayed Job uses SQL databases to store jobs, whereas Sidekiq uses Redis. Redis, being an in-memory database, is much faster than traditional disk-based SQL databases.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sidekiq is a very popular Ruby library, so there are many extensions available. These include &lt;a href=&quot;https://github.com/sidekiq-cron/sidekiq-cron&quot;&gt;running crons&lt;/a&gt; and ensuring &lt;a href=&quot;https://github.com/mhenrixon/sidekiq-unique-jobs&quot;&gt;unique jobs&lt;/a&gt;. Additionally, Sidekiq’s author has &lt;a href=&quot;https://github.com/sidekiq/sidekiq/wiki/Using-Dragonfly&quot;&gt;started supporting&lt;/a&gt; a drop-in &lt;a href=&quot;https://www.mikeperham.com/2024/02/01/supporting-dragonfly/&quot;&gt;replacement for Redis&lt;/a&gt; for storing jobs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;While many open-source extensions exist for Sidekiq, companies can get more features and premium support with &lt;a href=&quot;https://sidekiq.org/products/pro.html&quot;&gt;Sidekiq Pro&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;migration-phase&quot;&gt;Migration phase&lt;/h2&gt;
+
+&lt;p&gt;We added both libraries together for a few months and gradually migrated from DJ to Sidekiq. The two most common uses of background jobs were:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calling an instance method asynchronously, like loading a model entry from the database and calling a method on it asynchronously (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model.find(some_id).process_it_async&lt;/code&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Calling a class method asynchronously, which might initialize more classes or call methods as needed (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SomeClass.process_class_method_async(some_data&lt;/code&gt;).)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;At that time, I was a typical &lt;strong&gt;startup engineer&lt;/strong&gt; with limited knowledge of code quality, focused primarily on &lt;strong&gt;getting things done.&lt;/strong&gt; Consequently, I wrote a small class that facilitated the migration of many usages to Sidekiq:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenericAsyncWorker&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sidekiq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Worker&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is not the exact code but gives an idea of what I wrote. In short:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;args&lt;/code&gt; had an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;, I loaded the model object and called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt; on it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If not, I called the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;class method&lt;/code&gt; with the given &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;args&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For non-Ruby developers:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include Sidekiq::Worker&lt;/code&gt; makes this class a background job processor.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find&lt;/code&gt; loads a table row from the database based on ID. It’s part of Rails’ ORM.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;send&lt;/code&gt; dynamically calls methods of a class.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There was a very kind Senior Engineer who reviewed my code later and said, “&lt;em&gt;this is not good, this is too generic&lt;/em&gt;.” I didn’t understand what they meant at the time. My thought process was — &lt;em&gt;it’s working and it helped complete the migration faster, so what’s the problem?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Before you read on, take a moment to think about whether this is good or bad.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problems&quot;&gt;The Problems&lt;/h2&gt;
+
+&lt;p&gt;Even though the code above works, it breaks key principles of good, maintainable code:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;According to the &lt;strong&gt;S&lt;/strong&gt; in &lt;strong&gt;SOLID&lt;/strong&gt; principles, a class should have one reason to change. I also apply this to methods — a method should do one thing well. This method is trying to do two things. You might think the method is small and only doing two things, so what’s the issue? Read on to understand.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The code inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement expects to load the model object and then call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt; on it. What if someone wants to pass arguments to that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt;? Would we add another argument or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement to handle that?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What if this class is a plain Ruby class (not a Rails model) that needs to initialize the constructor and then call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt;? Another flag to handle that?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;As you might know, we assign &lt;strong&gt;queues&lt;/strong&gt; to process &lt;strong&gt;specific jobs&lt;/strong&gt;. Queues are chosen based on the urgency of the task. If many tasks start running with this generic code, how do we determine the urgency of this job class?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;By just looking at the code for a minute, I quickly spotted these problems. I laugh now, thinking I wrote this back in 2019. But that’s a good sign because if you don’t like your old code, it means you’ve grown 😇.&lt;/p&gt;
+
+&lt;p&gt;The above is an example of &lt;strong&gt;Generic Code.&lt;/strong&gt; Such classes evolve into &lt;a href=&quot;https://refactoring.guru/smells/long-method&quot;&gt;long methods&lt;/a&gt; with a &lt;a href=&quot;https://refactoring.guru/smells/long-parameter-list&quot;&gt;lot of arguments&lt;/a&gt;, creating a mess. Over time, multiple developers change the code in these classes to fit new use-cases, often breaking existing ones. There are only two ways to solve such problems:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Don’t create such classes in the first place.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Gradually move to specific classes and delete the old one later.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I don’t suggest spending time untangling the mess built up over the years by different developers unless you have test cases for this class. It’s better to create specific classes for each use case and migrate to them.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-talk-about-testing&quot;&gt;Let’s talk about testing&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Many developers and teams don’t write unit tests. If you’re one of them, I strongly recommend you start. They make future maintenance easier and provide feedback on your design.&lt;/p&gt;
+
+&lt;p&gt;If you write tests regularly, you’ll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my experience, &lt;strong&gt;if a class is hard to test, it likely needs refactoring&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;generic-code-in-production&quot;&gt;Generic code in production&lt;/h3&gt;
+
+&lt;p&gt;I still see developers writing generic code for production projects. This isn’t necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I schedule a call to explain the pitfalls of overly generic code and why it’s beneficial to avoid it. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;By writing specific classes, developers can create more targeted unit tests, which provide better feedback on the design and functionality of the code. Always think about the long-term implications of your code. Writing generic code might seem efficient at first, but it often leads to more work as the codebase evolves and new use cases emerge. By writing specific, well-structured code from the start, we can save ourselves and our teams a lot of future headaches. This post aims to help you understand the value of writing clean, maintainable code and become better software engineers.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -988,58 +1114,4 @@
 
 &lt;p&gt;Atlassian was not my dream company but I have been using JIRA and confluence for years and I admire their products. I’m a JIRA administrator at LocoNav and my exposure has been far beyond the typical developer’s usage. The good point about Atlassian was a remote role with handsome compensation. It is known to offer perks similar to FAANG companies (check their Bangalore office). But the bad part (heard recently) is that they revoked PPO for freshers and &lt;a href=&quot;https://www.teamblind.com/search/Atlassian&quot;&gt;have also been putting many engineers on PIP recently&lt;/a&gt;. Looks like they’ve over-hired like many other companies :) Another thing that seemed off to me was that I got in touch with multiple people working at Atlassian (including the Data structures round interviewer) and all of them were working on the same thing - &lt;strong&gt;Cloud migration&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Atlassian still remains a dream organisation for many (thanks to didis and bhaiyas who keep uploading office tour videos). I’ll be sharing more interview experiences in next few weeks. Thanks for reading and good luck if you’re looking for a change.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="atlassian" /><category term="interview" /><category term="senior-software-engineer" /><summary type="html">I interviewed for the position of Senior Software Engineer at Atlassian in November 2023. This was my first ever experience getting interviewed by a large product organisation. Just to brief about myself and my background ..</summary></entry><entry><title type="html">Titles, Inflation and Down-levelling</title><link href="https://gagan93.me/blog/2024/04/19/titles-inflation-downlevelling.html" rel="alternate" type="text/html" title="Titles, Inflation and Down-levelling" /><published>2024-04-19T00:00:00+05:30</published><updated>2024-04-19T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/04/19/titles-inflation-downlevelling</id><content type="html" xml:base="https://gagan93.me/blog/2024/04/19/titles-inflation-downlevelling.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-04-19-title-inflation-downlevelling.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-jason-strull-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@jasonstrull?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Jason Strull&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-holding-his-head-while-sitting-on-chair-near-computer-desk-KQ0C6WtEGlo?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;If you’re confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company to a product company (or one of the FAANG companies) where their titles are different or down-levelled. If you don’t have this understanding, you might think - &lt;em&gt;Why would someone move from a current role of Tech lead to a Senior Software Engineer&lt;/em&gt;?&lt;/p&gt;
-
-&lt;h2 id=&quot;understanding-titles&quot;&gt;Understanding Titles&lt;/h2&gt;
-
-&lt;p&gt;Titles are not standard across companies. And the reason is very obvious - you could open your own company and call yourself a Director/CEO. That might not have any significance unless you have some clients who pay you for the services you provide. As the company grows, you hire more people and/or get more customers. Only then the titles start making some sense. Applying the same example to the scenario where you might join a small company as a Founding engineer/Lead Engineer/VP of Engineering. Here, your initial title doesn’t matter because people in startups are &lt;a href=&quot;https://emeritus.org/blog/career-generalist-vs-specialist/&quot;&gt;generalists&lt;/a&gt;: You might be a Software developer by title but at times you could also be setting up servers, doing testing, and even doing customer support. Startups have flat hierarchy where most of the employees are less focussed on titles and more focussed on the mission.&lt;/p&gt;
-
-&lt;p&gt;On the other end of this spectrum, we have medium to large organisations where leadership defines specific designations and salary bands. Here, people are very much concerned about their titles because their work and pay aligns with their bands. But that doesn’t mean that a Senior Engineer in one big tech does the same work and gets the same pay as the one working in another big tech. Although titles have a range of pay and not everyone on same title gets the same salary (even in a single company) but I hope you get what I’m saying - work and pay differs across companies. This is due to the variations in leadership styles, the complexity of work, and the specific skill sets and experience levels needed to attain a particular job title across different companies.&lt;/p&gt;
-
-&lt;p&gt;The closest example in this concern is of my own. I work as a &lt;strong&gt;Staff Engineer&lt;/strong&gt; at &lt;a href=&quot;https://loconav.com/&quot;&gt;LocoNav&lt;/a&gt; that has a small engineering team of ~ 100 people. The complexity of my work is not at par with someone who is a &lt;strong&gt;Staff Engineer&lt;/strong&gt; at Google, Stripe, or Meta. So if I had to compare myself with a title in such companies, the closest one that aligns is of a &lt;strong&gt;Senior Software Engineer&lt;/strong&gt;. But the question is - how did I infer this, and how you can do the same for yourself?&lt;/p&gt;
-
-&lt;h3 id=&quot;understanding-levels&quot;&gt;Understanding levels&lt;/h3&gt;
-
-&lt;p&gt;If you want to understand where you currently are w.r.t big tech organisations, simply search something like “Google Software Engineer levels” (or Meta, or Uber). There are many articles already written by ex-employees that describe the responsibilities and expectations of each level. You can match the same with your current responsibilities and understand your level. This is helpful, specially if you’re targeting a role at that company.&lt;/p&gt;
-
-&lt;p&gt;I hope the above explains something around titles.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-title-inflation&quot;&gt;What is Title Inflation?&lt;/h2&gt;
-
-&lt;p&gt;There are some organisations that have a defined career ladder but you get promoted to the next level sooner. As an example, I’ve seen people in small companies that have title of &lt;strong&gt;Principal Engineer&lt;/strong&gt; which is a really senior technical position if we compare the same title to people in large organisations. This is majorly for two reasons:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Although the median tenure in the industry for software developers is ~ 4 years, there are people who do not change job for a 8-10 years. Organisations create new positions for such people so that they can be promoted (I’ve seen this myself). In small teams, people with ~ 10 years of experience could be Principal Engineers, while large organisations usually consider people in the range of 12-15 years eligible for this position (although exceptions are always there).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Sometimes, organisations &lt;a href=&quot;https://en.wikipedia.org/wiki/Job_title_inflation&quot;&gt;inflate your title&lt;/a&gt; in order to retain you when you quit. This may or may not include a hike in your pay (based on your negotiation) but moves you to the next level. Not debating if this is right or wrong, fair or unfair but it is what it is :)&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The second scenario is a typical case of title inflation. Advancing to the next level can boost your confidence, but it might not benefit you in the long term, especially if your current skills don’t align with that level. This situation could even lead to being down-levelled in your next position.&lt;/p&gt;
-
-&lt;h2 id=&quot;down-levelling-explained&quot;&gt;Down-levelling explained&lt;/h2&gt;
-
-&lt;p&gt;As the name suggests, it’s like getting a demotion (moving to a lower level). We need to understand when it actually concern us:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you’re in the same organisation and you’re getting down-levelled, then it might be a serious concern. You can talk to your manager to understand why this happened. If this is due to some performance concerns, then you might already be expecting this. Incase there is a major restructuring happening in the organisation and all the job roles are being redefined, this might be fine. It all depends on the situation and how you negotiate.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you’re moving to some other organisation, you must learn about their levelling (as already explained above). If you are getting down-levelled while changing the organisation, it might not be wrong because of different role expectations in the next organisation. Although in all cases, you must negotiate with the hiring manager and understand the expectation of next level to see if you can move to the next it :)&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;I hope this clears up any confusion about different companies and their job titles.&lt;strong&gt;.&lt;/strong&gt; It’s mostly about the organisation, their expectations, and their team’s size that defines the levels. If you’re moving to a different organisation and are being considered at a lower level, don’t get sad. Understand their job role expectations. At the same time, if you feel that you meet the expectations of a higher level, never settle for less.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="title" /><category term="title-inflation" /><category term="downlevelling" /><category term="interview" /><summary type="html">If you&apos;re confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company...</summary></entry></feed>
+&lt;p&gt;Atlassian still remains a dream organisation for many (thanks to didis and bhaiyas who keep uploading office tour videos). I’ll be sharing more interview experiences in next few weeks. Thanks for reading and good luck if you’re looking for a change.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="atlassian" /><category term="interview" /><category term="senior-software-engineer" /><summary type="html">I interviewed for the position of Senior Software Engineer at Atlassian in November 2023. This was my first ever experience getting interviewed by a large product organisation. Just to brief about myself and my background ..</summary></entry></feed>
