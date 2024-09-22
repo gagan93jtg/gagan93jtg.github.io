@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-08-25T17:27:06+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Unseen risks of Inheritance</title><link href="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html" rel="alternate" type="text/html" title="Unseen risks of Inheritance" /><published>2024-08-25T00:00:00+05:30</published><updated>2024-08-25T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance</id><content type="html" xml:base="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-09-22T15:23:02+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-a-blameless-culture&quot;&gt;What is a Blameless Culture?&lt;/h2&gt;
+
+&lt;p&gt;Have you ever heard of teams where individuals blame each other when a product release is delayed? Or perhaps, unfortunately, worked with such teams? It is quite disheartening to be part of a team where such inefficiencies outweigh productive work. A few reasons why this happens are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If managers do not invest sufficient time in designing a system that promotes transparency,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Or when most of the team members encourage the blame-game, and no one steps up to highlight that this approach harms team motivation,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Or where it is normal to delay releases or shift responsibilities, rather than maintaining clarity.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The above is exactly opposite of how &lt;strong&gt;Blameless culture&lt;/strong&gt; looks like. In a Blameless culture, we emphasize on &lt;strong&gt;learning&lt;/strong&gt; and &lt;strong&gt;improving&lt;/strong&gt; but &lt;strong&gt;without pointing fingers&lt;/strong&gt;. So when a mistake happens, the focus is on analysing the &lt;strong&gt;root cause&lt;/strong&gt; and &lt;strong&gt;fixing it&lt;/strong&gt;. In such a culture, people are open to communicate and accept their mistakes rather than hiding them or shifting blames.&lt;/p&gt;
+
+&lt;h2 id=&quot;role-of-processes&quot;&gt;Role of processes&lt;/h2&gt;
+
+&lt;p&gt;Let’s say you work in a startup with less than 10 people. There are high chances that you won’t have a process defined for anything. So if you are working in the leadership team and someone comes and asks for a leave, or wants to get their laptop repaired, or needs a comfortable chair — you will need to define a process for them. On the contrary, in a large organisation you will see a process and budget defined for almost everything. While processes are important for any organisation, startups can’t prioritise defining these processes, as their goal is to get the first few paying customers for their product(s). At the same time, they can’t even inherit the processes from a large company because a lot of those will not make sense for a startup.&lt;/p&gt;
+
+&lt;p&gt;As of now, I have over 9 years of industry experience, all in startups (including one at a &lt;strong&gt;very early stage&lt;/strong&gt;). I believe that team members should be open to learning new processes to tackle new challenges. They shouldn’t have a fixed mindset that makes them think in just one way. What worked at your previous company might not work at the next one. So, having an open mindset helps you adapt to the environment and come up with new, specific, and innovative solutions.&lt;/p&gt;
+
+&lt;p&gt;Processes in startups evolve as the company grows. For instance, they determine which leave plan is effective and what kind of release schedule works best for their software. The evolution of these processes also addresses many cultural issues. I recall in my previous role, we began to develop a culture of shifting blame to individuals and teams when our product manager inquired “&lt;strong&gt;Why is the Android release delayed?”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the frontend team, it was the QA team that approved the API too late.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the QA team, it was the backend team whose estimates were off by days or weeks.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the backend team, it was the product team that didn’t consider all scenarios, leading to changes in the code design after they started building the backend..&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We saw this as a chance to improve our processes. It took us 3-4 retrospective meetings to identify what needed improvement. Our &lt;strong&gt;open mindset&lt;/strong&gt; helped us eliminate the &lt;strong&gt;wrong culture&lt;/strong&gt; and address the &lt;strong&gt;root cause&lt;/strong&gt; of our problem. I also wrote a detailed &lt;a href=&quot;https://blog.gagan93.me/efficient-fullstack-delivery&quot;&gt;blog post&lt;/a&gt; about it many years later.&lt;/p&gt;
+
+&lt;h2 id=&quot;culture--accountability&quot;&gt;Culture &amp;lt;&amp;gt; Accountability&lt;/h2&gt;
+
+&lt;p&gt;Blameless culture doesn’t mean avoiding accountability; it means redefining it. Accountability is about ownership of tasks and outcomes. When an issue arises, the goal is to improve the process and systems that allowed the problem to occur, rather than penalizing the individual (or team) involved. This empowers team members to take responsibility without fear.&lt;/p&gt;
+
+&lt;p&gt;Another story I remember is from a recent interaction with a junior colleague in my last role. Both of us were in our notice period at that time. I met them face to face for the first time on their last working day 😅. They were moving to a large investment bank as a Software Engineer. Moving from a startup to a big company that deals with money, they were worried about what would happen if their code caused a loss of real money in production. My shortest answer to them was —&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;If it’s easy to cause loss of money in their systems, it’s a process problem and not an engineer’s fault. There should be sufficient processes and checks in place to make sure this doesn’t happen very easily&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Similarly, every now and then, I see a meme where an intern claims to accidentally destroy the production database. The problem is not the intern, but the policies that gave them write access to production database 😄.&lt;/p&gt;
+
+&lt;h2 id=&quot;founding-teams-impact&quot;&gt;Founding Team’s Impact&lt;/h2&gt;
+
+&lt;p&gt;The founding team has a profound impact on a company’s culture and processes, Founders establish the core values that reflect their work ethic and vision, setting the tone for how employees interact, make decisions, and solve problems. Whether intentional or not, the founding team’s leadership style influences the company’s norms — whether it encourages open communication, innovation, or strict hierarchy. I recently interacted with an old friend who works as a Senior Business analyst. They recently changed their job and told that the culture is very poor. In their words:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Our managers do not treat their reportees well. If you don’t answer their Slack messages quickly, they’ll ping others in the team asking, “Where is XYZ person and why aren’t they responding?” It doesn’t matter if the person went to the washroom for five minutes. They expect immediate responses to everything.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When I asked about their skip manager’s behavior, they said, &lt;em&gt;“Everyone is the same here. Skip managers shout at managers, and managers shout at us.”&lt;/em&gt; 😿 This shows how a bad culture spreads from top to bottom. Another example is a story shared by &lt;em&gt;The Pragmatic Engineer&lt;/em&gt; in &lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/stripe-part-2&quot;&gt;their blog&lt;/a&gt;. It’s about Stripe’s &lt;strong&gt;strong writing culture&lt;/strong&gt;. Because their CEO and CTO write a lot, it encourages everyone to do the same. As a result, all engineers and managers write long internal documents. I wrote about the impact of the founding team on the rest of the team on &lt;a href=&quot;https://www.linkedin.com/posts/gagan93_culture-writing-team-activity-7170322475212374016-UjEc/&quot;&gt;my LinkedIn&lt;/a&gt; a few months ago:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you’re an old member of a team, your work is beyond your work profile. One major role is to ensure a positive team culture. Culture propagates in two ways:&lt;/p&gt;
+
+  &lt;p&gt;1. Vertically (CEO -&amp;gt; Dept leads -&amp;gt; managers -&amp;gt; seniors -&amp;gt; freshers).
+2. Horizontally (Among peers / among old and new people).&lt;/p&gt;
+
+  &lt;p&gt;If there is a blame-game culture in a team of 10 members, then chances are that 11th member will also start doing that, or will leave. On the positive side, if there’s a bar of “high quality” code or processes in a team, then the new member will have to match that in order to survive.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;If you work in a team with cultural issues, collaborate with your peers and manager to improve it. If you’re in a startup or a growing team, make sure the culture develops positively. Small habits have a big impact when others follow them, whether good or bad.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading! Have a good day.&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name>Gagandeep Singh</name></author><category term="culture" /><category term="team" /><category term="motivation" /><summary type="html">Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity....</summary></entry><entry><title type="html">Unseen risks of Inheritance</title><link href="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html" rel="alternate" type="text/html" title="Unseen risks of Inheritance" /><published>2024-08-25T00:00:00+05:30</published><updated>2024-08-25T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance</id><content type="html" xml:base="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@flyd2069?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;FlyD&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/text-5lU_WmKVus4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -957,148 +1042,4 @@
 
 &lt;p&gt;I hope this clears up any confusion about different companies and their job titles.&lt;strong&gt;.&lt;/strong&gt; It’s mostly about the organisation, their expectations, and their team’s size that defines the levels. If you’re moving to a different organisation and are being considered at a lower level, don’t get sad. Understand their job role expectations. At the same time, if you feel that you meet the expectations of a higher level, never settle for less.&lt;/p&gt;
 
-&lt;p&gt;Thanks for reading.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="title" /><category term="title-inflation" /><category term="downlevelling" /><category term="interview" /><summary type="html">If you&apos;re confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company...</summary></entry><entry><title type="html">Cloud, SaaS Cost Reduction</title><link href="https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction.html" rel="alternate" type="text/html" title="Cloud, SaaS Cost Reduction" /><published>2024-03-21T00:00:00+05:30</published><updated>2024-03-21T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction</id><content type="html" xml:base="https://gagan93.me/blog/2024/03/21/cloud-saas-cost-reduction.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-ussama-azam-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@ussamaazam?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Ussama Azam&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/pink-arrow-neon-sign-26h317_UMYM?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we’re not paying extra for any service. In the past 1.5 years, we planned and executed a lot of tasks to reduce our spends. This included what we pay to:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Cloud platforms,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Observability platforms,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Collaboration platforms,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;And other SaaS tool (eg. we use location related services heavily in our products as we’re a &lt;a href=&quot;https://loconav.com/&quot;&gt;fleet management product&lt;/a&gt;).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This task was taken up by multiple people including myself and we had to figure out our usage of each tool in a way that we can either optimise them or (possibly) replace them. So the thought process was broken into these categories:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Unused resources&lt;/strong&gt; - Are there unused resources lying that can be freed to save some 💰? This includes unused Github seats, a server that was mistakenly left running, a disk volume that’s lying unattached after terminating a machine, etc.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Optimising Data volume&lt;/strong&gt; - Are there tools where we could send less data without impacting the usage? For example, you can control how much data is sent to APM tools and save some cost here because general trend still remains (almost) same and they bill you for the amount of data you send.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Finding alternative tools&lt;/strong&gt; - Are there tools that can be replaced with cheaper or open source (self-hosted) alternatives?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Architectural optimisations&lt;/strong&gt; - Can we plan short term and long term architectural changes that would help us save cost? We knew a few things that could be architected better. So we prioritised tasks in a way that have high ROI in the short term were picked first while others were parked for the long term.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The above thought process looks very structured. Frankly, we did not start like this but this is how it eventually turned out to be.&lt;/p&gt;
-
-&lt;h2 id=&quot;figuring-out-everything&quot;&gt;Figuring out everything&lt;/h2&gt;
-
-&lt;h3 id=&quot;unused-resources&quot;&gt;Unused resources&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;SaaS platforms&lt;/strong&gt; - Most of the SaaS applications have pricing based on no. of users. While onboarding new team members is a usual activity and happens sooner or later, but it’s equally important to offboard them once they leave. In small teams, this leak often remains undetected for months. Beyond cost, this could have other risks unless the user logs in through SSO. So make sure to deactivate accounts and free those seats when users leave. It might have a small impact on monthly bills but it is important to have a complete list of apps where you need to deactivate user accounts.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Cloud platforms&lt;/strong&gt; - It’s hard to accurately understand and justify cloud spends but members of the team should still have an idea on how many databases, virtual machines and other cloud resources they’re using. If you have a single cloud account that multiple teams use, I’d recommend you to &lt;a href=&quot;https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html&quot;&gt;tag the resources&lt;/a&gt; used by respective teams. Once done, it becomes easy to discuss and optimise the cost for each team. Beyond this, you could figure out things that are not used or could be combined. For example, we figured out and did all this:&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;strong&gt;Buckets&lt;/strong&gt; - Check unused S3 buckets and deleted them. Modified storage class for a few of them and set intelligent tiering to a few.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;strong&gt;EC2/EBS&lt;/strong&gt; - We moved to EKS for many apps so we deleted &lt;a href=&quot;https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html&quot;&gt;AMIs&lt;/a&gt; for those apps, that helped us free up a lot of space used by snapshots. Apart from this - basic optimisation like deleting unused machines that were left mistakenly, checking instance usage and resizing machines were also done.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;strong&gt;Merging few deployments&lt;/strong&gt; - There were a lot of small projects (both internal and customer facing) which used individual databases, caches and machines. We consolidated databases for a lot of internal tools on a single RDS that still didn’t peak to even 50% of CPU after combining. Thankfully all our relational use cases are on Postgres that helped in this consolidation (read about &lt;a href=&quot;https://blog.gagan93.me/avoid-redundant-complexity&quot;&gt;embracing simplicity&lt;/a&gt;). This was planned for some other projects also that were customer facing but very much related to each other and could be combined.
- Note: Don’t overdo this as this has one potential downside - incase you upgrade this RDS in future in a way that it needs a downtime, you’d need to take downtime on all the apps that use this RDS.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;optimising-data-volume&quot;&gt;Optimising data volume&lt;/h3&gt;
-
-&lt;p&gt;Before understanding what we optimised, I’ll share some background on data transfer (ingress and outgress) costs. Data transfer is one of the most trickiest component in a cloud provider’s bill. For many managed resources, you pay for the amount of data transferred through them (apart from the basic cost of running them). &lt;a href=&quot;https://aws.amazon.com/elasticloadbalancing/pricing/&quot;&gt;AWS load balancer&lt;/a&gt; is a perfect example of this where you pay a monthly cost of using it and another cost for the amount of data transferred. Even beyond this, if the data goes out to the public internet (outside AWS) or a &lt;a href=&quot;https://aws.amazon.com/about-aws/global-infrastructure/regions_az/&quot;&gt;different region&lt;/a&gt;, you get charged extra. The data transfer cost is negligible for personal projects / small apps but it becomes a considerable part of your bill if your apps have a lot of data flowing outside the AZ/Region. The point is - how do I know if the data goes out of cloud provider 🤔? The answer is not so simple and it varies from &lt;a href=&quot;https://babatrucks.atlassian.net/browse/INTAKE-7424&quot;&gt;one provider&lt;/a&gt; to &lt;a href=&quot;https://azure.microsoft.com/en-in/pricing/details/bandwidth/&quot;&gt;another&lt;/a&gt;. As a thumb rule, assume you’ll be charged for data if:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;It goes out of your AZ (availability zone) or region.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;You connect to a service that runs on another cloud provider (or generally on public internet).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Coming back to optimising data volume - We use Datadog for Application Performance Monitoring (APM). Some of our large applications send a lot of data to Datadog. If you check their &lt;a href=&quot;https://docs.datadoghq.com/account_management/billing/pricing/#apm&quot;&gt;APM billing&lt;/a&gt;, you’ll realise that they consider &lt;em&gt;amount of spans ingested&lt;/em&gt; for charging the user. Because the data can be very large for mid-large applications, they give an &lt;a href=&quot;https://docs.datadoghq.com/tracing/guide/ingestion_sampling_use_cases/#reducing-ingestion-for-high-volume-services&quot;&gt;option to control&lt;/a&gt; how much percentage of data we want to sample. This reduces costs in two ways: data received at the APM layer is lower (hence less bill) and data emitted from our system is also less (hence less transfer charges). Here, the data transfer cost would impact us only if Datadog’s infrastructure is deployed in a different AZ/Region/Cloud provider. As of March 2023, when someone &lt;a href=&quot;https://www.linkedin.com/pulse/datadog-outage-multi-cloud-reliability-dylan-ratcliffe/&quot;&gt;unofficially investigated&lt;/a&gt; Datadog’s outage, he found out that Datadog uses multi-cloud deployment strategy, i.e. they deploy in AWS, Azure and GCP. So you can believe that your data is most probably going out of the cloud provider.&lt;/p&gt;
-
-&lt;p&gt;For your apps - If you start with this basic knowledge of ‘how your cloud provider charges for data transfer’, you can optimise a few things on the bill 😀.&lt;/p&gt;
-
-&lt;h3 id=&quot;finding-alternative-tools&quot;&gt;Finding Alternative tools&lt;/h3&gt;
-
-&lt;p&gt;This was a medium-hard problem because shifting people to a new tool is hard. Being a team of ~ 100 software engineers, we use a lot of industry standard tools like APM tools, error trackers, server and website monitoring tools, communication tools and what not. We moved from NewRelic to Datadog for APM back in 2021 (due to cost reasons) and I remember the switch was not easy. While both are very good tools and best in industry, we were habitual of using NewRelic for debugging our slowness and outage cases. It took some time to adjust to Datadog’s features and UX and now we find it quite useful to debug such cases (specially the &lt;a href=&quot;https://docs.datadoghq.com/monitors/types/watchdog/?tab=apm&quot;&gt;Watchdog&lt;/a&gt; feature 👌). Still we tried to find alternate platforms for whatever was possible to replace and started using &lt;a href=&quot;https://www.getoutline.com/&quot;&gt;this tool&lt;/a&gt; for documentations.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Can you also do this ? -&lt;/strong&gt; It depends on how much your team is flexible in moving to the new tool. It also depends on the pricing model of your current tool. Like if you’ve already committed or paid for next few months or an year, then you could defer the plan to move. But always try to use tools that allow exporting data into common (non-proprietary) formats. For example, although JIRA is a industry standard tool for managing team sprints, there is &lt;a href=&quot;https://community.atlassian.com/t5/Jira-Software-questions/How-to-export-Jira-issues-to-CSV/qaq-p/175115&quot;&gt;no way to export all the issues&lt;/a&gt; as CSV. The best answer on this community post allows to export max 1000 issues at once. Although importing data to JIRA is easy and explained &lt;a href=&quot;https://support.atlassian.com/jira-cloud-administration/docs/migrate-from-other-issue-trackers/&quot;&gt;here&lt;/a&gt; 🤓.&lt;/p&gt;
-
-&lt;h3 id=&quot;architectural-optimisations&quot;&gt;Architectural optimisations&lt;/h3&gt;
-
-&lt;p&gt;These optimisations majorly depend on your own project. For medium-large projects that are live in production from years, the teams are already aware of tech debt and architectural debt. Beyond debt, there could be technological advancements that you can leverage. As an example, Redis is a popular in-memory key-value database. The initial version of Redis was released almost 15 years ago. While there have been a lot of changes and features additions even recently, the basic architecture of command processing remains the same - a single threaded command execution thread. Don’t underestimate the speed of Redis after reading &lt;em&gt;single threaded.&lt;/em&gt; While Redis works well for applications of all sizes, there have been a lot of choices now, as Paypal open sourced it’s &lt;a href=&quot;https://github.com/paypal/junodb&quot;&gt;key value store&lt;/a&gt;, a team of developers released a new key value database called &lt;a href=&quot;https://www.dragonflydb.io/&quot;&gt;Dragonfly&lt;/a&gt; and Microsoft introduced &lt;a href=&quot;https://www.microsoft.com/en-us/research/blog/introducing-garnet-an-open-source-next-generation-faster-cache-store-for-accelerating-applications-and-services/&quot;&gt;Garnet&lt;/a&gt; this week. Not everyone wants to move their existing systems to new (promising) databases and you should actually never do that, but I was surprised to see a very stable and &lt;a href=&quot;https://github.com/sidekiq/sidekiq/commit/250cc1e4dde44e84d9b607a2ded84ec0835a3ef1&quot;&gt;popular Ruby library&lt;/a&gt; offering choice between Redis and DragonflyDB as a queueing backend for background jobs 😃.&lt;/p&gt;
-
-&lt;p&gt;Developers rewrite systems all the time, but that choice is not always available. Even when allowed, large rewrites often fail to replace existing (stable) systems due to one or the other reason. To optimise our costs, we tried to rewrite parts of the systems that we were sure of. Some infrastructure changes also helped us save cost but that impacted our architecture and also how our team debugs production issues. We tried and did the following:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;We moved a lot of our applications to Kubernetes cluster. The apps were tested for more than an year on non production environments before moving. Using a combination of AWS on-demand and spot instances clubbed with Kubernetes’ &lt;a href=&quot;https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/&quot;&gt;HPA&lt;/a&gt;, we were able to save on cloud costs. Spot instances helped us using same infra on a cheaper price, while some on-demand nodes balanced out for stability. HPA allowed us to turn off pods when load on the system was less (eg. at night).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;We planned, tested and moved our ruby application server from a single threaded (&lt;a href=&quot;https://github.com/phusion/passenger&quot;&gt;passenger&lt;/a&gt;) to multi-threaded (&lt;a href=&quot;https://github.com/puma/puma&quot;&gt;puma&lt;/a&gt;). We had to validate thread safety of our code and third party libraries before doing this.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;We refactored our &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;background job server&lt;/a&gt; setup to lesser number of queues that simplified our deployment one EC2 and eventually on k8s. This also helped in saving cost as pods were getting utilised to their maximum extent and HPA scaling pods up and down as needed.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Other optimisations included rewriting a few systems, details of which cannot be shared (and also won’t be helpful to anyone). These were mostly long term optimisations.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;This was by no means a single person’s work. A lot of senior engineers and devops collaborated to plan and execute all these activities but the gains were rewarding and for the long term. These are recurring bills, so saving even $500 a month means saving $6000 annually. After seeing all these optimisations, I often think - &lt;em&gt;were we really wasting this much money per month&lt;/em&gt; 🤔? The answer for this might depend on the team/company. In a growing team, such scenarios often happen. New teams, new projects, new deployments can lead to some inefficiencies over time. Regular consolidations and some approval flow from centralised teams can help in reducing this. For teams that have dedicated people for optimising costs and ensuring efficient use of resources, these instances should be minimum. If you’re a team that has not yet focussed on optimising such costs, do try a few things mentioned here.&lt;/p&gt;
-
-&lt;h1 id=&quot;bonus&quot;&gt;Bonus&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Budget alerts&lt;/strong&gt; - Many platforms allow setting alerts on user defined thresholds (&lt;a href=&quot;https://docs.github.com/en/billing/managing-billing-for-github-actions/managing-your-spending-limit-for-github-actions&quot;&gt;example 1&lt;/a&gt;, &lt;a href=&quot;https://aws.amazon.com/aws-cost-management/aws-budgets/&quot;&gt;example 2&lt;/a&gt;). You can set these up to catch anomalies in costs. We have some of these setup that often help us.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Dedicated ownership -&lt;/strong&gt; Software teams rely on many tools. As the team grows, it’s hard for one person to keep a track of everything. At the same time, keeping a basic check on costs and anomalies doesn’t require a lot of expertise. If you assign some people to dedicatedly monitor some tools, it will not burden anyone and will ensure catching such leaks early.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Continuous monitoring&lt;/strong&gt; - In the past, we use to ignore a lot of platforms and were optimising only cloud bills. This was our first mistake as other bills were not negligible. Second mistake was to check for optimisations only a month before our reservations expired. Cost optimisation is not an annual activity. We should be continuously monitoring these costs.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Thanks for reading. I hope this would help you to optimise some SaaS cost for your organisation. If you liked this post, do check out the following:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make sure your stack is &lt;a href=&quot;https://blog.gagan93.me/cloud-pricing-vendor-lock-ins&quot;&gt;not vendor locked-in&lt;/a&gt; if you want flexibility of moving out in future (or maybe otherwise also)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A detailed post on &lt;a href=&quot;https://blog.gagan93.me/optimising-docker-builds&quot;&gt;optimising docker build time and build size&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Working in a team requires asking for help every now and then. Learn &lt;a href=&quot;https://blog.gagan93.me/asking-good-questions&quot;&gt;how to ask good questions&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="cloud" /><category term="saas" /><category term="pricing" /><category term="optimisation" /><summary type="html">Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we&apos;re not paying extra for any service. In the past 1.5 years, we planned and executed a lot ...</summary></entry></feed>
+&lt;p&gt;Thanks for reading.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="title" /><category term="title-inflation" /><category term="downlevelling" /><category term="interview" /><summary type="html">If you&apos;re confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company...</summary></entry></feed>
