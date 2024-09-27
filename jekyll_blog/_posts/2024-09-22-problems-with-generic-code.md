@@ -105,7 +105,7 @@ If you write tests regularly, you'll see that this class is hard to test. The re
 
 I still see developers writing generic code for production projects. This isn't necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years.
 
-### Extending the same throught process to “tables”
+### Extending the same thought process to “tables”
 
 Developers love writing code that goes beyond their current needs. As we saw earlier, they often create solutions that are more complex than necessary. But this issue isn't just limited to classes — we also tend to generalize tables and columns to handle more problems than they were meant to solve.
 
