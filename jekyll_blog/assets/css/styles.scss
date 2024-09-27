@@ -1,5 +1,10 @@
 ---
 ---
+
+code {
+  font-family: monospace;
+}
+
 .post-link, .post-link:visited, .post-link:active {
   color: #222 !important;
   font-weight: 700;
@@ -28,17 +33,6 @@
 .post-cover {
   width: 40em;
   box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 9px;
-}
-
-.post-container {
-  margin: 0 auto;
-  width: 40em;
-}
-
-.detailed > .post-container {
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 2em 0em;
-  border-radius: 2em;
 }
 
 // This might cause issues or hide something required, so leaving a comment here
