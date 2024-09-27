@@ -101,7 +101,7 @@ I don't suggest spending time untangling the mess built up over the years by dif
 
 **Note**: Many developers and teams don't write unit tests. If you're one of them, I strongly recommend you start. They make future maintenance easier and provide feedback on your design.
 
-If you write tests regularly, you'll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my mast experience, **if a class is hard to test, it likely needs refactoring**.
+If you write tests regularly, you'll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my past experience, **if a class is hard to test, it likely needs refactoring**.
 
 I still see developers writing generic code for production projects. This isn't necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years.
 
