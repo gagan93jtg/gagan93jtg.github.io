@@ -1,27 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-09-22T17:06:51+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-09-27T11:04:51+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-kier-in-sight-archives-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Kier in Sight Archives&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
-&lt;p&gt;I’m a Senior Engineer with nearly 9 years of experience in the Software Industry. In my first year at my previous job, I had to migrate the background job processing engine from &lt;a href=&quot;https://github.com/collectiveidea/delayed_job&quot;&gt;delayed-job&lt;/a&gt; to &lt;a href=&quot;https://github.com/sidekiq/sidekiq/&quot;&gt;sidekiq&lt;/a&gt;. For those not familiar with Ruby, think of these as two libraries that help you run async jobs in a distributed system, similar to &lt;a href=&quot;https://www.jobrunr.io/en/&quot;&gt;JobRunr&lt;/a&gt; in Java projects or &lt;a href=&quot;https://docs.celeryq.dev/en/stable/&quot;&gt;Celery&lt;/a&gt; in Python projects. We encountered several issues with delayed-job and realized that Sidekiq would be a much better option as we scaled. To summarize:&lt;/p&gt;
+&lt;p&gt;I’m a Senior Engineer with nearly 9 years of experience in the software industry. In one of my previous projects, I had to migrate the background job processing engine of a Ruby-based application from &lt;a href=&quot;https://github.com/collectiveidea/delayed_job&quot;&gt;delayed-job&lt;/a&gt; to &lt;a href=&quot;https://github.com/sidekiq/sidekiq/&quot;&gt;sidekiq&lt;/a&gt;. For those not familiar with Ruby, think of these as two libraries that help you run async jobs in a distributed system, similar to &lt;a href=&quot;https://www.jobrunr.io/en/&quot;&gt;JobRunr&lt;/a&gt; in Java projects or &lt;a href=&quot;https://docs.celeryq.dev/en/stable/&quot;&gt;Celery&lt;/a&gt; in Python projects. We encountered several issues with the old library and realized that Sidekiq would be a much better option as we scaled. To summarize:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Sidekiq runs multiple threads per process to execute jobs, while Delayed Job runs one thread per process. This means Delayed Job uses more memory.&lt;/p&gt;
+    &lt;p&gt;Sidekiq runs multiple threads per process to execute jobs, while Delayed Job runs one thread per process. This means Delayed Job uses more memory for executing the same set of jobs per unit time, especially if your workloads are IO-bound.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Delayed Job uses SQL databases to store jobs, whereas Sidekiq uses Redis. Redis, being an in-memory database, is much faster than traditional disk-based SQL databases.&lt;/p&gt;
+    &lt;p&gt;Delayed Job uses SQL table to store jobs, whereas Sidekiq uses Redis. Redis, being an in-memory database, is much faster than traditional disk-based SQL databases.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Sidekiq is a very popular Ruby library, so there are many extensions available. These include &lt;a href=&quot;https://github.com/sidekiq-cron/sidekiq-cron&quot;&gt;running crons&lt;/a&gt; and ensuring &lt;a href=&quot;https://github.com/mhenrixon/sidekiq-unique-jobs&quot;&gt;unique jobs&lt;/a&gt;. Additionally, Sidekiq’s author has &lt;a href=&quot;https://github.com/sidekiq/sidekiq/wiki/Using-Dragonfly&quot;&gt;started supporting&lt;/a&gt; a drop-in &lt;a href=&quot;https://www.mikeperham.com/2024/02/01/supporting-dragonfly/&quot;&gt;replacement for Redis&lt;/a&gt; for storing jobs.&lt;/p&gt;
+    &lt;p&gt;Sidekiq is a very popular Ruby library, so there are many extensions available for performing other common tasks. These include &lt;a href=&quot;https://github.com/sidekiq-cron/sidekiq-cron&quot;&gt;running crons&lt;/a&gt; and ensuring &lt;a href=&quot;https://github.com/mhenrixon/sidekiq-unique-jobs&quot;&gt;unique jobs&lt;/a&gt;. Additionally, Sidekiq’s author has &lt;a href=&quot;https://github.com/sidekiq/sidekiq/wiki/Using-Dragonfly&quot;&gt;started supporting&lt;/a&gt; a drop-in &lt;a href=&quot;https://www.mikeperham.com/2024/02/01/supporting-dragonfly/&quot;&gt;replacement for Redis&lt;/a&gt; for storing jobs.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;While many open-source extensions exist for Sidekiq, companies can get more features and premium support with &lt;a href=&quot;https://sidekiq.org/products/pro.html&quot;&gt;Sidekiq Pro&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;While many open-source extensions exist for Sidekiq, companies can get more features and premium support with &lt;a href=&quot;https://sidekiq.org/products/pro.html&quot;&gt;Sidekiq Pro&lt;/a&gt;.Migration phase&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h2 id=&quot;migration-phase&quot;&gt;Migration phase&lt;/h2&gt;
 
 &lt;p&gt;We added both libraries together for a few months and gradually migrated from DJ to Sidekiq. The two most common uses of background jobs were:&lt;/p&gt;
 
@@ -84,10 +82,10 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;According to the &lt;strong&gt;S&lt;/strong&gt; in &lt;strong&gt;SOLID&lt;/strong&gt; principles, a class should have one reason to change. I also apply this to methods — a method should do one thing well. This method is trying to do two things. You might think the method is small and only doing two things, so what’s the issue? Read on to understand.&lt;/p&gt;
+    &lt;p&gt;According to the &lt;strong&gt;S&lt;/strong&gt; in &lt;strong&gt;SOLID&lt;/strong&gt; principles, a class should have one reason to change. I also apply this to methods — a method should do one thing really well. This method is trying to do two things. You might think the method is small and only doing two things, so what’s the issue? Read on to understand.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The code inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement expects to load the model object and then call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt; on it. What if someone wants to pass arguments to that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt;? Would we add another argument or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement to handle that?&lt;/p&gt;
+    &lt;p&gt;The code inside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement expects to load the model object and then call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt; on it. What if someone wants to pass arguments to that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt; also? Would we add another argument or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statement to handle that?&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;What if this class is a plain Ruby class (not a Rails model) that needs to initialize the constructor and then call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;method&lt;/code&gt;? Another flag to handle that?&lt;/p&gt;
@@ -97,7 +95,7 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;By just looking at the code for a minute, I quickly spotted these problems. I laugh now, thinking I wrote this back in 2019. But that’s a good sign because if you don’t like your old code, it means you’ve grown 😇.&lt;/p&gt;
+&lt;p&gt;By just looking at the code for a minute, I quickly spotted these problems. I laugh now, thinking I wrote this back in 2019. But that’s a good sign because if you don’t like your old code, it means your design skills are matured 😇.&lt;/p&gt;
 
 &lt;p&gt;The above is an example of &lt;strong&gt;Generic Code.&lt;/strong&gt; Such classes evolve into &lt;a href=&quot;https://refactoring.guru/smells/long-method&quot;&gt;long methods&lt;/a&gt; with a &lt;a href=&quot;https://refactoring.guru/smells/long-parameter-list&quot;&gt;lot of arguments&lt;/a&gt;, creating a mess. Over time, multiple developers change the code in these classes to fit new use-cases, often breaking existing ones. There are only two ways to solve such problems:&lt;/p&gt;
 
@@ -106,25 +104,96 @@
     &lt;p&gt;Don’t create such classes in the first place.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Gradually move to specific classes and delete the old one later.&lt;/p&gt;
+    &lt;p&gt;If you created them somehow, gradually move to specific classes and delete the old one later.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;I don’t suggest spending time untangling the mess built up over the years by different developers unless you have test cases for this class. It’s better to create specific classes for each use case and migrate to them.&lt;/p&gt;
+&lt;p&gt;I don’t suggest spending time untangling the mess built up over the years by different developers unless you have test cases and very strong reasons to do so. It’s better to create specific classes for each use case and migrate to them slowly.&lt;/p&gt;
 
 &lt;h3 id=&quot;lets-talk-about-testing&quot;&gt;Let’s talk about testing&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Many developers and teams don’t write unit tests. If you’re one of them, I strongly recommend you start. They make future maintenance easier and provide feedback on your design.&lt;/p&gt;
 
-&lt;p&gt;If you write tests regularly, you’ll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my experience, &lt;strong&gt;if a class is hard to test, it likely needs refactoring&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you write tests regularly, you’ll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my mast experience, &lt;strong&gt;if a class is hard to test, it likely needs refactoring&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;generic-code-in-production&quot;&gt;Generic code in production&lt;/h3&gt;
+&lt;p&gt;I still see developers writing generic code for production projects. This isn’t necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years.&lt;/p&gt;
 
-&lt;p&gt;I still see developers writing generic code for production projects. This isn’t necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I schedule a call to explain the pitfalls of overly generic code and why it’s beneficial to avoid it. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run.&lt;/p&gt;
+&lt;h3 id=&quot;extending-the-same-through-process-to-tables&quot;&gt;Extending the same through process to “tables”&lt;/h3&gt;
+
+&lt;p&gt;Developers love writing code that goes beyond their current needs. As we saw earlier, they often create solutions that are more complex than necessary. But this issue isn’t just limited to classes — we also tend to generalize tables and columns to handle more problems than they were meant to solve.&lt;/p&gt;
+
+&lt;p&gt;Let’s imagine a developer named “John” created a table called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; to handle authentication for their app. At first, this table had only six columns:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                                 Table &quot;public.users&quot;
+
+Column         |            Type             | Nullable  |         Default
+---------------+-----------------------------+-----------+----------+-----------------------
+ id            | integer                     | not null  | nextval(&apos;users_id_seq&apos;::regclass)
+ first_name    | character varying           |           |
+ last_name     | character varying           |           |
+ email         | character varying           | not null  |
+ created_at    | timestamp without time zone | not null  |
+ updated_at    | timestamp without time zone | not null  |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As time went by, they realized they needed more columns like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;middle_name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;country_code&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;language&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timezone&lt;/code&gt;. So, they added those columns as needed (sounds good, right?). As their product expanded to multiple countries, they needed to track specific attributes for each country. They decided to add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jsonb&lt;/code&gt; column to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; table to handle these “country-specific” attributes because some keys were valid in one country but not in another. Adding separate columns for each attribute seemed like overkill. Thinking ahead, they named this field &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extra_attributes&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A month later, another developer, Lee, decided to add their data to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extra_attributes&lt;/code&gt; column since it was a similar use case (but not dependent on country). Within a year, this column had different values for different users, and no one knew all the use cases for this column. This is why I sometimes don’t like NoSQL schemas — they are too flexible unless you have proper safeguards. To avoid this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;John could have named this column something other than &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extra_attributes&lt;/code&gt; to indicate it was for storing country-specific attributes only (better naming).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;John could have created different tables with a 1:1 relation to users for such use cases. Anyone could check the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;country_code&lt;/code&gt; column and figure out which table(s) are relevant for a specific country’s user (better design).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Whenever we introduce a bit of &lt;strong&gt;generic behavior&lt;/strong&gt; in our code or database design, it is likely to be misused later. This happens because everyone thinks differently and wants to deliver quickly 🚀.&lt;/p&gt;
+
+&lt;p&gt;This is just the first level of misuse. Another common &lt;strong&gt;generic mistake&lt;/strong&gt; is creating tables like &lt;strong&gt;tags&lt;/strong&gt; or &lt;strong&gt;attachments&lt;/strong&gt;. Once these tables exist, everyone adds their own use cases, making them very large. I’ve seen cases where more than 50% of data is in a generic table, just to avoid adding a column to the primary table. While querying the primary table is easy, querying this table requires a large index, which can be even bigger than the table itself. The problems with large generic table are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;You can’t archive old data even if the index and table size keep growing. So you end up paying the cost of keeping all this data in hot storage (eg. SSDs).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You can’t partition the table easily.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Queries become slower over time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Internal tasks like &lt;a href=&quot;https://www.postgresql.org/docs/current/sql-vacuum.html&quot;&gt;Vacuuming&lt;/a&gt; take longer.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When you upgrade your database, these tables take more time to analyze and start serving data.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And all these problems exist because there are too many use cases being served, and you have no idea how your solution could affect the users. Just like with generic classes, the solution is to eliminate this table and gradually migrate the data to specific columns (or perhaps specific tables).&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;By writing specific classes, developers can create more targeted unit tests, which provide better feedback on the design and functionality of the code. Always think about the long-term implications of your code. Writing generic code might seem efficient at first, but it often leads to more work as the codebase evolves and new use cases emerge. By writing specific, well-structured code from the start, we can save ourselves and our teams a lot of future headaches. This post aims to help you understand the value of writing clean, maintainable code and become better software engineers.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;While generic code and database design can offer flexibility and quick solutions in the short term, they often lead to significant long-term challenges. Over-reliance on generic patterns makes testing difficult, as it’s hard to test all the supported cases. Similarly, abusing generic database structures can result in performance bottlenecks, scalability issues, and maintainability problems. The key takeaway is to strike a balance between flexibility and specificity. While some level of generalization is beneficial for code reuse and rapid development, it is essential to maintain a clear structure, define boundaries, and optimize for performance and future growth to avoid technical debt.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading! Have a good day.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you liked this post, please read these too:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://blog.gagan93.me/multi-tasking-is-not-so-cool&quot;&gt;Multitasking is not that cool&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Are you planning to transition from monolith to microservices? Read &lt;a href=&quot;https://blog.gagan93.me/monolith-microservices&quot;&gt;this&lt;/a&gt; once.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re planning data migration from one system to another, read &lt;a href=&quot;https://blog.gagan93.me/migrating-data-across-services&quot;&gt;this&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 

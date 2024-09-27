@@ -89,24 +89,22 @@
 
 <h2 id="background">Background</h2>
 
-<p>I’m a Senior Engineer with nearly 9 years of experience in the Software Industry. In my first year at my previous job, I had to migrate the background job processing engine from <a href="https://github.com/collectiveidea/delayed_job">delayed-job</a> to <a href="https://github.com/sidekiq/sidekiq/">sidekiq</a>. For those not familiar with Ruby, think of these as two libraries that help you run async jobs in a distributed system, similar to <a href="https://www.jobrunr.io/en/">JobRunr</a> in Java projects or <a href="https://docs.celeryq.dev/en/stable/">Celery</a> in Python projects. We encountered several issues with delayed-job and realized that Sidekiq would be a much better option as we scaled. To summarize:</p>
+<p>I’m a Senior Engineer with nearly 9 years of experience in the software industry. In one of my previous projects, I had to migrate the background job processing engine of a Ruby-based application from <a href="https://github.com/collectiveidea/delayed_job">delayed-job</a> to <a href="https://github.com/sidekiq/sidekiq/">sidekiq</a>. For those not familiar with Ruby, think of these as two libraries that help you run async jobs in a distributed system, similar to <a href="https://www.jobrunr.io/en/">JobRunr</a> in Java projects or <a href="https://docs.celeryq.dev/en/stable/">Celery</a> in Python projects. We encountered several issues with the old library and realized that Sidekiq would be a much better option as we scaled. To summarize:</p>
 
 <ol>
   <li>
-    <p>Sidekiq runs multiple threads per process to execute jobs, while Delayed Job runs one thread per process. This means Delayed Job uses more memory.</p>
+    <p>Sidekiq runs multiple threads per process to execute jobs, while Delayed Job runs one thread per process. This means Delayed Job uses more memory for executing the same set of jobs per unit time, especially if your workloads are IO-bound.</p>
   </li>
   <li>
-    <p>Delayed Job uses SQL databases to store jobs, whereas Sidekiq uses Redis. Redis, being an in-memory database, is much faster than traditional disk-based SQL databases.</p>
+    <p>Delayed Job uses SQL table to store jobs, whereas Sidekiq uses Redis. Redis, being an in-memory database, is much faster than traditional disk-based SQL databases.</p>
   </li>
   <li>
-    <p>Sidekiq is a very popular Ruby library, so there are many extensions available. These include <a href="https://github.com/sidekiq-cron/sidekiq-cron">running crons</a> and ensuring <a href="https://github.com/mhenrixon/sidekiq-unique-jobs">unique jobs</a>. Additionally, Sidekiq’s author has <a href="https://github.com/sidekiq/sidekiq/wiki/Using-Dragonfly">started supporting</a> a drop-in <a href="https://www.mikeperham.com/2024/02/01/supporting-dragonfly/">replacement for Redis</a> for storing jobs.</p>
+    <p>Sidekiq is a very popular Ruby library, so there are many extensions available for performing other common tasks. These include <a href="https://github.com/sidekiq-cron/sidekiq-cron">running crons</a> and ensuring <a href="https://github.com/mhenrixon/sidekiq-unique-jobs">unique jobs</a>. Additionally, Sidekiq’s author has <a href="https://github.com/sidekiq/sidekiq/wiki/Using-Dragonfly">started supporting</a> a drop-in <a href="https://www.mikeperham.com/2024/02/01/supporting-dragonfly/">replacement for Redis</a> for storing jobs.</p>
   </li>
   <li>
-    <p>While many open-source extensions exist for Sidekiq, companies can get more features and premium support with <a href="https://sidekiq.org/products/pro.html">Sidekiq Pro</a>.</p>
+    <p>While many open-source extensions exist for Sidekiq, companies can get more features and premium support with <a href="https://sidekiq.org/products/pro.html">Sidekiq Pro</a>.Migration phase</p>
   </li>
 </ol>
-
-<h2 id="migration-phase">Migration phase</h2>
 
 <p>We added both libraries together for a few months and gradually migrated from DJ to Sidekiq. The two most common uses of background jobs were:</p>
 
@@ -169,10 +167,10 @@
 
 <ol>
   <li>
-    <p>According to the <strong>S</strong> in <strong>SOLID</strong> principles, a class should have one reason to change. I also apply this to methods — a method should do one thing well. This method is trying to do two things. You might think the method is small and only doing two things, so what’s the issue? Read on to understand.</p>
+    <p>According to the <strong>S</strong> in <strong>SOLID</strong> principles, a class should have one reason to change. I also apply this to methods — a method should do one thing really well. This method is trying to do two things. You might think the method is small and only doing two things, so what’s the issue? Read on to understand.</p>
   </li>
   <li>
-    <p>The code inside the <code class="language-plaintext highlighter-rouge">if</code> statement expects to load the model object and then call <code class="language-plaintext highlighter-rouge">method</code> on it. What if someone wants to pass arguments to that <code class="language-plaintext highlighter-rouge">method</code>? Would we add another argument or <code class="language-plaintext highlighter-rouge">if</code> statement to handle that?</p>
+    <p>The code inside the <code class="language-plaintext highlighter-rouge">if</code> statement expects to load the model object and then call <code class="language-plaintext highlighter-rouge">method</code> on it. What if someone wants to pass arguments to that <code class="language-plaintext highlighter-rouge">method</code> also? Would we add another argument or <code class="language-plaintext highlighter-rouge">if</code> statement to handle that?</p>
   </li>
   <li>
     <p>What if this class is a plain Ruby class (not a Rails model) that needs to initialize the constructor and then call the <code class="language-plaintext highlighter-rouge">method</code>? Another flag to handle that?</p>
@@ -182,7 +180,7 @@
   </li>
 </ol>
 
-<p>By just looking at the code for a minute, I quickly spotted these problems. I laugh now, thinking I wrote this back in 2019. But that’s a good sign because if you don’t like your old code, it means you’ve grown 😇.</p>
+<p>By just looking at the code for a minute, I quickly spotted these problems. I laugh now, thinking I wrote this back in 2019. But that’s a good sign because if you don’t like your old code, it means your design skills are matured 😇.</p>
 
 <p>The above is an example of <strong>Generic Code.</strong> Such classes evolve into <a href="https://refactoring.guru/smells/long-method">long methods</a> with a <a href="https://refactoring.guru/smells/long-parameter-list">lot of arguments</a>, creating a mess. Over time, multiple developers change the code in these classes to fit new use-cases, often breaking existing ones. There are only two ways to solve such problems:</p>
 
@@ -191,25 +189,96 @@
     <p>Don’t create such classes in the first place.</p>
   </li>
   <li>
-    <p>Gradually move to specific classes and delete the old one later.</p>
+    <p>If you created them somehow, gradually move to specific classes and delete the old one later.</p>
   </li>
 </ol>
 
-<p>I don’t suggest spending time untangling the mess built up over the years by different developers unless you have test cases for this class. It’s better to create specific classes for each use case and migrate to them.</p>
+<p>I don’t suggest spending time untangling the mess built up over the years by different developers unless you have test cases and very strong reasons to do so. It’s better to create specific classes for each use case and migrate to them slowly.</p>
 
 <h3 id="lets-talk-about-testing">Let’s talk about testing</h3>
 
 <p><strong>Note</strong>: Many developers and teams don’t write unit tests. If you’re one of them, I strongly recommend you start. They make future maintenance easier and provide feedback on your design.</p>
 
-<p>If you write tests regularly, you’ll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my experience, <strong>if a class is hard to test, it likely needs refactoring</strong>.</p>
+<p>If you write tests regularly, you’ll see that this class is hard to test. The reason is simple - it has a lot of generic behavior, making it difficult to identify all the combinations you need to test. From my mast experience, <strong>if a class is hard to test, it likely needs refactoring</strong>.</p>
 
-<h3 id="generic-code-in-production">Generic code in production</h3>
+<p>I still see developers writing generic code for production projects. This isn’t necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years.</p>
 
-<p>I still see developers writing generic code for production projects. This isn’t necessarily a problem, as they are on the same learning journey I once experienced. When I encounter this, I take the time to discuss it with them. I schedule a call to explain the pitfalls of overly generic code and why it’s beneficial to avoid it. I emphasize the importance of writing specific, maintainable code. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run.</p>
+<h3 id="extending-the-same-through-process-to-tables">Extending the same through process to “tables”</h3>
+
+<p>Developers love writing code that goes beyond their current needs. As we saw earlier, they often create solutions that are more complex than necessary. But this issue isn’t just limited to classes — we also tend to generalize tables and columns to handle more problems than they were meant to solve.</p>
+
+<p>Let’s imagine a developer named “John” created a table called <code class="language-plaintext highlighter-rouge">users</code> to handle authentication for their app. At first, this table had only six columns:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                 Table "public.users"
+
+Column         |            Type             | Nullable  |         Default
+---------------+-----------------------------+-----------+----------+-----------------------
+ id            | integer                     | not null  | nextval('users_id_seq'::regclass)
+ first_name    | character varying           |           |
+ last_name     | character varying           |           |
+ email         | character varying           | not null  |
+ created_at    | timestamp without time zone | not null  |
+ updated_at    | timestamp without time zone | not null  |
+</code></pre></div></div>
+
+<p>As time went by, they realized they needed more columns like <code class="language-plaintext highlighter-rouge">middle_name</code>, <code class="language-plaintext highlighter-rouge">country_code</code>, <code class="language-plaintext highlighter-rouge">language</code>, and <code class="language-plaintext highlighter-rouge">timezone</code>. So, they added those columns as needed (sounds good, right?). As their product expanded to multiple countries, they needed to track specific attributes for each country. They decided to add a <code class="language-plaintext highlighter-rouge">jsonb</code> column to the <code class="language-plaintext highlighter-rouge">users</code> table to handle these “country-specific” attributes because some keys were valid in one country but not in another. Adding separate columns for each attribute seemed like overkill. Thinking ahead, they named this field <code class="language-plaintext highlighter-rouge">extra_attributes</code>.</p>
+
+<p>A month later, another developer, Lee, decided to add their data to the <code class="language-plaintext highlighter-rouge">extra_attributes</code> column since it was a similar use case (but not dependent on country). Within a year, this column had different values for different users, and no one knew all the use cases for this column. This is why I sometimes don’t like NoSQL schemas — they are too flexible unless you have proper safeguards. To avoid this:</p>
+
+<ol>
+  <li>
+    <p>John could have named this column something other than <code class="language-plaintext highlighter-rouge">extra_attributes</code> to indicate it was for storing country-specific attributes only (better naming).</p>
+  </li>
+  <li>
+    <p>John could have created different tables with a 1:1 relation to users for such use cases. Anyone could check the <code class="language-plaintext highlighter-rouge">country_code</code> column and figure out which table(s) are relevant for a specific country’s user (better design).</p>
+  </li>
+</ol>
+
+<p>Whenever we introduce a bit of <strong>generic behavior</strong> in our code or database design, it is likely to be misused later. This happens because everyone thinks differently and wants to deliver quickly 🚀.</p>
+
+<p>This is just the first level of misuse. Another common <strong>generic mistake</strong> is creating tables like <strong>tags</strong> or <strong>attachments</strong>. Once these tables exist, everyone adds their own use cases, making them very large. I’ve seen cases where more than 50% of data is in a generic table, just to avoid adding a column to the primary table. While querying the primary table is easy, querying this table requires a large index, which can be even bigger than the table itself. The problems with large generic table are:</p>
+
+<ol>
+  <li>
+    <p>You can’t archive old data even if the index and table size keep growing. So you end up paying the cost of keeping all this data in hot storage (eg. SSDs).</p>
+  </li>
+  <li>
+    <p>You can’t partition the table easily.</p>
+  </li>
+  <li>
+    <p>Queries become slower over time.</p>
+  </li>
+  <li>
+    <p>Internal tasks like <a href="https://www.postgresql.org/docs/current/sql-vacuum.html">Vacuuming</a> take longer.</p>
+  </li>
+  <li>
+    <p>When you upgrade your database, these tables take more time to analyze and start serving data.</p>
+  </li>
+</ol>
+
+<p>And all these problems exist because there are too many use cases being served, and you have no idea how your solution could affect the users. Just like with generic classes, the solution is to eliminate this table and gradually migrate the data to specific columns (or perhaps specific tables).</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>By writing specific classes, developers can create more targeted unit tests, which provide better feedback on the design and functionality of the code. Always think about the long-term implications of your code. Writing generic code might seem efficient at first, but it often leads to more work as the codebase evolves and new use cases emerge. By writing specific, well-structured code from the start, we can save ourselves and our teams a lot of future headaches. This post aims to help you understand the value of writing clean, maintainable code and become better software engineers.</p>
+<p>While generic code and database design can offer flexibility and quick solutions in the short term, they often lead to significant long-term challenges. Over-reliance on generic patterns makes testing difficult, as it’s hard to test all the supported cases. Similarly, abusing generic database structures can result in performance bottlenecks, scalability issues, and maintainability problems. The key takeaway is to strike a balance between flexibility and specificity. While some level of generalization is beneficial for code reuse and rapid development, it is essential to maintain a clear structure, define boundaries, and optimize for performance and future growth to avoid technical debt.</p>
+
+<p>Thank you for reading! Have a good day.</p>
+
+<hr />
+
+<p>If you liked this post, please read these too:</p>
+
+<ol>
+  <li>
+    <p><a href="https://blog.gagan93.me/multi-tasking-is-not-so-cool">Multitasking is not that cool</a>.</p>
+  </li>
+  <li>
+    <p>Are you planning to transition from monolith to microservices? Read <a href="https://blog.gagan93.me/monolith-microservices">this</a> once.</p>
+  </li>
+  <li>
+    <p>If you’re planning data migration from one system to another, read <a href="https://blog.gagan93.me/migrating-data-across-services">this</a>.</p>
+  </li>
+</ol>
 
   </div>
   <br>
