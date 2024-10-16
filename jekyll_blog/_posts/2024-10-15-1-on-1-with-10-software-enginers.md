@@ -5,7 +5,7 @@ date: 2024-10-15
 published_on: 15th October, 2024
 author: Gagandeep Singh
 cover: "/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg"
-categories: generic-code refactoring solid
+categories: networking engineering learning growth interviews
 excerpt: This is a long blog post that captures some queries that people had in the 1:1 that I had with 10 engineers last month.
 ---
 
@@ -51,7 +51,7 @@ Most of the engineers had 4-7 years of experience and wanted advice on career gr
 
 13. **How to be good at real world HLD?** - As I spoke with mid-level engineers aiming to become senior engineers, they were eager to learn about real-world system design. In many companies, you rarely get the chance to design large systems because high-level designs are costly to redo, and most people work on systems that are already designed. Despite this, it's crucial to understand core system design concepts so that even when making small changes to an existing design, you are aware of their implications.
 
-14. **I’m not working on Kubernetes or Microservices, will I be easily able to switch? -** While I believe that it’s not important to get your hands dirty in every single hot technology to be relevant in the current market, you must remain updated with a few things. While micro-services or k8s is not something very new, many engineers don’t get to work
+14. **I’m not working on Kubernetes or Microservices, will I be easily able to switch? -** While I believe that it’s not important to get your hands dirty in every single hot technology to be relevant in the current market, you must remain updated with a few things.
 
 
 Let’s discuss about each of these one by one. This is going to be one a long blog post because it’s summary of more than 13 hours of discussion. If you find this really long or parts of it not relevant to you, feel free to read specific parts using table of contents on the top.
@@ -150,7 +150,9 @@ I think all of you have heard of a few cases in the recent past where employees 
 
 4. Response to mistakes / failures.
 
-5. And most importantly - Work life balance.For me, the 16-hour workday philosophy is nonsense. If I don't have time to think about other things in life, I can't grow personally or professionally. I've worked with US teams in my first organization, and now I work with both US and Africa teams (in addition to the India team). Fortunately, the overall culture encourages taking leave whenever needed, whether for a personal emergency, rest, or vacation. People in the US don't work beyond a certain limit, but that doesn't mean they haven't created good products or scaled companies.
+5. And most importantly - Work life balance.
+
+For me, the 16-hour workday philosophy is nonsense. If I don't have time to think about other things in life, I can't grow personally or professionally. I've worked with US teams in my first organization, and now I work with both US and Africa teams (in addition to the India team). Fortunately, the overall culture encourages taking leave whenever needed, whether for a personal emergency, rest, or vacation. People in the US don't work beyond a certain limit, but that doesn't mean they haven't created good products or scaled companies.
 
 
 In a nutshell,
