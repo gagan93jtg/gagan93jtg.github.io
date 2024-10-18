@@ -19,33 +19,35 @@ Photo by <a href="https://unsplash.com/@dylanferreira?utm_content=creditCopyText
 
 ## Background
 
-I’m always looking for ways to network with like-minded people. Last month, I [posted on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7236405029618774016/) to connect with like minded people using a Google Form. I received about 10 responses! All the engineers were based out of India, except one from Switzerland. It was amazing to connect with them and learn about their work, challenges, and growth over the years. I even shared some cool stats from these calls in [another LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7243656624869949440/). I'm excited to connect with more people in the future and want to capture some highlights from these discussions in a blog post. Many of these calls included requests for guidance, and I'm eager to share my thoughts publicly to help even more people. If you wish to connect anytime in future, fill [this form](https://docs.google.com/forms/d/e/1FAIpQLScRLZv4vIHkOm68vmrTLw3KCnnQG1lOGkEkWNahphcKCt7HKg/viewform) and add me on [LinkedIn](https://www.linkedin.com/in/gagan93/).
+I'm always looking for opportunities to engage with people who share similar interests and experiences. Recently, I shared a [Google Form](https://www.linkedin.com/feed/update/urn:li:activity:7236405029618774016/) to connect with others, and I was thrilled to receive about 10 responses! Most of the engineers were based in India, with one from Switzerland. It was great to chat about their work, challenges, and career growth, and I learned a lot from these conversations.
+
+After some of these discussions, I posted a few [interesting insights](https://www.linkedin.com/feed/update/urn:li:activity:7243656624869949440/) from our calls. I’m now writing this (detailed) post to share some highlights and reflections, as many of the conversations included requests for advice that could benefit a wider audience.
 
 ## What all we discussed?
 
-Most of the engineers had 4-7 years of experience and wanted advice on career growth along with potential future work and challenges. Here's what we talked about:
+In this section, I am sharing all the key points that we discussed during our calls. Each of these points will be explored in detail in the sections that follow. Most of the engineers had 4-7 years of experience and wanted advice on career growth along with potential future work and challenges. Here's what we talked about:
 
 1. **Why am I doing this for free? Do I offer paid mentorship? -** Not everyone asked this but two separate people asked each of these questions.
 
-2. **Interview preparation** - Half of them were either in their notice period or actively searching for new opportunities. I was able to provide detailed insights on this topic, having recently gone through a job transition myself. Additionally, I shared thoughts on various learning resources because all available content is not of good quality.
+2. **How to prepare for Interviews?** - Half of them were either in their notice period or actively searching for new opportunities. I was able to provide detailed insights on this topic, having recently gone through a job transition myself. Additionally, I shared thoughts on various learning resources because all available content is not of good quality.
 
-3. **How large teams work?** - Surprisingly, I’ve never worked in really large teams or organisations, but I’ve handled cross team collaborations and also read how teams operate in large companies. So I could give them some idea on this.
+3. **How do large teams work?** - It's fascinating to observe how massive products like YouTube, Amazon S3, or Uber are developed and maintained. These platforms are supported by extensive teams that collaborate across different regions and time zones. Understanding the dynamics of such large teams can provide valuable insights into how complex projects are managed and delivered successfully.
 
 4. **How do I hire people?** - I’ve given interviews at about 6-8 companies before switching this time. But at LocoNav, I had interviewed &gt; 200 people for various engineering roles including Senior Engineers, Managers, QA engineers, Devops. So I shared some insights here based on my experience.
 
-5. **Cultural differences between Indian and non-Indian teams**
+5. **What are cultural differences between Indian and non-Indian teams?** \- I discussed this with someone working outside India who also had experience working in India. Many others have shared similar insights, especially those who have dealt with "not so good" bosses.
 
-6. **How do you handle/convey delays across layers of stakeholders?**
+6. **How do you handle/convey delays across layers of stakeholders?** \- Handling this can be challenging, especially when it involves end customers. We'll discuss a framework that helps keep everyone satisfied.
 
-7. **Big Tech engineers are superior to us** - Someone had this in their mind, so had to discuss around this inferiority complex. Another guy had a question - *Why my friends in big tech companies get paid so much if they do same work as we do?*
+7. **Are Big Tech engineers are superior to us?** - Someone had this in their mind, so had to discuss around this inferiority complex. Another guy had a question - *Why my friends in big tech companies get paid so much if they do same work as we do?*
 
-8. **Growing as an Engineer, not a Java Engineer or Ruby Engineer** - It's important to be skilled in at least one language, but it's even more important to stay flexible and ready to learn anything new that comes your way.
+8. **How to grow as an Engineer (not a Java Engineer or Ruby Engineer)** - It's important to be skilled in at least one language, but it's even more important to stay flexible and ready to learn anything new that comes your way.
 
 9. **How to know about scale without working on scale**? - Not everyone gets a chance to work on scale or work on certain things like Devops, but many companies seek that experience. How to counter that?
 
 10. **How I generally approach learning anything new?** - I was asked this question in an interview also. I’ll also share what I call as **continuous learning**.
 
-11. **How often your managers sync and how does it impact your growth**? - I’ve been managed by all sorts of people — from those who didn’t sync in months to the current org where managers mostly sync weekly.
+11. **How often your managers sync and how does it impact your growth?** - I’ve been managed by all sorts of people — from those who didn’t sync in months to the current org where managers mostly sync weekly.
 
 12. **How to know about team’s culture before joining?** - While salary details are clear before you join, it's tough to understand a company's culture until you start working there. However, there's a simple trick you can use to learn about the company before accepting an offer.
 
@@ -54,27 +56,28 @@ Most of the engineers had 4-7 years of experience and wanted advice on career gr
 14. **I’m not working on Kubernetes or Microservices, will I be easily able to switch? -** While I believe that it’s not important to get your hands dirty in every single hot technology to be relevant in the current market, you must remain updated with a few things.
 
 
-Let’s discuss about each of these one by one. This is going to be one a long blog post because it’s summary of more than 13 hours of discussion. If you find this really long or parts of it not relevant to you, feel free to read specific parts using table of contents on the top.
+Let’s discuss about each of these one by one. This is going to be a long blog post because it’s summary of more than 13 hours of discussion. If you find this really long or parts of it not relevant to you, feel free to read specific parts using table of contents on the top.
 
 ## **Why am I doing this for free? Do I offer paid mentorship?**
 
 Many engineers, especially those at Big Tech companies, offer paid mentorships through platforms like Topmate, charging varying fees. While having a second income is fine, I've received help throughout my 9-year career without being charged. It doesn't feel right to start charging for sharing the same knowledge. My religious beliefs also motivate me to offer help for free. I've encouraged others to help for free whenever possible. My job pays well, so I don't want to charge for an hour of conversation. Additionally, not all calls are about mentorship; some people just want honest chats about work, experiences, productivity, team culture, and more. As of now, I don't plan to offer paid mentorship services. Feel free to message me on LinkedIn if there's anything I can help with.
 
-## Interview Preparation
+## How to prepare for Interviews?
 
-As half of the engineers were in their notice period, this was a pretty common question — How to prepare for interviews and what all things to study. I’ve already written in detail about my [interview experiences](https://blog.gagan93.me/tag/interview), [resume improvement journey](https://blog.gagan93.me/improving-your-resume), [low level design interviews](https://blog.gagan93.me/low-level-design-interviews) and [job titles](https://blog.gagan93.me/titles-inflation-and-down-levelling) on my blog. I'll still share more based on their specific questions.
+As half of the engineers were in their notice period, this was a pretty common question — How to prepare for interviews and what all things to study. I’ve already written in detail about my [interview experiences](https://blog.gagan93.me/tag/interview), [resume improvement journey](https://blog.gagan93.me/improving-your-resume), [low level design interviews](https://blog.gagan93.me/low-level-design-interviews) and [job titles](https://blog.gagan93.me/titles-inflation-and-down-levelling). I'll still share more based on their specific questions.
 
 1. **Learn about different companies** **and target accordingly** - Talking specifically about engineering roles, there are different types of companies like services companies, consultant companies, early/mid-age startups (Seed/Series-A/Series-B), Scale-ups (Series C+, post IPO), and Big-Tech companies. To explain a bit about each of them:
 
-    1. **Services companies** typically include (but not limited to) Infosys, TCS, Accenture, Cognizant etc.
+    * **Services companies** typically include (but not limited to) Infosys, TCS, Accenture, Cognizant etc.
 
-    2. **Consultant** ones could include [MBB](https://en.wikipedia.org/wiki/Big_Three_\(management_consultancies\)), Thoughtworks, etc. Similar to the first one, you are working for others (not on your own products) but the role consultant-based where you completely handles client, not just code.
+    * **Consultant** companies could include [MBB](https://en.wikipedia.org/wiki/Big_Three_\(management_consultancies\)), Thoughtworks, etc. Similar to the first one, you are working for others (not on your own products) but the role consultant-based where you completely handles client, not just code.
 
-    3. **Early/mid age startups** could include any company that is going 0-1 (building MVP) or 1-10 (secured some funding and building for real customers). People in such companies are expected to be **generalists**, who can wear multiple hats and can get work done really fast.
+    * **Early/mid age startups** could include any company that is going 0-1 (building MVP) or 1-10 (secured some funding and building for real customers). People in such companies are expected to be **generalists**, who can wear multiple hats and can get work done really fast.
 
-    4. **Scale ups** could include post IPO companies like Zomato, Paytm, Delhivery, and similar companies. I could categorize them as young, agile, fast-moving but having lot of governance and processes because of being a public entity.
+    * **Scale ups** could include public listed companies. I could categorize them as young, agile, fast-moving but having lot of governance and processes because of being a public entity.
 
-    5. **Big Tech** (as you’d expect) includes FAANG, and similar sized companies like Atlassian, Uber, Stripe etc. I’d call any other company as BigTech if they have &gt;1000 engineers. In comparison to any other kind of company, here you’d find a lot of internal tooling.
+    * **Big Tech** (as you’d expect) includes FAANG, and similar sized companies like Atlassian, Uber, Stripe etc. I’d call any other company as BigTech if they have &gt;1000 engineers. In comparison to any other kind of company, here you’d find a lot of internal tooling.
+
 
         There's a trend of people moving from services companies and startups to Big Tech companies, but I've also seen people move from startups to other startups or from Big Tech to startups. For example, I started at a services company (not as big as the ones mentioned) and then moved to startups. So I’d recommend you to decide types of companies you want to target and prepare for them accordingly. There are many websites, videos, and interview experience blogs that explain the interview processes for each of these.
 
@@ -97,22 +100,22 @@ As half of the engineers were in their notice period, this was a pretty common q
     I hope this helps for interview preparation. Moving on to the next topic 😎.
 
 
-## How large teams work?
+## How do large teams work?
 
 Let me add more context to this question — This was asked by someone who was working for a startup for about 4 years, and was wondering how things would unfold if their team scaled 2x-3x in strength. How would the projects be managed and what challenges would exist for them being an old member of the team who is transitioning more towards a managerial role. This is a common question for people working in small teams. They sometimes wonder how large teams operate to make something as large as Youtube, Google Maps, or Amazon S3.
 
-Having worked for startups mostly, this question was slightly out of syllabus for me 🤣. But I’ve read about large organisations and how they work, so I could add some insights.
+I’ve been in a habit of reading a lot of content in the past few years from which I shared the following insights:
 
-1. First of all, no large system is built in a day, or week, or even a month. Smart engineers start building things in the most stupid way, and iterate on them as they find bottlenecks in the system that prevents it from scaling further, so that they can replace those specific parts of the system. I remember my last company’s co-founder (who was also a Ruby engineer) using a hacky way for partitioning tables in Postgres 9.3. If you’ve used that version of Postgres vs Postgres 12+, you’d know that the current partitioning features didn’t even exist in that version. But at that time we didn’t have enough choices because we were pretty early stage and had limited exposure to good tech. Once it was no more scalable for us (at 38TB single Postgres database, when the cost was really huge), the team handling that system redesigned the same into a separate data layer that used a suitable technologies. It’s very important to start stupid initially and satisfy the business needs so that you can sell whatever you made. For example, it would be hard to assume that YouTube used MySQL to begin with, and they made it work till a [massive scale](https://www.reddit.com/r/programming/comments/1d4u12d/how_youtube_was_able_to_support_249_billion_users/).
+1. First of all, no large system is built in a day, or week, or even a month. Smart engineers start building things in the most stupid way, and iterate on them as they find bottlenecks in the system that prevents it from scaling further, so that they can replace those specific parts of the system. I remember my last company’s co-founder (who was also a Ruby engineer) using a hacky way for partitioning tables in Postgres 9.3. If you’ve used that version of Postgres vs Postgres 12+, you’d know that the current partitioning features didn’t even exist in that version. But at that time we didn’t have enough choices because we were pretty early stage and had limited exposure to good tech. Once it was no longer scalable for us and the cost became very high, the team handling that system redesigned the same into a separate data layer that used a suitable technologies. It’s very important to start stupid initially and satisfy the business needs so that you can sell whatever you made. For example, it would be hard to assume that YouTube used MySQL to begin with, and they made it work till a [massive scale](https://www.reddit.com/r/programming/comments/1d4u12d/how_youtube_was_able_to_support_249_billion_users/).
 
-2. Having large systems doesn’t mean that you have really large teams that run them in a monolith fashion. For example, Amazon’s [two pizza rule](https://aws.amazon.com/executive-insights/content/amazon-two-pizza-team/) is very popular in the software industry that says — *No team should be big enough that it would take more than two pizzas to feed them*. *Ideally, this is a team of less than 10 people: smaller teams minimize lines of communication and decrease overhead of bureaucracy and decision-making.* Also, because we’re talking about large teams and about Amazon, [this article](https://highscalability.com/behind-aws-s3s-massive-scale/) is a great reference. The most popular blob storage service, Amazon S3 alone is composed of more than 300 micro-services, and you cannot assume all the teams building them to come in a one giant standup thrice a week to talk about their work. It’s obvious that a lot of engineers and managers would be managing these services so that they can focus on specific areas. At the same time, it’s very easy to talk about good engineering management at that scale, than doing it efficiently. So I always appreciate how these large organisations remain agile and build massive applications for their customers.
+2. Having large systems doesn’t mean that you have really large teams that run them in a monolith fashion. For example, Amazon’s [two pizza rule](https://aws.amazon.com/executive-insights/content/amazon-two-pizza-team/) is very popular in the software industry that says — *No team should be big enough that it would take more than two pizzas to feed them*. *Ideally, this is a team of less than 10 people: smaller teams minimize lines of communication and decrease overhead of bureaucracy and decision-making.* Also, because we’re talking about large teams and about Amazon, [this article](https://highscalability.com/behind-aws-s3s-massive-scale/) is a great reference. The most popular blob storage service, Amazon S3 alone is composed of more than 300 micro-services, and you cannot assume all the teams building them to come in one giant standup thrice a week to talk about their work. It’s obvious that a lot of engineers and managers would be managing these services so that they can focus on specific areas. At the same time, it’s very easy to talk about good engineering management at that scale, than doing it efficiently. So I always appreciate how these large organisations remain agile and build massive applications for their customers.
 
 3. If your company is building really large systems, they also invest in building Internal tools so that developers in different teams follow same standards and do not reinvent the wheel for solving similar problems. In my previous role, I’ve worked in the developer productivity team for more than one year. As our team was scaling in strength and developers were breaking the system into microservices, we were building internal tools for configuration management and deployment so that we could easily deploy the applications to EC2 machines, dockers or kubernetes. We were required to support multiple deployment systems because we had not transitioned fully to kubernetes and different applications (both old and new) were getting deployed to different platforms.
 
 4. Not all the processes of large organisations make sense for small organisations, or for those organisations that are scaling to a larger one but I’d like to emphasize on one very important rule that impacts the success of projects — [Amazon’s Single threaded leadership principle](https://daily.stoa.com/newsletter/single-threaded-leadership). In startups, we generally don’t hire people as new initiatives begin. As a result, same set of people are juggling (and sometimes struggling) with multiple initiatives. If there are some gaps in the quality of delivered products, it’s acceptable to the leadership because they know that people are trying their best. With teams scaling to a larger strength, it is important to revisit this culture. If it is not acceptable going forward, it’s important to improve the team’s culture in a way where people are not overwhelmed with projects and whatever they deliver is of much better quality. The **Single Threaded Leadership** **Principle** might make some sense for the scaling organisation because at a specific point, teams might be catering enterprise clients where quality is very important.
 
 
-## **How do I hire people**
+## How do I hire people?
 
 I’ve been contributing to hiring efforts from my second year as a Software Engineer, where I use to take DSA round. I’ve taken hundreds of interviews since that time, which include the same for Engineers (junior / senior / lead), Managers, QAs and Devops. I personally believe that it’s very important to understand the candidate and their aspirations, rather than just throwing a problem in front of them and talking about it for an hour. Interviews of a candidate should happen in a way where each interview helps you to paint a clearer picture of their behaviour and skills rather than every round starting with the old “please introduce yourself” question. To hire anyone in future, I’d look for these things:
 
@@ -138,7 +141,7 @@ To summarize:
 3. Bias for action, humble and eager to learn.
 
 
-## **Cultural differences between Indian and non-Indian teams**
+## What are cultural differences between Indian and non-Indian teams?
 
 I think all of you have heard of a few cases in the recent past where employees died at work or committed suicide due to work pressure. It’s very unfortunate to see the same companies having great working culture outside India and highly toxic culture in India. I wrote about [blameless culture](https://blog.gagan93.me/blameless-culture) recently where I shared some examples of how good or bad culture propagates from the top to bottom, or from old employees to new employees. It all boils down to a few people on the top that we call as **the leadership.** These people define:
 
@@ -152,8 +155,8 @@ I think all of you have heard of a few cases in the recent past where employees 
 
 5. And most importantly - Work life balance.
 
-For me, the 16-hour workday philosophy is nonsense. If I don't have time to think about other things in life, I can't grow personally or professionally. I've worked with US teams in my first organization, and now I work with both US and Africa teams (in addition to the India team). Fortunately, the overall culture encourages taking leave whenever needed, whether for a personal emergency, rest, or vacation. People in the US don't work beyond a certain limit, but that doesn't mean they haven't created good products or scaled companies.
 
+For me, the 16-hour workday philosophy is nonsense. If I don't have time to think about other things in life, I can't grow personally or professionally. I've worked with US teams in my first organization, and now I work with both US and Africa teams (in addition to the India team). Fortunately, the overall culture encourages taking leave whenever needed, whether for a personal emergency, rest, or vacation. People in the US don't work beyond a certain limit, but that doesn't mean they haven't created good products or scaled companies.
 
 In a nutshell,
 
@@ -168,7 +171,7 @@ In a nutshell,
 5. Take your work seriously. In the 8-9 hrs you put, give your 100%.
 
 
-## **How do you handle/convey delays across layers of stakeholders?**
+## How do you handle/convey delays across layers of stakeholders?
 
 Let's consider this hierarchy: developers (including you) → project manager → business teams → customer. Anyone who has successfully launched a product knows that initial estimates are often inaccurate. The accuracy of your estimates depends on many factors, such as:
 
@@ -181,11 +184,11 @@ Let's consider this hierarchy: developers (including you) → project manager �
 4. How **new** is the team? - If there are many new members, there is a possibility of inaccurately estimating their speed in developing production-ready systems.
 
 
-Beyond this, each layer should understand that the previous layers might exceed their estimates, so they should include their own buffers. For example, if developers estimate 6 weeks, managers should say 7-8 weeks, and the business team should tell the end customer 8-10 weeks. It's okay to *under-commit and over-deliver* (but not the reverse).
+Beyond this, each layer should understand that the previous layers might exceed their estimates, so they should include their own buffers. For example, if developers estimate 6 weeks, managers should say 7-8 weeks, and the business team should assume 8-10 weeks. It's okay to *under-commit and over-deliver* (but not the reverse).
 
-If your team can follow this kind of framework, it‘s great. Because then you don’t need to do the hard part of convincing the customer who was waiting for a feature. I’d like to add one point for the managers — Your team could be bad at estimating something. But that doesn’t mean that you give your own estimates to the business team. A non-engineer should never estimate on behalf of engineers. If you think their estimates are wrong everytime, sit with them and retrospect.
+If your team can follow this kind of framework, that's excellent. It means you won't have to struggle as much to convince customers who have been waiting for a feature. A note for managers: your team might sometimes struggle with accurate estimations. However, that doesn’t mean you should provide your own estimates to the business team. Non-engineers should avoid estimating on behalf of engineers. If you find that the team's estimates often miss the mark, take the time to discuss and reflect with them.
 
-## **Big Tech engineers are superior to us**
+## Are Big Tech engineers are superior to us?
 
 I respect great engineers and managers who have built really large systems without which the world would have been very different. At the same time, do not think that they are of a different breed. I think engineers in startups typically work in environments with fewer resources, less structure, and more uncertainty. They wear multiple hats, tackling everything from backend to frontend, cloud and even take product decisions. This exposure forces them to develop a holistic understanding of technology and the business. In contrast, engineers at Big Tech firms may specialize in a narrow domain within a larger system, where their role and responsibilities are more clearly defined. While specialization can lead to deep expertise in specific areas, it may also mean less exposure to the end-to-end development process, product strategy, or direct customer interaction.
 
@@ -193,13 +196,13 @@ The perception of Big Tech engineers being superior is often tied to the prestig
 
 On the other hand, big tech companies manage vast products, extensive business operations, and significant overall revenue. In such environments, even small optimizations made by engineers can lead to substantial financial benefits. For instance, a minor improvement in code efficiency or system performance can save millions of dollars due to the scale at which these companies operate. Therefore, it's important not to assume that engineers in big tech are performing the same tasks as those working on an app serving only 1,000 users. The scale, complexity, and potential impact of their work are vastly different. Engineers in big tech often deal with challenges related to scalability, security, and global user bases, which require a different set of skills and approaches compared to those needed in smaller-scale applications.
 
-## **Growing as an Engineer, not a Java Engineer or Ruby Engineer**
+## **How to grow as an Engineer (not a Java Engineer or Ruby Engineer)**
 
 I’ve been fortunate to be mentored by someone who was a polyglot programmer. Although I’ve majorly written only Ruby in production throughout my career, I’m mentally aligned to think about problems without tying them with language specific constructs. Knowing multiple languages help you to apply good things of one language in another language and build something in a unique way. With this knowledge, you can also plan to build certain parts of a system in a different language that is more optimised for the use case, especially when you get a chance to split them into services.
 
 In many of these discussions that I had with these engineers, I told them to start thinking of solving problems without talking about the language. Also, whenever given a chance, do not shy away from learning a new programming language. The maturity that comes with this mindset also helps you to write build documentations where you use more generic / industry standard terms rather than using the names of specific libraries that were used to implement the same (eg. calling part of system as **background job processor** rather than [celery](https://github.com/celery/celery), [jobrunnr](https://www.jobrunr.io/en/) or [sidekiq](https://github.com/sidekiq/sidekiq/)).
 
-## **How to know about scale without working on scale**?
+## How to know about scale without working on scale?
 
 This question came from someone who was asked about database query optimisation in an interview. While they knew about indexes and a few other things that help you optimise queries, they had never done something like this in the past. I think there are two ways to learn about scale:
 
@@ -234,7 +237,7 @@ I learnt docker back in 2022 using this method. Earlier I just created a Dockerf
 
 **Continuous learning** - Your work might be very challenging, but it can still limit your learning to certain areas. Make sure to set aside some time regularly (weekly or monthly, if not daily) for learning. I understand that not every day is the same. Some days are more stressful, while others are more relaxed. Create a list of blogs you want to read or videos you want to watch, and learn from them whenever you have some free time.
 
-## **How often your managers sync and how does it impact your growth**?
+## How often your managers sync and how does it impact your growth?
 
 In my first organization, there was no formal manager hierarchy in my team. We all reported to one of the three founders. Our project was in maintenance mode, so we didn't have a senior resource like a Tech Lead assigned, as they were in other teams. I wouldn't say my growth was halted because of this, but now that I have managers who sync weekly, I see the benefits of regular manager check-ins. Many people in these calls mentioned their managers don't sync with them regularly. Here, *regular* doesn't mean weekly but rather on a fixed schedule. This depends on factors like:
 
@@ -282,7 +285,7 @@ At this point, you might be thinking — how do I know about these things before
 
 ## **How to be good at real world HLD?**
 
-This response overlaps with “*How to know scale without working at scale?*”. You don’t easily get the chance to build something large or join a team scaling their systems. The best thing you can do without much investment is to learn from others' designs and mistakes.
+This response slightly overlaps with a [previous section](https://blog.gagan93.me/11-conversations-with-10-software-engineers#heading-how-to-know-about-scale-without-working-on-scale). You don’t easily get the chance to build something large or join a team scaling their systems. The best thing you can do without much investment is to learn from others' designs and mistakes.
 
 1. IIf you work for a company with large systems, talk to the people who built them or have been working on them for a long time. Read documentation to understand design decisions and how they've evolved. Look for [ADR](https://github.com/joelparkerhenderson/architecture-decision-record) documents in large companies to learn the reasons behind these decisions.
 
