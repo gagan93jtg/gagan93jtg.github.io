@@ -1,4 +1,221 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-10-18T08:41:51+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">1:1 conversations with 10 Software Engineers</title><link href="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html" rel="alternate" type="text/html" title="1:1 conversations with 10 Software Engineers" /><published>2024-10-15T00:00:00+05:30</published><updated>2024-10-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers</id><content type="html" xml:base="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-11-24T16:59:59+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Refactoring: Lessons Learnt So Far</title><link href="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html" rel="alternate" type="text/html" title="Refactoring: Lessons Learnt So Far" /><published>2024-11-24T00:00:00+05:30</published><updated>2024-11-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/11/24/how-to-refactoring</id><content type="html" xml:base="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-11-24-refactoring.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-nina-mercado-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@nina_mercado?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Nina Mercado&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/silver-and-black-round-coins-5Y8NrzPya-w?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Refactoring is the process of restructuring code, without changing its original functionality.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Over the past three years, my role has allowed me to pick a lot of refactoring tasks, which have enhanced my skills and understanding around &lt;em&gt;Refactoring&lt;/em&gt;. Despite its proven benefits, many developers and teams approach refactoring with hesitation, weighed down by myths that it is &lt;strong&gt;risky, time-consuming, or equivalent to a complete rewrite&lt;/strong&gt;. However, refactoring is none of these. When done correctly, it can significantly reduce technical debt, improve readability, enhance test coverage, and simplify debugging.&lt;/p&gt;
+
+&lt;p&gt;This blog aims to demystify refactoring by exploring its importance, addressing common misconceptions, and providing practical guidelines for approaching it the right way. Whether you’re tackling a legacy codebase or refining new code, understanding the essence of refactoring can empower you to build more sustainable software. Let’s delve into &lt;strong&gt;why&lt;/strong&gt; and &lt;strong&gt;how&lt;/strong&gt; refactoring should be a regular part of your development process, not an intimidating task.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-should-you-refactor-code&quot;&gt;Why should you refactor code?&lt;/h2&gt;
+
+&lt;p&gt;After nearly a decade of writing software, I’ve learned that &lt;strong&gt;refactoring is unavoidable&lt;/strong&gt;. While it’s possible to delay it, putting it off only makes the task costlier and more complicated down the line. Ignoring refactoring may offer short-term relief, but in the long run, the cost of addressing the accumulated technical debt grows exponentially.. The below points should help you understand why you need to prioritize refactoring regularly:&lt;/p&gt;
+
+&lt;h3 id=&quot;to-untangle-code-ownership&quot;&gt;To untangle Code Ownership&lt;/h3&gt;
+
+&lt;p&gt;One common complaint among developers working in a &lt;em&gt;fast-paced&lt;/em&gt; startup environment is that the code for different modules often becomes tightly coupled, sometimes even within a single file. This situation arises because, in the beginning, the business logic is straightforward. Each time a developer needs to make a change, they perceive it as &lt;em&gt;just another simple change&lt;/em&gt;. Over the years, this approach results in a file that resembles a &lt;a href=&quot;https://en.wikipedia.org/wiki/God_object&quot;&gt;god object&lt;/a&gt;, which seems to know everything but has lost sight of its original purpose. Refactoring plays a crucial role in untangling this complex web of code. By doing so, it allows different teams to take ownership of specific files or modules. This can be effectively managed using tools like &lt;a href=&quot;https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners&quot;&gt;GitHub CodeOwners&lt;/a&gt;, which help assign responsibility and maintain clarity in code management. Through refactoring, the codebase becomes more organized, enabling teams to work more efficiently and reducing the risk of errors when changes are made.&lt;/p&gt;
+
+&lt;h3 id=&quot;to-reduce-cost-of-debugging&quot;&gt;To reduce cost of debugging&lt;/h3&gt;
+
+&lt;p&gt;Recently, I was on a call with another engineer, and we were trying to find problem in the production code. A section of the application wasn’t functioning correctly, so we started by reading the code starting from the controller to trace the potential path a user might have taken. The controller file was cluttered, containing most of the business logic in one file. It was filled with numerous methods that called one another, each with lengthy lists of arguments that were difficult to guess. We spent over an hour trying to pinpoint the issue, but even after all that time, we weren’t entirely confident about the root cause. Having dealt with debugging production issues in the past where the code was better organized, I realized that these engineers were losing countless hours every time a problem like this came. If you find yourself in a similar situation where valuable productive time is being wasted on debugging due to tangled code, it’s crucial to have a conversation with your managers. Discuss the importance of planning for refactoring in the future. By doing so, you can improve the code structure, making it easier to identify and fix issues, ultimately saving time and resources in the long run.&lt;/p&gt;
+
+&lt;h3 id=&quot;to-reduce-techical-debt&quot;&gt;To reduce techical debt&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Technical debt is the cost of future rework that results from prioritizing speed over long-term design in software development.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Companies often ship code that needs more work before adding new features. While launching the initial product is the top priority, addressing tech debt often gets delayed. For example, when working on a new module, you might hardcode values in an existing class. As more requirements come in, adding more hardcoded values or if-else statements just creates a mess. This means you need to refactor the code before building more on it. Remember this quote: &lt;a href=&quot;https://news.ycombinator.com/item?id=33059910&quot;&gt;&lt;em&gt;First make the change easy, then make the easy change&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;to-improve-engineering-culture&quot;&gt;To improve engineering culture&lt;/h3&gt;
+
+&lt;p&gt;The cleaner and more well-structured your code is, the better it becomes as a reference for others. When you take the time to improve and maintain high-quality code, it not only benefits the project at hand but also sets a positive example for the rest of the team. New team members will be motivated by its clarity and organization, inspiring them to adopt similar practices in their own work. This fosters a culture of excellence, where everyone strives to write better code. On the flip side, if the codebase is cluttered and unorganised, there’s a high likelihood that others will follow that same pattern and create similarly messy code. It becomes a cycle, where poor practices multiply. As the team grows, this culture of quality spreads, impacting the overall productivity and the risk of technical debt based on the shape of initial code.&lt;/p&gt;
+
+&lt;p&gt;The habits you instill in your codebase today can shape the quality of work throughout the entire team tomorrow. Before we learn how to refactor, let’s clear up some myths about refactoring.&lt;/p&gt;
+
+&lt;h2 id=&quot;myths-around-refactoring&quot;&gt;Myths around refactoring&lt;/h2&gt;
+
+&lt;h3 id=&quot;its-another-name-for-rewriting&quot;&gt;It’s another name for “Rewriting”&lt;/h3&gt;
+
+&lt;p&gt;Before we talk more about refactoring, it’s important to understand basic differences between &lt;em&gt;Complete Rewrite&lt;/em&gt; and &lt;em&gt;Refactoring&lt;/em&gt;:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;strong&gt;Aspect&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Complete Rewrite&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Refactoring&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Scope&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Entire codebase is discarded and rebuilt.&lt;/td&gt;
+      &lt;td&gt;Improves the existing code incrementally.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Risk&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;High risk of introducing new bugs or missing features.&lt;/td&gt;
+      &lt;td&gt;Lower risk as existing functionality is preserved.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Time &amp;amp; Cost&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Time-consuming and often more expensive.&lt;/td&gt;
+      &lt;td&gt;Typically faster and more cost-effective.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Goal&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Start fresh with a new design or approach.&lt;/td&gt;
+      &lt;td&gt;Improve code quality, maintainability, and performance.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Disruption&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Can cause significant disruption to development and team workflow.&lt;/td&gt;
+      &lt;td&gt;Less disruptive, as changes are small and incremental.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I’ve seen developers (of all experience ranges) raising PRs with thousands of lines of changes across multiple files, claiming they’ve “tested everything thoroughly”. They think this one PR will solve all their problems, but that’s rarely true. In most cases, the real issues begin after merging the PR. Don’t take this negatively if you’re following the same approach currently. Even I’ve been that developer who has merged large PRs without breaking anything on production, and I’ve seen others do it too, because they took the mental stress of testing every case and fixing all review comments on the large PR (and again test everything). The only problem with this approach is that &lt;strong&gt;it doesn’t scale&lt;/strong&gt; for everyone in the team. While everyone can raise large PRs,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not everyone can &lt;strong&gt;test&lt;/strong&gt; them thoroughly. And even if they do it once, they don’t do it with the same effort after fixing the review comments where they might have changed something in logic or in design.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Also, not everyone can &lt;strong&gt;review&lt;/strong&gt; large PRs. As a result, many such large changes go live without a good code review. In my experience, reviewing large PRs can easily take more than an hour and not everyone is ready to put that much effort. These days I often don’t review large PRs. I spent ~ 5 minutes in understanding the structure of changed files and then leave a comment suggesting how the author can raise smaller PRs that are easy to review.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Due to how developers have been approaching “refactoring”, management and leadership have started seeing it in the same way as “rewriting.” While raising a large PR for a new feature is safer (since most of the code is new), it is considered very risky for refactoring. If your code change breaks a stable module in production, it will confirm your manager’s belief that &lt;em&gt;refactoring is as risky as rewriting&lt;/em&gt;. So, make sure you avoid the “big bang” approach.&lt;/p&gt;
+
+&lt;h3 id=&quot;its-meant-for-legacy-applications&quot;&gt;It’s meant for legacy applications&lt;/h3&gt;
+
+&lt;p&gt;Refactoring is linked to &lt;strong&gt;legacy systems&lt;/strong&gt; because legacy systems often accumulate large technical debt over time, but it’s just as important for &lt;strong&gt;new and evolving applications&lt;/strong&gt;. Even in modern codebases, you can gather small debts like long classes/methods, duplicate code, unclear variable names, etc. Refactoring lets developers improve and optimize code continuously without a major overhaul. I often refactor code I wrote last week or last month. When a change makes a method or class messy, I find better ways to rewrite that code. It gives a different kind of satisfaction 😌.&lt;/p&gt;
+
+&lt;h3 id=&quot;its-risky-hard-and-unscoped&quot;&gt;It’s risky, hard and unscoped&lt;/h3&gt;
+
+&lt;p&gt;The favorite thing for an engineer to do is build new features. The second favorite (for a lot of us) is doing a big-bang rewrite of an old system. But there are two issues with large rewrites:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;They have more chances of breaking production because of size of change.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;They have less chances of getting shortlisted by your manager, again, because of it’s size. And because such tasks do not create any immediate business value, they gets shelved.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If your manager has been a Senior IC person in the past, there might suggest you to split the project in order to get it prioritized. But if they are someone who’s not much into tech these days, and they do not suggest something like this, your refactoring project won’t get picked ever. So irrespective of how &lt;strong&gt;technical&lt;/strong&gt; your manager is, it’s your role to understand the scope of the project and break it into parts that can be shipped. If you’ve never done it, please start doing it from now. Shipping new features can go in large PRs (although I don’t recommend you doing that) but refactoring projects should &lt;strong&gt;never&lt;/strong&gt; go as large PRs. And because many developers have been executing them wrongly, refactoring is seen as &lt;strong&gt;risky, hard and unscoped&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;its-a-one-time-event&quot;&gt;It’s a one time event&lt;/h3&gt;
+
+&lt;p&gt;A significant amount of technical debt shows that your team hasn’t focused on refactoring for a long time. If you compare the cost of refactoring a system today with the cost three years from now, you’ll see that doing it today is easier and cheaper (unless the product is being retired in the next three years). This is because if experienced team members leave, new ones will struggle to understand the messy code that has built up over the years. Refactoring is a skill that everyone develops over time. Once you successfully complete a small refactoring project, you gain the confidence to handle more tasks and improve the system further. As you master this skill, it’s important to share your knowledge with others, so everyone can help improve the existing codebase. Ideally, refactoring shouldn’t be something you do only once or twice a year. It should be a &lt;strong&gt;continuous&lt;/strong&gt; and &lt;strong&gt;intentional&lt;/strong&gt; effort to keep technical debt from becoming too much to handle.&lt;/p&gt;
+
+&lt;h3 id=&quot;refactoring-is-moving-code-across-files&quot;&gt;Refactoring is “moving code across files”&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Don’t mistake motion for progress” - Alfred A. Montapert&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In web applications, there is a common principle that your controllers should remain small and focused. This means they should primarily call the service layer and handle the response based on the service’s output. As a result, developers who find themselves writing extensive code within controllers might feel compelled to move that code elsewhere. While this instinct is understandable, it is crucial to approach this task with careful consideration and planning. Instead of simply &lt;em&gt;cutting and pasting lengthy methods&lt;/em&gt; from one file to another, which only addresses the superficial goal of reducing controller size, a more thoughtful strategy is required. True refactoring involves a deeper analysis of each method’s purpose and determining the most appropriate location for it. This process requires developers to think critically about the design and structure of their classes, ensuring that each method is placed in a context where it logically belongs. By engaging in a well-planned refactoring activity, developers can achieve more than just &lt;em&gt;smaller controllers&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;I believe you now have a solid understanding of what refactoring is—and what it isn’t. Now, let’s dive deeper into how to approach refactoring and explore the key challenges to watch out for during the process.&lt;/p&gt;
+
+&lt;h2 id=&quot;approaching-refactoring&quot;&gt;Approaching Refactoring&lt;/h2&gt;
+
+&lt;h3 id=&quot;it-is-done-in-isolation&quot;&gt;It is done in isolation&lt;/h3&gt;
+
+&lt;p&gt;When someone is working on a feature, they’re often motivated to fix the code around it. As a result, we get to see PRs where someone lints an entire file rather than the method they changed, or improved the logic of the methods that is getting called from their code. Their intention is to improve or optimise the code but the change could probably be taken up in a separate PR. Just like you don’t mix &lt;strong&gt;drinking&lt;/strong&gt; with &lt;strong&gt;driving&lt;/strong&gt;, avoid mixing &lt;strong&gt;feature changes&lt;/strong&gt; with &lt;strong&gt;refactoring.&lt;/strong&gt; Make sure that if you want to do the noble act of improving the existing code, raise a separate PR for it so that it can be individually tested, reviewed and released (and even reverted, incase something goes wrong). This will ensure that your &lt;strong&gt;feature changes&lt;/strong&gt; do not get blocked due to review comments on this &lt;strong&gt;refactoring changes&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;it-should-be-guided-by-tests&quot;&gt;It should be guided by tests&lt;/h3&gt;
+
+&lt;p&gt;Test cases are incredibly important when you are refactoring any part of a system. They serve as a &lt;strong&gt;safety net&lt;/strong&gt;, ensuring that the changes you make do not unexpectedly break an existing functionality. For example, if you have a comprehensive set of unit tests for a large file, these tests can guide you through the process of splitting the file into smaller, more manageable pieces. With unit tests in place, you can confidently refactor, knowing that any errors introduced during the process will be quickly identified. This allows you to focus on improving the code’s structure and readability without worrying about unintended side effects.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What if I don’t have test cases for some code? -&lt;/strong&gt; Incase you don’t have test cases, I recommend building a strong automated test suite first, or find ways to manually test the system to confirm everything works after refactoring. Please do not prioritize refactoring without a good way of testing out changes. I’ve been moving code from controllers to services, and from large services to smaller, more manageable services using this approach. I make sure my controller tests cover 100% of the controller and service code. Once that’s done, I know that any changes I make will be caught if they break any part of the API contract.&lt;/p&gt;
+
+&lt;h3 id=&quot;refactoring-should-use-established-patterns&quot;&gt;Refactoring should use established patterns&lt;/h3&gt;
+
+&lt;p&gt;While many believe that code is poetry — and I wholeheartedly support the idea of creative problem-solving, it’s equally important to follow established patterns and best practices when refactoring code. These patterns have been developed and refined by the community over decades of experience while solving similar problems. They encapsulate lessons learned from solving common challenges, ensuring solutions are robust, efficient, and easier for others to understand. Established patterns, like &lt;strong&gt;design patterns&lt;/strong&gt; (e.g., Singleton, Strategy, Factory), &lt;strong&gt;architectural styles&lt;/strong&gt; (e.g., modular monoliths, microservices), solutions to &lt;a href=&quot;https://refactoring.guru/refactoring/smells&quot;&gt;&lt;strong&gt;common code smells&lt;/strong&gt;&lt;/a&gt; (like long class, long methods, data clumps), and practices specific to a &lt;strong&gt;language&lt;/strong&gt; or &lt;strong&gt;framework&lt;/strong&gt; act as a shared vocabulary among developers. When you follow these patterns, you’re not just solving a problem, you’re solving it in a way that others can immediately recognize, adapt, and build upon. This reduces cognitive overhead for team members, accelerates onboarding, and improves collaboration. While building a solution in way that it feels “uniquely yours” is a tempting feeling, these (overly creative) solutions can become difficult for others to maintain, debug, or extend over time. By grounding your refactoring efforts in proven patterns, you ensure the code remains accessible and future-proof.&lt;/p&gt;
+
+&lt;h3 id=&quot;avoid-premature-abstraction&quot;&gt;Avoid Premature abstraction&lt;/h3&gt;
+
+&lt;p&gt;Abstraction is a great concept, but premature abstraction makes things complex. A &lt;a href=&quot;https://en.wikipedia.org/wiki/Rule_of_three_\(computer_programming\)&quot;&gt;common rule&lt;/a&gt; in software engineering suggests to avoid having an abstraction till there are at least &lt;strong&gt;three repetitions&lt;/strong&gt; of the code fragment that you’re planning to abstract out. While “three” might not be an appropriate number for everyone, it should be a good starting point for you if you don’t have anything else in mind. Waiting for a few repetitions of the code ensures that you have some data around what to generalize and what not to. While duplication of code is considered bad, generalizing prematurely might lead to speculative designs that are very different from the real world needs. Write code that is clear, direct, and solves the immediate problem effectively. Refactor and abstract &lt;strong&gt;only when&lt;/strong&gt; the need becomes evident—when similar patterns emerge across different parts of the system, or when a particular piece of functionality needs to be reused or extended.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-changes-small-and-reversible&quot;&gt;Keep changes small and reversible&lt;/h3&gt;
+
+&lt;p&gt;I think we’ve already discussed about the benefits of small PRs, so keeping the changes &lt;strong&gt;small&lt;/strong&gt; is an obvious thing. Another important thing is to ensure that changes are &lt;strong&gt;reversible&lt;/strong&gt;. As refactoring can touch very critical parts of your application, it is important to &lt;strong&gt;plan for failure&lt;/strong&gt;. The simplest &lt;em&gt;rollback plan&lt;/em&gt; would be to turn off the feature flag incase something goes wrong (or rollback the previous release). But that only works for deployments that didn’t modify any data. If you’ve modified some data in your database, it might be hard to rollback. As a precaution, try to follow an approach where rolling back data changes is also easy. For example, split your deployments like this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Add a new column that has new data. Push the new code along with this but don’t flip the feature flag yet.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Back populate the data in new column and add relevant callbacks in the system to ensure new data gets copied.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When previous data is also copied, flip the feature flag and see if everything is going well. If something goes wrong, immediately turn off the feature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;After few weeks/months (based on amount of testing you need), drop the old column, delete the old code and drop the if-else code handling the feature flag.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Based on the scale of data and complexity of project, the above approach can sound normal or an overkill to you. But trust me, I’ve seen things going wrong just because developers didn’t plan well for rollbacks for &lt;strong&gt;data related changes.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;document-changes&quot;&gt;Document changes&lt;/h3&gt;
+
+&lt;p&gt;Documenting changes during refactoring is essential for maintaining clarity, ensuring team alignment, and supporting future development. It captures the &lt;strong&gt;rationale&lt;/strong&gt; behind the changes, helping others understand why specific decisions were made, especially if they impact dependencies or architectural patterns. Documentation preserves &lt;strong&gt;context&lt;/strong&gt; to avoid undoing improvements and provides a historical record for long-term projects. It also simplifies onboarding by giving new team members a clear view of the code’s evolution. Good documentation highlights &lt;strong&gt;what was refactored, why it was needed, and how it aligns with the project’s goals&lt;/strong&gt;, helping avoid confusion and duplication of effort. Including notes in commit messages, pull requests, or internal wikis ensures the refactoring’s intent is communicated effectively. This practice not only fosters collaboration but also aids debugging by clarifying the purpose and impact of the changes, ensuring the refactored code remains accessible and adaptable.&lt;/p&gt;
+
+&lt;h3 id=&quot;monitor-performance-check-for-bugs&quot;&gt;Monitor performance, check for bugs&lt;/h3&gt;
+
+&lt;p&gt;When refactoring, it’s crucial to &lt;strong&gt;monitor performance&lt;/strong&gt; and &lt;strong&gt;check for bugs&lt;/strong&gt; to ensure stability and identify unintended side effects. While refactoring doesn’t guarantee performance improvements or fewer bugs, it can pave the way for these by simplifying the codebase and addressing inefficiencies. A well-refactored codebase should also make future optimizations (such as adding a caching layer) easier to plan and implement. Additionally, cleaner code helps in debugging and enhances maintainability (as already explained above). Use comprehensive test suites to validate changes and check for regressions and APM tools to monitor real-world performance after deployment.&lt;/p&gt;
+
+&lt;h3 id=&quot;value-contributions&quot;&gt;Value contributions&lt;/h3&gt;
+
+&lt;p&gt;This message is for team leads and engineering managers: one of the most common reason why developers struggle with refactoring tasks is &lt;strong&gt;a lack of motivation&lt;/strong&gt;. And often, this lack of motivation comes from how teams undervalue &lt;strong&gt;refactoring&lt;/strong&gt; compared to &lt;strong&gt;business deliverables&lt;/strong&gt;. As Eileen pointed out in her &lt;a href=&quot;https://www.youtube.com/watch?v=olxoNDBp6Rg&quot;&gt;latest RailsConf talk&lt;/a&gt;, a good engineering culture starts at the top. Many of us have worked at organizations where messy code is shipped in the name of urgency, and the architecture becomes too complex to maintain over time. If we’re to take actionable insights from her experience, here’s what leadership can do to address these challenges:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Prioritize Refactoring -&lt;/strong&gt; Treat refactoring tasks with the same importance as product development. Assign dedicated bandwidth for these efforts. Spending “few hours a day” don’t work and often lead to half-hearted results.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Align Teams&lt;/strong&gt; - Ensure engineers, product managers, and other stakeholders understand that refactoring is just as crucial as building features. A healthy codebase supports long-term business goals.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Invest in Education -&lt;/strong&gt; Not all team members naturally excel at refactoring. If specific skills are needed to address technical debt or architectural issues, invest time and resources to train your team.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Eileen, with over a decade of experience at companies like Basecamp, GitHub, and Shopify, emphasized these points from her journey. While I haven’t worked at large organizations, I’ve faced similar challenges in small-to-medium startups. And seeing the comments on her talk, these problems persist even in teams following microservices architecture. So we can conclude that the challenges of maintaining a clean, scalable codebase are universal.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;While refactoring is essential for maintaining a clean and efficient codebase, it’s important to respect the existing code, even if it appears messy. This code was often written under tight deadlines to meet urgent business needs, and it has successfully supported the business for &lt;strong&gt;months and years&lt;/strong&gt;. Recognizing the value of this “mess” is crucial, as it reflects quick thinking of developers who ensured the continuity and success of the business, which is crucial for any organisation.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading this post, have a good day 😊.&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reading&quot;&gt;Further reading&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re not yet thorough with design patterns and code smells, use this &lt;a href=&quot;https://refactoring.guru/&quot;&gt;free resource&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Read &lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/paying-down-tech-debt&quot;&gt;this post&lt;/a&gt; by The Pragmatic Engineer around tech debt.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Find a book around refactoring for your specific programming language. For example, I read &lt;a href=&quot;https://www.amazon.in/Refactoring-Ruby-Addison-Wesley-Professional/dp/0321984137&quot;&gt;this book&lt;/a&gt; for Ruby.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I already linked &lt;a href=&quot;https://www.youtube.com/watch?v=olxoNDBp6Rg&quot;&gt;this talk&lt;/a&gt; in one of the points above, but adding this again incase you missed that!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="refactoring" /><category term="design" /><category term="rewrite" /><summary type="html">This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development.</summary></entry><entry><title type="html">1:1 conversations with 10 Software Engineers</title><link href="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html" rel="alternate" type="text/html" title="1:1 conversations with 10 Software Engineers" /><published>2024-10-15T00:00:00+05:30</published><updated>2024-10-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers</id><content type="html" xml:base="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-dylan-ferreira-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@dylanferreira?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Dylan Ferreira&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/person-in-red-and-black-plaid-long-sleeve-shirt-using-black-laptop-computer-HJmxky8Fvmo?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -414,92 +631,7 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Thank you for taking the time to read through this post. I hope the insights were worth the time you spent. Hearing firsthand about the diverse challenges, growth experiences, and problem-solving approaches was a reminder of how valuable open dialogue is for learning and professional development. Whether you’re navigating similar paths or different ones, I hope these reflections offer useful perspectives. Do share this with your friends who are looking for similar advice. Let me know your thoughts in the comments. See you in the next blog post 🚀.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="networking" /><category term="engineering" /><category term="learning" /><category term="growth" /><category term="interviews" /><summary type="html">This is a long blog post that captures some queries that people had in the 1:1 that I had with 10 engineers last month.</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-a-blameless-culture&quot;&gt;What is a Blameless Culture?&lt;/h2&gt;
-
-&lt;p&gt;Have you ever heard of teams where individuals blame each other when a product release is delayed? Or perhaps, unfortunately, worked with such teams? It is quite disheartening to be part of a team where such inefficiencies outweigh productive work. A few reasons why this happens are:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;If managers do not invest sufficient time in designing a system that promotes transparency,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Or when most of the team members encourage the blame-game, and no one steps up to highlight that this approach harms team motivation,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Or where it is normal to delay releases or shift responsibilities, rather than maintaining clarity.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The above is exactly opposite of how &lt;strong&gt;Blameless culture&lt;/strong&gt; looks like. In a Blameless culture, we emphasize on &lt;strong&gt;learning&lt;/strong&gt; and &lt;strong&gt;improving&lt;/strong&gt; but &lt;strong&gt;without pointing fingers&lt;/strong&gt;. So when a mistake happens, the focus is on analysing the &lt;strong&gt;root cause&lt;/strong&gt; and &lt;strong&gt;fixing it&lt;/strong&gt;. In such a culture, people are open to communicate and accept their mistakes rather than hiding them or shifting blames.&lt;/p&gt;
-
-&lt;h2 id=&quot;role-of-processes&quot;&gt;Role of processes&lt;/h2&gt;
-
-&lt;p&gt;Let’s say you work in a startup with less than 10 people. There are high chances that you won’t have a process defined for anything. So if you are working in the leadership team and someone comes and asks for a leave, or wants to get their laptop repaired, or needs a comfortable chair — you will need to define a process for them. On the contrary, in a large organisation you will see a process and budget defined for almost everything. While processes are important for any organisation, startups can’t prioritise defining these processes, as their goal is to get the first few paying customers for their product(s). At the same time, they can’t even inherit the processes from a large company because a lot of those will not make sense for a startup.&lt;/p&gt;
-
-&lt;p&gt;As of now, I have over 9 years of industry experience, all in startups (including one at a &lt;strong&gt;very early stage&lt;/strong&gt;). I believe that team members should be open to learning new processes to tackle new challenges. They shouldn’t have a fixed mindset that makes them think in just one way. What worked at your previous company might not work at the next one. So, having an open mindset helps you adapt to the environment and come up with new, specific, and innovative solutions.&lt;/p&gt;
-
-&lt;p&gt;Processes in startups evolve as the company grows. For instance, they determine which leave plan is effective and what kind of release schedule works best for their software. The evolution of these processes also addresses many cultural issues. I recall in my previous role, we began to develop a culture of shifting blame to individuals and teams when our product manager inquired “&lt;strong&gt;Why is the Android release delayed?”&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;For the frontend team, it was the QA team that approved the API too late.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;For the QA team, it was the backend team whose estimates were off by days or weeks.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;For the backend team, it was the product team that didn’t consider all scenarios, leading to changes in the code design after they started building the backend..&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We saw this as a chance to improve our processes. It took us 3-4 retrospective meetings to identify what needed improvement. Our &lt;strong&gt;open mindset&lt;/strong&gt; helped us eliminate the &lt;strong&gt;wrong culture&lt;/strong&gt; and address the &lt;strong&gt;root cause&lt;/strong&gt; of our problem. I also wrote a detailed &lt;a href=&quot;https://blog.gagan93.me/efficient-fullstack-delivery&quot;&gt;blog post&lt;/a&gt; about it many years later.&lt;/p&gt;
-
-&lt;h2 id=&quot;culture--accountability&quot;&gt;Culture &amp;lt;&amp;gt; Accountability&lt;/h2&gt;
-
-&lt;p&gt;Blameless culture doesn’t mean avoiding accountability; it means redefining it. Accountability is about ownership of tasks and outcomes. When an issue arises, the goal is to improve the process and systems that allowed the problem to occur, rather than penalizing the individual (or team) involved. This empowers team members to take responsibility without fear.&lt;/p&gt;
-
-&lt;p&gt;Another story I remember is from a recent interaction with a junior colleague in my last role. Both of us were in our notice period at that time. I met them face to face for the first time on their last working day 😅. They were moving to a large investment bank as a Software Engineer. Moving from a startup to a big company that deals with money, they were worried about what would happen if their code caused a loss of real money in production. My shortest answer to them was —&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;If it’s easy to cause loss of money in their systems, it’s a process problem and not an engineer’s fault. There should be sufficient processes and checks in place to make sure this doesn’t happen very easily&lt;/em&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Similarly, every now and then, I see a meme where an intern claims to accidentally destroy the production database. The problem is not the intern, but the policies that gave them write access to production database 😄.&lt;/p&gt;
-
-&lt;h2 id=&quot;founding-teams-impact&quot;&gt;Founding Team’s Impact&lt;/h2&gt;
-
-&lt;p&gt;The founding team has a profound impact on a company’s culture and processes, Founders establish the core values that reflect their work ethic and vision, setting the tone for how employees interact, make decisions, and solve problems. Whether intentional or not, the founding team’s leadership style influences the company’s norms — whether it encourages open communication, innovation, or strict hierarchy. I recently interacted with an old friend who works as a Senior Business analyst. They recently changed their job and told that the culture is very poor. In their words:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Our managers do not treat their reportees well. If you don’t answer their Slack messages quickly, they’ll ping others in the team asking, “Where is XYZ person and why aren’t they responding?” It doesn’t matter if the person went to the washroom for five minutes. They expect immediate responses to everything.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;When I asked about their skip manager’s behavior, they said, &lt;em&gt;“Everyone is the same here. Skip managers shout at managers, and managers shout at us.”&lt;/em&gt; 😿 This shows how a bad culture spreads from top to bottom. Another example is a story shared by &lt;em&gt;The Pragmatic Engineer&lt;/em&gt; in &lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/stripe-part-2&quot;&gt;their blog&lt;/a&gt;. It’s about Stripe’s &lt;strong&gt;strong writing culture&lt;/strong&gt;. Because their CEO and CTO write a lot, it encourages everyone to do the same. As a result, all engineers and managers write long internal documents. I wrote about the impact of the founding team on the rest of the team on &lt;a href=&quot;https://www.linkedin.com/posts/gagan93_culture-writing-team-activity-7170322475212374016-UjEc/&quot;&gt;my LinkedIn&lt;/a&gt; a few months ago:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If you’re an old member of a team, your work is beyond your work profile. One major role is to ensure a positive team culture. Culture propagates in two ways:&lt;/p&gt;
-
-  &lt;p&gt;1. Vertically (CEO -&amp;gt; Dept leads -&amp;gt; managers -&amp;gt; seniors -&amp;gt; freshers).
-2. Horizontally (Among peers / among old and new people).&lt;/p&gt;
-
-  &lt;p&gt;If there is a blame-game culture in a team of 10 members, then chances are that 11th member will also start doing that, or will leave. On the positive side, if there’s a bar of “high quality” code or processes in a team, then the new member will have to match that in order to survive.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;If you work in a team with cultural issues, collaborate with your peers and manager to improve it. If you’re in a startup or a growing team, make sure the culture develops positively. Small habits have a big impact when others follow them, whether good or bad.&lt;/p&gt;
-
-&lt;p&gt;Thank you for reading! Have a good day.&lt;/p&gt;
-
-&lt;hr /&gt;</content><author><name>Gagandeep Singh</name></author><category term="culture" /><category term="team" /><category term="motivation" /><summary type="html">Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity....</summary></entry><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;Thank you for taking the time to read through this post. I hope the insights were worth the time you spent. Hearing firsthand about the diverse challenges, growth experiences, and problem-solving approaches was a reminder of how valuable open dialogue is for learning and professional development. Whether you’re navigating similar paths or different ones, I hope these reflections offer useful perspectives. Do share this with your friends who are looking for similar advice. Let me know your thoughts in the comments. See you in the next blog post 🚀.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="networking" /><category term="engineering" /><category term="learning" /><category term="growth" /><category term="interviews" /><summary type="html">This is a long blog post that captures some queries that people had in the 1:1 that I had with 10 engineers last month.</summary></entry><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-kier-in-sight-archives-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Kier in Sight Archives&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
@@ -694,7 +826,92 @@ Column         |            Type             | Nullable  |         Default
   &lt;li&gt;
     &lt;p&gt;If you’re planning data migration from one system to another, read &lt;a href=&quot;https://blog.gagan93.me/migrating-data-across-services&quot;&gt;this&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Unseen risks of Inheritance</title><link href="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html" rel="alternate" type="text/html" title="Unseen risks of Inheritance" /><published>2024-08-25T00:00:00+05:30</published><updated>2024-08-25T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance</id><content type="html" xml:base="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+
+&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-a-blameless-culture&quot;&gt;What is a Blameless Culture?&lt;/h2&gt;
+
+&lt;p&gt;Have you ever heard of teams where individuals blame each other when a product release is delayed? Or perhaps, unfortunately, worked with such teams? It is quite disheartening to be part of a team where such inefficiencies outweigh productive work. A few reasons why this happens are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If managers do not invest sufficient time in designing a system that promotes transparency,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Or when most of the team members encourage the blame-game, and no one steps up to highlight that this approach harms team motivation,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Or where it is normal to delay releases or shift responsibilities, rather than maintaining clarity.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The above is exactly opposite of how &lt;strong&gt;Blameless culture&lt;/strong&gt; looks like. In a Blameless culture, we emphasize on &lt;strong&gt;learning&lt;/strong&gt; and &lt;strong&gt;improving&lt;/strong&gt; but &lt;strong&gt;without pointing fingers&lt;/strong&gt;. So when a mistake happens, the focus is on analysing the &lt;strong&gt;root cause&lt;/strong&gt; and &lt;strong&gt;fixing it&lt;/strong&gt;. In such a culture, people are open to communicate and accept their mistakes rather than hiding them or shifting blames.&lt;/p&gt;
+
+&lt;h2 id=&quot;role-of-processes&quot;&gt;Role of processes&lt;/h2&gt;
+
+&lt;p&gt;Let’s say you work in a startup with less than 10 people. There are high chances that you won’t have a process defined for anything. So if you are working in the leadership team and someone comes and asks for a leave, or wants to get their laptop repaired, or needs a comfortable chair — you will need to define a process for them. On the contrary, in a large organisation you will see a process and budget defined for almost everything. While processes are important for any organisation, startups can’t prioritise defining these processes, as their goal is to get the first few paying customers for their product(s). At the same time, they can’t even inherit the processes from a large company because a lot of those will not make sense for a startup.&lt;/p&gt;
+
+&lt;p&gt;As of now, I have over 9 years of industry experience, all in startups (including one at a &lt;strong&gt;very early stage&lt;/strong&gt;). I believe that team members should be open to learning new processes to tackle new challenges. They shouldn’t have a fixed mindset that makes them think in just one way. What worked at your previous company might not work at the next one. So, having an open mindset helps you adapt to the environment and come up with new, specific, and innovative solutions.&lt;/p&gt;
+
+&lt;p&gt;Processes in startups evolve as the company grows. For instance, they determine which leave plan is effective and what kind of release schedule works best for their software. The evolution of these processes also addresses many cultural issues. I recall in my previous role, we began to develop a culture of shifting blame to individuals and teams when our product manager inquired “&lt;strong&gt;Why is the Android release delayed?”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the frontend team, it was the QA team that approved the API too late.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the QA team, it was the backend team whose estimates were off by days or weeks.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the backend team, it was the product team that didn’t consider all scenarios, leading to changes in the code design after they started building the backend..&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We saw this as a chance to improve our processes. It took us 3-4 retrospective meetings to identify what needed improvement. Our &lt;strong&gt;open mindset&lt;/strong&gt; helped us eliminate the &lt;strong&gt;wrong culture&lt;/strong&gt; and address the &lt;strong&gt;root cause&lt;/strong&gt; of our problem. I also wrote a detailed &lt;a href=&quot;https://blog.gagan93.me/efficient-fullstack-delivery&quot;&gt;blog post&lt;/a&gt; about it many years later.&lt;/p&gt;
+
+&lt;h2 id=&quot;culture--accountability&quot;&gt;Culture &amp;lt;&amp;gt; Accountability&lt;/h2&gt;
+
+&lt;p&gt;Blameless culture doesn’t mean avoiding accountability; it means redefining it. Accountability is about ownership of tasks and outcomes. When an issue arises, the goal is to improve the process and systems that allowed the problem to occur, rather than penalizing the individual (or team) involved. This empowers team members to take responsibility without fear.&lt;/p&gt;
+
+&lt;p&gt;Another story I remember is from a recent interaction with a junior colleague in my last role. Both of us were in our notice period at that time. I met them face to face for the first time on their last working day 😅. They were moving to a large investment bank as a Software Engineer. Moving from a startup to a big company that deals with money, they were worried about what would happen if their code caused a loss of real money in production. My shortest answer to them was —&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;If it’s easy to cause loss of money in their systems, it’s a process problem and not an engineer’s fault. There should be sufficient processes and checks in place to make sure this doesn’t happen very easily&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Similarly, every now and then, I see a meme where an intern claims to accidentally destroy the production database. The problem is not the intern, but the policies that gave them write access to production database 😄.&lt;/p&gt;
+
+&lt;h2 id=&quot;founding-teams-impact&quot;&gt;Founding Team’s Impact&lt;/h2&gt;
+
+&lt;p&gt;The founding team has a profound impact on a company’s culture and processes, Founders establish the core values that reflect their work ethic and vision, setting the tone for how employees interact, make decisions, and solve problems. Whether intentional or not, the founding team’s leadership style influences the company’s norms — whether it encourages open communication, innovation, or strict hierarchy. I recently interacted with an old friend who works as a Senior Business analyst. They recently changed their job and told that the culture is very poor. In their words:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Our managers do not treat their reportees well. If you don’t answer their Slack messages quickly, they’ll ping others in the team asking, “Where is XYZ person and why aren’t they responding?” It doesn’t matter if the person went to the washroom for five minutes. They expect immediate responses to everything.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When I asked about their skip manager’s behavior, they said, &lt;em&gt;“Everyone is the same here. Skip managers shout at managers, and managers shout at us.”&lt;/em&gt; 😿 This shows how a bad culture spreads from top to bottom. Another example is a story shared by &lt;em&gt;The Pragmatic Engineer&lt;/em&gt; in &lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/stripe-part-2&quot;&gt;their blog&lt;/a&gt;. It’s about Stripe’s &lt;strong&gt;strong writing culture&lt;/strong&gt;. Because their CEO and CTO write a lot, it encourages everyone to do the same. As a result, all engineers and managers write long internal documents. I wrote about the impact of the founding team on the rest of the team on &lt;a href=&quot;https://www.linkedin.com/posts/gagan93_culture-writing-team-activity-7170322475212374016-UjEc/&quot;&gt;my LinkedIn&lt;/a&gt; a few months ago:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you’re an old member of a team, your work is beyond your work profile. One major role is to ensure a positive team culture. Culture propagates in two ways:&lt;/p&gt;
+
+  &lt;p&gt;1. Vertically (CEO -&amp;gt; Dept leads -&amp;gt; managers -&amp;gt; seniors -&amp;gt; freshers).
+2. Horizontally (Among peers / among old and new people).&lt;/p&gt;
+
+  &lt;p&gt;If there is a blame-game culture in a team of 10 members, then chances are that 11th member will also start doing that, or will leave. On the positive side, if there’s a bar of “high quality” code or processes in a team, then the new member will have to match that in order to survive.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;If you work in a team with cultural issues, collaborate with your peers and manager to improve it. If you’re in a startup or a growing team, make sure the culture develops positively. Small habits have a big impact when others follow them, whether good or bad.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading! Have a good day.&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name>Gagandeep Singh</name></author><category term="culture" /><category term="team" /><category term="motivation" /><summary type="html">Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity....</summary></entry><entry><title type="html">Unseen risks of Inheritance</title><link href="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html" rel="alternate" type="text/html" title="Unseen risks of Inheritance" /><published>2024-08-25T00:00:00+05:30</published><updated>2024-08-25T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance</id><content type="html" xml:base="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
 
 &lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@flyd2069?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;FlyD&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/text-5lU_WmKVus4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
@@ -1353,50 +1570,4 @@ Column         |            Type             | Nullable  |         Default
   &lt;p&gt;Once again, really appreciate the time and effort you spent for the interview process with us.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bain" /><category term="interview" /><category term="staff-software-engineer" /><category term="consultant" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry><entry><title type="html">Stripe Interview Experience</title><link href="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html" rel="alternate" type="text/html" title="Stripe Interview Experience" /><published>2024-05-07T00:00:00+05:30</published><updated>2024-05-07T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/07/stripe-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/07/stripe-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-07-stripe-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.google.com/search?sca_esv=87522dea2824ff52&amp;amp;sca_upv=1&amp;amp;sxsrf=ADLYWILkvvPEaLSLta0vbUlLLiSxs0BWaw:1715080024675&amp;amp;q=stripe&amp;amp;uds=ADvngMjTNPKEE-q7I44lun7GC2_xSBJakMDKk-zKP558UX3sGFgOo0obkT031nY191A6wYa4TKscNMz9nP09qudeXs6qjCVIMuAYWsNeUj1s-4H7nT9Qe8VwqZDmCXUj1j6FA1u2k2VYrDv3nso5ytnOUTS-I_q57ncjE0lSWYQOUjGzhq2Q6jSJwajnI5-4O-5SG-GId7Ebxmrab0S7tl0xBLhPcrufYwvgG_qRMVkigo81MJHwaHwu31KwhIxtySTCHOFpjrTG_mwsclx4pnuJ8YDWgoKJb-w717k6A5s5toPiq-guPtM&amp;amp;udm=2&amp;amp;prmd=isvnmbtz&amp;amp;sa=X&amp;amp;ved=2ahUKEwi0_Ib9svuFAxWybmwGHTv9D0QQtKgLegQIDBAB&amp;amp;biw=1496&amp;amp;bih=812&amp;amp;dpr=2#vhid=LKToaxY8zwIc8M&amp;amp;vssid=mosaic&quot;&gt;Stripe Engineering&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;I interviewed for the position of &lt;strong&gt;Staff Software Engineer&lt;/strong&gt; at &lt;strong&gt;Stripe&lt;/strong&gt; in &lt;strong&gt;December 2023&lt;/strong&gt;. They were hiring engineers in the &lt;strong&gt;Verification &amp;amp; Identity Platform team&lt;/strong&gt;. I applied through a referral as that increases your chances of getting shortlisted. For those who haven’t heard much about Stripe:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is one of the big players in &lt;a href=&quot;https://docs.stripe.com/products&quot;&gt;global payment products&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In the past, Stripe has been known to be the &lt;a href=&quot;https://www.linkedin.com/posts/gergelyorosz_stripe-softwareengineering-activity-7140426202174967808-xDQE/&quot;&gt;largest Ruby codebase&lt;/a&gt; in the world. They used Sinatra (not Rails) for web apps, so they’re not the largest Rails codebase (which &lt;a href=&quot;https://shopify.engineering/shopify-monolith#:~:text=Our%20main%20monolith%20is%20one,of%20developers%20currently%20adding%20features.&quot;&gt;Shopify is&lt;/a&gt;).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;They have a wide tech stack now but their founder explains &lt;a href=&quot;https://www.quora.com/Why-did-Stripe-choose-to-use-Ruby-for-its-backend-language&quot;&gt;why they used Ruby&lt;/a&gt; to start with. Stripe also has a very &lt;a href=&quot;https://stripe.com/blog/engineering&quot;&gt;popular technical blog&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Stripe asks the candidates to sign a &lt;a href=&quot;https://news.ycombinator.com/item?id=1952848&quot;&gt;NDA&lt;/a&gt; because of which I cannot share the exact interview questions but I’ll still share the format of interview and difficulty of questions to some extent.&lt;/p&gt;
-
-&lt;h2 id=&quot;interview-rounds&quot;&gt;Interview rounds&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Telephonic round with Recruiting team&lt;/strong&gt; - This was scheduled to understand my role, projects, career goals and set up alignment with the role. The recruiter was based out of Singapore and was taking care of APAC hiring. Although they were not technical, they were expert in explaining the job description and were clearly able to point out things that I was not doing right now in my job role (that they needed for the role). For example, I work as a Staff Engineer at LocoNav which is a small team. So here, my role doesn’t involve regularly setting up technical direction for the team but considering Stripe’s scale, Staff Engineers are very senior in role and they take care of the same on regular basis. So, they told me before hand that based on my performance, I might be &lt;strong&gt;down-levelled&lt;/strong&gt; if they see a need to do this. This could sound discouraging as the position below &lt;strong&gt;Staff Engineer&lt;/strong&gt; was of &lt;strong&gt;Software Engineer&lt;/strong&gt; but they explained that engineers with the experience range of 0-15 years of experience do fall under this role. This is so because Staff Engineers are very senior in Stripe and they do not have a middle role (i.e. Senior Software Engineer).
- On a side note, I wrote about &lt;a href=&quot;https://blog.gagan93.me/titles-inflation-and-down-levelling&quot;&gt;titles and down-levelling&lt;/a&gt; incase you want to understand when it is good or bad for you. Additionally, although the JD mentioned the location as &lt;strong&gt;Remote&lt;/strong&gt;, the recruiter clarified that they’re planning to start WFO soon (early 2024) so the location would be Hyderabad/Bangalore.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;System Design Round&lt;/strong&gt; - Staff Engineers at Stripe typically go through &lt;strong&gt;two&lt;/strong&gt; System Design rounds. In each round, there is a Staff Engineer who evaluates your design. In this round, the interviewer was from a different timezone and a very senior person (~10 years senior to me). They explained the problem statement and waited for me to probe for details. While many companies ask for the design of well-known large systems (eg. Youtube, Whatsapp, Google Drive, etc), Stripe is known to ask questions around their own systems only. So the question was related to payments product. This was first ever System Design Interview that I was giving in my career, so I was skeptical on my approach. The problem statement seemed very simple and I queried 2-3 times (like “is &lt;em&gt;this is what I have to build?”).&lt;/em&gt; At that time, I was not familiar with the fact that simple problems can also be asked for senior roles, but the expectation of solution is with respect to candidate’s expertise/seniority. Just to explain this more - You might have heard that some companies (like Atlassian) have High level design (or System Design) round even for hiring college freshers. At their level, the expectation is that they should understand basic building blocks of the overall system and have some idea on non-functional requirements. The same problem statement can be given to a Senior Engineer where the expectations will be very different. The interviewer can probe into specifics of protocols, choice of databases and so on. For Staff/Principal/Distinguished levels, the discussion can go towards privacy, compliance, regional failovers, disaster recovery etc. I started attempting the question and explained the components of the system and some APIs. I missed one thing around scale of data that the interviewer pointed out. At this point, I realised that exposing an API endpoint is not a good idea and we should have a queueing mechanism like Kafka in between for improved reliability at scale (eg. if consumer system crashes, it can retry from where it left on the Topic).
- Because this was my first ever System Design interview, I was a bit confused during my attempt and the interviewer sensed that. They shared the feedback with the recruiting team that I’m a good candidate but probably I should be considered for a lower level (i.e. Software Engineer). The same was conveyed to me and I agreed to be evaluated again for SE role. The interview process restarted.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Coding round&lt;/strong&gt; - As per the documents shared with me, Stripe’s interview format claims to be very different than big tech companies as they have rounds where you engage more with the interviewer to solve problems and debug issues. For example, their interview process mentions some rounds where you have a codebase ready in which you implement a specific functionality or solve a bug that they’ve intentionally added. Surprisingly, this round was nothing like that and I was presented with a typical data structures problem 😶. It was a simple problem, again related to their products (i.e. payments). I asked my doubts and implemented the solution that worked. The interviewer modified the problem statement and asked me to accommodate the same in my solution. This one took some time but I was still able to solve it. With this, the interview came to an end and he asked me if I have questions. I asked how many more variations exist in the problem, to which he said “total of five”. After the interview, I searched for the problem and found that this question was a typical Google’s telephonic interview round question (not one “related to their products”) 😲.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;After a few days, I was informed through email that I did not clear the round. I thought - maybe I was expected to solve more variations of the problem within the given time because my solution was working for the given cases. As usual, I thought I’d reach out to the recruiter to seek the exact feedback but couldn’t do so because they were on new year vacation. They asked me to schedule a slot on their calendar that never loaded on my browser. Even today if I open the link, it keeps loading like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-07-stripe-goodtime.jpg&quot; alt=&quot;scheduler&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;LOL. Not blaming it on them. They might have responded if I had mailed them back with the loading issue, but I lost touch due to their vacations and never contacted them again.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;It was a good experience with Stripe team. The recruiter was responsive on call/chat/email throughout and ensured timely response. I like their &lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/stripe-part-2&quot;&gt;culture of writing&lt;/a&gt; that &lt;a href=&quot;https://www.linkedin.com/posts/gagan93_culture-writing-team-activity-7170322475212374016-UjEc?utm_source=share&amp;amp;utm_medium=member_desktop&quot;&gt;starts from their CTO&lt;/a&gt; - something that everyone should do (if they can). I would have performed better in System Design Interview if this was not my first ever HLD interview but no regrets. Failures are integral to the journey of success 📈.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="stripe" /><category term="interview" /><category term="staff-software-engineer" /><summary type="html">I interviewed for the position of Staff Software Engineer at Stripe in December 2023. They were hiring engineers in the Verification &amp; Identity Platform team.</summary></entry></feed>
+&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bain" /><category term="interview" /><category term="staff-software-engineer" /><category term="consultant" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry></feed>

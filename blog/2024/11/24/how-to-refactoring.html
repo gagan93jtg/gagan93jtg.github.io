@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZKG2EDMK4C');
+      </script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+  </head><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Refactoring: Lessons Learnt So Far | Gagandeep Singh — Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Refactoring: Lessons Learnt So Far" />
+<meta name="author" content="Gagandeep Singh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development." />
+<meta property="og:description" content="This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development." />
+<link rel="canonical" href="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html" />
+<meta property="og:url" content="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html" />
+<meta property="og:site_name" content="Gagandeep Singh — Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-24T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Refactoring: Lessons Learnt So Far" />
+<script type="application/ld+json">
+{"headline":"Refactoring: Lessons Learnt So Far","dateModified":"2024-11-24T00:00:00+05:30","datePublished":"2024-11-24T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://gagan93.me/blog/2024/11/24/how-to-refactoring.html"},"author":{"@type":"Person","name":"Gagandeep Singh"},"@type":"BlogPosting","description":"This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development.","url":"https://gagan93.me/blog/2024/11/24/how-to-refactoring.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://gagan93.me/blog/feed.xml" title="Gagandeep Singh — Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Gagandeep Singh — Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post detailed">
+  <div class="post-container">
+    <p class="author-title">
+      Published 24th November, 2024
+    </p>
+    <p class="post-title">Refactoring: Lessons Learnt So Far</p>
+
+    
+    <div class="post-tags">
+      
+      
+        <a href="/blog/categories/#refactoring" class="category">refactoring</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#design" class="category">design</a>
+        &nbsp;
+      
+        <a href="/blog/categories/#rewrite" class="category">rewrite</a>
+        
+      
+    </div>
+  </div>
+
+  <div class="separator">
+    <hr>
+  </div>
+  <div class="entry">
+    <h2 style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"><img src="/blog/assets/images/2024-11-24-refactoring.jpg" alt="cover-photo" /></h2>
+
+<h2 style="text-align: center;font-size: 0.8em" id="photo-by-nina-mercado-on-unsplash">Photo by <a href="https://unsplash.com/@nina_mercado?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Nina Mercado</a> on <a href="https://unsplash.com/photos/silver-and-black-round-coins-5Y8NrzPya-w?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></h2>
+
+<h2 id="background">Background</h2>
+
+<blockquote>
+  <p>Refactoring is the process of restructuring code, without changing its original functionality.</p>
+</blockquote>
+
+<p>Over the past three years, my role has allowed me to pick a lot of refactoring tasks, which have enhanced my skills and understanding around <em>Refactoring</em>. Despite its proven benefits, many developers and teams approach refactoring with hesitation, weighed down by myths that it is <strong>risky, time-consuming, or equivalent to a complete rewrite</strong>. However, refactoring is none of these. When done correctly, it can significantly reduce technical debt, improve readability, enhance test coverage, and simplify debugging.</p>
+
+<p>This blog aims to demystify refactoring by exploring its importance, addressing common misconceptions, and providing practical guidelines for approaching it the right way. Whether you’re tackling a legacy codebase or refining new code, understanding the essence of refactoring can empower you to build more sustainable software. Let’s delve into <strong>why</strong> and <strong>how</strong> refactoring should be a regular part of your development process, not an intimidating task.</p>
+
+<h2 id="why-should-you-refactor-code">Why should you refactor code?</h2>
+
+<p>After nearly a decade of writing software, I’ve learned that <strong>refactoring is unavoidable</strong>. While it’s possible to delay it, putting it off only makes the task costlier and more complicated down the line. Ignoring refactoring may offer short-term relief, but in the long run, the cost of addressing the accumulated technical debt grows exponentially.. The below points should help you understand why you need to prioritize refactoring regularly:</p>
+
+<h3 id="to-untangle-code-ownership">To untangle Code Ownership</h3>
+
+<p>One common complaint among developers working in a <em>fast-paced</em> startup environment is that the code for different modules often becomes tightly coupled, sometimes even within a single file. This situation arises because, in the beginning, the business logic is straightforward. Each time a developer needs to make a change, they perceive it as <em>just another simple change</em>. Over the years, this approach results in a file that resembles a <a href="https://en.wikipedia.org/wiki/God_object">god object</a>, which seems to know everything but has lost sight of its original purpose. Refactoring plays a crucial role in untangling this complex web of code. By doing so, it allows different teams to take ownership of specific files or modules. This can be effectively managed using tools like <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners">GitHub CodeOwners</a>, which help assign responsibility and maintain clarity in code management. Through refactoring, the codebase becomes more organized, enabling teams to work more efficiently and reducing the risk of errors when changes are made.</p>
+
+<h3 id="to-reduce-cost-of-debugging">To reduce cost of debugging</h3>
+
+<p>Recently, I was on a call with another engineer, and we were trying to find problem in the production code. A section of the application wasn’t functioning correctly, so we started by reading the code starting from the controller to trace the potential path a user might have taken. The controller file was cluttered, containing most of the business logic in one file. It was filled with numerous methods that called one another, each with lengthy lists of arguments that were difficult to guess. We spent over an hour trying to pinpoint the issue, but even after all that time, we weren’t entirely confident about the root cause. Having dealt with debugging production issues in the past where the code was better organized, I realized that these engineers were losing countless hours every time a problem like this came. If you find yourself in a similar situation where valuable productive time is being wasted on debugging due to tangled code, it’s crucial to have a conversation with your managers. Discuss the importance of planning for refactoring in the future. By doing so, you can improve the code structure, making it easier to identify and fix issues, ultimately saving time and resources in the long run.</p>
+
+<h3 id="to-reduce-techical-debt">To reduce techical debt</h3>
+
+<blockquote>
+  <p>Technical debt is the cost of future rework that results from prioritizing speed over long-term design in software development.</p>
+</blockquote>
+
+<p>Companies often ship code that needs more work before adding new features. While launching the initial product is the top priority, addressing tech debt often gets delayed. For example, when working on a new module, you might hardcode values in an existing class. As more requirements come in, adding more hardcoded values or if-else statements just creates a mess. This means you need to refactor the code before building more on it. Remember this quote: <a href="https://news.ycombinator.com/item?id=33059910"><em>First make the change easy, then make the easy change</em></a>.</p>
+
+<h3 id="to-improve-engineering-culture">To improve engineering culture</h3>
+
+<p>The cleaner and more well-structured your code is, the better it becomes as a reference for others. When you take the time to improve and maintain high-quality code, it not only benefits the project at hand but also sets a positive example for the rest of the team. New team members will be motivated by its clarity and organization, inspiring them to adopt similar practices in their own work. This fosters a culture of excellence, where everyone strives to write better code. On the flip side, if the codebase is cluttered and unorganised, there’s a high likelihood that others will follow that same pattern and create similarly messy code. It becomes a cycle, where poor practices multiply. As the team grows, this culture of quality spreads, impacting the overall productivity and the risk of technical debt based on the shape of initial code.</p>
+
+<p>The habits you instill in your codebase today can shape the quality of work throughout the entire team tomorrow. Before we learn how to refactor, let’s clear up some myths about refactoring.</p>
+
+<h2 id="myths-around-refactoring">Myths around refactoring</h2>
+
+<h3 id="its-another-name-for-rewriting">It’s another name for “Rewriting”</h3>
+
+<p>Before we talk more about refactoring, it’s important to understand basic differences between <em>Complete Rewrite</em> and <em>Refactoring</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Aspect</strong></th>
+      <th><strong>Complete Rewrite</strong></th>
+      <th><strong>Refactoring</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Scope</strong></td>
+      <td>Entire codebase is discarded and rebuilt.</td>
+      <td>Improves the existing code incrementally.</td>
+    </tr>
+    <tr>
+      <td><strong>Risk</strong></td>
+      <td>High risk of introducing new bugs or missing features.</td>
+      <td>Lower risk as existing functionality is preserved.</td>
+    </tr>
+    <tr>
+      <td><strong>Time &amp; Cost</strong></td>
+      <td>Time-consuming and often more expensive.</td>
+      <td>Typically faster and more cost-effective.</td>
+    </tr>
+    <tr>
+      <td><strong>Goal</strong></td>
+      <td>Start fresh with a new design or approach.</td>
+      <td>Improve code quality, maintainability, and performance.</td>
+    </tr>
+    <tr>
+      <td><strong>Disruption</strong></td>
+      <td>Can cause significant disruption to development and team workflow.</td>
+      <td>Less disruptive, as changes are small and incremental.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>I’ve seen developers (of all experience ranges) raising PRs with thousands of lines of changes across multiple files, claiming they’ve “tested everything thoroughly”. They think this one PR will solve all their problems, but that’s rarely true. In most cases, the real issues begin after merging the PR. Don’t take this negatively if you’re following the same approach currently. Even I’ve been that developer who has merged large PRs without breaking anything on production, and I’ve seen others do it too, because they took the mental stress of testing every case and fixing all review comments on the large PR (and again test everything). The only problem with this approach is that <strong>it doesn’t scale</strong> for everyone in the team. While everyone can raise large PRs,</p>
+
+<ol>
+  <li>
+    <p>Not everyone can <strong>test</strong> them thoroughly. And even if they do it once, they don’t do it with the same effort after fixing the review comments where they might have changed something in logic or in design.</p>
+  </li>
+  <li>
+    <p>Also, not everyone can <strong>review</strong> large PRs. As a result, many such large changes go live without a good code review. In my experience, reviewing large PRs can easily take more than an hour and not everyone is ready to put that much effort. These days I often don’t review large PRs. I spent ~ 5 minutes in understanding the structure of changed files and then leave a comment suggesting how the author can raise smaller PRs that are easy to review.</p>
+  </li>
+</ol>
+
+<p>Due to how developers have been approaching “refactoring”, management and leadership have started seeing it in the same way as “rewriting.” While raising a large PR for a new feature is safer (since most of the code is new), it is considered very risky for refactoring. If your code change breaks a stable module in production, it will confirm your manager’s belief that <em>refactoring is as risky as rewriting</em>. So, make sure you avoid the “big bang” approach.</p>
+
+<h3 id="its-meant-for-legacy-applications">It’s meant for legacy applications</h3>
+
+<p>Refactoring is linked to <strong>legacy systems</strong> because legacy systems often accumulate large technical debt over time, but it’s just as important for <strong>new and evolving applications</strong>. Even in modern codebases, you can gather small debts like long classes/methods, duplicate code, unclear variable names, etc. Refactoring lets developers improve and optimize code continuously without a major overhaul. I often refactor code I wrote last week or last month. When a change makes a method or class messy, I find better ways to rewrite that code. It gives a different kind of satisfaction 😌.</p>
+
+<h3 id="its-risky-hard-and-unscoped">It’s risky, hard and unscoped</h3>
+
+<p>The favorite thing for an engineer to do is build new features. The second favorite (for a lot of us) is doing a big-bang rewrite of an old system. But there are two issues with large rewrites:</p>
+
+<ol>
+  <li>
+    <p>They have more chances of breaking production because of size of change.</p>
+  </li>
+  <li>
+    <p>They have less chances of getting shortlisted by your manager, again, because of it’s size. And because such tasks do not create any immediate business value, they gets shelved.</p>
+  </li>
+</ol>
+
+<p>If your manager has been a Senior IC person in the past, there might suggest you to split the project in order to get it prioritized. But if they are someone who’s not much into tech these days, and they do not suggest something like this, your refactoring project won’t get picked ever. So irrespective of how <strong>technical</strong> your manager is, it’s your role to understand the scope of the project and break it into parts that can be shipped. If you’ve never done it, please start doing it from now. Shipping new features can go in large PRs (although I don’t recommend you doing that) but refactoring projects should <strong>never</strong> go as large PRs. And because many developers have been executing them wrongly, refactoring is seen as <strong>risky, hard and unscoped</strong>.</p>
+
+<h3 id="its-a-one-time-event">It’s a one time event</h3>
+
+<p>A significant amount of technical debt shows that your team hasn’t focused on refactoring for a long time. If you compare the cost of refactoring a system today with the cost three years from now, you’ll see that doing it today is easier and cheaper (unless the product is being retired in the next three years). This is because if experienced team members leave, new ones will struggle to understand the messy code that has built up over the years. Refactoring is a skill that everyone develops over time. Once you successfully complete a small refactoring project, you gain the confidence to handle more tasks and improve the system further. As you master this skill, it’s important to share your knowledge with others, so everyone can help improve the existing codebase. Ideally, refactoring shouldn’t be something you do only once or twice a year. It should be a <strong>continuous</strong> and <strong>intentional</strong> effort to keep technical debt from becoming too much to handle.</p>
+
+<h3 id="refactoring-is-moving-code-across-files">Refactoring is “moving code across files”</h3>
+
+<blockquote>
+  <p>“Don’t mistake motion for progress” - Alfred A. Montapert</p>
+</blockquote>
+
+<p>In web applications, there is a common principle that your controllers should remain small and focused. This means they should primarily call the service layer and handle the response based on the service’s output. As a result, developers who find themselves writing extensive code within controllers might feel compelled to move that code elsewhere. While this instinct is understandable, it is crucial to approach this task with careful consideration and planning. Instead of simply <em>cutting and pasting lengthy methods</em> from one file to another, which only addresses the superficial goal of reducing controller size, a more thoughtful strategy is required. True refactoring involves a deeper analysis of each method’s purpose and determining the most appropriate location for it. This process requires developers to think critically about the design and structure of their classes, ensuring that each method is placed in a context where it logically belongs. By engaging in a well-planned refactoring activity, developers can achieve more than just <em>smaller controllers</em>.</p>
+
+<p>I believe you now have a solid understanding of what refactoring is—and what it isn’t. Now, let’s dive deeper into how to approach refactoring and explore the key challenges to watch out for during the process.</p>
+
+<h2 id="approaching-refactoring">Approaching Refactoring</h2>
+
+<h3 id="it-is-done-in-isolation">It is done in isolation</h3>
+
+<p>When someone is working on a feature, they’re often motivated to fix the code around it. As a result, we get to see PRs where someone lints an entire file rather than the method they changed, or improved the logic of the methods that is getting called from their code. Their intention is to improve or optimise the code but the change could probably be taken up in a separate PR. Just like you don’t mix <strong>drinking</strong> with <strong>driving</strong>, avoid mixing <strong>feature changes</strong> with <strong>refactoring.</strong> Make sure that if you want to do the noble act of improving the existing code, raise a separate PR for it so that it can be individually tested, reviewed and released (and even reverted, incase something goes wrong). This will ensure that your <strong>feature changes</strong> do not get blocked due to review comments on this <strong>refactoring changes</strong>.</p>
+
+<h3 id="it-should-be-guided-by-tests">It should be guided by tests</h3>
+
+<p>Test cases are incredibly important when you are refactoring any part of a system. They serve as a <strong>safety net</strong>, ensuring that the changes you make do not unexpectedly break an existing functionality. For example, if you have a comprehensive set of unit tests for a large file, these tests can guide you through the process of splitting the file into smaller, more manageable pieces. With unit tests in place, you can confidently refactor, knowing that any errors introduced during the process will be quickly identified. This allows you to focus on improving the code’s structure and readability without worrying about unintended side effects.</p>
+
+<p><strong>What if I don’t have test cases for some code? -</strong> Incase you don’t have test cases, I recommend building a strong automated test suite first, or find ways to manually test the system to confirm everything works after refactoring. Please do not prioritize refactoring without a good way of testing out changes. I’ve been moving code from controllers to services, and from large services to smaller, more manageable services using this approach. I make sure my controller tests cover 100% of the controller and service code. Once that’s done, I know that any changes I make will be caught if they break any part of the API contract.</p>
+
+<h3 id="refactoring-should-use-established-patterns">Refactoring should use established patterns</h3>
+
+<p>While many believe that code is poetry — and I wholeheartedly support the idea of creative problem-solving, it’s equally important to follow established patterns and best practices when refactoring code. These patterns have been developed and refined by the community over decades of experience while solving similar problems. They encapsulate lessons learned from solving common challenges, ensuring solutions are robust, efficient, and easier for others to understand. Established patterns, like <strong>design patterns</strong> (e.g., Singleton, Strategy, Factory), <strong>architectural styles</strong> (e.g., modular monoliths, microservices), solutions to <a href="https://refactoring.guru/refactoring/smells"><strong>common code smells</strong></a> (like long class, long methods, data clumps), and practices specific to a <strong>language</strong> or <strong>framework</strong> act as a shared vocabulary among developers. When you follow these patterns, you’re not just solving a problem, you’re solving it in a way that others can immediately recognize, adapt, and build upon. This reduces cognitive overhead for team members, accelerates onboarding, and improves collaboration. While building a solution in way that it feels “uniquely yours” is a tempting feeling, these (overly creative) solutions can become difficult for others to maintain, debug, or extend over time. By grounding your refactoring efforts in proven patterns, you ensure the code remains accessible and future-proof.</p>
+
+<h3 id="avoid-premature-abstraction">Avoid Premature abstraction</h3>
+
+<p>Abstraction is a great concept, but premature abstraction makes things complex. A <a href="https://en.wikipedia.org/wiki/Rule_of_three_\(computer_programming\)">common rule</a> in software engineering suggests to avoid having an abstraction till there are at least <strong>three repetitions</strong> of the code fragment that you’re planning to abstract out. While “three” might not be an appropriate number for everyone, it should be a good starting point for you if you don’t have anything else in mind. Waiting for a few repetitions of the code ensures that you have some data around what to generalize and what not to. While duplication of code is considered bad, generalizing prematurely might lead to speculative designs that are very different from the real world needs. Write code that is clear, direct, and solves the immediate problem effectively. Refactor and abstract <strong>only when</strong> the need becomes evident—when similar patterns emerge across different parts of the system, or when a particular piece of functionality needs to be reused or extended.</p>
+
+<h3 id="keep-changes-small-and-reversible">Keep changes small and reversible</h3>
+
+<p>I think we’ve already discussed about the benefits of small PRs, so keeping the changes <strong>small</strong> is an obvious thing. Another important thing is to ensure that changes are <strong>reversible</strong>. As refactoring can touch very critical parts of your application, it is important to <strong>plan for failure</strong>. The simplest <em>rollback plan</em> would be to turn off the feature flag incase something goes wrong (or rollback the previous release). But that only works for deployments that didn’t modify any data. If you’ve modified some data in your database, it might be hard to rollback. As a precaution, try to follow an approach where rolling back data changes is also easy. For example, split your deployments like this:</p>
+
+<ol>
+  <li>
+    <p>Add a new column that has new data. Push the new code along with this but don’t flip the feature flag yet.</p>
+  </li>
+  <li>
+    <p>Back populate the data in new column and add relevant callbacks in the system to ensure new data gets copied.</p>
+  </li>
+  <li>
+    <p>When previous data is also copied, flip the feature flag and see if everything is going well. If something goes wrong, immediately turn off the feature.</p>
+  </li>
+  <li>
+    <p>After few weeks/months (based on amount of testing you need), drop the old column, delete the old code and drop the if-else code handling the feature flag.</p>
+  </li>
+</ol>
+
+<p>Based on the scale of data and complexity of project, the above approach can sound normal or an overkill to you. But trust me, I’ve seen things going wrong just because developers didn’t plan well for rollbacks for <strong>data related changes.</strong></p>
+
+<h3 id="document-changes">Document changes</h3>
+
+<p>Documenting changes during refactoring is essential for maintaining clarity, ensuring team alignment, and supporting future development. It captures the <strong>rationale</strong> behind the changes, helping others understand why specific decisions were made, especially if they impact dependencies or architectural patterns. Documentation preserves <strong>context</strong> to avoid undoing improvements and provides a historical record for long-term projects. It also simplifies onboarding by giving new team members a clear view of the code’s evolution. Good documentation highlights <strong>what was refactored, why it was needed, and how it aligns with the project’s goals</strong>, helping avoid confusion and duplication of effort. Including notes in commit messages, pull requests, or internal wikis ensures the refactoring’s intent is communicated effectively. This practice not only fosters collaboration but also aids debugging by clarifying the purpose and impact of the changes, ensuring the refactored code remains accessible and adaptable.</p>
+
+<h3 id="monitor-performance-check-for-bugs">Monitor performance, check for bugs</h3>
+
+<p>When refactoring, it’s crucial to <strong>monitor performance</strong> and <strong>check for bugs</strong> to ensure stability and identify unintended side effects. While refactoring doesn’t guarantee performance improvements or fewer bugs, it can pave the way for these by simplifying the codebase and addressing inefficiencies. A well-refactored codebase should also make future optimizations (such as adding a caching layer) easier to plan and implement. Additionally, cleaner code helps in debugging and enhances maintainability (as already explained above). Use comprehensive test suites to validate changes and check for regressions and APM tools to monitor real-world performance after deployment.</p>
+
+<h3 id="value-contributions">Value contributions</h3>
+
+<p>This message is for team leads and engineering managers: one of the most common reason why developers struggle with refactoring tasks is <strong>a lack of motivation</strong>. And often, this lack of motivation comes from how teams undervalue <strong>refactoring</strong> compared to <strong>business deliverables</strong>. As Eileen pointed out in her <a href="https://www.youtube.com/watch?v=olxoNDBp6Rg">latest RailsConf talk</a>, a good engineering culture starts at the top. Many of us have worked at organizations where messy code is shipped in the name of urgency, and the architecture becomes too complex to maintain over time. If we’re to take actionable insights from her experience, here’s what leadership can do to address these challenges:</p>
+
+<ol>
+  <li>
+    <p><strong>Prioritize Refactoring -</strong> Treat refactoring tasks with the same importance as product development. Assign dedicated bandwidth for these efforts. Spending “few hours a day” don’t work and often lead to half-hearted results.</p>
+  </li>
+  <li>
+    <p><strong>Align Teams</strong> - Ensure engineers, product managers, and other stakeholders understand that refactoring is just as crucial as building features. A healthy codebase supports long-term business goals.</p>
+  </li>
+  <li>
+    <p><strong>Invest in Education -</strong> Not all team members naturally excel at refactoring. If specific skills are needed to address technical debt or architectural issues, invest time and resources to train your team.</p>
+  </li>
+</ol>
+
+<p>Eileen, with over a decade of experience at companies like Basecamp, GitHub, and Shopify, emphasized these points from her journey. While I haven’t worked at large organizations, I’ve faced similar challenges in small-to-medium startups. And seeing the comments on her talk, these problems persist even in teams following microservices architecture. So we can conclude that the challenges of maintaining a clean, scalable codebase are universal.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>While refactoring is essential for maintaining a clean and efficient codebase, it’s important to respect the existing code, even if it appears messy. This code was often written under tight deadlines to meet urgent business needs, and it has successfully supported the business for <strong>months and years</strong>. Recognizing the value of this “mess” is crucial, as it reflects quick thinking of developers who ensured the continuity and success of the business, which is crucial for any organisation.</p>
+
+<p>Thank you for reading this post, have a good day 😊.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<ol>
+  <li>
+    <p>If you’re not yet thorough with design patterns and code smells, use this <a href="https://refactoring.guru/">free resource</a>.</p>
+  </li>
+  <li>
+    <p>Read <a href="https://newsletter.pragmaticengineer.com/p/paying-down-tech-debt">this post</a> by The Pragmatic Engineer around tech debt.</p>
+  </li>
+  <li>
+    <p>Find a book around refactoring for your specific programming language. For example, I read <a href="https://www.amazon.in/Refactoring-Ruby-Addison-Wesley-Professional/dp/0321984137">this book</a> for Ruby.</p>
+  </li>
+  <li>
+    <p>I already linked <a href="https://www.youtube.com/watch?v=olxoNDBp6Rg">this talk</a> in one of the points above, but adding this again incase you missed that!</p>
+  </li>
+</ol>
+
+  </div>
+  <br>
+
+  <div>
+    <p>
+      <span class="share-box">Share:</span>
+      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+      <script type="IN/Share" data-url="https://gagan93.me/2024/11/24/how-to-refactoring.html"></script>
+  </div>
+</article>
+
+<style type="text/css">
+  .author-title {
+    text-align: center;
+    color: #555;
+  }
+
+  .post-title {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .post-tags {
+    text-align: center;
+    margin-top: 3em;
+    color: black;
+  }
+
+  .category {
+    background-color: #2C3E50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  .separator {
+    margin: 50px auto;
+  }
+
+  hr {
+    border-top: 1px solid #EEE;
+  }
+</style>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gagandeep Singh — Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gagandeep Singh — Blog</li><li><a class="u-email" href="mailto:gagan93gtbit@gmail.com">gagan93gtbit@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gagan93jtg"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gagan93jtg</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Posts on Engineering, Culture, Leadership</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
