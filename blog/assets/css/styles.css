@@ -1,68 +1,156 @@
-code { font-family: monospace; }
+code {
+  font-family: monospace;
+}
 
-.post-link, .post-link:visited, .post-link:active { color: #222 !important; font-weight: 700; }
+.post-link, .post-link:visited, .post-link:active {
+  color: #222 !important;
+  font-weight: 700;
+}
 
-.text-center-align { text-align: center; }
+.text-center-align {
+  text-align: center;
+}
 
-.text-4em { font-size: 4em; }
+.text-4em {
+  font-size: 4em;
+}
 
-.text-3em { font-size: 3em; }
+.text-3em {
+  font-size: 3em;
+}
 
-.text-2em { font-size: 2em; }
+.text-2em {
+  font-size: 2em;
+}
 
-.text-1em { font-size: 1em; }
+.text-1em {
+  font-size: 1em;
+}
 
-.post-cover { width: 40em; box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 9px; }
+.post-cover {
+  width: 40em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px -3px 9px;
+}
 
-.post-container { margin: 0 auto; width: 40em; }
+.post-container {
+  margin: 0 auto;
+  width: 40em;
+}
 
-.detailed > .post-container { background-color: rgba(0, 0, 0, 0.05); padding: 2em 0em; border-radius: 2em; }
+.detailed > .post-container {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2em 0em;
+  border-radius: 2em;
+}
 
-header.post-header { visibility: hidden; }
+header.post-header {
+  visibility: hidden;
+}
 
-ul { margin-bottom: 15px !important; }
+ul {
+  margin-bottom: 15px !important;
+}
 
-@media screen and (max-width: 800px) { .post-container { width: 100%; } .post-details { padding: 10px !important; } a.page-link { color: black !important; } }
+@media screen and (max-width: 800px) {
+  .post-container {
+    width: 100%;
+  }
+  .post-details {
+    padding: 10px !important;
+  }
+  a.page-link {
+    color: black !important;
+  }
+}
+.post-link, .post-details, .post-excerpt, .post-link-container {
+  margin-bottom: 0;
+}
 
-.post-link, .post-details, .post-excerpt, .post-link-container { margin-bottom: 0; }
+.post-link {
+  float: left;
+  clear: both;
+  width: 70%;
+  text-decoration: none !important;
+}
 
-.post-link { float: left; clear: both; width: 70%; text-decoration: none !important; }
+.post-meta {
+  float: right;
+}
 
-.post-meta { float: right; }
+.post-excerpt {
+  margin: 15px 0px;
+  display: inline-block;
+}
 
-.post-excerpt { margin: 15px 0px; display: inline-block; }
+.the-post {
+  margin-bottom: 4em !important;
+}
 
-.the-post { margin-bottom: 4em !important; }
-
-.post-details { padding: 10px 10px 5px 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; }
+.post-details {
+  padding: 10px 10px 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 /* Overrides */
-body, * { font-family: 'Raleway'; letter-spacing: 0.4px; }
+body, * {
+  font-family: "Raleway";
+  letter-spacing: 0.4px;
+}
 
-a:hover { text-decoration: none !important; }
+a:hover {
+  text-decoration: none !important;
+}
 
-header, footer { background-color: #2c0f4a; }
+header, footer {
+  background-color: #2c0f4a;
+}
 
-a.site-title { color: #DDD !important; }
+a.site-title {
+  color: #DDD !important;
+}
 
-a.page-link, .contact-list, .footer-col { color: #EEE !important; }
+a.page-link, .contact-list, .footer-col {
+  color: #EEE !important;
+}
 
-.social-media-list > li > a:hover, .contact-list > li > a:hover { color: #AAA !important; }
+.social-media-list > li > a:hover, .contact-list > li > a:hover {
+  color: #AAA !important;
+}
 
-.post-title { font-size: 3em !important; }
+.post-title {
+  font-size: 3em !important;
+}
 
-article.detailed { padding-top: 75px; margin-top: -35px; }
+article.detailed {
+  padding-top: 75px;
+  margin-top: -35px;
+}
 
-main.page-content { padding: 0px !important; }
+main.page-content {
+  padding: 0px !important;
+}
 
-.footer-heading { visibility: hidden; }
+.footer-heading {
+  visibility: hidden;
+}
 
-.post-list-heading { font-size: 3em !important; margin: 1em auto; }
+.post-list-heading {
+  font-size: 3em !important;
+  margin: 1em auto;
+}
 
-a.category:hover { color: white !important; }
+a:hover.category {
+  color: white !important;
+}
 
-.post p { font-size: 1.05em; }
+.post p {
+  font-size: 1.05em;
+}
 
-@media screen and (max-width: 600px) { a.page-link { color: black !important; } }
+@media screen and (max-width: 600px) {
+  a.page-link {
+    color: black !important;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gagan93.me/blog/" rel="alternate" type="text/html" /><updated>2024-11-24T16:59:59+05:30</updated><id>https://gagan93.me/blog/feed.xml</id><title type="html">Gagandeep Singh — Blog</title><subtitle>Posts on Engineering, Culture, Leadership</subtitle><entry><title type="html">Refactoring: Lessons Learnt So Far</title><link href="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html" rel="alternate" type="text/html" title="Refactoring: Lessons Learnt So Far" /><published>2024-11-24T00:00:00+05:30</published><updated>2024-11-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/11/24/how-to-refactoring</id><content type="html" xml:base="https://gagan93.me/blog/2024/11/24/how-to-refactoring.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-11-24-refactoring.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-nina-mercado-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@nina_mercado?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Nina Mercado&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/silver-and-black-round-coins-5Y8NrzPya-w?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gagan&apos;s Blog</title>
+    <description>Posts on Engineering, Culture and Productivity
+</description>
+    <link>https://gagan93.me/blog//</link>
+    <atom:link href="https://gagan93.me/blog//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 03 Dec 2024 17:18:23 +0530</pubDate>
+    <lastBuildDate>Tue, 03 Dec 2024 17:18:23 +0530</lastBuildDate>
+    <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Refactoring: Lessons Learnt So Far</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-nina-mercado-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@nina_mercado?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Nina Mercado&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/silver-and-black-round-coins-5Y8NrzPya-w?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -215,9 +227,16 @@
   &lt;li&gt;
     &lt;p&gt;I already linked &lt;a href=&quot;https://www.youtube.com/watch?v=olxoNDBp6Rg&quot;&gt;this talk&lt;/a&gt; in one of the points above, but adding this again incase you missed that!&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="refactoring" /><category term="design" /><category term="rewrite" /><summary type="html">This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development.</summary></entry><entry><title type="html">1:1 conversations with 10 Software Engineers</title><link href="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html" rel="alternate" type="text/html" title="1:1 conversations with 10 Software Engineers" /><published>2024-10-15T00:00:00+05:30</published><updated>2024-10-15T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers</id><content type="html" xml:base="https://gagan93.me/blog/2024/10/15/1-on-1-with-10-software-enginers.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-dylan-ferreira-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@dylanferreira?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Dylan Ferreira&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/person-in-red-and-black-plaid-long-sleeve-shirt-using-black-laptop-computer-HJmxky8Fvmo?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 24 Nov 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/11/24/how-to-refactoring.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/11/24/how-to-refactoring.html</guid>
+      </item>
+    
+      <item>
+        <title>1:1 conversations with 10 Software Engineers</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-dylan-ferreira-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@dylanferreira?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Dylan Ferreira&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/person-in-red-and-black-plaid-long-sleeve-shirt-using-black-laptop-computer-HJmxky8Fvmo?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -631,9 +650,16 @@
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Thank you for taking the time to read through this post. I hope the insights were worth the time you spent. Hearing firsthand about the diverse challenges, growth experiences, and problem-solving approaches was a reminder of how valuable open dialogue is for learning and professional development. Whether you’re navigating similar paths or different ones, I hope these reflections offer useful perspectives. Do share this with your friends who are looking for similar advice. Let me know your thoughts in the comments. See you in the next blog post 🚀.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="networking" /><category term="engineering" /><category term="learning" /><category term="growth" /><category term="interviews" /><summary type="html">This is a long blog post that captures some queries that people had in the 1:1 that I had with 10 engineers last month.</summary></entry><entry><title type="html">Problems with generic code</title><link href="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html" rel="alternate" type="text/html" title="Problems with generic code" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/problems-with-generic-code</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/problems-with-generic-code.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-generic-code.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-kier-in-sight-archives-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Kier in Sight Archives&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Thank you for taking the time to read through this post. I hope the insights were worth the time you spent. Hearing firsthand about the diverse challenges, growth experiences, and problem-solving approaches was a reminder of how valuable open dialogue is for learning and professional development. Whether you’re navigating similar paths or different ones, I hope these reflections offer useful perspectives. Do share this with your friends who are looking for similar advice. Let me know your thoughts in the comments. See you in the next blog post 🚀.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 Oct 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/10/15/1-on-1-with-10-software-enginers.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/10/15/1-on-1-with-10-software-enginers.html</guid>
+      </item>
+    
+      <item>
+        <title>Problems with generic code</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-kier-in-sight-archives-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Kier in Sight Archives&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -826,9 +852,16 @@ Column         |            Type             | Nullable  |         Default
   &lt;li&gt;
     &lt;p&gt;If you’re planning data migration from one system to another, read &lt;a href=&quot;https://blog.gagan93.me/migrating-data-across-services&quot;&gt;this&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="generic-code" /><category term="refactoring" /><category term="solid" /><summary type="html">I try to explain the pitfalls of overly generic code and why it&apos;s beneficial to avoid it. I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..</summary></entry><entry><title type="html">Blameless culture</title><link href="https://gagan93.me/blog/2024/09/22/blameless-culture.html" rel="alternate" type="text/html" title="Blameless culture" /><published>2024-09-22T00:00:00+05:30</published><updated>2024-09-22T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/09/22/blameless-culture</id><content type="html" xml:base="https://gagan93.me/blog/2024/09/22/blameless-culture.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-09-24-blameless-culture.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 22 Sep 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/09/22/problems-with-generic-code.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/09/22/problems-with-generic-code.html</guid>
+      </item>
+    
+      <item>
+        <title>Blameless culture</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-krakenimages-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@krakenimages?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;krakenimages&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -911,9 +944,16 @@ Column         |            Type             | Nullable  |         Default
 
 &lt;p&gt;Thank you for reading! Have a good day.&lt;/p&gt;
 
-&lt;hr /&gt;</content><author><name>Gagandeep Singh</name></author><category term="culture" /><category term="team" /><category term="motivation" /><summary type="html">Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity....</summary></entry><entry><title type="html">Unseen risks of Inheritance</title><link href="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html" rel="alternate" type="text/html" title="Unseen risks of Inheritance" /><published>2024-08-25T00:00:00+05:30</published><updated>2024-08-25T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance</id><content type="html" xml:base="https://gagan93.me/blog/2024/08/25/unseen-risks-of-inheritance.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@flyd2069?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;FlyD&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/text-5lU_WmKVus4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+</description>
+        <pubDate>Sun, 22 Sep 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/09/22/blameless-culture.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/09/22/blameless-culture.html</guid>
+      </item>
+    
+      <item>
+        <title>Unseen risks of Inheritance</title>
+        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@flyd2069?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;FlyD&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/text-5lU_WmKVus4?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -986,9 +1026,17 @@ Column         |            Type             | Nullable  |         Default
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;While inheritance has been a cornerstone of Object-Oriented Design, it’s important to recognise its limitations and explore alternatives that offer more flexibility and maintainability. As your software evolves, adopting these approaches can lead to more maintainable code.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="inheritance" /><category term="oops" /><category term="design" /><summary type="html">I started learning Object-Oriented Programming (OOP) with C++ during my college days, and Inheritance is one of the key concepts you can&apos;t miss when learning OOP. In fact, inheritance is one of the four core principles of OOP, along with...</summary></entry><entry><title type="html">Branch International Interview Experience</title><link href="https://gagan93.me/blog/2024/06/27/branch-interview-experience.html" rel="alternate" type="text/html" title="Branch International Interview Experience" /><published>2024-06-27T00:00:00+05:30</published><updated>2024-06-27T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/06/27/branch-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/06/27/branch-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-06-27-branch-international-interview-experience.png&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;While inheritance has been a cornerstone of Object-Oriented Design, it’s important to recognise its limitations and explore alternatives that offer more flexibility and maintainability. As your software evolves, adopting these approaches can lead to more maintainable code.&lt;/p&gt;
 
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+</description>
+        <pubDate>Sun, 25 Aug 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/08/25/unseen-risks-of-inheritance.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/08/25/unseen-risks-of-inheritance.html</guid>
+      </item>
+    
+      <item>
+        <title>Branch International Interview Experience</title>
+        <description>&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;After giving a lot of interviews in small and large companies, I’ve &lt;a href=&quot;https://www.linkedin.com/feed/update/urn:li:activity:7203321685398212609/&quot;&gt;joined Branch International&lt;/a&gt; this month. As I’ve shared my past interview experiences &lt;a href=&quot;https://blog.gagan93.me/tag/interview&quot;&gt;here&lt;/a&gt;, I’m sharing this one too. My profile was shortlisted for the position of &lt;strong&gt;Senior Software Engineer&lt;/strong&gt; through the &lt;a href=&quot;https://tophire.co/&quot;&gt;Tophire&lt;/a&gt; platform. After that, their account executive contacted me. Once they finished, I was connected to a recruiter from Branch, who explained the company and the role to me. Those who do not know much about the company:&lt;/p&gt;
 
@@ -1043,9 +1091,16 @@ Column         |            Type             | Nullable  |         Default
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;After careful consideration, I accepted the offer and resigned from my position at LocoNav where I had worked for over six years. It was a tough decision to leave after spending such a long time. I joined Branch on June 3, 2024, and it has been great since then.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="branch" /><category term="interview" /><category term="senior-software-engineer" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry><entry><title type="html">Tech Interview Mistakes</title><link href="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html" rel="alternate" type="text/html" title="Tech Interview Mistakes" /><published>2024-05-24T00:00:00+05:30</published><updated>2024-05-24T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/24/tech-interview-mistakes</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Francisco De Legarreta C.&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After careful consideration, I accepted the offer and resigned from my position at LocoNav where I had worked for over six years. It was a tough decision to leave after spending such a long time. I joined Branch on June 3, 2024, and it has been great since then.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 27 Jun 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/06/27/branch-interview-experience.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/06/27/branch-interview-experience.html</guid>
+      </item>
+    
+      <item>
+        <title>Tech Interview Mistakes</title>
+        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Francisco De Legarreta C.&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -1157,9 +1212,16 @@ Column         |            Type             | Nullable  |         Default
 
 &lt;p&gt;Apart from this, many other things (like mood of the interviewer) can impact your performance. Such things are generally not in your hands. Just like for candidates, interviewers also need training and feedback. In the organisations where interview process is more formalised and where interview calls are recorded, there are high chances that the interviewer would get feedback(s) if they need to improve on certain axes. In many organisations the feedback process is completely missing, which leads to bad candidate experience. If you face such a situation, you can also share your feedback with the recruiter / hiring manager. Make sure your tone is professional and not rude if you want them to consider your feedback.&lt;/p&gt;
 
-&lt;p&gt;I hope the above points would help you to avoid mistakes that people (including myself) generally make. Good luck for your preparation 👍.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="mistakes" /><category term="software-design" /><summary type="html">There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected). Generally speaking, rejections shouldn&apos;t hurt...</summary></entry><entry><title type="html">Low Level Design Interviews</title><link href="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html" rel="alternate" type="text/html" title="Low Level Design Interviews" /><published>2024-05-17T00:00:00+05:30</published><updated>2024-05-17T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/17/low-level-design-interviews</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/17/low-level-design-interviews.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-17-lld.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@sambourke?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Samuel Bourke&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/woman-in-gray-hoodie-sitting-on-chair-in-front-of-laptop-computer-foH9owaHXng?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I hope the above points would help you to avoid mistakes that people (including myself) generally make. Good luck for your preparation 👍.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 May 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/05/24/tech-interview-mistakes.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/24/tech-interview-mistakes.html</guid>
+      </item>
+    
+      <item>
+        <title>Low Level Design Interviews</title>
+        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@sambourke?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Samuel Bourke&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/woman-in-gray-hoodie-sitting-on-chair-in-front-of-laptop-computer-foH9owaHXng?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -1306,9 +1368,16 @@ Column         |            Type             | Nullable  |         Default
   &lt;li&gt;
     &lt;p&gt;I wrote a post last year about the &lt;a href=&quot;https://blog.gagan93.me/classify-your-codebase&quot;&gt;benefits of building small classes&lt;/a&gt;, a practice I embraced years ago when I began refactoring systems.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="lld" /><category term="software-design" /><summary type="html">I work as a Staff Software Engineer at LocoNav. When I give interviews with my current experience (that is close to 9 years), I am considered for these roles...</summary></entry><entry><title type="html">Improving your resume</title><link href="https://gagan93.me/blog/2024/05/13/improving-your-resume.html" rel="alternate" type="text/html" title="Improving your resume" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/improving-your-resume</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/improving-your-resume.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-improving-your-resume.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;João Ferrão&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 17 May 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/05/17/low-level-design-interviews.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/17/low-level-design-interviews.html</guid>
+      </item>
+    
+      <item>
+        <title>Improving your resume</title>
+        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;João Ferrão&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
@@ -1449,9 +1518,16 @@ Column         |            Type             | Nullable  |         Default
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="interview" /><category term="resume-building" /><summary type="html">Hello people. I&apos;ve you&apos;re reading this, you might be looking to build a better resume. It&apos;s important to keep your resume updated even if you&apos;re not looking out for a change. Sadly, not many people like me realise this on time.</summary></entry><entry><title type="html">Bain and Co. Interview Experience</title><link href="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html" rel="alternate" type="text/html" title="Bain and Co. Interview Experience" /><published>2024-05-13T00:00:00+05:30</published><updated>2024-05-13T00:00:00+05:30</updated><id>https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience</id><content type="html" xml:base="https://gagan93.me/blog/2024/05/13/bain-and-co-interview-experience.html">&lt;h2 style=&quot;box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;&quot;&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg&quot; alt=&quot;cover-photo&quot; /&gt;&lt;/h2&gt;
-
-&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 May 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/05/13/improving-your-resume.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/13/improving-your-resume.html</guid>
+      </item>
+    
+      <item>
+        <title>Bain and Co. Interview Experience</title>
+        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -1570,4 +1646,12 @@ Column         |            Type             | Nullable  |         Default
   &lt;p&gt;Once again, really appreciate the time and effort you spent for the interview process with us.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;</content><author><name>Gagandeep Singh</name></author><category term="bain" /><category term="interview" /><category term="staff-software-engineer" /><category term="consultant" /><summary type="html">I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that&apos;s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to..</summary></entry></feed>
+&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 May 2024 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2024/05/13/bain-and-co-interview-experience.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/13/bain-and-co-interview-experience.html</guid>
+      </item>
+    
+  </channel>
+</rss>
