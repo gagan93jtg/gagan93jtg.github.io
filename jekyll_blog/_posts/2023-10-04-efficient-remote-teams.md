@@ -4,14 +4,10 @@ title: "Efficient Remote Teams"
 date: 2023-10-04
 published_on: 04th October, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-10-04-efficient-remote-teams.jpg"
+image: "/assets/images/2023-10-04-efficient-remote-teams.jpg"
 categories: efficiency culture workstyle
 excerpt: Just a week before the nationwide lockdown announcement in March 2020, our engineering team decided to try remote setup for one week. At that time (like many other companies), we had work from home policy for employees but...
 ---
-
-![cover-photo](/blog/assets/images/2023-10-04-efficient-remote-teams.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@cwmonty?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Chris Montgomery</a> on <a href="https://unsplash.com/photos/smgTvepind4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

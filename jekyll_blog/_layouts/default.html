@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    {% if jekyll.environment == "production" %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<html>
 
-        gtag('config', 'G-ZKG2EDMK4C');
-      </script>
-    {% endif %}
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
-  </head>
-  {%- include head.html -%}
+  {% include head.html %}
 
   <body>
-    {%- include header.html -%}
 
-    <main class="page-content" aria-label="Content">
+    {% include header.html %}
+
+    <!-- content start -->
+
+    <div class="page-content">
       <div class="wrapper">
         {{ content }}
       </div>
-    </main>
+    </div>
 
-    {%- include footer.html -%}
+    <!-- content end -->
+
+    {% include footer.html %}
+    {% include javascripts.html %}
 
   </body>
 

@@ -4,15 +4,10 @@ title: "Low Level Design Interviews"
 date: 2024-05-17
 published_on: 17th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-17-lld.jpg"
+image: "/assets/images/2024-05-17-lld.jpg"
 categories: interview lld software-design
 excerpt: I work as a Staff Software Engineer at LocoNav. When I give interviews with my current experience (that is close to 9 years), I am considered for these roles...
 ---
-
-![cover-photo](/blog/assets/images/2024-05-17-lld.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
-
 Photo by <a href="https://unsplash.com/@sambourke?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Samuel Bourke</a> on <a href="https://unsplash.com/photos/woman-in-gray-hoodie-sitting-on-chair-in-front-of-laptop-computer-foH9owaHXng?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 {: style="text-align: center;font-size: 0.8em"}
 

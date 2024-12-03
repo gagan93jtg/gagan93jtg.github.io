@@ -4,15 +4,10 @@ title: "Improving your resume"
 date: 2024-05-13
 published_on: 13th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-13-improving-your-resume.jpg"
+image: "/assets/images/2024-05-13-improving-your-resume.jpg"
 categories: interview resume-building
 excerpt: Hello people. I've you're reading this, you might be looking to build a better resume. It's important to keep your resume updated even if you're not looking out for a change. Sadly, not many people like me realise this on time.
 ---
-
-![cover-photo](/blog/assets/images/2024-05-13-improving-your-resume.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
-
 Photo by <a href="https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">João Ferrão</a> on <a href="https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 {: style="text-align: center;font-size: 0.8em"}
 

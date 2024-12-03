@@ -4,15 +4,10 @@ title: "Monolith → Microservices"
 date: 2023-07-14
 published_on: "14th July, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg"
+image: "/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg"
 categories: architecture monolith microservices mindset
 excerpt: At LocoNav, we have been maintaining a decently large (yet manageable) monolith Rails application. Initially, all of our backend stack was in Ruby. With time, our ingestion layer was rewritten in Golang, the data layer was moved to Java but the...
 ---
-
-![cover-photo](/blog/assets/images/2023-07-14-mindset-shift-monolith-to-microservices.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo from <a href="https://news.stanford.edu/2018/06/11/four-ways-human-mind-shapes-reality/">Standford News Website</a>
 ---

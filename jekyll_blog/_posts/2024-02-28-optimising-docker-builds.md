@@ -4,14 +4,10 @@ title: "Optimising docker builds"
 date: 2024-02-28
 published_on: 28th February, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-02-28-dockers.jpg"
+image: "/assets/images/2024-02-28-dockers.jpg"
 categories: Docker Optimization Dockerfile
 excerpt: A detailed post on optimising docker build time and image size for any application based on my experience in optimising the same twice for one of our mid size application
 ---
-
-![cover-photo](/blog/assets/images/2024-02-28-dockers.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@carrier_lost?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ian Taylor</a> on <a href="https://unsplash.com/photos/blue-and-red-cargo-ship-on-sea-during-daytime-jOqJbvo1P9g?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

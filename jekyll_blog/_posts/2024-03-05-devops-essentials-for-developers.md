@@ -4,14 +4,10 @@ title: "Devops Essentials for Developers"
 date: 2024-03-05
 published_on: 5th March, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-03-05-devops-servers.jpg"
+image: "/assets/images/2024-03-05-devops-servers.jpg"
 categories: Devops Cloud Developers
 excerpt: In my ~ 9 years of experience, my work has been a mix of Backend and Devops. Getting my hands dirty on Devops side has given me a lot of edge in understanding things related to deployment, cloud, servers and operating systems that other developers couldn't easily understand. For example...
 ---
-
-![cover-photo](/blog/assets/images/2024-03-05-devops-servers.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@tvick?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Taylor Vick</a> on <a href="https://unsplash.com/photos/cable-network-M5tzZtFCOfs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

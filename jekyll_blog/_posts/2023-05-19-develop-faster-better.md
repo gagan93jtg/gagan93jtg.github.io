@@ -4,15 +4,10 @@ title: "Develop faster, better"
 date: 2023-05-19
 published_on: "19th May, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-05-19-develop-faster-better-cover.jpg"
+image: "/assets/images/2023-05-19-develop-faster-better-cover.jpg"
 categories: optimization development productivity
 excerpt: Over the years, has your speed of development improved?. Ofcourse, it would be much better than what it was when you were straight outside college. But have you significantly improved each year?
 ---
-
-![cover-photo](/blog/assets/images/2023-05-19-develop-faster-better-cover.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@milancsizmadia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Milan Csizmadia</a> on <a href="https://unsplash.com/photos/pYmH0eTpr70?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

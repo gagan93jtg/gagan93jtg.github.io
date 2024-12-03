@@ -4,14 +4,10 @@ title: "Cloud, SaaS Cost Reduction"
 date: 2024-03-21
 published_on: 21st March, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg"
+image: "/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg"
 categories: cloud saas pricing optimisation
 excerpt: Reducing spend on SaaS tools is a continuous effort. At LocoNav, we keep a strict eye on such expenses and spend some time every now and then to make sure we're not paying extra for any service. In the past 1.5 years, we planned and executed a lot ...
 ---
-
-![cover-photo](/blog/assets/images/2024-03-21-cloud-saas-cost-reduction.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@ussamaazam?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ussama Azam</a> on <a href="https://unsplash.com/photos/pink-arrow-neon-sign-26h317_UMYM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

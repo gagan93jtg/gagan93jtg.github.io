@@ -4,14 +4,10 @@ title: "Titles, Inflation and Down-levelling"
 date: 2024-04-19
 published_on: 19th April, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-04-19-title-inflation-downlevelling.jpg"
+image: "/assets/images/2024-04-19-title-inflation-downlevelling.jpg"
 categories: title title-inflation downlevelling interview
 excerpt: If you're confused about career ladders in different organisations, then this post will help you understand semantics of job titles (or job roles, or designations, or levels). There are many stories out there where people switch from a large service-based company...
 ---
-
-![cover-photo](/blog/assets/images/2024-04-19-title-inflation-downlevelling.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@jasonstrull?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jason Strull</a> on <a href="https://unsplash.com/photos/man-holding-his-head-while-sitting-on-chair-near-computer-desk-KQ0C6WtEGlo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

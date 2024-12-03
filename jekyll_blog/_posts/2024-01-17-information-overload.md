@@ -4,15 +4,10 @@ title: "Information Overload"
 date: 2024-01-17
 published_on: 17th January, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-01-17-information-overload.jpg"
+image: "/assets/images/2024-01-17-information-overload.jpg"
 categories: information learning overload
 excerpt: Human beings are lifelong learners. For a newborn, the initial learning starts in the family. Later on, many of us undergo formal schooling, although these days, homeschooling is also an option. During my school days, most of the subject learning came from textbooks referred....
 ---
-
-![cover-photo](/blog/assets/images/2024-01-17-information-overload.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
-
 Photo from <a href="https://www.international-careers.com/en/information-overload-memory-data-and-multitasking/">International Careers Development</a>
 ---
 {: style="text-align: center;font-size: 0.8em"}

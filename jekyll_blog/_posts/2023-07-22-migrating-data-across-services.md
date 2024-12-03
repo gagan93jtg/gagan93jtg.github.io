@@ -4,15 +4,10 @@ title: "Migrating data across services"
 date: 2023-07-22
 published_on: "22nd July, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-07-22-migrating-data-across-services.jpg"
+image: "/assets/images/2023-07-22-migrating-data-across-services.jpg"
 categories: architecture data-migration kafka
 excerpt: Today, I'm explaining how we planned to transfer millions of rows "reliably" to a different service during our journey to services architecture.
 ---
-
-![cover-photo](/blog/assets/images/2023-07-22-migrating-data-across-services.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo from <a href="https://www.datanami.com/2019/12/12/google-launches-transfer-service-for-on-prem-data/">Datanami</a>
 ---

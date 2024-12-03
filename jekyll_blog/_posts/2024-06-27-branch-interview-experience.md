@@ -4,14 +4,10 @@ title: "Branch International Interview Experience"
 date: 2024-06-27
 published_on: 27th June, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-06-27-branch-international-interview-experience.png"
+image: "/assets/images/2024-06-27-branch-international-interview-experience.png"
 categories: branch interview senior-software-engineer
-excerpt: I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that's a small team of &lt;15 engineers). They had posted the job on LinkedIn, that redirected to..
+excerpt: I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that's a small team of &lt;15 engineers). They had posted the job on LinkedIn, that redirected to their website for further process
 ---
-
-![cover-photo](/blog/assets/images/2024-06-27-branch-international-interview-experience.png)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 ## Background
 

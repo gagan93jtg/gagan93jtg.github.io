@@ -4,14 +4,10 @@ title: "Atlassian Interview Experience"
 date: 2024-05-04
 published_on: 4th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-04-atlassian-interview-experience.png"
+image: "/assets/images/2024-05-04-atlassian-interview-experience.png"
 categories: atlassian interview senior-software-engineer
 excerpt: I interviewed for the position of Senior Software Engineer at Atlassian in November 2023. This was my first ever experience getting interviewed by a large product organisation. Just to brief about myself and my background ..
 ---
-
-![cover-photo](/blog/assets/images/2024-05-04-atlassian-interview-experience.png)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png">Logo World</a>
 {: style="text-align: center;font-size: 0.8em"}

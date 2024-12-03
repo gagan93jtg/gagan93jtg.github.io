@@ -4,15 +4,10 @@ title: "Blameless culture"
 date: 2024-09-22
 published_on: 22nd September, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-09-24-blameless-culture.jpg"
+image: "/assets/images/2024-09-24-blameless-culture.jpg"
 categories: culture team motivation
-excerpt: Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity....
+excerpt: Mistakes are inevitable in any project, especially when it comes to complex software projects. However, the way we respond to those mistakes can make or break the motivation and productivity of our teams. This post discusses how fostering a blameless culture can enhance team productivity.
 ---
-
-![cover-photo](/blog/assets/images/2024-09-24-blameless-culture.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
-
 Photo by <a href="https://unsplash.com/@krakenimages?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">krakenimages</a> on <a href="https://unsplash.com/photos/man-in-white-dress-shirt-sitting-beside-woman-in-black-long-sleeve-shirt-376KN_ISplE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---
 {: style="text-align: center;font-size: 0.8em"}

@@ -4,14 +4,11 @@ title: "1:1 conversations with 10 Software Engineers"
 date: 2024-10-15
 published_on: 15th October, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg"
+image: "/assets/images/2024-10-15-one-on-one-with-engineers.jpg"
 categories: networking engineering learning growth interviews
+tag: featured
 excerpt: This is a long blog post that captures some queries that people had in the 1:1 that I had with 10 engineers last month.
 ---
-
-![cover-photo](/blog/assets/images/2024-10-15-one-on-one-with-engineers.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@dylanferreira?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Dylan Ferreira</a> on <a href="https://unsplash.com/photos/person-in-red-and-black-plaid-long-sleeve-shirt-using-black-laptop-computer-HJmxky8Fvmo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

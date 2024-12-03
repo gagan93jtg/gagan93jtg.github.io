@@ -4,15 +4,10 @@ title: "Eight Productive Hours"
 date: 2023-05-27
 published_on: "27th May, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-05-27-eight-productive-hours-cover.jpg"
+image: "/assets/images/2023-05-27-eight-productive-hours-cover.jpg"
 categories: culture productivity overworking
 excerpt: The key to working fewer hours is not to simply do less, but to do what truly matters most. - Unknown
 ---
-
-![cover-photo](/blog/assets/images/2023-05-27-eight-productive-hours-cover.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@jaelynnalexis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jaelynn Castillo</a> on <a href="https://unsplash.com/photos/xfNeB1stZ_0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

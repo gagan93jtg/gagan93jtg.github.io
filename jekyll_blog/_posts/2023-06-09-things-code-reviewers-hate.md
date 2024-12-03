@@ -4,15 +4,10 @@ title: "Things Code Reviewers Hate"
 date: 2023-06-09
 published_on: "09th June, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-06-09-things-code-reviewers-hate-cover.jpg"
+image: "/assets/images/2023-06-09-things-code-reviewers-hate-cover.jpg"
 categories: code-review development frustration
 excerpt: Is reviewing code part of your daily job? Unless you've got a super nice team (that doesn't actually exist), you must have faced most of these aspects while reviewing your peer's code.
 ---
-
-![cover-photo](/blog/assets/images/2023-06-09-things-code-reviewers-hate-cover.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@punttim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Gouw</a> on <a href="https://unsplash.com/photos/1K9T5YiZ2WU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

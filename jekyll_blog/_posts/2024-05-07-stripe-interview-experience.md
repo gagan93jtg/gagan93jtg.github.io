@@ -4,14 +4,10 @@ title: "Stripe Interview Experience"
 date: 2024-05-07
 published_on: 7th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-07-stripe-interview-experience.jpg"
+image: "/assets/images/2024-05-07-stripe-interview-experience.jpg"
 categories: stripe interview staff-software-engineer
 excerpt: I interviewed for the position of Staff Software Engineer at Stripe in December 2023. They were hiring engineers in the Verification & Identity Platform team.
 ---
-
-![cover-photo](/blog/assets/images/2024-05-07-stripe-interview-experience.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo from <a href="https://www.google.com/search?sca_esv=87522dea2824ff52&sca_upv=1&sxsrf=ADLYWILkvvPEaLSLta0vbUlLLiSxs0BWaw:1715080024675&q=stripe&uds=ADvngMjTNPKEE-q7I44lun7GC2_xSBJakMDKk-zKP558UX3sGFgOo0obkT031nY191A6wYa4TKscNMz9nP09qudeXs6qjCVIMuAYWsNeUj1s-4H7nT9Qe8VwqZDmCXUj1j6FA1u2k2VYrDv3nso5ytnOUTS-I_q57ncjE0lSWYQOUjGzhq2Q6jSJwajnI5-4O-5SG-GId7Ebxmrab0S7tl0xBLhPcrufYwvgG_qRMVkigo81MJHwaHwu31KwhIxtySTCHOFpjrTG_mwsclx4pnuJ8YDWgoKJb-w717k6A5s5toPiq-guPtM&udm=2&prmd=isvnmbtz&sa=X&ved=2ahUKEwi0_Ib9svuFAxWybmwGHTv9D0QQtKgLegQIDBAB&biw=1496&bih=812&dpr=2#vhid=LKToaxY8zwIc8M&vssid=mosaic">Stripe Engineering</a>
 {: style="text-align: center;font-size: 0.8em"}

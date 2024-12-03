@@ -4,15 +4,10 @@ title: "Avoid Redundant Complexity"
 date: 2023-08-19
 published_on: "19th August, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-08-19-avoid-redundant-complexity.jpg"
+image: "/assets/images/2023-08-19-avoid-redundant-complexity.jpg"
 categories: complexity system engineering
 excerpt: During my college days, I came across a code in C++ that prints map of India. The code was obfuscated and hence very hard to understand. It took me days to understand what magic it is doing, but at that time I thought complexity is good....
 ---
-
-![cover-photo](/blog/assets/images/2023-08-19-avoid-redundant-complexity.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@magict1911?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Timo Volz</a> on <a href="https://unsplash.com/photos/9Psb5Q1TLD4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

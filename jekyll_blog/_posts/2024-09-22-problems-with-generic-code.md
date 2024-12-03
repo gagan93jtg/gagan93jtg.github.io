@@ -4,14 +4,11 @@ title: "Problems with generic code"
 date: 2024-09-22
 published_on: 22nd September, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-09-24-generic-code.jpg"
+image: "/assets/images/2024-09-24-generic-code.jpg"
 categories: generic-code refactoring solid
-excerpt: I try to explain the pitfalls of overly generic code and why it's beneficial to avoid it.  I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run..
+photo_credit:
+excerpt: I try to explain the pitfalls of overly generic code and why it's beneficial to avoid it.  I share my experiences and lessons learned over the years. I explain how generic code can become a maintenance nightmare in the long run.
 ---
-
-![cover-photo](/blog/assets/images/2024-09-24-generic-code.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@kierinsightarchives?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kier in Sight Archives</a> on <a href="https://unsplash.com/photos/black-and-white-heart-sketch-4bhhwmsYl-c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

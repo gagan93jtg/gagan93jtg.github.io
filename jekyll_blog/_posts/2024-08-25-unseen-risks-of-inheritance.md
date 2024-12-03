@@ -4,14 +4,10 @@ title: "Unseen risks of Inheritance"
 date: 2024-08-25
 published_on: 25th August, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg"
+image: "/assets/images/2024-08-25-unseen-risks-inheritance.jpg"
 categories: inheritance oops design
-excerpt: I started learning Object-Oriented Programming (OOP) with C++ during my college days, and Inheritance is one of the key concepts you can't miss when learning OOP. In fact, inheritance is one of the four core principles of OOP, along with...
+excerpt: The post explores the benefits and pitfalls of using inheritance in Object-Oriented Programming (OOP), emphasizing issues like tight coupling, rigid design, and overly complex hierarchies. It advocates for cleaner inheritance practices, the use of design patterns, and favoring composition over inheritance to create flexible and maintainable code.
 ---
-
-![cover-photo](/blog/assets/images/2024-08-25-unseen-risks-inheritance.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@flyd2069?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">FlyD</a> on <a href="https://unsplash.com/photos/text-5lU_WmKVus4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 {: style="text-align: center;font-size: 0.8em"}

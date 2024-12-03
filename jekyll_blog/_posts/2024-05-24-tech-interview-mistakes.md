@@ -4,14 +4,10 @@ title: "Tech Interview Mistakes"
 date: 2024-05-24
 published_on: 24th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg"
+image: "/assets/images/2024-05-24-tech-interview-mistakes.jpg"
 categories: interview mistakes software-design
-excerpt: There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected). Generally speaking, rejections shouldn't hurt...
+excerpt: There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected).
 ---
-
-![cover-photo](/blog/assets/images/2024-05-24-tech-interview-mistakes.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Francisco De Legarreta C.</a> on <a href="https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 {: style="text-align: center;font-size: 0.8em"}

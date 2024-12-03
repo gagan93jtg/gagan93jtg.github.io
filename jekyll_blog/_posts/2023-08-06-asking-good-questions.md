@@ -4,15 +4,10 @@ title: "Asking Good Questions"
 date: 2023-08-06
 published_on: "06th August, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-08-06-asking-good-questions.jpg"
+image: "/assets/images/2023-08-06-asking-good-questions.jpg"
 categories: questions context efficiency
 excerpt: On a daily basis, we communicate with a lot of people - family, friends, office colleagues and often with end customers. A lot of this communication is in the form of asking questions and getting answers.
 ---
-
-![cover-photo](/blog/assets/images/2023-08-06-asking-good-questions.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@camylla93">Camylla Battani</a> on <a href="https://unsplash.com/photos/AoqgGAqrLpU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

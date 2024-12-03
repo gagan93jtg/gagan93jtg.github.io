@@ -4,14 +4,10 @@ title: "Cost of time"
 date: 2023-09-18
 published_on: "18th September, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-09-18-cost-of-time.jpg"
+image: "/assets/images/2023-09-18-cost-of-time.jpg"
 categories: time behaviour psychology
 excerpt: Time is precious. Even billionaires can not get back in time. Not even by a second. That's why all of us like to enjoy life by spending time and money on things we like. And that's good. Different people get peace by doing different things - singing, dancing, travelling...
 ---
-
-![cover-photo](/blog/assets/images/2023-09-18-cost-of-time.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@aronvisuals?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aron Visuals</a> on <a href="https://unsplash.com/photos/BXOXnQ26B7o?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

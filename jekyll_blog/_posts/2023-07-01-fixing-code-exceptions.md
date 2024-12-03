@@ -4,15 +4,10 @@ title: "Fixing code exceptions"
 date: 2023-07-01
 published_on: "1st July, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-07-01-fixing-code-exceptions.jpg"
+image: "/assets/images/2023-07-01-fixing-code-exceptions.jpg"
 categories: bug-fixing data-issues stability
 excerpt: A regular day in the life of software engineer includes a lot of work - discussing status of things, writing new code, fixing customer issues, mentoring others and so on. Specifically, if we talk about fixing customer issues, they could be of two kinds
 ---
-
-![cover-photo](/blog/assets/images/2023-07-01-fixing-code-exceptions.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@mrthetrain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joshua Hoehne</a> on <a href="https://unsplash.com/photos/LndcUO8Z-IM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

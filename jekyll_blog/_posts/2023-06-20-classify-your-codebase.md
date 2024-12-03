@@ -4,15 +4,10 @@ title: "'Classify' Your Codebase"
 date: 2023-06-20
 published_on: "20th June, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-06-20-classify-your-codebase-cover.jpg"
+image: "/assets/images/2023-06-20-classify-your-codebase-cover.jpg"
 categories: modularity low-level-design maintainability
 excerpt: Most of the software engineers have a strong (theoratical) grip on OOPs concepts right from the college days but few still struggle to apply them while working. If you are someone who see a large number of small classes in your codebase that are well...
 ---
-
-![cover-photo](/blog/assets/images/2023-06-20-classify-your-codebase-cover.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/photos/7eQlPra81zQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

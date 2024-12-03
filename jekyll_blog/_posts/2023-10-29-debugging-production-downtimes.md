@@ -4,14 +4,10 @@ title: "Debugging Production downtimes"
 date: 2023-10-29
 published_on: 29th October, 2023
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg"
+image: "/assets/images/2023-10-29-debugging-production-downtimes.jpg"
 categories: production outage debugging
 excerpt: Downtime refers to a period when a system/service is partially or completely unavailable. Based on the criticality of service and the customers you're serving, this can cause a loss of millions of dollars. I've been on the...
 ---
-
-![cover-photo](/blog/assets/images/2023-10-29-debugging-production-downtimes.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@greatmalinco?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Daniel Tausis</a> on <a href="https://unsplash.com/photos/fireman-watering-fire-loeqHoa1uWY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

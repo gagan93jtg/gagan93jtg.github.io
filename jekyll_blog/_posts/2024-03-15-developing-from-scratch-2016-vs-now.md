@@ -4,14 +4,10 @@ title: "Developing From Scratch: 2016 vs. now"
 date: 2024-03-15
 published_on: 15th March, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-03-15-developing-from-scratch.jpg"
+image: "/assets/images/2024-03-15-developing-from-scratch.jpg"
 categories: Development Scratch BuildingAndLearning
 excerpt: One year into the industry, I wasn't sure if I knew enough about full-stack software development. I was working on a maintenance project, where we were mostly scaling down the system, doing small bug-fixes, doing a lot of ...
 ---
-
-![cover-photo](/blog/assets/images/2024-03-15-developing-from-scratch.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@brandsandpeople?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Brands&People</a> on <a href="https://unsplash.com/photos/person-writing-on-white-paper-Ax8IA8GAjVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

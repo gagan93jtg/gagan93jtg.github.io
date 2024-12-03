@@ -4,14 +4,10 @@ title: "Testing an app"
 date: 2023-09-07
 published_on: "07th September, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-09-07-testing-an-app.jpg"
+image: "/assets/images/2023-09-07-testing-an-app.jpg"
 categories: development process testing
 excerpt: For many entry-level developers, the most exciting part of work is writing a shiny new feature, while rest of the things sound boring. Although writing code seems more than 90% of the work to them, but it is not true.
 ---
-
-![cover-photo](/blog/assets/images/2023-09-07-testing-an-app.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@homajob?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Scott Graham</a> on <a href="https://unsplash.com/photos/5fNmWej4tAA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

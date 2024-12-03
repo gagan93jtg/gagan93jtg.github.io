@@ -4,15 +4,10 @@ title: "Small testing loops"
 date: 2023-05-01
 published_on: "1st May, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-05-01-small-testing-loops-cover.jpg"
+image: "/assets/images/2023-05-01-small-testing-loops-cover.jpg"
 categories: debugging optimization
 excerpt: If you are a software developer, you must have spent a considerable part of your time debugging the code you, or someone else wrote. At times, it is quite frustrating to debug code due to...
 ---
-
-![cover-photo](/blog/assets/images/2023-05-01-small-testing-loops-cover.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/it/@nublson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nubelson Fernandes</a> on <a href="https://unsplash.com/photos/CO6r5hbt1jg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 ---

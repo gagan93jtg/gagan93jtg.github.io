@@ -4,14 +4,10 @@ title: "Bain and Co. Interview Experience"
 date: 2024-05-13
 published_on: 13th May, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg"
+image: "/assets/images/2024-05-13-bain-and-co-interview-experience.jpg"
 categories: bain interview staff-software-engineer consultant
-excerpt: I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that's a small team of &lt;15 engineers). They had posted the job on LinkedIn, that redirected to..
+excerpt: I interviewed for the position of Staff Engineer II at Bain and Company in Jan-Feb 2024. They were hiring engineers for the Gurgaon team (that's a small team of &lt;15 engineers). They had posted the job on LinkedIn, that redirected to their website
 ---
-
-![cover-photo](/blog/assets/images/2024-05-13-bain-and-co-interview-experience.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo from <a href="https://www.brandcolorcode.com/bain-company/">Brand color code</a>
 {: style="text-align: center;font-size: 0.8em"}

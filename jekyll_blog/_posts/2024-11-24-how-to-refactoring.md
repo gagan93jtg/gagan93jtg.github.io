@@ -4,14 +4,11 @@ title: "Refactoring: Lessons Learnt So Far"
 date: 2024-11-24
 published_on: 24th November, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-11-24-refactoring.jpg"
+image: "/assets/images/2024-11-24-refactoring.jpg"
 categories: refactoring design rewrite
+tag: featured
 excerpt: This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development.
 ---
-
-![cover-photo](/blog/assets/images/2024-11-24-refactoring.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@nina_mercado?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nina Mercado</a> on <a href="https://unsplash.com/photos/silver-and-black-round-coins-5Y8NrzPya-w?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---

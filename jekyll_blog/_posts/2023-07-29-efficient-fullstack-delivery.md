@@ -4,15 +4,10 @@ title: "Efficient Fullstack Delivery"
 date: 2023-07-29
 published_on: "29th July, 2023"
 author: Gagandeep Singh
-cover: "/blog/assets/images/2023-07-29-efficient-fullstack-delivery.jpg"
+image: "/assets/images/2023-07-29-efficient-fullstack-delivery.jpg"
 categories: full-stack efficiency product
 excerpt: Many organisations face the issue of missed deadlines. The reasons for this might be a one-off case or repeated scenarios. Today, we'll try to understand how can we optimize full-stack product delivery as a team
 ---
-
-![cover-photo](/blog/assets/images/2023-07-29-efficient-fullstack-delivery.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"
-}
 
 Photo by <a href="https://unsplash.com/@cherrydeck">Cherrydeck</a> on <a href="https://unsplash.com/photos/rMILC1PIwM0">Unsplash</a>
 ---

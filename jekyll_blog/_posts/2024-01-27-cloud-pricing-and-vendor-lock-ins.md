@@ -4,14 +4,10 @@ title: "Cloud pricing & Vendor lock-ins"
 date: 2024-01-27
 published_on: 27th January, 2024
 author: Gagandeep Singh
-cover: "/blog/assets/images/2024-01-27-lock-in.jpg"
+image: "/assets/images/2024-01-27-lock-in.jpg"
 categories: cloud pricing lock-in
 excerpt: Cloud pricing is complicated. If you are trying to optimize a cloud bill for the first time that mentions more than 10 managed services, it can take a decent time to understand how this is computed. Although most of....
 ---
-
-![cover-photo](/blog/assets/images/2024-01-27-lock-in.jpg)
----
-{: style="box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 3px;"}
 
 Photo by <a href="https://unsplash.com/@mr_williams_photography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Micah Williams</a> on <a href="https://unsplash.com/photos/black-and-gray-code-padlock-anchored-on-chain-link-fence-selective-focus-photo-lmFJOx7hPc4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 ---
