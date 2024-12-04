@@ -6,7 +6,6 @@ published_on: 24th November, 2024
 author: Gagandeep Singh
 image: "/assets/images/2024-11-24-refactoring.jpg"
 categories: refactoring design rewrite
-tag: featured
 excerpt: This post debunks myths about refactoring, differentiates it from rewriting, and offers practical guidelines. It emphasizes continuous improvement, testing, and documentation to foster a positive engineering culture and sustainable software development.
 ---
 

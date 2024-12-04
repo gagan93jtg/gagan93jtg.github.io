@@ -6,6 +6,7 @@ published_on: 7th May, 2024
 author: Gagandeep Singh
 image: "/assets/images/2024-05-07-stripe-interview-experience.jpg"
 categories: stripe interview staff-software-engineer
+tag: featured
 excerpt: I interviewed for the position of Staff Software Engineer at Stripe in December 2023. They were hiring engineers in the Verification & Identity Platform team.
 ---
 
