@@ -6,9 +6,223 @@
 </description>
     <link>https://gagan93.me/blog//</link>
     <atom:link href="https://gagan93.me/blog//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 22 Dec 2024 15:29:26 +0530</pubDate>
-    <lastBuildDate>Sun, 22 Dec 2024 15:29:26 +0530</lastBuildDate>
+    <pubDate>Sun, 05 Jan 2025 18:28:51 +0530</pubDate>
+    <lastBuildDate>Sun, 05 Jan 2025 18:28:51 +0530</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Habits, Productivity &amp; Deep work</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-carl-heyerdahl-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@carlheyerdahl?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Carl Heyerdahl&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/silver-imac-with-keyboard-and-trackpad-inside-room-KE0nC8-58MQ?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;I resigned from my first company in December 2018 when I decided to switch from a &lt;strong&gt;services company&lt;/strong&gt; to an &lt;strong&gt;early-stage product startup&lt;/strong&gt;. Although the previous company wasn’t treating me badly, there was a trend of people leaving after 2-4 years, which was on my mind, along with other factors. My previous project, which I worked on for more than 2.5 years, was almost wrapped up, and I was being assigned random tasks that I didn’t enjoy. Finally, I joined this product startup, &lt;a href=&quot;https://loconav.com/&quot;&gt;LocoNav&lt;/a&gt;, on February 5th, 2018.&lt;/p&gt;
+
+&lt;p&gt;While onboarding at my current organization, &lt;a href=&quot;https://branchapp.in/&quot;&gt;Branch&lt;/a&gt;, took almost a week due to extensive documentation and mature processes, the situation at LocoNav was completely different at that time. Within the first four hours, I was logged into their production server using my new laptop to check a &lt;a href=&quot;https://www.crowdstrike.com/en-us/cybersecurity-101/next-gen-siem/log-rotation/&quot;&gt;log rotation&lt;/a&gt; issue. This might seem unusual to those who haven’t experienced the early startup environment, but for those who have, it’s not surprising. You need to be productive from day one and ensure your efforts align with everyone else’s. With all this hustle came a lot of stress, and there were many reasons for this stress. Here are a few:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;I had moved from a services company. Although it was also a startup, its processes and hierarchies were more formal. Sometimes, I would think, &lt;em&gt;We should have the “xyz process” from my old company to avoid this problem&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not just me, but most of us came from service or stable companies. So, working at this fast pace was totally new for us. Everyone found it tough to deal with the uncertainty, juggling different tasks, and the ever-changing requirements. When I joined, there were no product managers. So, we were building a &lt;strong&gt;product&lt;/strong&gt; without a &lt;strong&gt;product manager&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I aimed for perfection in many tasks, and that was a bit of a mistake. I didn’t realize that in early-stage startups, much of what we build might be discarded, so aiming for perfection from the start isn’t necessary. Trying to balance perfection and delivery, I ended up stressing myself and sometimes overworking. (Though many APIs I wrote in 2018-19 are still running in their production 😀).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In this blog, I’m sharing what I’ve learned from working in both early-stage and mature startups. This will cover:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finding a balance between &lt;strong&gt;perfection, speed&lt;/strong&gt;, and the &lt;strong&gt;stress&lt;/strong&gt; of delivering.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How much &lt;strong&gt;context-switching&lt;/strong&gt; is beneficial and its impact on your &lt;strong&gt;productivity&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The value of &lt;strong&gt;deep work&lt;/strong&gt; and how most of our jobs require it, but our environment isn’t set up for it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How your &lt;strong&gt;habits&lt;/strong&gt; and &lt;strong&gt;environment&lt;/strong&gt; affect your work.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Many of these insights are common to any corporate role. However, based on my experience as a Software Engineer, most examples will pertain to software design. So, let’s start 🚀&lt;/p&gt;
+
+&lt;h1 id=&quot;perfection--speed&quot;&gt;Perfection &amp;amp; Speed&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-01-05-habits-productivity-deepwork-perfection.jpg&quot; alt=&quot;Image from Unsplash&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was quite a perfectionist when I joined LocoNav. Out of stress, I would write emails to my founder, VP, and a few teammates, sharing my thoughts and asking for their suggestions on the problems we were facing. These weren’t product-related issues but suggestions on solving team problems (e.g., &lt;em&gt;Should we hire more?&lt;/em&gt;) or individual problems (e.g., &lt;em&gt;How to improve productivity?&lt;/em&gt;). While everyone appreciated my efforts to address these issues, not everyone was interested in solving them. Everyone has a unique perspective, and what seemed problematic to me might have seemed normal to someone else, possibly due to their past experience with similar situations.&lt;/p&gt;
+
+&lt;p&gt;The question for the need of perfection is tricky, and is very subjective to your current working environment. For example:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re a billion-dollar stock exchange firm or bank, perfection in your work is a basic requirement.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re a startup dealing with money, most of your work needs to be perfect. However, your idea of &lt;em&gt;perfection&lt;/em&gt; will likely be &lt;strong&gt;less strict&lt;/strong&gt; than that of a billion-dollar company because your processes are less mature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re a company manufacturing medical equipment, even one defect can be dangerous or life-threatening. So, your standards for perfection will be very high.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re a company not heavily regulated due to the nature of your business, your standards for perfection might not be very high. Doing things in a better way takes time and money, and no one wants to spend that money unless necessary.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;do-you-really-need-perfection-everywhere&quot;&gt;Do you really need perfection everywhere?&lt;/h3&gt;
+
+&lt;p&gt;I think most of the companies that build something new or cutting edge do not face a lot of compliance (at least initially). For example:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Stock companies that started between 2010-2020 can show how compliance has become stricter over time. In 2010, they didn’t take all the measures they do now. Each step requires time and money, which startups often lack.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SaaS companies in Europe, or those handling European user data, had to change how they store, process, and delete user data after GDPR was introduced. Making these changes is expensive, especially for large products.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Many AI startups have been creating amazing products since ChatGPT appeared, but there isn’t a governing body to set limits on AI use to ensure it’s safe. For example, the CTO of OpenAI &lt;a href=&quot;https://www.youtube.com/watch?v=lS0G2D6MKGw&quot;&gt;wasn’t sure&lt;/a&gt; if YouTube’s public videos were used to train Sora, their video generation model.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Startups often operate in fast-paced environments where speed and innovation are prioritized over strict processes and documentation. Without external regulatory requirements setting clear quality benchmarks, teams lean towards quick fixes and ad-hoc solutions rather than building for long-term stability and scalability. This lack of enforced structure can lead to inconsistent practices, technical debt, and overlooked edge cases in both product and operational workflows. No one wants to shutdown their company or go to jail for doing something that’s illegal (at least, most of us don’t want to!). So if you’re under a governing body, ensure perfection accordingly. Otherwise feel free to experiment and take some risks (or technical debts).&lt;/p&gt;
+
+&lt;p&gt;I think this gives you an idea that the level of perfection depends on kind of business you’re building.&lt;/p&gt;
+
+&lt;h1 id=&quot;stress--context-switching&quot;&gt;Stress &amp;amp; Context switching&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-01-05-habits-productivity-deepwork-context_switch.png&quot; alt=&quot;Image from Unsplash&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Handling stress in a startup requires balance and resilience. In the early days, we worked six days a week, with one day from home and five in the office. This wasn’t a set rule, but many of us followed it. I didn’t burn out quickly, but I made sure to rest when needed. Negotiate and align priorities with your teammates and manager because time is the most valuable asset for a startup. It’s crucial to have leaders who are supportive and practical. While everyone is expected to work quickly and deliver almost daily, not everyone will be a 5x or 10x developer.&lt;/p&gt;
+
+&lt;p&gt;I remember many days when I would come home utterly exhausted, unable to even hold a conversation with anyone. My family was concerned and thought I had made a mistake by leaving a stable job to join a startup. At that time, I also had little idea of what the future held for me. Despite this, I was driven by the motivation and support I received from my team and the leaders around me. There were two major sources of stress during this period:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the first 3 months, I mainly worked on building the API layer for their new Android app. We were designing screens, building APIs, and developing the mobile frontend all at once. This simultaneous work caused a lot of back and forth, leading to &lt;strong&gt;rework&lt;/strong&gt;. While redoing tasks is common in startups, it caused frustration for everyone. Too much parallel work can be counterproductive, showing our inexperience with working at such a fast pace.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since everyone needed to handle multiple roles and most things were unstable, I was involved in many tasks besides just building the API layer. I had to switch between different tasks, which sometimes meant I accomplished &lt;strong&gt;nothing concrete&lt;/strong&gt; on a particular day. This was very discouraging for me.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;One clear lesson I learned from observing my day was that to &lt;strong&gt;make an impact&lt;/strong&gt;, I needed to &lt;strong&gt;prioritize&lt;/strong&gt; tasks. In my previous role, this kind of prioritization wasn’t necessary because things were stable, and the layers of management above me handled it. Gradually, I became someone who learned to say ‘&lt;strong&gt;No&lt;/strong&gt;’ when something couldn’t be done in a given time frame or when I was already overloaded with tasks. In some teams, this might be seen negatively, but in our small team, where everyone was making honest efforts, people understood that if I said &lt;em&gt;no&lt;/em&gt;, it truly meant I was busy.&lt;/p&gt;
+
+&lt;h3 id=&quot;can-we-get-a-lot-done-with-lots-of-context-switching&quot;&gt;Can we get a lot done with lots of context switching?&lt;/h3&gt;
+
+&lt;p&gt;The short answer is “No”, but I have two takes here. Both of these conclusions come from my personal experience and what I learnt by reading.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you often switch between tasks while working, you might initially feel more stressed and frustrated, as you’ll see small progress in many tasks but nothing substantial by the end of the day. Over time, you’ll learn to choose fewer tasks and complete some of them. From my personal experience, trying to handle 10 tasks a day was never effective for me. However, focusing on 3-5 tasks that needed minimal input before completion made me happier. When starting something new, I found that I needed 2-4 uninterrupted hours (without &lt;strong&gt;context switching&lt;/strong&gt;) to create a solid plan for the coming days or weeks. I’ve worked closely with people who can’t switch between tasks as efficiently as I do. This behaviour is explained by Robin Sharma in the book “&lt;em&gt;The 5 AM Club&lt;/em&gt;”, where he highlights the brain’s amazing &lt;strong&gt;neuroplasticity&lt;/strong&gt; (an ability to adapt, rewire, and grow with consistent effort and habits). So, context switching works for me because my mind has &lt;strong&gt;adapted&lt;/strong&gt; to this pattern over months and years of practice.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not everyone can handle a lot of stress, so not everyone can switch tasks efficiently. It’s wrong to expect everyone to multitask well. I’ve written about efficient multitasking in a &lt;a href=&quot;https://blog.gagan93.me/multi-tasking-is-not-so-cool&quot;&gt;separate blog&lt;/a&gt; if you want more details. As a colleague, if I see someone struggling with multiple tasks, I always recommend prioritizing a few and completing those instead of making little progress on all of them.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;deep-work&quot;&gt;Deep work&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-01-05-habits-productivity-deepwork-deep_work.jpg&quot; alt=&quot;Image from Unsplash&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve been working remotely since March 2020, so I stay connected with my colleagues through instant chat apps like Slack. When Facebook was launched in 2004, “online connections” were seen positively, but over time, people realized how addictive these sites can be. While you can cut down on using apps like Facebook, Instagram, Twitter, and Snapchat, you can’t stop using tools like Slack, Zoom, Meet, and Teams because you’re expected to be &lt;strong&gt;online&lt;/strong&gt; during work hours and respond to calls and messages. You might be wondering - &lt;em&gt;Why is this guy comparing Facebook to Slack?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The answer is simple - all these apps steal your attention and reduce your ability to perform &lt;strong&gt;Deep Work.&lt;/strong&gt; Apps like Slack are designed with instant notifications and visual cues (eg. red badges and notification sound) that trigger our brain. Each notification creates a sense of urgency, pulling us away from focused tasks. The fear of missing out (FOMO) on important updates further compels us to check messages frequently. Additionally, the platform’s design encourages constant context-switching, &lt;strong&gt;fragmenting our attention&lt;/strong&gt; and &lt;strong&gt;reducing cognitive capacity&lt;/strong&gt; for deep, uninterrupted work. Over time, these repeated interruptions diminish our ability to &lt;strong&gt;focus deeply&lt;/strong&gt;, making us more reactive and less capable of sustained, meaningful problem-solving. If you find it challenging to advance in your role, your &lt;strong&gt;weak attention span&lt;/strong&gt; might be a significant factor. Referring to the career progression of software engineers, it’s relatively straightforward to advance from a Software Engineer to a Senior Software Engineer. However, progressing beyond the Senior Engineer level requires demonstrating a &lt;strong&gt;broader impact&lt;/strong&gt;, which can only be achieved through focused, uninterrupted time dedicated to cognitively demanding tasks. Deep work fosters a systems-level perspective, enabling the identification of patterns, anticipation of potential challenges, and proposal of innovative improvements. It also provides the opportunity to learn and refine expertise in critical areas that contribute to organizational success. Without consistent deep work, engineers may become ensnared in reactive workflows, unable to deliver the strategic value expected at the Senior+ level.&lt;/p&gt;
+
+&lt;h3 id=&quot;do-our-jobs-encourage-deep-work&quot;&gt;Do our jobs encourage Deep work?&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately, many work environments, especially startups, don’t really encourage deep work. With tasks often feeling urgent, we tend to reward &lt;strong&gt;visibility over impact&lt;/strong&gt;, which unintentionally promotes shallow work, like responding to emails, attending long meetings, or giving constant status updates. These activities can create an illusion of productivity because they are &lt;strong&gt;easy to measure&lt;/strong&gt; and &lt;strong&gt;immediately visible&lt;/strong&gt;. On the other hand, the focused, uninterrupted effort needed for solving complex problems often doesn’t show immediate results and can be overlooked in places focused on short-term goals. In my opinion, we need more mature managers who appreciate deep work for its long-term benefits.&lt;/p&gt;
+
+&lt;h3 id=&quot;some-personal-productivity-hacks&quot;&gt;Some personal productivity hacks&lt;/h3&gt;
+
+&lt;p&gt;These habits have helped me to get more work done without overworking:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Whether it’s email or Slack, I’ve set up filters everywhere. If you’re in a channel that no longer interests you, or if there are emails you’re not interested in but are sent to a group, create filters for them. Check these messages occasionally instead of getting notified every time a new message arrives. Similar optimisations include muting channel notifications, leaving those channels, unsubscribing to some newsletters that you no longer need, or setting up email filters to ensure emails with certain subjects or sender IDs don’t land in your inbox (allowing you to check them later).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I typically begin my workday around 8:00 - 8:30 am. This routine has been a part of my life for more than five years now, and it has significantly contributed to my ability to focus on crucial tasks before the rest of the team starts their day (given flexible working hours and distributed teams).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Although I get a lot done in the morning, I also set up Do Not Disturb (DND) on Slack when needed. It’s better to clearly indicate that you’re busy rather than ignoring messages.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I keep my mobile internet off during work hours (except at lunch) to avoid distractions from push notifications.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I keep a simple text file open in my editor all the time. It’s got a list of stuff I need to focus on, plus all the raw notes about how things are going. Since the list covers everything from my own tasks to PR reviews, design document reviews, and other things, it’s my go-to spot for figuring out what to do next. Prioritizing is just a matter of moving a few lines around. This setup also makes it easy to pick up where I left off after vacations or long weekends without feeling overwhelmed or lost.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I push all shallow work to a specific part of my day. These are minor tasks with medium to low priority, which I can tackle after completing deep work. On another note, there are often tiny tasks that take less than two minutes. I choose to do these tasks immediately because scheduling them actually wastes more time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I maintain a clutter-free physical workspace, ensuring that my desk and surrounding area are organized and tidy. This helps me focus better and reduces distractions. Additionally, I relocated to a quieter place a few months ago, which has significantly improved my ability to concentrate and work efficiently (more details in the next section).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;habits-and-environment&quot;&gt;Habits and environment&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-01-05-habits-productivity-deepwork-cluttered_desk.jpg&quot; alt=&quot;Image from Unsplash&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Your room is a reflection of your mind. The state of your room, whether it’s organized, cluttered, or decorated in a specific way, can often reveal aspects of your personality, thought process, and overall mental state. A tidy room signifies a clear mind and a messy room indicates a more chaotic inner world. I’m sharing this because I moved to a cleaner workspace in October 2024, and it has improved my focus. Having worked from home for a long time, it was important for me to set up a space away from regular household distractions, which I had become accustomed to working with.&lt;/p&gt;
+
+&lt;p&gt;During the time I set up my new desk, I added three books to my bookshelf: &lt;strong&gt;Atomic Habits&lt;/strong&gt;, &lt;strong&gt;Deep Work&lt;/strong&gt;, and &lt;strong&gt;Zero to One&lt;/strong&gt;. While the third book focuses on entrepreneurship, the first two helped me adjust my &lt;strong&gt;habits&lt;/strong&gt; and &lt;strong&gt;work patterns&lt;/strong&gt; to be more productive.For example, I used to struggle to read regularly and would save reading for the weekends because my weekdays were busy. However, in &lt;em&gt;Atomic Habits&lt;/em&gt;, the author shares a simple but useful tip:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It’s easy not to practice the guitar when it’s tucked away in the closet. It’s easy not to read a book when the bookshelf is in the corner of the guest room. It’s easy not to take your vitamins when they are out of sight in the pantry. When the cues that spark a habit are subtle or hidden, they are easy to ignore.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;He suggests placing a book under your pillow to encourage more frequent reading, and that’s exactly what I did. In the morning, I would wake up and spend 10 minutes reading, repeating the same before bed. I thought I was “busy” during the week, but making this small change wasn’t difficult since I was using that time to scroll through social media anyway. As a result, I finished reading these three books in just &lt;strong&gt;9 weeks&lt;/strong&gt; (something that would have taken me at least 16-20 weeks if I only read on weekends). Some days, I got so interested in the topic that I spent 20-30 minutes reading instead of just 10. It was definitely better than spending those 20-30 minutes on Instagram 😉. This habit lasted for about 4 months, but now the streak is broken, so I read 3-4 nights a week instead of 6-7 (still much better than just weekend reading). One reason for this change is that I switched back to technical books, which require more focus and the right mood to read.&lt;/p&gt;
+
+&lt;p&gt;While it’s important to have good habits, it’s even more crucial to learn &lt;strong&gt;how to fit them&lt;/strong&gt; into your schedule, so you don’t struggle with prioritizing what’s important. Reading &lt;em&gt;Atomic Habits&lt;/em&gt; really helped me with that. Let me share two more habits I’ve developed over the years that I believe have helped me grow:&lt;/p&gt;
+
+&lt;h3 id=&quot;boredom-is-important&quot;&gt;&lt;strong&gt;Boredom is important&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Many people who struggle to grow beyond a certain point often claim they are extremely busy—whether genuinely or by filling their time with low-impact tasks that create an illusion of “busyness.” While constant activity might feel satisfying, it often leaves little room for &lt;strong&gt;strategic thinking or mental clarity&lt;/strong&gt;. Surprisingly, boredom plays a vital role in growth. It’s in these quiet, unoccupied moments that your mind can wander, reflect, and make unexpected connections. Boredom is not idleness. it’s about giving your brain the space to process thoughts, spark creativity, and identify priorities. Without moments of stillness, you risk being trapped in a cycle of reactive tasks, never pausing to think deeply or plan effectively for the future. Sadly, social media apps &lt;a href=&quot;https://blog.gagan93.me/cost-of-time#heading-technology-addiction&quot;&gt;eliminate boredom&lt;/a&gt; by constantly feeding quick dopamine hits through endless scrolling, notifications, and bite-sized content. This prevents our minds from wandering, reflecting, or engaging in deeper thought.&lt;/p&gt;
+
+&lt;h3 id=&quot;simplicity-is-clarity&quot;&gt;Simplicity is clarity&lt;/h3&gt;
+
+&lt;p&gt;This habit is deeply rooted in my mindset, drawing inspiration from both &lt;strong&gt;religious beliefs&lt;/strong&gt; and &lt;strong&gt;practical experiences&lt;/strong&gt;. On the religious side, there’s an emphasis on leading a &lt;strong&gt;simple and minimal life&lt;/strong&gt;, free from unnecessary complications. This perspective has taught me the value of clarity &amp;amp; focus, which extend far beyond personal life. Similarly, as an engineer, simplicity isn’t just a preference while building large systems — it’s a functional necessity. Simple systems are inherently easier to understand, debug, and improve. They lower the cognitive load on those working with them, allowing teams to collaborate effectively, onboard faster, and make informed decisions with confidence. On the flip side, I’ve also worked on (and even built 🫣) systems that were architected in a way that they were not only hard to understand but harder to extend. So seek simplicity as a principle in every aspect of your life.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;In this article, I shared my journey transitioning from a services company to an early-stage product startup, highlighting the challenges and lessons learned along the way. We explored the delicate balance between perfection and speed, the impact of stress and context switching on productivity, and the importance of deep work for personal and professional growth. Additionally, I shared personal productivity hacks and the significance of habits and environment in enhancing work efficiency. By reflecting on these experiences, I hope to provide valuable insights for those navigating similar paths in dynamic work environments.&lt;/p&gt;
+
+&lt;p&gt;Before ending this blog post, I’d like to share photos of my &lt;strong&gt;existing setup&lt;/strong&gt; (that was in the middle of our living room) and &lt;strong&gt;current setup&lt;/strong&gt; (isolated on a separate floor where I use to work out during COVID).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-01-05-habits-productivity-deepwork-my_desk.jpg&quot; alt=&quot;Image from Unsplash&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;further-reading&quot;&gt;Further reading&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re interested to seriously read about &lt;a href=&quot;https://www.amazon.in/dp/0349413681?ref=ppx_yo2ov_dt_b_fed_asin_title&quot;&gt;Deep work&lt;/a&gt; or &lt;a href=&quot;https://www.amazon.in/dp/1847941834?ref=ppx_yo2ov_dt_b_fed_asin_title&quot;&gt;Habits&lt;/a&gt;, and their impact on your life, read the respective books.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I’ve shared my opinions about &lt;a href=&quot;https://blog.gagan93.me/multi-tasking-is-not-so-cool&quot;&gt;multi-tasking&lt;/a&gt; some time ago on my blog.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Despite working in startup throughout my career, I hated overworking (and almost never did it). In a &lt;a href=&quot;https://blog.gagan93.me/eight-productive-hours&quot;&gt;blog post&lt;/a&gt;, I shared common reasons that cause you to work beyond eight working hours.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Apart from &lt;a href=&quot;https://blog.gagan93.me/tag/interview&quot;&gt;Interview related content&lt;/a&gt; (that’s always most viewed), there are plenty of technical blog posts that I’m sure you’ll like (few of my favourites are &lt;a href=&quot;https://blog.gagan93.me/avoid-redundant-complexity&quot;&gt;this&lt;/a&gt;, &lt;a href=&quot;https://blog.gagan93.me/cloud-pricing-vendor-lock-ins&quot;&gt;this&lt;/a&gt; and &lt;a href=&quot;https://blog.gagan93.me/things-code-reviewers-hate&quot;&gt;this&lt;/a&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Thank you for reading this. Please leave your thoughts in the comments 😊&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Jan 2025 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2025/01/05/habits-productivity-deep-work.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2025/01/05/habits-productivity-deep-work.html</guid>
+      </item>
     
       <item>
         <title>Refactoring: Lessons Learnt So Far</title>
@@ -1523,134 +1737,6 @@ Column         |            Type             | Nullable  |         Default
         <pubDate>Mon, 13 May 2024 00:00:00 +0530</pubDate>
         <link>https://gagan93.me/blog//2024/05/13/improving-your-resume.html</link>
         <guid isPermaLink="true">https://gagan93.me/blog//2024/05/13/improving-your-resume.html</guid>
-      </item>
-    
-      <item>
-        <title>Bain and Co. Interview Experience</title>
-        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo from &lt;a href=&quot;https://www.brandcolorcode.com/bain-company/&quot;&gt;Brand color code&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;I interviewed for the position of &lt;strong&gt;Staff Engineer II&lt;/strong&gt; at &lt;strong&gt;Bain and Company&lt;/strong&gt; in &lt;strong&gt;Jan-Feb 2024&lt;/strong&gt;. They were hiring engineers for the &lt;strong&gt;Gurgaon team&lt;/strong&gt; (that’s a small team of &amp;lt;15 engineers). They had posted the job on LinkedIn, that redirected to their website where I applied. For those who haven’t heard much about the company:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Popularly abbreviated as &lt;a href=&quot;https://en.wikipedia.org/wiki/Big_Three_(management_consultancies)&quot;&gt;MBB&lt;/a&gt;, McKinsey, Boston Consulting Group and Bain &amp;amp; Company are known as the Big three management consultant firms.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;As the name suggests, these are mostly into consultancy and not in product development. And unlike other consultant firms where developers are outsourced by the company to build something, these big firms mostly “plan” the execution. Generally, the actual implementation (code) is not done by these companies. They just meet clients to understand the problem, document everything and make plans.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Most of the roles are &lt;strong&gt;Individual Contributor&lt;/strong&gt; roles where you’re expected to travel for 20-50% of your time (based on role/seniority). This is true for engineering roles as well.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;interview-process&quot;&gt;Interview process&lt;/h2&gt;
-
-&lt;p&gt;I got an email from their recruitment team that they want to schedule a hiring manager call to begin with. Except for one instance, entire communication happened over emails and the team was quite responsive. There were &lt;strong&gt;five rounds&lt;/strong&gt; in total. I cleared all of them but because there was a single vacancy and high competition, I was informed that they chose someone else. Overall, it was a good learning experience as this was the first time I went through all the rounds for any company’s process.&lt;/p&gt;
-
-&lt;h3 id=&quot;hiring-manager-round&quot;&gt;Hiring manager round&lt;/h3&gt;
-
-&lt;p&gt;This was scheduled with Sr. Director of Global Engineering team who was based out of Singapore. There are many companies that put you through the evaluation process directly but I like the organisations where we have a human interaction with a senior person before starting with the interview rounds. They make sure that they understand your current role, future growth path/expectations and also explain the new role in the best possible way. For example, most of us work with product/service based companies where travel is almost negligible for engineers. This was very different for Bain. Another thing was that we get to code less in consultant roles. He made sure that I completely understand these two things before starting with the evaluation process. He sounded calm and “not in a hurry” like many directors/senior managers. We did some technical discussion around my projects but only on surface level.&lt;/p&gt;
-
-&lt;h3 id=&quot;live-coding-round&quot;&gt;Live coding round&lt;/h3&gt;
-
-&lt;p&gt;This was scheduled with a &lt;strong&gt;Senior Engineer&lt;/strong&gt; who just got promoted to &lt;strong&gt;Staff&lt;/strong&gt;. Generally, when you talk to Engineers during interviews, you might find them less expressive but people at Bain are much more open (and somewhat more professional) when it comes to communication. This is because Engineers also deal with the clients and are expected/trained to be good on communication skills. A junior engineer also joined the interview as an observer. He dropped mid way due to a clashing meeting. The problem statement was based on strings and 1D arrays (quite simple, but I don’t remember exactly). While the problem was simple to solve, the platform they chose was not good. Most of the coding interviews I gave were on platforms like Coderbyte that has a wide choice of languages. Being a Ruby Engineer, I prefer to solve DS questions in &lt;strong&gt;Ruby&lt;/strong&gt; but here, the choice was among &lt;strong&gt;Python, Java and Javascript&lt;/strong&gt;. This was not communicated by HR team in advance. Somehow I ended up coding the solution in Java, which is my second language of choice, and that ran without any issues. I expected another question but the interviewer preferred to play around with minor changes in requirements and edge cases, all of which were passing. This sounded easier than I expected and what I faced in other companies.&lt;/p&gt;
-
-&lt;h3 id=&quot;technical-assessment&quot;&gt;Technical Assessment&lt;/h3&gt;
-
-&lt;p&gt;This was basically a &lt;strong&gt;System Design / HLD round&lt;/strong&gt; with another &lt;strong&gt;Staff Engineer II.&lt;/strong&gt; I prefer interviews during morning hours because I’m fresh at that time. But because of interviewer’s preference/availability, this was scheduled in the evening. I’m generally mentally-saturated by that time (6PM IST). The problem statement was around designing a &lt;strong&gt;blob&lt;/strong&gt; &lt;strong&gt;storage platform&lt;/strong&gt; like &lt;strong&gt;Dropbox / Google Drive&lt;/strong&gt;. Although this is a common HLD problem, I had not solved it before. The only way was to think from first principles. I’m good at cloud related things and protocols so that never remains an issue for me when I’m solving a HLD problem. I’m also good at databases but my major exposure is around SQL databases only. Considering the numbers shared by them, I tried to propose a NoSQL database for the metadata storage. They immediately pointed this out and asked me why I chose a NoSQL database here. When I started pointing out the reasons, I figured out that I was not having strong reasons to go for NoSQL. Within next two minutes, both of us mutually agreed to start with a SQL database like PostgreSQL. The major discussion in a blob storage backend (from a functional perspective) is to think about:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Breaking file(s) into chunks for both uploading/downloading.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Hashing these parts to see if it already exists on the backend (can happen frequently for large platforms or when people upload duplicate files).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Encryption/Decryption on client/server side (this was one of the requirements).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Talk about Disk, storage, cost, etc.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I had read read an article on &lt;a href=&quot;https://www.allthingsdistributed.com/2023/07/building-and-operating-a-pretty-big-storage-system.html&quot;&gt;Amazon S3&lt;/a&gt; (not full, it’s a long one for me to absorb). I took some ideas from it when talking about low level storage. Although S3 is much more complex and I was not supposed to talk about things like storage tiers. We didn’t conclude our discussion around all the points (can happen in a HLD round, that is more open ended in comparison to coding rounds) but he asked me to talk around APIs, schema design and draw some boxes on &lt;a href=&quot;https://excalidraw.com/&quot;&gt;Excalidraw&lt;/a&gt; (my choice for drawing diagrams) before the time ends. The overall discussion went very well. Hence, I qualified.&lt;/p&gt;
-
-&lt;h3 id=&quot;technical-assessment-case-study&quot;&gt;Technical Assessment (Case Study)&lt;/h3&gt;
-
-&lt;p&gt;This was another HLD round scheduled with &lt;strong&gt;Director of Engineering, India team&lt;/strong&gt;. He wanted to understand about my projects in great depth and probe around choices. Then we moved to designing an app that we regularly use - like &lt;strong&gt;Zomato&lt;/strong&gt;. He asked some problems specific to:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;How we’ll show restaurants/branches near customer’s current location?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What tables will you make to store restaurants, branches, etc?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you build Zomato’s homepage (gave some requirements, similar to the actual app)? Write SQL queries and see what things should be cached for fast page load.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;While the previous round was centered around a single problem (Blob storage), this included my projects, a case study, discussion around databases, discussion around other technology choices, and a lisuttle bit on the product side.&lt;/p&gt;
-
-&lt;p&gt;--&lt;/p&gt;
-
-&lt;p&gt;After this round, I got a phone call from the recruiter (for the first time). They gave me feedback on all my previous rounds which was very positive. The only negative she pointed out that I sounded comfortable with only Ruby programming language. She concluded this because I had mailed them about the platform issue in live coding round that did not have sufficient language options to choose from. I explained the same and I told that I was comfortable enough with Java to solve the problem within time. I again explained that I consider myself as a &lt;em&gt;Sr. Engineer&lt;/em&gt;, and not a &lt;em&gt;Ruby Engineer&lt;/em&gt; but their platform should have had more options available. Otherwise they should inform the same before the interview. It was important for them to clear this expectation from their side, as for client projects languages keep on changing. Moreover, most of their enterprise clients were using Java/C#.&lt;/p&gt;
-
-&lt;p&gt;They told me that next round is with an Expert Partner. This will be a Behavioural Round (kind of cultural fit round). Because the partner is generally travelling, I’ll have to provide my availability over multiple slots in a week and they’ll schedule in any of these slots.&lt;/p&gt;
-
-&lt;h3 id=&quot;behavioural-round&quot;&gt;Behavioural Round&lt;/h3&gt;
-
-&lt;p&gt;As explained, this was held with an &lt;strong&gt;Expert Partner&lt;/strong&gt; from &lt;strong&gt;APAC region&lt;/strong&gt;. The interview was scheduled for 45 minutes but in the beginning they told me that they just have 30 minutes because of a last minute meeting setup with a client. This was the first time I was giving Behavioural Round in my life so I had spent considerable time in understanding what this round is meant for. Obviously, I couldn’t fool this person if I was not a cultural fit because they had 21 years of experience and 16+ years within Bain. But I said to myself - If I fail in this round after clearing 4 technical rounds, this would be the worst thing. I checked a lot of videos to learn about the STAR approach, making stories out of things you’ve done in your career. There was one short video that suggested to build stories around (at least) these axes:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Stories that indicate good leadership,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Where you acted as a great team player,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Accomplishment story to show that you can tick off your goals,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Overcoming hurdles to show that you can surpass challenges,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Failure story to show that you learn from your mistakes and bounce back.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;When I say “stories”, don’t take me wrong. It doesn’t mean creating fake stories. Because the interviews are structured in a way that you’re evaluated on a lot of things in a short interval, it’s good to know the axes on which you should prepare before-hand. Otherwise you might have showcased all the skills but you’d still forget those when you’re asked during an interview.&lt;/p&gt;
-
-&lt;p&gt;The interview started with our introductions. He talked a little bit around Logistics business (i.e. around LocoNav). Then they said “&lt;em&gt;You’ve worked at LocoNav for 6 years, can you explain me one big task that you completed each year&lt;/em&gt;”. This was the moment when all the preparation felt useless. While I’ve done a lot of work at LocoNav and everybody around me knows that, I felt blank for 2-3 seconds. After that I started explaining my contributions. There were a few more questions that were no where related to what I had expected. At the end, they asked if I had questions for them. I asked a few questions and we wrapped with the interview.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;The interview at Bain took slightly longer than other companies. The overall process took close to 2 months as rounds happened within a gap of 1-2 weeks, specially for the last round where availability of Expert Partner was very limited. Even after the last round, they took 2-3 weeks before sharing the result. I was informed that there was &lt;strong&gt;only one opening&lt;/strong&gt; for this position and they shortlisted some other candidate. I probed for more details during the month of March because this feedback seemed like a generic &lt;em&gt;platform generated email&lt;/em&gt;. The HR added the hiring manager to the email and they both confirmed the same. It sounded somewhat like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;From HR:&lt;/p&gt;
-
-  &lt;p&gt;Thank you for reaching out. We had multiple candidates, including yourself, who progressed to the final stages of the interview. It’s important to note that while you demonstrated strong skills and abilities, the candidate who ultimately succeeded in the final round performed exceptionally well. This outcome doesn’t reflect any deficiency in your skills; rather, it’s a testament to the competitive nature of the final selection process.&lt;/p&gt;
-
-  &lt;p&gt;--&lt;/p&gt;
-
-  &lt;p&gt;From the Hiring Manager:&lt;/p&gt;
-
-  &lt;p&gt;Thanks for reaching out. Yes, we liked your candidature and got good feedback from the interviewers. Unfortunately we only had one open position at this point of time and had a tough decision to select one candidate. We will surely reach out to you if we open more positions in the future.&lt;/p&gt;
-
-  &lt;p&gt;Once again, really appreciate the time and effort you spent for the interview process with us.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I got some relief after this email, because I believe feedbacks must be shared when a candidate spends time with you. Including all the emails, the phone call and the interview rounds - I spent more than 6 hours with them. I read a lot about consultant life during the interview process to see if I can work like that (because I’m not a travel freak). I might have given a chance to this role if I was selected. I also thought - will I stay relevant in the &lt;em&gt;SaaS Product industry&lt;/em&gt; if I opt for this role for a few years (that doesn’t involve hands-on coding)? But whatever happens, happens for the best. I got the complete experience but I was not selected. I was overall happy.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 13 May 2024 00:00:00 +0530</pubDate>
-        <link>https://gagan93.me/blog//2024/05/13/bain-and-co-interview-experience.html</link>
-        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/13/bain-and-co-interview-experience.html</guid>
       </item>
     
   </channel>
