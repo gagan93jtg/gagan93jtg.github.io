@@ -6,9 +6,155 @@
 </description>
     <link>https://gagan93.me/blog//</link>
     <atom:link href="https://gagan93.me/blog//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 05 Jan 2025 18:28:51 +0530</pubDate>
-    <lastBuildDate>Sun, 05 Jan 2025 18:28:51 +0530</lastBuildDate>
+    <pubDate>Sun, 26 Jan 2025 19:07:23 +0530</pubDate>
+    <lastBuildDate>Sun, 26 Jan 2025 19:07:23 +0530</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Growth Through Unlearning</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-tim-mossholder-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@timmossholder?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Tim Mossholder&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/love-to-learn-pencil-signage-on-wall-near-walking-man-WE_Kv_ZB1l0?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Notice if you’re describing a problem in terms of a solution you’ve already chosen — this can be a mental block for a lot of engineers. We start out by comparing problems to solve, but find ourselves talking in terms of technology or architecture we “should” be using to make everything better.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;-Tanya Reilly, The Staff Engineer’s Path&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In 2022-2023, I spent at least two afternoons each week discussing architecture with two senior colleagues at my company. We had hired many people, expecting growth, and decided to transition from a &lt;a href=&quot;https://blog.gagan93.me/monolith-microservices&quot;&gt;monolith to microservices&lt;/a&gt;. During one discussion about a central authorization service, I kept drawing ideas from a system I had built in the monolith a few years ago. This is common among engineers: they often jump straight to solutions without fully understanding the problem, suggesting what they already know. This issue isn’t limited to engineering teams; even product and design teams can overlook problem details and plan to create solutions similar to what they’ve done before.&lt;/p&gt;
+
+&lt;p&gt;Many industry leaders like hiring people with similar past experience, but that shouldn’t stop you from finding better solutions. When you face a similar problem, some parts might be different, so the same solution might not work directly. If you overlook these small but important details, you might implement an unoptimized solution.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-tale-of-two-rbac-systems&quot;&gt;The tale of two RBAC systems&lt;/h1&gt;
+
+&lt;p&gt;In the past, I had developed a &lt;a href=&quot;https://en.wikipedia.org/wiki/Role-based_access_control&quot;&gt;Role-Based Access Control (RBAC) system&lt;/a&gt; for a customer-facing application using SQL tables. This system was designed to manage user permissions efficiently by assigning roles to users and controlling access based on these roles. A few months after the implementation, we began optimizing the SQL queries for our application to enhance performance. During this process, we discovered that the tables associated with the RBAC feature were among the top 10 most frequently accessed tables. This was because the data from these tables was loaded before almost every API call, which significantly impacted the application’s performance.&lt;/p&gt;
+
+&lt;p&gt;As an improvement, we decided to implement caching for this data. We set up a cache to store the this data and configured it to invalidate whenever a new role was assigned to a user. Since role assignments were not very frequent, this approach was feasible and effective. Within a month, we successfully eliminated 4-5 database queries that were previously executed @ 40 queries/sec.&lt;/p&gt;
+
+&lt;p&gt;A few years later, I encountered another RBAC system in a different application, and here were the differences between the two:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The system was designed for internal users (instead of customers) and there was no chance that the customer side would need this functionality due to the nature of the business.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It was built using &lt;strong&gt;configuration files&lt;/strong&gt; and &lt;strong&gt;one SQL table&lt;/strong&gt;, instead of &lt;strong&gt;multiple&lt;/strong&gt; &lt;strong&gt;SQL tables&lt;/strong&gt; that use joins to get required data.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the newer system, changing roles required a deployment because these configuration files were part of the repository code. In my old system, we had an admin page to update the database entry (and a callback to refresh the cache as well).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When I first saw this new system, it seemed like a misnomer, but this is how it was perfect for their use case:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since this was built for internal users, there was no need to update the data often. Plus, the number of internal users was under a thousand.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There was no need for a caching layer because the configuration files were only loaded once, during app startup.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The team wanted to track changes to the permission system, and they thought using Git was the best way to do it 🤓. Sure, a maker-checker system could have been created for logging changes if SQL tables were used, but that requires separate effort.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So which system is better? The one built on SQL tables or the one that mostly used configuration files 🤔?Take a moment to think before you continue reading.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Seasoned engineers would sum it up in two words: &lt;em&gt;It depends&lt;/em&gt; 😆.&lt;/p&gt;
+
+&lt;p&gt;Both systems worked well for their specific use cases without causing any issues for the end user. If I were to design the second system after creating the first one, I might have made the same mistake of using SQL tables and joins because that would have been the “standard solution” I remembered. But now, looking at both, I see that each was built according to its &lt;strong&gt;requirements&lt;/strong&gt; without &lt;strong&gt;over-engineering&lt;/strong&gt; for the future. In fact, &lt;em&gt;over-engineering&lt;/em&gt; is very common in software engineering (been there, done that).&lt;/p&gt;
+
+&lt;p&gt;Again quoting from the &lt;em&gt;Staff Engineer’s Path&lt;/em&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An engineer who is not busy can be inclined to make work for themselves. When you see a vastly over-engineered solution to a straightforward problem, that’s often the work of a staff engineer who should have been assigned to a harder problem.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For this issue, building a solution based on SQL tables would be considered &lt;em&gt;over-engineering&lt;/em&gt; because:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;There was no need to update roles dynamically (without deployment).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Implementing the same on the SQL layer would call for a separate maker-checker system to monitor the changelog.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Additionally, future work might involve developing a caching layer since the data rarely changed.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;comfort-resists-innovation&quot;&gt;Comfort resists innovation&lt;/h1&gt;
+
+&lt;p&gt;Over the past few years, a notable portion of my work has focused on simplifying systems that have become increasingly complex due to ongoing product changes implemented by various developers. As I work on enhancing these systems, it is crucial to first gain a thorough understanding of their current behavior. This often involves interviewing individuals who have been involved with the system for a long time. These individuals tend to be very &lt;strong&gt;familiar&lt;/strong&gt; and &lt;strong&gt;comfortable&lt;/strong&gt; with the system as it stands, having witnessed the gradual increase in complexity and understanding the reasons behind each modification.&lt;/p&gt;
+
+&lt;p&gt;This sense of &lt;strong&gt;comfort&lt;/strong&gt; can be problematic because it prevents them from envisioning a newer, more streamlined version of the system that would be easier for everyone to comprehend. Their familiarity with the existing complexity, combined with limited exposure to effective design principles, often leads them to believe that the current state is the optimal way to construct the system. This mindset results in a lack of motivation to pursue &lt;a href=&quot;https://blog.gagan93.me/refactoring-lessons-learnt-so-far#heading-keep-changes-small-and-reversible&quot;&gt;incremental improvements&lt;/a&gt; that could make the system more efficient and user-friendly. Consequently, they may not plan or implement small, reversible changes that could gradually enhance the system’s design and functionality.&lt;/p&gt;
+
+&lt;p&gt;In this case, &lt;strong&gt;unlearning&lt;/strong&gt; is important so that you can think of the system from a fresh perspective and think of an alternate, simplified architecture. This would help you:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;To recognize that some of what you “know” might not be &lt;strong&gt;universally correct&lt;/strong&gt; or &lt;strong&gt;applicable everywhere&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To let go of &lt;strong&gt;fixed patterns&lt;/strong&gt; that prevent you from adapting to new situations. In order to grow, it’s important to not rely on such patterns.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To shed the confidence in solutions or methods simply because &lt;strong&gt;they worked in the past&lt;/strong&gt;. Assumptions based on past experiences can lead to flawed conclusions or solutions when circumstances change.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;some-personal-examples&quot;&gt;Some personal examples&lt;/h1&gt;
+
+&lt;p&gt;Software Engineers need to constantly unlearn the old concepts so that they can build efficient systems. Throughout my career, I’ve encountered numerous instances that have taught me the importance of being willing to &lt;strong&gt;unlearn&lt;/strong&gt; outdated methods.&lt;/p&gt;
+
+&lt;p&gt;These are some instances where &lt;strong&gt;unlearning&lt;/strong&gt; helped me:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re used to working with monolithic systems and switch to microservices (or join a team using microservices), you need to unlearn some habits and adopt new ones. In a monolithic system, you rarely deal with timeouts because all the data is usually in one database that your app is always connected to. But in a system that constantly gets data from other services, you have to consider timeouts, retries, and fallbacks (if available). You’ll also learn new concepts like circuit breakers, centralized logging, inter-service authentication, etc. If you stick to the old monolithic way of coding in a microservices setup, you’ll create inefficient solutions. (Learn more &lt;a href=&quot;https://blog.gagan93.me/monolith-microservices&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The simplest and slowest way to build a module is to execute all statements sequentially. For instance, in an e-commerce system, when an order is placed, tasks like sending notifications to the user, notifying the warehouse, and processing the payment are often performed one after the other. This sequential approach can cause inefficiencies and delays. By adopting asynchronous processing frameworks, you can enhance performance by allowing each step to be handled independently and concurrently. It’s crucial to unlearn traditional methods and embrace the intricacies of asynchronous distributed systems to develop scalable and efficient solutions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;My first company operated in a “work from office” mode. During my second role, we transitioned from being “in-office” to “work from home” due to the COVID pandemic. Now, I am part of a fully remote team with members spread across different time zones. The skills required to thrive in these varied work environments differ significantly. For instance, in a remote setting, effective written communication is crucial to ensure that messages are clear and not misinterpreted by colleagues from diverse cultural backgrounds. Additionally, it’s important to recognize that team members may not always be available simultaneously. Therefore, it’s essential to plan your workday strategically. Tasks requiring input from others in different time zones should be scheduled when they are available, while you can focus on tasks that can be completed independently during other times. This approach helps maintain productivity and ensures smooth collaboration across the team.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The transition from on-premise to cloud virtual machines, and now to Kubernetes pods, has introduced a more ephemeral nature to what we consider a &lt;em&gt;server&lt;/em&gt;. I recall a high-rate ingestion service in our old organisation that buffered data temporarily to disk when the consumer was down. This application ran on AWS EC2 machines, which are less ephemeral than Kubernetes pods, and the design worked well despite using &lt;a href=&quot;https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html&quot;&gt;instance stores&lt;/a&gt; that do not persist through EC2 stop/start cycles. In a Kubernetes environment, designing this would require a different approach because pods can be terminated for various reasons and with higher frequency. To handle this, you might need to implement persistent storage solutions like using Persisted volumes, StatefulSets or external storage systems such as Amazon EBS to ensure data durability and availability when pods are frequently restarted or rescheduled. This shift necessitates a rethinking of how data persistence and application state are managed in cloud-native architectures.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Unlearning old habits was crucial for my growth as it allowed me to adapt to new technologies and methodologies. By shedding outdated practices and embracing continuous learning, I was able to contribute to the development of more efficient and scalable systems.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;In this brief blog post, I’ve highlighted the significance of &lt;strong&gt;unlearning&lt;/strong&gt; and its vital role in fostering innovation and adaptability for professionals across various fields. By letting go of preconceived notions and outdated solutions, we can tackle problems with fresh perspectives, resulting in more efficient and context-appropriate outcomes. Embracing unlearning as a practice can significantly contribute to personal and professional growth, enabling individuals to stay agile and responsive in an ever-evolving landscape.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you liked this post, please read these too:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;This is my second blog post related to &lt;strong&gt;growth&lt;/strong&gt;. The first one talks about &lt;a href=&quot;https://blog.gagan93.me/habits-productivity-deep-work&quot;&gt;habits, productivity and deep work&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s important to manage your time when you’re thinking about growth. I shared &lt;a href=&quot;https://blog.gagan93.me/cost-of-time&quot;&gt;my thoughts&lt;/a&gt; on the same an year ago.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re transitioning from monolith to microservices and are looking for a scalable way to migrate data, read &lt;a href=&quot;https://blog.gagan93.me/migrating-data-across-services&quot;&gt;this post&lt;/a&gt; once.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 26 Jan 2025 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog//2025/01/26/growth-through-unlearning.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog//2025/01/26/growth-through-unlearning.html</guid>
+      </item>
     
       <item>
         <title>Habits, Productivity &amp; Deep work</title>
@@ -1587,156 +1733,6 @@ Column         |            Type             | Nullable  |         Default
         <pubDate>Fri, 17 May 2024 00:00:00 +0530</pubDate>
         <link>https://gagan93.me/blog//2024/05/17/low-level-design-interviews.html</link>
         <guid isPermaLink="true">https://gagan93.me/blog//2024/05/17/low-level-design-interviews.html</guid>
-      </item>
-    
-      <item>
-        <title>Improving your resume</title>
-        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@joaoscferrao?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;João Ferrão&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/white-printer-paper-on-macbook-pro-4YzrcDNcRVg?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Hello people. I’ve you’re reading this, you might be looking to build a better resume. It’s important to keep your resume updated even if you’re not looking out for a change. Sadly, not many people like me realise this on time. And because of this, we end up doing major changes in our resume when we actually start looking out. For example, I started looking out from my previous job in late 2017 and this time in late 2023. In this six years, almost everything changed - from my role to market expectations.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-versions&quot;&gt;The versions&lt;/h2&gt;
-
-&lt;p&gt;Feel free to laugh but the 2017 resume looked like this (that got me into LocoNav). Before LocoNav, I applied to &lt;a href=&quot;https://www.reddoorz.com/&quot;&gt;RedDoorz&lt;/a&gt; also and got a call from this resume. So probably it was good according to that time and my YOE.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-v1.jpg&quot; alt=&quot;v1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ll not discuss a lot on this resume because I did not continue editing on this file. It needed a lot of restructuring, so rewrite was better. I’ll share two more resumes based on my current skill set, the comparison between both. Even the first one was not that bad (rather it’s fancy) as it got me a call from &lt;a href=&quot;https://blog.gagan93.me/atlassian-interview-experience?&quot;&gt;Atlassian&lt;/a&gt; without a referral :)&lt;/p&gt;
-
-&lt;p&gt;The resume shared below was created around mid 2023:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-v2.jpg&quot; alt=&quot;v2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I thought fancy resume with photo would look cool 😶. I used some template on &lt;a href=&quot;https://www.canva.com/&quot;&gt;Canva&lt;/a&gt; to build this. I shared this with 4-5 friends for a feedback. These were the points that I worked on:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Build a simpler resume. That photo is not needed. Better start building on a simpler tool like Google Docs. I did that.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The two column resume is generally not extensible. For example, I had not mentioned a lot about my roles/responsibilities in the previous organisation. And once I added those details, the right section expanded to the second page where as left (blue-ish) section was empty.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Remove these things as much as possible, no one wants to read them:&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;The top right part of resume [Objective] that starts with &lt;em&gt;Having about 8 years&lt;/em&gt;.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Sections like Strenghts, weakness, languages, hobbies.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I had made the &lt;em&gt;Language and Platforms&lt;/em&gt; section too fancy by adding so many things, categorised under 4 sub-headings.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If the space is used nicely and we opt for a single column (plain Google Doc) resume, we could put the contact information in a single line (yes, I did that later).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Education section could be trimmed. Remove school/college name and just talk about degree and board/university. Again this can come in 3 lines if we go for a wider page (single column basically).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The most important point - The points mentioned in the resume do not talk enough about &lt;strong&gt;the impact&lt;/strong&gt; I got into the projects. I majorly wrote like - &lt;em&gt;“I did this task single handedly”&lt;/em&gt; or “&lt;em&gt;I contributed to this along with the team&lt;/em&gt;”. Our focus should be on the &lt;strong&gt;outcome&lt;/strong&gt; or &lt;strong&gt;the impact.&lt;/strong&gt; No one is interested to read plain stories that do not bring a good business or engineering impact.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Apart from this, few improvements were done from my end also:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Although I had done a lot of work in the past 6 years, it’s important to choose the impactful work. The issue in my case was that I had taken up multiple things that were very impactful but I had to choose and still let go of few good things.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I had divided my role as a Staff Engineer into two parts - &lt;strong&gt;Enablement team and Payments team&lt;/strong&gt;. That sounded like over-engineering the resume because for the reader, it might not make a lot of sense. Also, because the work on payment product had winded up, so I thought I should talk less about that and merge these sections. Moreover, I was working on a large internal product that was neither under payment, not enablement role, and I had to accommodate that as well. The best way was to merge a single “Staff Engineer” role and mention in points/sub-points.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I created second level category inside my resume wherever required. For example, for mentioning my work on the payments product, I thought it’s better to mention a wider heading and explain everything under it, rather than putting each thing about payments product in a new point where this can get mixed with other points, or where I need to mention the context of “payments” in a repeated fashion. Because this was now a single column resume, creating nested categories was possible and was not wasting much space.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I tweaked font size, page margins, bullet margins and other settings in the Google Doc to ensure I’m not wasting space and I’m able to wrap everything in a single page. For example, I tweaked the indentation for nested bullets so that most of the nested points get completed within a single line.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Used ChatGPT to ensure no typos, grammar issues. It’s also very helpful to write shorter sentences without losing the context. The only thing to see while using AI tools is that we need to make sure that overall language of resume is consistent. It shouldn’t happen that some specific points are written in a very fancy English while others are too simple. Just take care to ensure that consistency.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Consider yourself as a problem solver (senior engineer). Don’t associate yourself closely with a technology stack when you’re talking about your contributions (eg. Java/Spring or Ruby/Rails or Python/Django). When you think in a framework-agnostic manner, you don’t use names of libraries that are specific to your tech. This makes it easier for the reader to understand incase they don’t share the same technology background. For example, Rails developers usually mention libraries like Sidekiq, ActiveAdmin, Devise and Rspec in their Resume. Now for someone who is filling a Java position, it will not be possible to understand these without googling. And resumes are hardly skimmed for a minute or less :) We should rather talk in generic terms like background processing framework, admin/backoffice library, authentication framework and testing framework. In this way, there are better chances of someone understanding your resume. Only place to mention your current language/framework is under the &lt;strong&gt;Skills section&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;the-result&quot;&gt;The result&lt;/h2&gt;
-
-&lt;p&gt;This is my current resume that I have posted on my &lt;a href=&quot;https://gagan93.me/&quot;&gt;portfolio&lt;/a&gt; also.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-13-v3.jpg&quot; alt=&quot;v3&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In comparison to the two column fancy resume, this is easier to modify because there were instances while editing the two column resume when I thought of adjusting the ratio of left and right side just because few points were crossing the line just by 1 word. Or I thought I should adjust the fonts. This one is much simpler and flexible to future modifications, just like a good software design :)&lt;/p&gt;
-
-&lt;p&gt;Again highlighting the most important point - talk of impact. I’ll share a few examples on how I modified the points to show impact:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Took the first microservice out of a 6+ year old monolith, reducing a decent load from database&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Pioneered the transition of critical components to a microservices architecture, achieving a 75% speedup in the five slowest endpoints.&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Scaled Fastag payments product from 0 to 2.5Cr daily transaction amount. This is almost 2% of India’s total daily toll.&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Successfully scaled the system from inception to handle 2.5Cr daily transaction (2% of India’s total toll volume).&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Worked on reducing cloud spend by analyzing usage of servers and using other methods.&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt; &lt;em&gt;Strategically reduced from 70+ to 5 queues based on latency/memory requirements, optimizing approximately 25% of infra costs.&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Simplified how the main entity of system (vehicle) is accessed by various components.&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Planned and executed refactoring of core system entities, streamlining the access over 200+ reports and APIs.&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Before&lt;/strong&gt;: &lt;em&gt;Migrated Email provider to AWS SES with bounce/complaint list handling flow.&lt;/em&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;strong&gt;After&lt;/strong&gt;: &lt;em&gt;Efficiently migrated ~ 150 different kinds of emails from Sparkpost to Amazon SES implementing bounce handling for increased reliability.&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Removed points that could not be modified to show impact. Like:&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;em&gt;Involved in discussing overall global architecture of logistics based Saas Product.&lt;/em&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;em&gt;Lead various other initiatives like removing huge chunks of dead code…&lt;/em&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;In total, I had to do 5-6 iterations on my resume over a period of 9 months, based on feedback that I received from multiple people. The idea of this blog post &lt;strong&gt;is not&lt;/strong&gt; to provide you &lt;em&gt;the best resume template on the internet&lt;/em&gt; that will get you into your next FAANG role. I’ll just share what worked for me and how I improved it over time. I’ve applied in about 6-7 companies where this got selected even without a referral. This includes both big tech and smaller companies.&lt;/p&gt;
-
-&lt;p&gt;Many of the points mentioned above are subjective, like:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;I’ve seen many senior people adding Objective / Career Summary on the top.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Or adding things like Strengths, Hobbies and Languages.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;And I do not mean that those resumes will get rejected. I just wanted to build an optimised resume which can be skimmed over efficiently and get me some interview calls. Some job portals allow you to write a separate cover letter where you can include details of your current role and expected role (overlaps somewhat with &lt;strong&gt;Objective&lt;/strong&gt; section of the resume). At the end, it’s not about &lt;em&gt;that one way of building it&lt;/em&gt;, but for &lt;em&gt;what works for you&lt;/em&gt;. Good luck for your Resume building journey.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 13 May 2024 00:00:00 +0530</pubDate>
-        <link>https://gagan93.me/blog//2024/05/13/improving-your-resume.html</link>
-        <guid isPermaLink="true">https://gagan93.me/blog//2024/05/13/improving-your-resume.html</guid>
       </item>
     
   </channel>
