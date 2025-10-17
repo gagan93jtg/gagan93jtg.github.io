@@ -6,9 +6,536 @@
 </description>
     <link>https://gagan93.me/blog/</link>
     <atom:link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 06 Jun 2025 17:29:42 +0530</pubDate>
-    <lastBuildDate>Fri, 06 Jun 2025 17:29:42 +0530</lastBuildDate>
+    <pubDate>Fri, 17 Oct 2025 10:21:06 +0530</pubDate>
+    <lastBuildDate>Fri, 17 Oct 2025 10:21:06 +0530</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Redis Production Insights</title>
+        <description>&lt;h2 style=&quot;text-align: center;font-size: 0.8em&quot; id=&quot;photo-by-luke-chesser-on-unsplash&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@lukechesser?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Luke Chesser&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;I began my first full-time role in June 2015. Since then, two technologies have consistently been part of my journey: Rails and Redis. Every company and project I have been involved with has utilized these technologies alongside others. In November 2015, &lt;a href=&quot;https://github.com/antirez&quot;&gt;&lt;strong&gt;Antirez&lt;/strong&gt;&lt;/a&gt; (the author of Redis) wrote a blog post revealing a &lt;a href=&quot;https://antirez.com/news/96&quot;&gt;&lt;strong&gt;security vulnerability&lt;/strong&gt;&lt;/a&gt; in Redis. This vulnerability allowed hackers to gain access to the machine where Redis was running through SSH if the Redis server was operating in non-protected mode (which was the default at that time) and the bind address was set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.0.0.0&lt;/code&gt;. The &lt;a href=&quot;https://en.wikipedia.org/wiki/CopperEgg&quot;&gt;&lt;strong&gt;project&lt;/strong&gt;&lt;/a&gt; I worked on was a website and host monitoring SaaS tool developed in 2010. At that time, creating a VPC was not mandatory, and all machines could run in a single flat network hierarchy called EC2-Classic (which AWS &lt;a href=&quot;https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html&quot;&gt;&lt;strong&gt;recently retired&lt;/strong&gt;&lt;/a&gt;). &lt;a href=&quot;https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html&quot;&gt;&lt;/a&gt;This project also provided me the opportunity to move the entire system (from app servers to databases) inside the VPC by relaunching them gradually. The concepts I learned about VPC, networking, and security 8-9 years ago remain relevant today 😁.&lt;/p&gt;
+
+&lt;p&gt;Returning to the vulnerability — because we had a monitoring product that checked website uptime from different regions worldwide (similar to &lt;a href=&quot;https://uptimerobot.com/&quot;&gt;&lt;strong&gt;this&lt;/strong&gt;&lt;/a&gt;&lt;a href=&quot;https://uptimerobot.com/&quot;&gt;)&lt;/a&gt;, we had our website probing service running in various AWS regions and even on smaller cloud providers like &lt;a href=&quot;https://www.linode.com/&quot;&gt;&lt;strong&gt;Linode&lt;/strong&gt;&lt;/a&gt; (Linode was a very simple and tiny cloud provider then). The application we ran was a small Ruby service with an attached Redis, deployed across multiple regions and providers. Back then, Docker and Kubernetes were not mainstream, and server setup was a mix of bash scripts and manual interventions. While our publicly exposed servers had basic SSH key authentication and services like &lt;a href=&quot;https://github.com/fail2ban/fail2ban&quot;&gt;&lt;strong&gt;fail2ban&lt;/strong&gt;&lt;/a&gt; to handle repeat offenders, Redis was mostly running on default configuration, with the server bound to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.0.0.0&lt;/code&gt;. This meant that someone could connect to Redis from outside if port 6379 (the default Redis port) was not protected through a firewall or security groups. As I mentioned, we were running this service on multiple cloud providers, which were not as feature-rich as AWS.&lt;/p&gt;
+
+&lt;p&gt;Many of our VMs running Redis were hacked, and this issue &lt;a href=&quot;https://news.ycombinator.com/item?id=10537852&quot;&gt;&lt;strong&gt;impacted&lt;/strong&gt;&lt;/a&gt; numerous internet businesses in the following days. Fortunately, we resolved the issue by binding the machine to the localhost address (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;), and a future upgrade of Redis enabled protected-mode by &lt;a href=&quot;https://www.reddit.com/r/redis/comments/3zv85m/new_security_feature_redis_protected_mode/&quot;&gt;&lt;strong&gt;default&lt;/strong&gt;&lt;/a&gt;. This was my first production encounter with a security breach that directly impacted our business because we lost access to those servers, and the feature stopped working. This taught me an important lesson - &lt;strong&gt;while default settings are acceptable for experimentation, they might not be suitable for running a production application.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In this blog post, I want to share my experience running Redis in production over the years. Although I haven’t managed a very complex Redis infrastructure, these experiences should still benefit those who operate databases or are generally interested in learning about them.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-redis&quot;&gt;What is Redis?&lt;/h1&gt;
+
+&lt;p&gt;Before using Redis, I was only familiar with SQL databases, so Redis seemed very different. I referred to it as a “data-structures db” because it implemented many commonly used data structures like lists, hashes, sets, etc. In all the codebases I’ve reviewed, the most common use case for Redis is as a key-value store (essentially string-based &lt;a href=&quot;https://redis.io/docs/latest/commands/get/&quot;&gt;&lt;strong&gt;GET&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&quot;https://redis.io/docs/latest/commands/set/&quot;&gt;&lt;strong&gt;SET&lt;/strong&gt;&lt;/a&gt;). However, Redis supports many more features beyond this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;SET allows the EX parameter to set expiring keys, a very useful feature for cache invalidation.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SET also allows the NX parameter to set the key only if it doesn’t exist. SET with the XX parameter does the opposite. At the application layer, libraries return a boolean value to indicate if the key was set or not. This is very useful for implementing distributed locks. In fact, Redis is very popular for implementing &lt;a href=&quot;https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/&quot;&gt;&lt;strong&gt;distributed locking&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=list&quot;&gt;&lt;strong&gt;List&lt;/strong&gt;&lt;/a&gt; data structure in Redis allows pushing and popping from both the left and right sides, making it useful as both a stack and a queue. In fact, the most popular background job libraries for &lt;a href=&quot;https://github.com/celery/celery&quot;&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;&lt;strong&gt;Rub&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;y&lt;/strong&gt; use Redis lists for queuing.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis also supports Geospatial calculations. A use case for this could be storing map locations of multiple fuel stations in your area and then using Redis commands to determine which one is closest to your location. Or perhaps list all the fuel stations in ascending order of their distance, within 3 km. Isn’t that cool?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis also supports &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=pubsub&quot;&gt;PubSub&lt;/a&gt; and &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=stream&quot;&gt;Streaming&lt;/a&gt;. PubSub enables real-time, fire-and-forget message broadcasting, making it perfect for instant updates like chat messages or live stock prices where no history is needed. In contrast, Streams provide a durable, replayable event log with consumer groups, ideal for processing workflows or pipelines that need message persistence and ordered delivery.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis also supports approximate data structures like &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=bf&quot;&gt;Bloom filters&lt;/a&gt;, &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=hyperloglog&quot;&gt;HyperLogLogs&lt;/a&gt; and has support even for &lt;a href=&quot;https://redis.io/docs/latest/commands/?group=timeseries&quot;&gt;TimeSeries&lt;/a&gt; data.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While the most common usages are for String, List, and Hash data structures, Redis supports a wide range of other features out of the box. If you’re new to Redis or not familiar with these features, I recommend trying them on your local machine.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-cases-solved&quot;&gt;Use cases solved&lt;/h2&gt;
+
+&lt;p&gt;At it’s core, Redis is a NoSQL database that supports lots of data structures and also solves for many other use cases like streaming, time series data sampling, geospatial computation, etc. In this section, we’ll explore more about Redis use cases for providing standard solutions to common problems:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Caching&lt;/strong&gt; - If you’re using Redis in production, there’s a high likelihood you’re using it for caching. Developers love Redis for caching due to its in-memory nature, which helps improve service response times and reduce load on SQL databases.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Queueing&lt;/strong&gt; - As previously explained, Redis is widely used as a queue to solve the problem of distributed background processing. You don’t need to write anything beyond business logic, as the problem is common and already solved by libraries in your preferred language using Redis as a queue.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Rate limiting&lt;/strong&gt; - Building a Rate Limiter is a common problem, especially when exposing APIs to the public. There are multiple algorithms to implement a Rate Limiter that can be built over Redis using its supported data structures.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Distributed locking&lt;/strong&gt; - If you’re from a SQL background, you might have used Row locks (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT FOR UPDATE&lt;/code&gt; in &lt;a href=&quot;https://www.postgresql.org/docs/current/sql-select.html&quot;&gt;Postgres&lt;/a&gt;) for similar purposes. However, many times you’ll have use cases to lock something not yet persisted in a SQL database. Redis locks are handy in those cases.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Enough of selling Redis, let’s discuss some learnings.&lt;/p&gt;
+
+&lt;h1 id=&quot;learnings-and-recommendations&quot;&gt;Learnings and Recommendations&lt;/h1&gt;
+
+&lt;h3 id=&quot;when-do-i-need-the-second-redis-in-my-infra&quot;&gt;When do I need the second Redis in my infra?&lt;/h3&gt;
+
+&lt;p&gt;I’ve seen applications grow from a few thousand users to millions. In a simple stack, we usually start with one Redis instance. As the product grows, more developers realize use cases for Redis and continue building on top of it. However, there are instances when you should consider adding a second Redis machine to your infrastructure:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Sharing across services&lt;/strong&gt; - As with any other database, we should avoid sharing a Redis machine across different services. A Redis instance shouldn’t be considered as a dump-all cache for multiple services. The primary reason for this is the single point of failure, and no one would want that kind of setup.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Having different use cases&lt;/strong&gt; - In a previous organization, we had an application with four Redis instances connected to it. Each had a different use case and its own configuration. Separating databases based on use cases helps in tuning and managing them separately. Some people might not do this initially and later realize that separating them initially was a good idea.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Separating cache vs. persisted storage&lt;/strong&gt; - This is a special case of previous point (different use cases). Sometimes it’s still ok to not separate Redices for use cases because they’re small enough but it’s never okay to combine use case of &lt;em&gt;cache&lt;/em&gt; vs &lt;em&gt;persisted storage.&lt;/em&gt; Most of the people put Redis in a place where &lt;a href=&quot;https://redis.io/docs/latest/commands/flushall/&quot;&gt;flushing&lt;/a&gt; it doesn’t impact anything (apart from some intermittent CPU peaks in the primary database) because the data can be repopulated. But there are some use cases where you can’t afford to drop database because Redis is the primary database. One very good example for this is when you use Redis as a database for background job processing (&lt;a href=&quot;https://github.com/celery/celery&quot;&gt;example1&lt;/a&gt;, &lt;a href=&quot;https://github.com/sidekiq/sidekiq&quot;&gt;example2&lt;/a&gt;). In such cases, you cannot afford to lose jobs even if the Redis process crashes, making it important to run Redis in persisted mode. Depending on your Redis version and current configuration, you might need to tune it for your persistence use case, balancing durability and performance.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Based on use cases, persistence, latency, and other tuning requirements, you might want to separate Redis early on to avoid migration overhead.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-expiring-keys-wherever-possible&quot;&gt;Using expiring keys wherever possible&lt;/h3&gt;
+
+&lt;p&gt;I’ve seen apps where the count of keys easily grows beyond 10 million. It’s not bad to have this many keys as long as you have the memory available, but in some cases, it might not be justified given the app size and use cases. A primary reason for &lt;em&gt;ever-growing keys&lt;/em&gt; in Redis is &lt;strong&gt;not setting expiry&lt;/strong&gt; for keys. On analyzing key patterns on various Redis machines, I’ve often come across keys for which the corresponding application code was deleted long ago, but the developers didn’t clean up the respective keys. As Redis is an in-memory database, useless keys mean wasted RAM. I’m not saying all keys should be expiring, but if you’re considering running in cache mode, your application code should manage repopulating Redis as needed. Some good examples of expiring keys are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;When Redis is used for distributed locking, we can set an expiry on the lock key. This TTL is generally higher (or a few times) than the task execution time. This ensures that if the application logic fails to clean up the lock key, it gets automatically cleaned up, avoiding infinite locking.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We often use Redis for storing temporary passwords and OTPs, and in most product specifications, there is an expiry associated with this OTP. Setting TTL on such keys helps build this feature without additional application logic.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you see your Redis memory graph in an ‘ever-increasing trend”, it might be a good time to revisit if you really need all those keys 😁.&lt;/p&gt;
+
+&lt;h3 id=&quot;caching-invalidation-problem-and-application-hooks&quot;&gt;Caching invalidation problem and application hooks&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There are only two hard things in Computer Science: cache invalidation and naming things.&lt;/p&gt;
+
+  &lt;p&gt;-- Phil Karlton&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although this is not directly related to Redis, I often see the problem of cache invalidation discussed among people who use Redis for caching. So I thought of sharing a few best practices. Caching is a powerful technique for improving application performance, but it comes with the challenge of cache invalidation. Properly managing cache invalidation is crucial to ensure your application serves accurate data. Here are some key points to consider when setting up cache invalidation hooks:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Understand the Data Lifecycle&lt;/strong&gt;: Before setting up cache invalidation, it’s important to understand the lifecycle of the data being cached. Identify when data changes and how those changes should be reflected in the cache. I’ve often seen people caching the response of an entire API to save time in querying and serialization. This is good if the API is Restful, but if it queries multiple data sources to generate that response, there might be multiple hooks on which you need to reset the cache. So take care of such edge cases.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Suitable Hooks for Invalidation&lt;/strong&gt;: We should update the cache once the data in primary data source has been updated. For a Rails application, we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;after_commit&lt;/code&gt; hook for the respective model to update the respective cache. I asked ChatGPT for parallels in other languages/frameworks and got this for your reference 😁&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/2025-10-17-redis-parallels.png&quot; alt=&quot;AI generated&quot; style=&quot;display: block; margin: 10px auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Set Expiry Times&lt;/strong&gt;: ome people use expiry times as a band-aid for cache invalidation. This could be to defer the fix for the actual bug in some cases (e.g., when you don’t know all the &lt;em&gt;hooks&lt;/em&gt; to invalidate the cache). A similar case where we used such expiring keys in the past was to update feature rollouts for a user. To see enabled features for a user, we earlier relied on a SQL-backed system that performed checks on at least four levels before telling if the feature is enabled on the user or not. But as the system grew in complexity and we added an authorization layer, such checks became more widespread. The query to check enabled features got flagged as one of the most used queries in our &lt;a href=&quot;https://en.wikipedia.org/wiki/Application_performance_management&quot;&gt;&lt;strong&gt;APM tool&lt;/strong&gt;&lt;/a&gt;, and we fixed this in two phases: In the first phase, we cached this data for 5 minutes and ensured that we don’t query from the SQL database within these 5 minutes. While this might not be acceptable in many use cases, it was okay for this use case as the latency of 5 minutes for turning a feature on/off was acceptable to product and business teams. As we got some breathing space, we figured out all the hooks in the different models to invalidate this cache. We could have completely removed the TTL, but we rather set it to a higher value (e.g., 7 days) to ensure that we don’t cache data for users who don’t come to our app often.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Use Versioning&lt;/strong&gt;: Implementing versioning for cache keys can help manage cache invalidation. By appending a version number to cache keys, you can easily invalidate old entries by incrementing the version number when data changes. For systems where we have timestamps like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updated_at&lt;/code&gt;, developers often use that as a versioning key because it naturally tracks an &lt;em&gt;update&lt;/em&gt; in the system.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;By carefully setting up cache invalidation hooks and strategies, you can maintain the integrity of your application’s data while leveraging the performance benefits of caching.&lt;/p&gt;
+
+&lt;h3 id=&quot;understanding-configuration-options-before-running-a-database-in-production&quot;&gt;Understanding configuration options before running a database in production&lt;/h3&gt;
+
+&lt;p&gt;This is true for all databases, not just Redis. Whenever you’re planning to run anything in production, it’s good to know about various parameters that you can tune. For ages, we’ve been operating single-node centralized databases that persist data on disk, and they generally run fine with default settings unless you hit some metric (IO/CPU/RAM) really hard. But the same is not true for distributed NoSQL databases. Based on the configuration, such databases can be tuned to compromise consistency or availability for speed, scalability, and fault tolerance.&lt;/p&gt;
+
+&lt;p&gt;All databases have at least one configuration file available to tune different parameters for your use case. There are sufficient comments in the file for documentation purposes (although their websites have more detailed explanations, if needed). You can access these files to tune the database only if you’re self-managing the database installation on a virtual machine like AWS EC2. If you’re using managed services like AWS RDS, AWS Elasticache, etc., then you’d be exposed to a limited set of parameters through their GUI (like &lt;a href=&quot;https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html&quot;&gt;&lt;strong&gt;Parameter Groups&lt;/strong&gt;&lt;/a&gt; in AWS).&lt;/p&gt;
+
+&lt;p&gt;To see a sample Redis conf, you can check &lt;a href=&quot;https://download.redis.io/redis-stable/redis.conf&quot;&gt;this link&lt;/a&gt; or google “&lt;em&gt;redis stable conf”&lt;/em&gt; . I’ll talk about a few useful config parameters for Redis:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Persistence&lt;/strong&gt;: Redis, by design, is an in-memory data store, which makes it extremely fast but raises an important question — &lt;em&gt;what happens to your data when the process crashes or the machine restarts?&lt;/em&gt; To handle this, Redis supports multiple persistence mechanisms that balance speed, durability, and operational overhead differently. Broadly, Redis offers two major forms of persistence: RDB (snapshotting) a&lt;a href=&quot;https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html&quot;&gt;nd AOF (append-o&lt;/a&gt;nly file).
+ The &lt;strong&gt;RDB&lt;/strong&gt; persistence mechanism takes &lt;strong&gt;point-in-time snapshots&lt;/strong&gt; of your dataset and writes them to disk as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.rdb&lt;/code&gt; file. Redis forks a background process (also called as BGSAVE or background save) to perform the dump, ensuring the main process remains responsive. It reads your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save&lt;/code&gt; configuration from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redis.conf&lt;/code&gt; to decide when it should run the background save process. I’ll explain this with an example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save&lt;/code&gt; parameter.&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; save 900 1
+ save 300 10
+ save 60 10000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;This configuration means: save after &lt;strong&gt;1 change&lt;/strong&gt; within &lt;strong&gt;15 minutes&lt;/strong&gt;, or save after &lt;strong&gt;10 changes&lt;/strong&gt; within &lt;strong&gt;5 minutes&lt;/strong&gt;, or save after &lt;strong&gt;10,000 changes&lt;/strong&gt; within &lt;strong&gt;60 seconds&lt;/strong&gt;. These rules can be customized or even disabled with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save &quot;&quot;&lt;/code&gt; for a super-fast cache-like setup.
+ The other setup is AOF where Redis provides finer-grained durability than RDB by logging &lt;strong&gt;every write operation&lt;/strong&gt; Redis performs. On restart, Redis replays the AOF log to rebuild the in-memory dataset. The two important parameters here are: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendonly&lt;/code&gt; (should be set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yes&lt;/code&gt; to use this mode) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendfsync&lt;/code&gt; . The second property defines how frequently you flush to the disk (possible values: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;no&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;everysec&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;always&lt;/code&gt;). In most production environments, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendonly everysec&lt;/code&gt; is a safe balance — ensuring sub-second durability without blocking throughput. For extremely fast ephemeral caches, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appendonly no&lt;/code&gt; can be used for maximum performance. If you set this property to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;always&lt;/code&gt;, Redis will enter into &lt;strong&gt;fully durable&lt;/strong&gt; mode. This means — every time Redis executes a write command (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SET&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LPUSH&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INCR&lt;/code&gt;), it &lt;strong&gt;appends that command&lt;/strong&gt; to the &lt;strong&gt;Append-Only File (AOF)&lt;/strong&gt; on disk, and then calls the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fsync()&lt;/code&gt; system call immediately afterward — before acknowledging success to the client. This guarantees that even if the OS or machine crashes immediately after acknowledgment, the data is physically on disk and recoverable.&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;Note on fsync&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fsync&lt;/code&gt; is a system call that ensures all pending writes for a given file descriptor are flushed from the kernel’s page cache to the physical storage device. By default, when you call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write()&lt;/code&gt;, the data goes into the &lt;strong&gt;kernel’s buffer cache&lt;/strong&gt;, not immediately to disk — the OS decides when to flush it. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fsync()&lt;/code&gt; forces that flush &lt;strong&gt;right now&lt;/strong&gt; and waits until the device confirms that data is persisted.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Databses&lt;/strong&gt; - There’s a controversial feature inside Redis. Redis by default supports 16 databases (numbered 0 to 15) which we can choose using the SELECT command. I’ve not used this in many projects but in of the use-cases, this feature helped me separate data into different namespaces. I was talking to someone few months ago and they mentioned that this feature is considered as an anti-pattern. To understand a bit more, I did some research and found why some people don’t like this feature:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Redis cluster mode doesn’t support databases because of implementation complexity. So it’s supported only if you’re running a single node Redis (with/without replicas).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;All DBs share same memory, persistence, and config. So there’s no isolation in the way data is stored in memory or on disk. This also means that the configuration we chose for the server applies to all the databases.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;There are commands like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLUSHDB&lt;/code&gt; to flush one database (the one you’re currently on), but there’s also a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLUSHALL&lt;/code&gt; command that wipes all databases, easy to cause total data loss by mistake.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;As the backup files (RDB or AOF) contains all the databases together, you cannot selectively restore one of them in event of crash or restart. You need to wait for the entire file dump to load in memory.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Like I used it — there were slightly different use cases in my project so I thought it’s better to separate the namespace but this could easily create the &lt;a href=&quot;https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/noisy-neighbor.html&quot;&gt;noisy neighbour problem&lt;/a&gt; and the monitoring tools can hardly differentiate between metrics based on database number.&lt;/p&gt;
+
+        &lt;p&gt;Due to all these reasons, even the creator of Redis recommends using different Redis instances rather than using different database numbers.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Replication&lt;/strong&gt; - Redis supports asynchronous replication with extensive tunable parameters, but achieving reliability requires balancing latency, durability, and consistency:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Replication is &lt;strong&gt;asynchronous&lt;/strong&gt; by default, meaning replicas may lag or lose writes if the primary crashes before sync.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repl-diskless-sync yes&lt;/code&gt; for faster initial syncs and reduced I/O overhead; otherwise, RDB-based syncs (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repl-diskless-sync no&lt;/code&gt;) can block during snapshot creation.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Tune &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repl-backlog-size&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repl-backlog-ttl&lt;/code&gt; to maintain replication continuity across brief disconnects — preventing full resyncs.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;min-replicas-to-write&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;min-replicas-max-lag&lt;/code&gt; to protect against acknowledging writes when replicas are stale or disconnected.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Always monitor replication lag via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INFO replication&lt;/code&gt; — even small lags can break consistency assumptions in queue or locking workloads.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Memory&lt;/strong&gt; &lt;strong&gt;management&lt;/strong&gt; - By carefully managing memory settings, you can ensure that Redis operates efficiently and reliably, whether used as a cache or for persistent storage.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;When using as a cache, it is useful to configure parameters like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxmemory&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxmemory-policy&lt;/code&gt; to evict data based on algorithms like LRU, LFU, etc. If there are no keys that match the criteria for eviction and maximum memory is reached, Redis will report errors for write commands.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;When using for persistent storage, you should set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxmemory-policy&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noeviction&lt;/code&gt; and leave 30-40% free memory. This buffer protects against fragmentation, background save forks, and transient spikes ensuring Redis never evicts queued jobs or stalls under memory pressure.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Tuning Data structures performance -&lt;/strong&gt; There are certain parameters that influence how Redis internally represents its core data structures. Tuning them can significantly impact memory efficiency and CPU performance. Let’s understand these for a few data structures:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;Hashes&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hash-max-listpack-entries 512&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hash-max-listpack-value 64&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p&gt;Redis stores small hashes in a compact, contiguous area for better cache locality. Once a hash exceeds either threshold (more than 512 fields or a field value longer than 64 bytes), Redis automatically converts it into a standard hash table. Increase these limits for smaller hashes to save memory; decrease if you have frequent large-field updates to avoid costly re-encodings. Instagram optimised this parameter for their use case back in 2011 (&lt;a href=&quot;https://instagram-engineering.com/storing-hundreds-of-millions-of-simple-key-value-pairs-in-redis-1091ae80f74c&quot;&gt;read more&lt;/a&gt;).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Lists&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list-max-listpack-size -2&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list-compress-depth 0&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p&gt;Small lists are also stored as flat contiguous memory. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list-max-listpack-size&lt;/code&gt; controls the maximum size of each listpack node; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-2&lt;/code&gt; means Redis targets listpack nodes of roughly 8 KB. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list-compress-depth&lt;/code&gt; defines how many nodes at the list’s ends remain uncompressed — &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; disables compression entirely. For read-heavy queues, keep compression low (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0–1&lt;/code&gt;) for fast access. For archival or long lists, allow deeper compression (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2–3&lt;/code&gt;) to save memory.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Sets&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set-max-intset-entries 512&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set-max-listpack-entries 128&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set-max-listpack-value 64&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p&gt;Redis represents small sets of integers as &lt;strong&gt;intsets&lt;/strong&gt;, and small generic sets as &lt;a href=&quot;https://www.google.com/search?q=redis+listpack&amp;amp;sca_esv=d07a5e3d0f6687b2&amp;amp;biw=1728&amp;amp;bih=958&amp;amp;sxsrf=AE3TifM12JI2EmQxIefgnaQ9qREuPmXPeg%3A1760329284009&amp;amp;ei=RH7saLslv6vj4Q-1sLWwBg&amp;amp;ved=0ahUKEwi716TNqaCQAxW_1TgGHTVYDWYQ4dUDCBA&amp;amp;uact=5&amp;amp;oq=redis+listpack&amp;amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiDnJlZGlzIGxpc3RwYWNrMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHSO4FULgDWOoEcAF4AZABAJgBtQGgAbUBqgEDMC4xuAEDyAEA-AEBmAIBoAIImAMAiAYBkAYIkgcBMaAH6wayBwC4BwDCBwMyLTHIBwY&amp;amp;sclient=gws-wiz-serp&quot;&gt;&lt;strong&gt;listpacks&lt;/strong&gt;&lt;/a&gt;.
+ Once a set exceeds these thresholds (by count or member size), it upgrades to a full hash table internally. Increase thresholds for workloads with many small sets to reduce overhead. Lower thresholds if set membership changes frequently to avoid repeated re-encodings.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: I’ve heard of these configurations many times but never got a chance to optimise Redis for these use cases. Although these look like advanced configuration, these could be useful for you if your use-case revolve around specific data structures only and you’re running on a huge scale, it might be worth experimenting with these settings. Also, before playing around with configurations for any data structure, have a good idea about what all data structures you are using in your application. For example, Redis implements Geospatial data structures internally using sorted set (ZSET). So if you change configuration for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zset-max-listpack-entries&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zset-max-listpack-value&lt;/code&gt; it would also impact the performance and storage for Geospatial keys (incase you’re using those).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Beyond these, Redis exposes several other configuration parameters that impact&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Security (eg. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bind&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected-mode&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirepass&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;masterauth&lt;/code&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Define clustering (for sharding data across nodes)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Performance (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timeout&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tcp-keepalive&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latency-monitor-threshold&lt;/code&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Maintainability (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxclients&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loglevel&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rename-command&lt;/code&gt;), etc.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;redis-is-single-threaded-wait-what&quot;&gt;Redis is single-threaded (wait… what?)&lt;/h3&gt;
+
+&lt;p&gt;Redis is famously known as a &lt;strong&gt;single-threaded&lt;/strong&gt; data store — a design choice that often raises eyebrows among developers used to multi-threaded applications and databases. The assumption is natural: &lt;strong&gt;single-threaded means slow, right&lt;/strong&gt;? In this case, the answer is &lt;strong&gt;“no — not really.”&lt;/strong&gt; When Redis is called &lt;em&gt;single-threaded&lt;/em&gt;, it means that only the &lt;strong&gt;core command execution loop&lt;/strong&gt; is one single thread. All commands are executed sequentially, one after another. Each incoming request is parsed, executed, and responded to before moving to the next one — with no context switches or locking. This design avoids the biggest enemy of high-performance systems: &lt;strong&gt;concurrency overhead&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Despite being single-threaded, Redis is capable of handling hundreds of thousands of operations per second on a single core. Here’s why:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis stores all data in RAM so there’s no disk I/O during command execution. Each operation typically completes in microseconds.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since there’s only one command executor, there’s no need for fine-grained locking, atomic sections, or concurrency control — all commands are inherently atomic (hence safe for distributed locks).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis multiplexes I/O events in a single loop (similar to Node.js). This means one thread can serve thousands of connections efficiently.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis batches replies and writes them efficiently, minimizing expensive kernel transitions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Operations like background save fork a child process does not impact the command execution directly (“indirect” impact is explained below).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Redis proves that single-threaded doesn’t mean slow — when data lives in memory, network latency and locking costs matter more than CPU parallelism. Its design trades concurrency for deterministic speed, making it one of the fastest databases per core ever built. But there are some cases where command execution can be impacted:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis supports Lua scripting but those are executed within same single-threaded event loop. So large/complicated lua scripts can slow down this thread.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Commands with high time complexity can slow down this event loop. For example: If you’re running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LRANGE&lt;/code&gt; on a large list or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SMEMBERS&lt;/code&gt; on a large set, it might take time to execute them and any commands that are fired afterwards. Redis official documentation mentions time complexity of all the commands.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DEL&lt;/code&gt; command can be slow if you’re trying to free up large memory blocks synchronously. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UNLINK&lt;/code&gt; can be used in those situations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There’s a very popular and notorious command in Redis called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS&lt;/code&gt;. I took a production Redis down for a few seconds during my first encounter with Redis 😛. Because this iterates the entire keyspace and production systems (generally) have millions of keys, this command takes a lot of time to execute.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Background save for large data sets (&amp;gt;10GB as per ChatGPT) can have some intermittent impact on the command execution thread.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;how-to-safely-analyze-production-redis-data-with-keys-command&quot;&gt;How to safely analyze production Redis data with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS&lt;/code&gt; command&lt;/h3&gt;
+
+&lt;p&gt;There are multiple ways for doing this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;First method is to avoid this as much as possible. Revisit your use case and check for alternate methods.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis documentation would recommend using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SCAN&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS&lt;/code&gt; and use of the pointer (cursor) returned with each output to get next set of keys but you would need some application level logic to follow the cursor iteratively and filter keys by names incase you’re searching for some specific pattern of keys (eg. keys starting with word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alert&lt;/code&gt;). For this specific purpose, I’ve tried a workaround:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;Setup a replica of this Redis.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Disconnect the replica from MASTER (command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REPLICAOF NO ONE&lt;/code&gt;).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Ensure there are no connections to this replica now, except your current session (use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CLIENT LIST&lt;/code&gt; to see connected clients and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONITOR&lt;/code&gt; to see if someone is running any other command).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Now run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS *&lt;/code&gt; here so that there’s no impact elsewhere.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If your purpose is doing some analytics, somewhat old data might not cause any problems.&lt;/p&gt;
+
+&lt;h3 id=&quot;taking-advantage-of-single-threaded-nature&quot;&gt;Taking advantage of Single threaded nature&lt;/h3&gt;
+
+&lt;p&gt;By now, we know two things about Redis:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s uses a single CPU Core.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s an in-memory database. So for production machines, you need boxes with large amount of RAM.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In one of my prev organisations, we had four Redis machines connected to a monolith application:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;One was for background queueing (full persistence needed, can’t lose data).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;One was for some alert thresholds (persistence needed).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;One was a pure cache use case (speed preferred)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;One was for acting as a database for a high performance system (using lists/sets mostly) (persistence needed).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Out of these, three were hosted on VMs (AWS EC2) and one on managed service (AWS Elasticache). The organisation was trying to cut costs from all sides and our own production infra was a significant component of that cost. After cutting all corners, we saw another opportunity — we could merge these Redices into one big EC2 machine. For some, this might sound like a stupid decision because it would mean a single point of failure for the application (i.e. if this EC2 goes down, everything goes down). But we still did moved ahead to this setup because cost cutting were our only targets.&lt;/p&gt;
+
+&lt;p&gt;We took a machine with 4 cores, ran four Redis processes on different ports and exported data from existing machines, saving &lt;strong&gt;75%&lt;/strong&gt; on Redis costs. One learning that I got in this process is — you can’t create replica of a Elasticache Redis outside Elasticache ecosystem (basically EC2 cannot act as replica of Elasticache hosted Redis). So in order to copy data, we had to export it to S3 and copy that backup file on the new machine which increased our migration downtime by a few minutes.&lt;/p&gt;
+
+&lt;h3 id=&quot;deployment-options-and-managed-services&quot;&gt;Deployment options and managed services&lt;/h3&gt;
+
+&lt;p&gt;Redis can be deployed in several topologies, each balancing availability, consistency, and operational complexity differently. From a single instance to fully distributed clusters, the choice depends on whether your priority is simplicity, high availability, or scalability. I have mostly operated first two setups but I’ll share four of them for your reference:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Standalone:&lt;/strong&gt; A single Redis instance handling all reads and writes. It is simple, fast, and ideal for development environments or small production caches with &lt;strong&gt;no fault tolerance&lt;/strong&gt; if it goes down.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Master–Replica:&lt;/strong&gt; A primary node manages writes while replicas asynchronously copy data for read scalability and redundancy, offering better availability but &lt;strong&gt;manual recovery&lt;/strong&gt; on failure.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Sentinel:&lt;/strong&gt; A lightweight layer that monitors master–replica setups, automatically promotes replicas during failures and updates clients, bringing high availability without clustering.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cluster:&lt;/strong&gt; A distributed Redis setup that shards data across multiple masters with replicas for each, enabling horizontal scalability and built-in failover for large, production-scale workloads.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Beyond this, I also wanted to touch upon an important thing that is kind of deployment - &lt;strong&gt;self managed&lt;/strong&gt; vs. &lt;strong&gt;provider managed&lt;/strong&gt;. For provider managed Redis services (eg. &lt;strong&gt;AWS ElastiCache&lt;/strong&gt;, &lt;strong&gt;Azure Cache&lt;/strong&gt; or &lt;strong&gt;GCP Memorystore&lt;/strong&gt;), the provider takes care of the heavy lifting from provisioning to scaling, failover, patching, and monitoring, making them production-ready but that convenience comes with trade-offs in control and flexibility. Some reasons are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Limited configuration control -&lt;/strong&gt; You can only modify parameters exposed via their UI (eg. &lt;em&gt;parameter groups)&lt;/em&gt;. Many performance and persistence knobs remain locked. One reason for this is that Redis license has changed multiple times since 2021 and the newer one doesn’t let the cloud provider run the original Redis as a managed service. So all of them fork Redis 6.x (till which license was relaxed) and maintain their own implementation. Because the API layer and protocol is compatible with the original Redis, developers hardly care about this fact.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Restricted operational access -&lt;/strong&gt; Direct shell access (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redis-cli&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INFO all&lt;/code&gt; with full privileges) is limited or read-only. You can’t inspect &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/log/redis&lt;/code&gt; or the underlying OS, so debugging memory fragmentation, CPU throttling, or swap usage becomes harder.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Limited control during freezes or failovers -&lt;/strong&gt; If a node hangs (e.g., fork stall, full memory pressure), you can’t SSH or restart the process. You must wait for the cloud provider’s control plane to detect failure and trigger replacement — which can take minutes. For production use cases, this can cause serious damage by the time this gets fixed. It did much damage for one of the teams I worked with, and they started hating Redis because of this.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Version lag and feature delays -&lt;/strong&gt; Managed offerings usually trail open-source Redis by a few releases. New features (e.g., active-active replication, ACL improvements, new data encodings) arrive late or in enterprise-only tiers.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Higher cost for flexibility -&lt;/strong&gt; While managed Redis saves operational effort, it’s significantly more expensive per GB of memory. Running Redis on self-managed EC2 is often 50% cheaper.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;popularity-and-alternatives&quot;&gt;Popularity and alternatives&lt;/h3&gt;
+
+&lt;p&gt;For over a decade, Redis has been the standard choice for in-memory data store because of its speed, simplicity, and versatility. As of 2025:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Redis continues to rank among the &lt;strong&gt;top 10 databases&lt;/strong&gt; on the &lt;a href=&quot;https://db-engines.com/en/ranking&quot;&gt;DB-Engines index&lt;/a&gt;, often #1 in the &lt;a href=&quot;https://db-engines.com/en/ranking/key-value+store&quot;&gt;key-value category&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Major companies rely on it for both caching and primary storage of ephemeral workloads.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Virtually every cloud platform offers Redis (or compatible software) as a first-class managed service.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While providers with managed Redis services have different forks of Redis due to &lt;a href=&quot;https://redis.io/blog/what-redis-license-change-means-for-our-managed-service-providers/&quot;&gt;license reasons&lt;/a&gt;, there have been parallel initiatives by many open source and closed source teams leading to softwares which are 100% API compatible with Redis. To name a few:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://docs.aws.amazon.com/memorydb/latest/devguide/what-is-memorydb.html&quot;&gt;&lt;strong&gt;AWS Memory DB&lt;/strong&gt;&lt;/a&gt; is a durable, in-memory, Redis-compatible database service that delivers ultra-fast performance with multi-AZ durability. MemoryDB stores all data in memory for sub-millisecond reads, but persists every write to a distributed transactional log (across multiple AZs in AWS). If the cluster or all nodes crash, MemoryDB can rebuild the in-memory state from that log — unlike ElastiCache, which would rely on periodic snapshots.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://microsoft.github.io/garnet/&quot;&gt;&lt;strong&gt;Garnet&lt;/strong&gt;&lt;/a&gt; is a research project by Microsoft Research. It uses the RESP wire protocol, making it compatible with standard Redis clients in many languages but unlike Redis’s single-thread command execution, Garnet’s storage layer is designed to scale across threads within a node. It can work over memory, SSD, and even remote storage (e.g., Azure storage) to support datasets larger than memory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://dicedb.io/&quot;&gt;&lt;strong&gt;DiceDB&lt;/strong&gt;&lt;/a&gt; is an &lt;strong&gt;open-source, in-memory, reactive database&lt;/strong&gt; written in Go. It is Redis protocol compatible while adding features like subscriptions / query reactivity (push updates rather than polling). It is designed to better utilize multi-core hardware rather than being stuck with a single-threaded event loop. I was following the creator of this project for a while, who had created this mostly for learning purposes and had not tested this on large number of production applications yet.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.dragonflydb.io/&quot;&gt;&lt;strong&gt;DragonflyDB&lt;/strong&gt;&lt;/a&gt; is a high-performance drop-in Redis replacement written in C++. It is fully API-compatible with Redis, supports multi-threaded execution, and often 2–3× faster in mixed workloads. It uses lock-free structures and shared-nothing architecture, avoiding Redis’s single-thread bottleneck. It is known to be extremely efficient with memory and CPU — ideal for modern multi-core servers.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;debugging-performance-bottlenecks&quot;&gt;Debugging performance bottlenecks&lt;/h3&gt;
+
+&lt;p&gt;To ensure optimal performance of Redis in production, it’s essential to monitor and debug performance bottlenecks effectively. Here’s a concise guide:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;INFO Command&lt;/strong&gt;: The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INFO&lt;/code&gt; command in Redis is a versatile tool that provides a comprehensive overview of the server’s status and performance metrics. When executed, it returns a wealth of information categorized into sections such as server, clients, memory, persistence, stats, replication, CPU, and keyspace. This command is invaluable for monitoring and diagnosing the health of your Redis instance. For latency analysis, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INFO&lt;/code&gt; command can help identify potential issues by providing insights into metrics like the number of connected clients, memory usage, and command statistics. High memory usage or a large number of connected clients can contribute to increased latency, and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INFO&lt;/code&gt; command helps pinpoint these areas.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Slow logs:&lt;/strong&gt; They are essential for identifying performance bottlenecks by tracking commands that exceed a specified execution time threshold. Configured through parameters like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slowlog-log-slower-than&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slowlog-max-len&lt;/code&gt;, slow logs capture detailed entries of long-running commands, including their execution time and timestamp. By analyzing these entries, you can pinpoint specific commands or patterns causing delays, guiding you in optimizing command performance or adjusting Redis configurations. I’ve used this a few times to figure out usage of some commands on large data structures causing slowness in command execution thread.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Latency Doctor&lt;/strong&gt;: Utilize the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LATENCY DOCTOR&lt;/code&gt; command to analyze and report on latency spikes, providing insights into potential causes. When you run the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LATENCY DOCTOR&lt;/code&gt; command, Redis examines its internal latency history and generates a report. This report includes details about various latency events, such as their frequency and potential causes. The command analyzes different aspects of the server’s operation, including command execution, memory management, and I/O operations. Based on the insights provided by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LATENCY DOCTOR&lt;/code&gt;, you can take specific actions to mitigate latency issues.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Connection Pooling&lt;/strong&gt;: Always implement connection pooling on the client side to manage Redis connections efficiently. This reduces the overhead of establishing new connections by reusing existing ones, which most client libraries support.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Monitoring Tools&lt;/strong&gt;: Employ monitoring tools that can instrument Redis metrics, such as Datadog, New Relic, or AWS CloudWatch. Key metrics to monitor include:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Memory Usage&lt;/strong&gt;: Track used and peak memory to prevent out-of-memory errors.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Command Latency&lt;/strong&gt;: Monitor the time taken to execute commands to identify slow operations.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Keyspace Hits/Misses&lt;/strong&gt;: Analyze cache efficiency by observing the ratio of hits to misses.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Evicted Keys&lt;/strong&gt;: Keep an eye on the number of keys evicted due to memory limits, which can indicate the need for configuration adjustments.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;By using these strategies and tools, you can effectively monitor and address performance bottlenecks in your Redis environment.&lt;/p&gt;
+
+&lt;h1 id=&quot;closing-note&quot;&gt;Closing note&lt;/h1&gt;
+
+&lt;p&gt;Reflecting on my journey with Redis over the years, it’s clear that this powerful tool has been more than just a component in my tech stack; it’s been a constant companion. From my early days of grappling with security vulnerabilities to tweaking the nuances of Redis configurations, each experience has enriched my understanding and appreciation of this versatile database.&lt;/p&gt;
+
+&lt;p&gt;As I share these insights, my hope is that they resonate with you, whether you’re just starting out or are well-versed in the world of Redis. Remember, while technical knowledge is crucial, it’s the personal experiences and challenges overcome that truly shape our expertise. Here’s to embracing the learning curve and continuing to explore the endless possibilities that such databases offer. Thank you for sparing time to read this.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you liked this post, you might also like these:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Having worked with small teams mostly, I’ve been a proponent of keeping the tech stack very simple. I shared &lt;a href=&quot;https://blog.gagan93.me/avoid-redundant-complexity&quot;&gt;my thoughts&lt;/a&gt; around the same.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I wrote a post early this year about &lt;a href=&quot;https://blog.gagan93.me/habits-productivity-deep-work&quot;&gt;&lt;strong&gt;habits, productivity and deep work&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you’re transitioning from monolith to microservices and are looking for a scalable way to migrate data, read &lt;a href=&quot;https://blog.gagan93.me/migrating-data-across-services&quot;&gt;&lt;strong&gt;this post&lt;/strong&gt;&lt;/a&gt; once.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 17 Oct 2025 00:00:00 +0530</pubDate>
+        <link>https://gagan93.me/blog/2025/10/17/redis-production-insights.html</link>
+        <guid isPermaLink="true">https://gagan93.me/blog/2025/10/17/redis-production-insights.html</guid>
+      </item>
     
       <item>
         <title>My Financial Journey</title>
@@ -1594,127 +2121,6 @@ Column         |            Type             | Nullable  |         Default
         <pubDate>Thu, 27 Jun 2024 00:00:00 +0530</pubDate>
         <link>https://gagan93.me/blog/2024/06/27/branch-interview-experience.html</link>
         <guid isPermaLink="true">https://gagan93.me/blog/2024/06/27/branch-interview-experience.html</guid>
-      </item>
-    
-      <item>
-        <title>Tech Interview Mistakes</title>
-        <description>&lt;p style=&quot;text-align: center;font-size: 0.8em&quot;&gt;Photo by &lt;a href=&quot;https://unsplash.com/@francisco_legarreta?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Francisco De Legarreta C.&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y?utm_content=creditCopyText&amp;amp;utm_medium=referral&amp;amp;utm_source=unsplash&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;There are a lot of mistakes people make while preparing for and giving technical interviews. Like everyone else, I also made a lot of mistakes during my interview journey and learned the hard way (by getting rejected). Generally speaking, rejections shouldn’t hurt you because they teach you a lot. But in tech interviews, there are scenarios when things are outside your control, despite the best preparation. We’ll discuss about such scenarios in the end of this post.&lt;/p&gt;
-
-&lt;p&gt;To start with, I’ll divide this post into two parts:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Preparation mistakes (during preparation).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Execution mistakes (during interview).&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;during-preparation&quot;&gt;During Preparation&lt;/h3&gt;
-
-&lt;p&gt;When I started looking out, I was completely unaware of industry expectations. I got in touch with a few people who had switched roles in last few years to understand the same. Apart from industry expectations, there were many other things that I had to know, like:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;How titles work in different companies?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How to prepare for the specific rounds? What sources are good (free / paid)?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How interviews are different from real work?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Will the companies hire me if my tech stack doesn’t overlap much with theirs?&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The more you know about all these things, the better you can prepare and manage your expectations. Let’s talk about all these things one by one:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Not understanding industry expectations&lt;/strong&gt; - There are two types of companies (or roles that are open). Some roles explicitly mention that you need to be an expert in a specific technology stack to even get shortlisted. The other category is of roles that require you to be a good problem solver who can learn the tech stack and get things done. Both the roles have their own significance and we cannot blame the hiring team for being stringent in the first case. If the product is in early stage, the company would prefer to hire someone who is familiar with the stack so that they can contribute fast without the need of ramping up. If the product is in later stage, it’s upto the choice of hiring team - they could hire people from a different technology stack, or they may still prefer to hire people with the same stack only. It depends on the stack also - incase they’re using something very niche (for which developers are not available easily), the hiring team relaxes the tech stack expectations. But incase hiring for that tech stack is easy, they’d prefer someone who knows the stack. In my experience, it’s easier for companies to find Java developers so rather than hiring for &lt;em&gt;Senior Software Engineer&lt;/em&gt;, they put the job title as &lt;em&gt;Senior Java Engineer&lt;/em&gt;. For medium-large organisations, the positions are tech stack agnostic for candidates who are good at problem solving. In the first case, some interview rounds focus on specific technologies (e.g., Core Java, Spring Boot). In the second case, you can choose your favorite programming language for the coding rounds.
- The above information is from my job hunt experience in the last 6-8 months. Obviously, exceptions are always there.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Strong tech stack inclination&lt;/strong&gt; - This point is interesting because, deep down, programmers have strong opinions about languages. For example, some people hate PHP (&lt;a href=&quot;https://www.reddit.com/r/PHP/comments/1fy71s/why_do_so_many_developers_hate_php/&quot;&gt;example&lt;/a&gt;) while some make fun of java for it’s verbosity (&lt;a href=&quot;https://www.youtube.com/watch?v=kdMG40wUCm4&quot;&gt;example 1&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=m4-HM_sCvtQ&quot;&gt;example 2&lt;/a&gt;, &lt;a href=&quot;https://github.com/Hello-World-EE/Java-Hello-World-Enterprise-Edition/tree/master/src/com/example&quot;&gt;example 3&lt;/a&gt;). This could still be seen as a personal choice. The bigger issue comes when people &lt;strong&gt;associate themselves&lt;/strong&gt; with one tech stack only. Let’s take my example - I’ve been majorly writing Ruby for the past 9 years but I’ve also written a little bit of C, Java for Android, Powershell, Bash, jQuery, BackboneJS, and a few other languages in my current and previous role. While I too have opinions about what languages to avoid, I did not limit my job search to Ruby/Rails openings only. Limiting my job search to only Ruby/Rails positions would have been stupid, especially in the current market where openings are less. I’d recommend the same to everyone - do not call yourself a Ruby developer, Java developer or GoLang developer. Call yourself a Software Engineer who can learn syntax and be productive in any language. Having this mindset helps a lot in the long run.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Confusion in job titles&lt;/strong&gt; - This is the most important thing to know when you’re searching for a new role. Some websites allow you to search jobs with years of experience, while some websites (like LinkedIn) allow you to search with job titles. LinkedIn also helps you to set job alerts for specific titles. Based on multiple factors, you could be eligible for multiple roles. Taking my example again - I work as a Staff Software Engineer in a small team but when it comes to job search, I search for Software Engineer, Senior Software Engineer, Staff Engineer, Team lead and Engineering manager roles. All these roles overlap with my experience range based on the size of organisation where I’m applying. I’ve already explained this point in a &lt;a href=&quot;https://blog.gagan93.me/titles-inflation-and-down-levelling&quot;&gt;detailed blog post&lt;/a&gt;, so I’ll rather leave you with a link to read the same.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Building Resume only once&lt;/strong&gt; - Resume building is an underrated exercise. When you’re looking out, there are high chances that you’re applying to many positions without a referral. In such cases, your resume is your first impression. If you’ve not spent enough time in build the same, there are high chances that you’ll not get calls from good companies. Resume building is not a one time effort. You need to work on it continuously to reword your tasks in a more impactful manner. Just like job titles, I’ve already written a &lt;a href=&quot;https://blog.gagan93.me/improving-your-resume&quot;&gt;detailed blog post&lt;/a&gt; on how I did more than 5 iterations on my resume in past 8-9 months. Even today, I don’t think my resume is the best it can be, so I keep improving it.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Not preparing an Introduction&lt;/strong&gt; - In all the companies, the first thing people ask is to introduce yourself. In some companies, each interviewer asks this question (although that sounds repetitive). Generally, you get a minute or less to talk about yourself before they ask about your specific projects or give you a problem to solve. You might have built a lot of products but it’s important to summarise your journey in this one minute and talk about everything that you find important. Write a long introduction of yourself, use AI to summarise it and keep improving it (just like your resume). I skipped this initially and found myself struggling while explaining my role/journey. I clearly remember that I forgot to explain to one employer that I manage a team of seven people in my current role. So my role might have sounded more of an &lt;strong&gt;IC&lt;/strong&gt; than a &lt;strong&gt;Manager&lt;/strong&gt; that could have good/bad impact based on what they were hiring for.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Applying directly to dream companies&lt;/strong&gt; - If you’re interviewing after a long time, do not get discouraged by rejections. Despite building a lot of things and being hands-on after 9 years of total experience (6+ in my current role), I faced a lot of rejections in the beginning. The current way of tech hiring is not the best way to hire good candidates, it’s a way to filter out candidates who are not interview ready. And being interview ready means something else for technical roles. You might not have built anything in real world but if you are prepared for the interviews, you’ll get the job. And the reverse is also true. For this reason, it is important to not apply for your dream companies directly (in case you are targeting some). Do many interviews at different companies to see if you can handle the questions under pressure before applying to your target company. Given the competitive nature of the market, I’ve heard from many experienced people that you should give a few interviews every year even if you’re not looking out. It’s just to bridge the gap between your current preparation and market expectations.Another way of practising to a decent level is by taking mock interviews. While there are many paid websites for the same, a free solution for the same is by using ChatGPT as your interviewer. I’ve tried it and it is decently good, if not the best. You need to do some initial conversation with it to explain what it is supposed to do (otherwise it will give you both question and answer). I’ll share my prompt for reference:&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/blog/assets/images/2024-05-24-tech-interview-mistakes-chatgpt.png&quot; alt=&quot;chatgpt&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;The above screenshot is of my conversation with ChatGPT when I was preparing for my final round at Bain &amp;amp; Co (read the &lt;a href=&quot;https://blog.gagan93.me/bain-and-company-interview-experience&quot;&gt;complete interview experience&lt;/a&gt;). It’s important to set context for ChatGPT before you start the conversation. You can modify the above prompt for technical roles as well. I also prepared for System Design interview using this format.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Overconfidence&lt;/strong&gt; - Assuming that you already know everything can be bad. It happened with me when I was learning LLD and HLD. Because the problems seemed familiar/simple, I thought I’ll be able to crack the rounds (till I failed 1-2 of them initially). Everything demands your time and some practice. Tech interviews demand even more practice because you’re expected to build (LLD) or talk about a MVP (HLD) within a period of 40-50 minutes. Although problems seem simple, thinking about the models, APIs, writing code, or talking about high level design, databases, protocols, challenges within this time period is very hard if you’ve not spent time in practising the same. I always recommend everyone to solve at least 5-10 problems for both LLD/HLD (without looking at the solutions) before appearing for any company.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;These are the top six things that came to my mind from my experience. Now let’s talk about mistakes during interviews.&lt;/p&gt;
-
-&lt;h3 id=&quot;during-interviews&quot;&gt;During Interviews&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Not talking enough / talking a lot&lt;/strong&gt; - In an interview, you have an hour to talk about yourself and showcase your skills. It’s important that you portray best of your skills. A good technical interview is a collaborative exercise where you and your interviewer solve a particular problem. In most of the cases, the interviewer has a fair idea around possible solution(s) because they have asked the same problem many times. A good candidate would ask questions (not cleverly seek hints) to understand the problem in depth before jumping towards the solution. There are generally three technical rounds - Data Structures, LLD and HLD. While Data structures question is a mathematical question (i.e. can be judged as right or wrong), the other two are somewhat open-ended. In many cases, ambiguities are present in the problem statement (even in DS round) to see how the candidate interprets the problem and asks questions. It’s our responsibility to make sure that we’re querying the interviewer to frame the problem better, scope the boundaries of the problem and present a solution that works for it. It’s quite possible that some iterations are needed to tailor the solution to cover edge cases or changing requirements. I’ll just recommend to keep on talking with your interviewer to make share what’s going on your mind. On the opposite side, don’t keep talking so much that you don’t leave space for them to talk or share their feedback on your solution. A balance is important here. In my experience as an interviewer, very few candidates talk more than what is required, but talking less is a common problem.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Assuming without discussing&lt;/strong&gt; - While you’re talking, make sure that you don’t &lt;strong&gt;assume&lt;/strong&gt; anything in your mind. Assumptions can lead to different solutions, hence it is important to speak about your assumptions. If that assumption is wrong, your interviewer will point out the same. For example: In most of the LLD problems if I’m talking about APIs, I assume that authentication is always in place and some header is coming in all the requests that is interpreted by the server for identifying the user. While most of the interviewers agree to this assumption, one of the interviewer asked this question- &lt;em&gt;What are the different authentication mechanisms you know about, and which one you’d like to use here (and why)?&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;(Design Interviews) Stubborn with choices&lt;/strong&gt; - In design interviews, you try to solve a problem by using some components like Databases, Load balancers, API Gateways, Firewalls, Protocols, API Servers, etc. Let’s take an example of a System Design interview. The most common discussion that happens in almost all the interviews is around the choice of database - SQL vs NoSQL (let’s assume we’re comparing SQL databases with Document oriented databases like Mongo/Elastic). We need to have strong reasons to choose one kind of database for the specific use case rather than &lt;a href=&quot;https://www.youtube.com/watch?v=b2F-DItXtZs&quot;&gt;this guy&lt;/a&gt; who is a MongoDB fan. There are many more places in a design interview where we need to make choices (eg. protocols). Just choosing one side is not enough - you need to justify your choice (or your interviewer will ask you to). Stubborn candidates leave a very bad impression on the interviewer and usually get rejected.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;(Design Interviews) Finding the core problem / not catching hints -&lt;/strong&gt; In both LLD and HLD interviews, there is &lt;strong&gt;one core problem&lt;/strong&gt; that we’re solving. As we talk more with our interviewer and frame the actual problem from that &lt;em&gt;one liner ambiguous problem statement,&lt;/em&gt; we get closer to the problem. For example:&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;In a cab booking platform like Uber, matching the driver with rider could be a core problem because you need to choose the drivers using some algorithm (you can’t just search them based on displacement as they might be a river apart).&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;In a movie booking platform like BookMyShow, holding the seats while user is in process of paying for the tickets, or releasing the seats when payment fails / times out could be the core problems.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-
-    &lt;p&gt;Similarly, your problem statement has one core problem which you need to identity. Although other parts of the systems are also important but this is one part that interests the interviewer. While you’re talking with your interviewer, try to see if they’re impressed with your design or are they like - &lt;em&gt;there’s something more to the problem.&lt;/em&gt; Incase you’re missing something important or are going wrong, they try to give you a hint (eg. &lt;em&gt;How are you making sure that &amp;lt;this&amp;gt; problem is also addressed?&lt;/em&gt; ). Do not miss these inputs, they may impact your overall design.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Bad luck -&lt;/strong&gt; In the beginning of this post, I wrote about a problem that is outside your control. That’s bad luck. I’ll share some scenarios to explain this:&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;strong&gt;Untrained interviewers -&lt;/strong&gt; This usually happens in small companies where they’re trying to expand the team. The interviewers might not be trained to conduct the discussion properly. Generally, some senior person &lt;a href=&quot;https://www.metaview.ai/resources/blog/interviewer-shadowing-the-secret-of-the-most-effective-hiring-machines-in-the-world&quot;&gt;shadows the new interviewer&lt;/a&gt; to make sure they are ready to interview but in small companies (due to multiple things running in parallel) such processes are not mature and training is not sufficient.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;strong&gt;Stubborn interviewers&lt;/strong&gt; - Not only candidates, interviewers can be stubborn. It’s hard not only to work with them but even harder to do an interview. Such interviewers have one approach in mind and would expect you to give exactly same solution. I’ve faced this once where despite doing everything well, I was rejected. And this was because there was &lt;strong&gt;one thing&lt;/strong&gt; that they wanted to happen in a certain way and I suggested something else (with a valid reason). This person also gave me feedback (I generally ask for the same at the end of interview) that I should have asked about scale of system (in a LLD problem) so that I had modified that one thing in my solution early. I’ve &lt;strong&gt;never seen&lt;/strong&gt; anyone else talking about “scale of system” in a LLD interview. We generally go into details of API design, database design and the core problem.
- The best part - they were junior to me by designation, years of experience, and attitude towards better solutions :)&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Apart from this, many other things (like mood of the interviewer) can impact your performance. Such things are generally not in your hands. Just like for candidates, interviewers also need training and feedback. In the organisations where interview process is more formalised and where interview calls are recorded, there are high chances that the interviewer would get feedback(s) if they need to improve on certain axes. In many organisations the feedback process is completely missing, which leads to bad candidate experience. If you face such a situation, you can also share your feedback with the recruiter / hiring manager. Make sure your tone is professional and not rude if you want them to consider your feedback.&lt;/p&gt;
-
-&lt;p&gt;I hope the above points would help you to avoid mistakes that people (including myself) generally make. Good luck for your preparation 👍.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 24 May 2024 00:00:00 +0530</pubDate>
-        <link>https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html</link>
-        <guid isPermaLink="true">https://gagan93.me/blog/2024/05/24/tech-interview-mistakes.html</guid>
       </item>
     
   </channel>

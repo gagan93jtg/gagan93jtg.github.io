@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Redis Production Insights</title>
+  <meta name="description" content="I began my first full-time role in June 2015. Since then, two technologies have consistently been part of my journey - Rails and Redis. Every company and project I have been involved with has utili..." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta property="og:site_name" content="Gagandeep's Blog" />
+  <meta property="og:title" content="Redis Production Insights"/>
+  
+  <meta property="og:description" content="I began my first full-time role in June 2015. Since then, two technologies have consistently been part of my journey - Rails and Redis. Every company and project I have been involved with has utili..." />
+  
+  <meta property="og:image" content="https://gagan93.me/blog/assets/images/2025-10-17-redis.jpg" />
+  <meta property="og:url" content="https://gagan93.me/blog/2025/10/17/redis-production-insights.html" >
+  <meta property="og:type" content="blog" />
+  <meta property="article:published_time" content="2025-10-17T00:00:00+05:30">
+
+  <link rel="canonical" href="https://gagan93.me/blog/2025/10/17/redis-production-insights.html"/>
+  <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png"/>
+  <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/blog/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/blog/css/print.css" />
+
+  <!-- Google tag (gtag.js) -->
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKG2EDMK4C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZKG2EDMK4C');
+    </script>
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/Article">
+    <!-- header start -->
+
+
+  <a href="https://gagan93.me/blog" class="logo-readium"><span class="logo" style="background-image: url(https://avatars.githubusercontent.com/u/13852061)"></span></a>
+
+<!-- header end -->
+
+    <main class="content" role="main">
+      <article class="post">
+        
+        <div class="article-image">
+          <div class="post-image-image" style="background-image: url(/blog/assets/images/2025-10-17-redis.jpg)">
+            Article Image
+          </div>
+          <div class="post-image-image2" style="background-image: url(/blog/assets/images/2025-10-17-redis.jpg)">
+            Article Image
+          </div>
+          <div class="post-meta">
+            <h1 class="post-title">Redis Production Insights</h1>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(https://avatars.githubusercontent.com/u/13852061)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Gagandeep Singh</h4>
+              on
+              <time datetime="2025-10-17 00:00">17 Oct 2025</time>
+            </div>
+            <div style="text-align:center">
+              <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <h2 style="text-align: center;font-size: 0.8em" id="photo-by-luke-chesser-on-unsplash">Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></h2>
+
+<h1 id="background">Background</h1>
+
+<p>I began my first full-time role in June 2015. Since then, two technologies have consistently been part of my journey: Rails and Redis. Every company and project I have been involved with has utilized these technologies alongside others. In November 2015, <a href="https://github.com/antirez"><strong>Antirez</strong></a> (the author of Redis) wrote a blog post revealing a <a href="https://antirez.com/news/96"><strong>security vulnerability</strong></a> in Redis. This vulnerability allowed hackers to gain access to the machine where Redis was running through SSH if the Redis server was operating in non-protected mode (which was the default at that time) and the bind address was set to <code class="language-plaintext highlighter-rouge">0.0.0.0</code>. The <a href="https://en.wikipedia.org/wiki/CopperEgg"><strong>project</strong></a> I worked on was a website and host monitoring SaaS tool developed in 2010. At that time, creating a VPC was not mandatory, and all machines could run in a single flat network hierarchy called EC2-Classic (which AWS <a href="https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html"><strong>recently retired</strong></a>). <a href="https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html"></a>This project also provided me the opportunity to move the entire system (from app servers to databases) inside the VPC by relaunching them gradually. The concepts I learned about VPC, networking, and security 8-9 years ago remain relevant today 😁.</p>
+
+<p>Returning to the vulnerability — because we had a monitoring product that checked website uptime from different regions worldwide (similar to <a href="https://uptimerobot.com/"><strong>this</strong></a><a href="https://uptimerobot.com/">)</a>, we had our website probing service running in various AWS regions and even on smaller cloud providers like <a href="https://www.linode.com/"><strong>Linode</strong></a> (Linode was a very simple and tiny cloud provider then). The application we ran was a small Ruby service with an attached Redis, deployed across multiple regions and providers. Back then, Docker and Kubernetes were not mainstream, and server setup was a mix of bash scripts and manual interventions. While our publicly exposed servers had basic SSH key authentication and services like <a href="https://github.com/fail2ban/fail2ban"><strong>fail2ban</strong></a> to handle repeat offenders, Redis was mostly running on default configuration, with the server bound to <code class="language-plaintext highlighter-rouge">0.0.0.0</code>. This meant that someone could connect to Redis from outside if port 6379 (the default Redis port) was not protected through a firewall or security groups. As I mentioned, we were running this service on multiple cloud providers, which were not as feature-rich as AWS.</p>
+
+<p>Many of our VMs running Redis were hacked, and this issue <a href="https://news.ycombinator.com/item?id=10537852"><strong>impacted</strong></a> numerous internet businesses in the following days. Fortunately, we resolved the issue by binding the machine to the localhost address (<code class="language-plaintext highlighter-rouge">127.0.0.1</code>), and a future upgrade of Redis enabled protected-mode by <a href="https://www.reddit.com/r/redis/comments/3zv85m/new_security_feature_redis_protected_mode/"><strong>default</strong></a>. This was my first production encounter with a security breach that directly impacted our business because we lost access to those servers, and the feature stopped working. This taught me an important lesson - <strong>while default settings are acceptable for experimentation, they might not be suitable for running a production application.</strong></p>
+
+<p>In this blog post, I want to share my experience running Redis in production over the years. Although I haven’t managed a very complex Redis infrastructure, these experiences should still benefit those who operate databases or are generally interested in learning about them.</p>
+
+<h1 id="what-is-redis">What is Redis?</h1>
+
+<p>Before using Redis, I was only familiar with SQL databases, so Redis seemed very different. I referred to it as a “data-structures db” because it implemented many commonly used data structures like lists, hashes, sets, etc. In all the codebases I’ve reviewed, the most common use case for Redis is as a key-value store (essentially string-based <a href="https://redis.io/docs/latest/commands/get/"><strong>GET</strong></a>, <a href="https://redis.io/docs/latest/commands/set/"><strong>SET</strong></a>). However, Redis supports many more features beyond this:</p>
+
+<ol>
+  <li>
+    <p>SET allows the EX parameter to set expiring keys, a very useful feature for cache invalidation.</p>
+  </li>
+  <li>
+    <p>SET also allows the NX parameter to set the key only if it doesn’t exist. SET with the XX parameter does the opposite. At the application layer, libraries return a boolean value to indicate if the key was set or not. This is very useful for implementing distributed locks. In fact, Redis is very popular for implementing <a href="https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/"><strong>distributed locking</strong></a>.</p>
+  </li>
+  <li>
+    <p>The <a href="https://redis.io/docs/latest/commands/?group=list"><strong>List</strong></a> data structure in Redis allows pushing and popping from both the left and right sides, making it useful as both a stack and a queue. In fact, the most popular background job libraries for <a href="https://github.com/celery/celery"><strong>Python</strong></a> and <a href="https://github.com/sidekiq/sidekiq"><strong>Rub</strong></a><strong>y</strong> use Redis lists for queuing.</p>
+  </li>
+  <li>
+    <p>Redis also supports Geospatial calculations. A use case for this could be storing map locations of multiple fuel stations in your area and then using Redis commands to determine which one is closest to your location. Or perhaps list all the fuel stations in ascending order of their distance, within 3 km. Isn’t that cool?</p>
+  </li>
+  <li>
+    <p>Redis also supports <a href="https://redis.io/docs/latest/commands/?group=pubsub">PubSub</a> and <a href="https://redis.io/docs/latest/commands/?group=stream">Streaming</a>. PubSub enables real-time, fire-and-forget message broadcasting, making it perfect for instant updates like chat messages or live stock prices where no history is needed. In contrast, Streams provide a durable, replayable event log with consumer groups, ideal for processing workflows or pipelines that need message persistence and ordered delivery.</p>
+  </li>
+  <li>
+    <p>Redis also supports approximate data structures like <a href="https://redis.io/docs/latest/commands/?group=bf">Bloom filters</a>, <a href="https://redis.io/docs/latest/commands/?group=hyperloglog">HyperLogLogs</a> and has support even for <a href="https://redis.io/docs/latest/commands/?group=timeseries">TimeSeries</a> data.</p>
+  </li>
+</ol>
+
+<p>While the most common usages are for String, List, and Hash data structures, Redis supports a wide range of other features out of the box. If you’re new to Redis or not familiar with these features, I recommend trying them on your local machine.</p>
+
+<h2 id="use-cases-solved">Use cases solved</h2>
+
+<p>At it’s core, Redis is a NoSQL database that supports lots of data structures and also solves for many other use cases like streaming, time series data sampling, geospatial computation, etc. In this section, we’ll explore more about Redis use cases for providing standard solutions to common problems:</p>
+
+<ol>
+  <li>
+    <p><strong>Caching</strong> - If you’re using Redis in production, there’s a high likelihood you’re using it for caching. Developers love Redis for caching due to its in-memory nature, which helps improve service response times and reduce load on SQL databases.</p>
+  </li>
+  <li>
+    <p><strong>Queueing</strong> - As previously explained, Redis is widely used as a queue to solve the problem of distributed background processing. You don’t need to write anything beyond business logic, as the problem is common and already solved by libraries in your preferred language using Redis as a queue.</p>
+  </li>
+  <li>
+    <p><strong>Rate limiting</strong> - Building a Rate Limiter is a common problem, especially when exposing APIs to the public. There are multiple algorithms to implement a Rate Limiter that can be built over Redis using its supported data structures.</p>
+  </li>
+  <li>
+    <p><strong>Distributed locking</strong> - If you’re from a SQL background, you might have used Row locks (like <code class="language-plaintext highlighter-rouge">SELECT FOR UPDATE</code> in <a href="https://www.postgresql.org/docs/current/sql-select.html">Postgres</a>) for similar purposes. However, many times you’ll have use cases to lock something not yet persisted in a SQL database. Redis locks are handy in those cases.</p>
+  </li>
+</ol>
+
+<p>Enough of selling Redis, let’s discuss some learnings.</p>
+
+<h1 id="learnings-and-recommendations">Learnings and Recommendations</h1>
+
+<h3 id="when-do-i-need-the-second-redis-in-my-infra">When do I need the second Redis in my infra?</h3>
+
+<p>I’ve seen applications grow from a few thousand users to millions. In a simple stack, we usually start with one Redis instance. As the product grows, more developers realize use cases for Redis and continue building on top of it. However, there are instances when you should consider adding a second Redis machine to your infrastructure:</p>
+
+<ol>
+  <li>
+    <p><strong>Sharing across services</strong> - As with any other database, we should avoid sharing a Redis machine across different services. A Redis instance shouldn’t be considered as a dump-all cache for multiple services. The primary reason for this is the single point of failure, and no one would want that kind of setup.</p>
+  </li>
+  <li>
+    <p><strong>Having different use cases</strong> - In a previous organization, we had an application with four Redis instances connected to it. Each had a different use case and its own configuration. Separating databases based on use cases helps in tuning and managing them separately. Some people might not do this initially and later realize that separating them initially was a good idea.</p>
+  </li>
+  <li>
+    <p><strong>Separating cache vs. persisted storage</strong> - This is a special case of previous point (different use cases). Sometimes it’s still ok to not separate Redices for use cases because they’re small enough but it’s never okay to combine use case of <em>cache</em> vs <em>persisted storage.</em> Most of the people put Redis in a place where <a href="https://redis.io/docs/latest/commands/flushall/">flushing</a> it doesn’t impact anything (apart from some intermittent CPU peaks in the primary database) because the data can be repopulated. But there are some use cases where you can’t afford to drop database because Redis is the primary database. One very good example for this is when you use Redis as a database for background job processing (<a href="https://github.com/celery/celery">example1</a>, <a href="https://github.com/sidekiq/sidekiq">example2</a>). In such cases, you cannot afford to lose jobs even if the Redis process crashes, making it important to run Redis in persisted mode. Depending on your Redis version and current configuration, you might need to tune it for your persistence use case, balancing durability and performance.</p>
+  </li>
+</ol>
+
+<p>Based on use cases, persistence, latency, and other tuning requirements, you might want to separate Redis early on to avoid migration overhead.</p>
+
+<h3 id="using-expiring-keys-wherever-possible">Using expiring keys wherever possible</h3>
+
+<p>I’ve seen apps where the count of keys easily grows beyond 10 million. It’s not bad to have this many keys as long as you have the memory available, but in some cases, it might not be justified given the app size and use cases. A primary reason for <em>ever-growing keys</em> in Redis is <strong>not setting expiry</strong> for keys. On analyzing key patterns on various Redis machines, I’ve often come across keys for which the corresponding application code was deleted long ago, but the developers didn’t clean up the respective keys. As Redis is an in-memory database, useless keys mean wasted RAM. I’m not saying all keys should be expiring, but if you’re considering running in cache mode, your application code should manage repopulating Redis as needed. Some good examples of expiring keys are:</p>
+
+<ol>
+  <li>
+    <p>When Redis is used for distributed locking, we can set an expiry on the lock key. This TTL is generally higher (or a few times) than the task execution time. This ensures that if the application logic fails to clean up the lock key, it gets automatically cleaned up, avoiding infinite locking.</p>
+  </li>
+  <li>
+    <p>We often use Redis for storing temporary passwords and OTPs, and in most product specifications, there is an expiry associated with this OTP. Setting TTL on such keys helps build this feature without additional application logic.</p>
+  </li>
+</ol>
+
+<p>If you see your Redis memory graph in an ‘ever-increasing trend”, it might be a good time to revisit if you really need all those keys 😁.</p>
+
+<h3 id="caching-invalidation-problem-and-application-hooks">Caching invalidation problem and application hooks</h3>
+
+<blockquote>
+  <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
+
+  <p>-- Phil Karlton</p>
+</blockquote>
+
+<p>Although this is not directly related to Redis, I often see the problem of cache invalidation discussed among people who use Redis for caching. So I thought of sharing a few best practices. Caching is a powerful technique for improving application performance, but it comes with the challenge of cache invalidation. Properly managing cache invalidation is crucial to ensure your application serves accurate data. Here are some key points to consider when setting up cache invalidation hooks:</p>
+
+<ol>
+  <li>
+    <p><strong>Understand the Data Lifecycle</strong>: Before setting up cache invalidation, it’s important to understand the lifecycle of the data being cached. Identify when data changes and how those changes should be reflected in the cache. I’ve often seen people caching the response of an entire API to save time in querying and serialization. This is good if the API is Restful, but if it queries multiple data sources to generate that response, there might be multiple hooks on which you need to reset the cache. So take care of such edge cases.</p>
+  </li>
+  <li>
+    <p><strong>Suitable Hooks for Invalidation</strong>: We should update the cache once the data in primary data source has been updated. For a Rails application, we use <code class="language-plaintext highlighter-rouge">after_commit</code> hook for the respective model to update the respective cache. I asked ChatGPT for parallels in other languages/frameworks and got this for your reference 😁</p>
+  </li>
+</ol>
+
+<p><img src="/blog/assets/images/2025-10-17-redis-parallels.png" alt="AI generated" style="display: block; margin: 10px auto;" /></p>
+
+<ol>
+  <li>
+    <p><strong>Set Expiry Times</strong>: ome people use expiry times as a band-aid for cache invalidation. This could be to defer the fix for the actual bug in some cases (e.g., when you don’t know all the <em>hooks</em> to invalidate the cache). A similar case where we used such expiring keys in the past was to update feature rollouts for a user. To see enabled features for a user, we earlier relied on a SQL-backed system that performed checks on at least four levels before telling if the feature is enabled on the user or not. But as the system grew in complexity and we added an authorization layer, such checks became more widespread. The query to check enabled features got flagged as one of the most used queries in our <a href="https://en.wikipedia.org/wiki/Application_performance_management"><strong>APM tool</strong></a>, and we fixed this in two phases: In the first phase, we cached this data for 5 minutes and ensured that we don’t query from the SQL database within these 5 minutes. While this might not be acceptable in many use cases, it was okay for this use case as the latency of 5 minutes for turning a feature on/off was acceptable to product and business teams. As we got some breathing space, we figured out all the hooks in the different models to invalidate this cache. We could have completely removed the TTL, but we rather set it to a higher value (e.g., 7 days) to ensure that we don’t cache data for users who don’t come to our app often.</p>
+  </li>
+  <li>
+    <p><strong>Use Versioning</strong>: Implementing versioning for cache keys can help manage cache invalidation. By appending a version number to cache keys, you can easily invalidate old entries by incrementing the version number when data changes. For systems where we have timestamps like <code class="language-plaintext highlighter-rouge">updated_at</code>, developers often use that as a versioning key because it naturally tracks an <em>update</em> in the system.</p>
+  </li>
+</ol>
+
+<p>By carefully setting up cache invalidation hooks and strategies, you can maintain the integrity of your application’s data while leveraging the performance benefits of caching.</p>
+
+<h3 id="understanding-configuration-options-before-running-a-database-in-production">Understanding configuration options before running a database in production</h3>
+
+<p>This is true for all databases, not just Redis. Whenever you’re planning to run anything in production, it’s good to know about various parameters that you can tune. For ages, we’ve been operating single-node centralized databases that persist data on disk, and they generally run fine with default settings unless you hit some metric (IO/CPU/RAM) really hard. But the same is not true for distributed NoSQL databases. Based on the configuration, such databases can be tuned to compromise consistency or availability for speed, scalability, and fault tolerance.</p>
+
+<p>All databases have at least one configuration file available to tune different parameters for your use case. There are sufficient comments in the file for documentation purposes (although their websites have more detailed explanations, if needed). You can access these files to tune the database only if you’re self-managing the database installation on a virtual machine like AWS EC2. If you’re using managed services like AWS RDS, AWS Elasticache, etc., then you’d be exposed to a limited set of parameters through their GUI (like <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html"><strong>Parameter Groups</strong></a> in AWS).</p>
+
+<p>To see a sample Redis conf, you can check <a href="https://download.redis.io/redis-stable/redis.conf">this link</a> or google “<em>redis stable conf”</em> . I’ll talk about a few useful config parameters for Redis:</p>
+
+<ol>
+  <li>
+    <p><strong>Persistence</strong>: Redis, by design, is an in-memory data store, which makes it extremely fast but raises an important question — <em>what happens to your data when the process crashes or the machine restarts?</em> To handle this, Redis supports multiple persistence mechanisms that balance speed, durability, and operational overhead differently. Broadly, Redis offers two major forms of persistence: RDB (snapshotting) a<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html">nd AOF (append-o</a>nly file).
+ The <strong>RDB</strong> persistence mechanism takes <strong>point-in-time snapshots</strong> of your dataset and writes them to disk as a <code class="language-plaintext highlighter-rouge">.rdb</code> file. Redis forks a background process (also called as BGSAVE or background save) to perform the dump, ensuring the main process remains responsive. It reads your <code class="language-plaintext highlighter-rouge">save</code> configuration from the <code class="language-plaintext highlighter-rouge">redis.conf</code> to decide when it should run the background save process. I’ll explain this with an example of <code class="language-plaintext highlighter-rouge">save</code> parameter.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> save 900 1
+ save 300 10
+ save 60 10000
+</code></pre></div>    </div>
+
+    <p>This configuration means: save after <strong>1 change</strong> within <strong>15 minutes</strong>, or save after <strong>10 changes</strong> within <strong>5 minutes</strong>, or save after <strong>10,000 changes</strong> within <strong>60 seconds</strong>. These rules can be customized or even disabled with <code class="language-plaintext highlighter-rouge">save ""</code> for a super-fast cache-like setup.
+ The other setup is AOF where Redis provides finer-grained durability than RDB by logging <strong>every write operation</strong> Redis performs. On restart, Redis replays the AOF log to rebuild the in-memory dataset. The two important parameters here are: <code class="language-plaintext highlighter-rouge">appendonly</code> (should be set to <code class="language-plaintext highlighter-rouge">yes</code> to use this mode) and <code class="language-plaintext highlighter-rouge">appendfsync</code> . The second property defines how frequently you flush to the disk (possible values: <code class="language-plaintext highlighter-rouge">no</code>, <code class="language-plaintext highlighter-rouge">everysec</code>, <code class="language-plaintext highlighter-rouge">always</code>). In most production environments, <code class="language-plaintext highlighter-rouge">appendonly everysec</code> is a safe balance — ensuring sub-second durability without blocking throughput. For extremely fast ephemeral caches, <code class="language-plaintext highlighter-rouge">appendonly no</code> can be used for maximum performance. If you set this property to <code class="language-plaintext highlighter-rouge">always</code>, Redis will enter into <strong>fully durable</strong> mode. This means — every time Redis executes a write command (e.g. <code class="language-plaintext highlighter-rouge">SET</code>, <code class="language-plaintext highlighter-rouge">LPUSH</code>, <code class="language-plaintext highlighter-rouge">INCR</code>), it <strong>appends that command</strong> to the <strong>Append-Only File (AOF)</strong> on disk, and then calls the <code class="language-plaintext highlighter-rouge">fsync()</code> system call immediately afterward — before acknowledging success to the client. This guarantees that even if the OS or machine crashes immediately after acknowledgment, the data is physically on disk and recoverable.</p>
+
+    <p><strong>Note on fsync</strong>: <code class="language-plaintext highlighter-rouge">fsync</code> is a system call that ensures all pending writes for a given file descriptor are flushed from the kernel’s page cache to the physical storage device. By default, when you call <code class="language-plaintext highlighter-rouge">write()</code>, the data goes into the <strong>kernel’s buffer cache</strong>, not immediately to disk — the OS decides when to flush it. <code class="language-plaintext highlighter-rouge">fsync()</code> forces that flush <strong>right now</strong> and waits until the device confirms that data is persisted.</p>
+  </li>
+  <li>
+    <p><strong>Databses</strong> - There’s a controversial feature inside Redis. Redis by default supports 16 databases (numbered 0 to 15) which we can choose using the SELECT command. I’ve not used this in many projects but in of the use-cases, this feature helped me separate data into different namespaces. I was talking to someone few months ago and they mentioned that this feature is considered as an anti-pattern. To understand a bit more, I did some research and found why some people don’t like this feature:</p>
+
+    <ul>
+      <li>
+        <p>Redis cluster mode doesn’t support databases because of implementation complexity. So it’s supported only if you’re running a single node Redis (with/without replicas).</p>
+      </li>
+      <li>
+        <p>All DBs share same memory, persistence, and config. So there’s no isolation in the way data is stored in memory or on disk. This also means that the configuration we chose for the server applies to all the databases.</p>
+      </li>
+      <li>
+        <p>There are commands like <code class="language-plaintext highlighter-rouge">FLUSHDB</code> to flush one database (the one you’re currently on), but there’s also a <code class="language-plaintext highlighter-rouge">FLUSHALL</code> command that wipes all databases, easy to cause total data loss by mistake.</p>
+      </li>
+      <li>
+        <p>As the backup files (RDB or AOF) contains all the databases together, you cannot selectively restore one of them in event of crash or restart. You need to wait for the entire file dump to load in memory.</p>
+      </li>
+      <li>
+        <p>Like I used it — there were slightly different use cases in my project so I thought it’s better to separate the namespace but this could easily create the <a href="https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/noisy-neighbor.html">noisy neighbour problem</a> and the monitoring tools can hardly differentiate between metrics based on database number.</p>
+
+        <p>Due to all these reasons, even the creator of Redis recommends using different Redis instances rather than using different database numbers.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Replication</strong> - Redis supports asynchronous replication with extensive tunable parameters, but achieving reliability requires balancing latency, durability, and consistency:</p>
+
+    <ul>
+      <li>
+        <p>Replication is <strong>asynchronous</strong> by default, meaning replicas may lag or lose writes if the primary crashes before sync.</p>
+      </li>
+      <li>
+        <p>Use <code class="language-plaintext highlighter-rouge">repl-diskless-sync yes</code> for faster initial syncs and reduced I/O overhead; otherwise, RDB-based syncs (<code class="language-plaintext highlighter-rouge">repl-diskless-sync no</code>) can block during snapshot creation.</p>
+      </li>
+      <li>
+        <p>Tune <code class="language-plaintext highlighter-rouge">repl-backlog-size</code> and <code class="language-plaintext highlighter-rouge">repl-backlog-ttl</code> to maintain replication continuity across brief disconnects — preventing full resyncs.</p>
+      </li>
+      <li>
+        <p>Enable <code class="language-plaintext highlighter-rouge">min-replicas-to-write</code> and <code class="language-plaintext highlighter-rouge">min-replicas-max-lag</code> to protect against acknowledging writes when replicas are stale or disconnected.</p>
+      </li>
+      <li>
+        <p>Always monitor replication lag via <code class="language-plaintext highlighter-rouge">INFO replication</code> — even small lags can break consistency assumptions in queue or locking workloads.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Memory</strong> <strong>management</strong> - By carefully managing memory settings, you can ensure that Redis operates efficiently and reliably, whether used as a cache or for persistent storage.</p>
+
+    <ul>
+      <li>
+        <p>When using as a cache, it is useful to configure parameters like <code class="language-plaintext highlighter-rouge">maxmemory</code> and <code class="language-plaintext highlighter-rouge">maxmemory-policy</code> to evict data based on algorithms like LRU, LFU, etc. If there are no keys that match the criteria for eviction and maximum memory is reached, Redis will report errors for write commands.</p>
+      </li>
+      <li>
+        <p>When using for persistent storage, you should set <code class="language-plaintext highlighter-rouge">maxmemory-policy</code> to <code class="language-plaintext highlighter-rouge">noeviction</code> and leave 30-40% free memory. This buffer protects against fragmentation, background save forks, and transient spikes ensuring Redis never evicts queued jobs or stalls under memory pressure.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Tuning Data structures performance -</strong> There are certain parameters that influence how Redis internally represents its core data structures. Tuning them can significantly impact memory efficiency and CPU performance. Let’s understand these for a few data structures:</p>
+
+    <ol>
+      <li>
+        <p>Hashes</p>
+
+        <ul>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">hash-max-listpack-entries 512</code></p>
+          </li>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">hash-max-listpack-value 64</code></p>
+          </li>
+        </ul>
+
+        <p>Redis stores small hashes in a compact, contiguous area for better cache locality. Once a hash exceeds either threshold (more than 512 fields or a field value longer than 64 bytes), Redis automatically converts it into a standard hash table. Increase these limits for smaller hashes to save memory; decrease if you have frequent large-field updates to avoid costly re-encodings. Instagram optimised this parameter for their use case back in 2011 (<a href="https://instagram-engineering.com/storing-hundreds-of-millions-of-simple-key-value-pairs-in-redis-1091ae80f74c">read more</a>).</p>
+      </li>
+      <li>
+        <p>Lists</p>
+
+        <ul>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">list-max-listpack-size -2</code></p>
+          </li>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">list-compress-depth 0</code></p>
+          </li>
+        </ul>
+
+        <p>Small lists are also stored as flat contiguous memory. <code class="language-plaintext highlighter-rouge">list-max-listpack-size</code> controls the maximum size of each listpack node; <code class="language-plaintext highlighter-rouge">-2</code> means Redis targets listpack nodes of roughly 8 KB. <code class="language-plaintext highlighter-rouge">list-compress-depth</code> defines how many nodes at the list’s ends remain uncompressed — <code class="language-plaintext highlighter-rouge">0</code> disables compression entirely. For read-heavy queues, keep compression low (<code class="language-plaintext highlighter-rouge">0–1</code>) for fast access. For archival or long lists, allow deeper compression (<code class="language-plaintext highlighter-rouge">2–3</code>) to save memory.</p>
+      </li>
+      <li>
+        <p>Sets</p>
+
+        <ul>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">set-max-intset-entries 512</code></p>
+          </li>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">set-max-listpack-entries 128</code></p>
+          </li>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">set-max-listpack-value 64</code></p>
+          </li>
+        </ul>
+
+        <p>Redis represents small sets of integers as <strong>intsets</strong>, and small generic sets as <a href="https://www.google.com/search?q=redis+listpack&amp;sca_esv=d07a5e3d0f6687b2&amp;biw=1728&amp;bih=958&amp;sxsrf=AE3TifM12JI2EmQxIefgnaQ9qREuPmXPeg%3A1760329284009&amp;ei=RH7saLslv6vj4Q-1sLWwBg&amp;ved=0ahUKEwi716TNqaCQAxW_1TgGHTVYDWYQ4dUDCBA&amp;uact=5&amp;oq=redis+listpack&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiDnJlZGlzIGxpc3RwYWNrMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHSO4FULgDWOoEcAF4AZABAJgBtQGgAbUBqgEDMC4xuAEDyAEA-AEBmAIBoAIImAMAiAYBkAYIkgcBMaAH6wayBwC4BwDCBwMyLTHIBwY&amp;sclient=gws-wiz-serp"><strong>listpacks</strong></a>.
+ Once a set exceeds these thresholds (by count or member size), it upgrades to a full hash table internally. Increase thresholds for workloads with many small sets to reduce overhead. Lower thresholds if set membership changes frequently to avoid repeated re-encodings.</p>
+      </li>
+    </ol>
+
+    <p><strong>Note</strong>: I’ve heard of these configurations many times but never got a chance to optimise Redis for these use cases. Although these look like advanced configuration, these could be useful for you if your use-case revolve around specific data structures only and you’re running on a huge scale, it might be worth experimenting with these settings. Also, before playing around with configurations for any data structure, have a good idea about what all data structures you are using in your application. For example, Redis implements Geospatial data structures internally using sorted set (ZSET). So if you change configuration for <code class="language-plaintext highlighter-rouge">zset-max-listpack-entries</code> or <code class="language-plaintext highlighter-rouge">zset-max-listpack-value</code> it would also impact the performance and storage for Geospatial keys (incase you’re using those).</p>
+  </li>
+</ol>
+
+<p>Beyond these, Redis exposes several other configuration parameters that impact</p>
+
+<ul>
+  <li>
+    <p>Security (eg. <code class="language-plaintext highlighter-rouge">bind</code>, <code class="language-plaintext highlighter-rouge">protected-mode</code>, <code class="language-plaintext highlighter-rouge">requirepass</code>, <code class="language-plaintext highlighter-rouge">masterauth</code>)</p>
+  </li>
+  <li>
+    <p>Define clustering (for sharding data across nodes)</p>
+  </li>
+  <li>
+    <p>Performance (<code class="language-plaintext highlighter-rouge">timeout</code>, <code class="language-plaintext highlighter-rouge">tcp-keepalive</code>, <code class="language-plaintext highlighter-rouge">latency-monitor-threshold</code>)</p>
+  </li>
+  <li>
+    <p>Maintainability (<code class="language-plaintext highlighter-rouge">maxclients</code>, <code class="language-plaintext highlighter-rouge">loglevel</code>, <code class="language-plaintext highlighter-rouge">rename-command</code>), etc.</p>
+  </li>
+</ul>
+
+<h3 id="redis-is-single-threaded-wait-what">Redis is single-threaded (wait… what?)</h3>
+
+<p>Redis is famously known as a <strong>single-threaded</strong> data store — a design choice that often raises eyebrows among developers used to multi-threaded applications and databases. The assumption is natural: <strong>single-threaded means slow, right</strong>? In this case, the answer is <strong>“no — not really.”</strong> When Redis is called <em>single-threaded</em>, it means that only the <strong>core command execution loop</strong> is one single thread. All commands are executed sequentially, one after another. Each incoming request is parsed, executed, and responded to before moving to the next one — with no context switches or locking. This design avoids the biggest enemy of high-performance systems: <strong>concurrency overhead</strong>.</p>
+
+<p>Despite being single-threaded, Redis is capable of handling hundreds of thousands of operations per second on a single core. Here’s why:</p>
+
+<ol>
+  <li>
+    <p>Redis stores all data in RAM so there’s no disk I/O during command execution. Each operation typically completes in microseconds.</p>
+  </li>
+  <li>
+    <p>Since there’s only one command executor, there’s no need for fine-grained locking, atomic sections, or concurrency control — all commands are inherently atomic (hence safe for distributed locks).</p>
+  </li>
+  <li>
+    <p>Redis multiplexes I/O events in a single loop (similar to Node.js). This means one thread can serve thousands of connections efficiently.</p>
+  </li>
+  <li>
+    <p>Redis batches replies and writes them efficiently, minimizing expensive kernel transitions.</p>
+  </li>
+  <li>
+    <p>Operations like background save fork a child process does not impact the command execution directly (“indirect” impact is explained below).</p>
+  </li>
+</ol>
+
+<p>Redis proves that single-threaded doesn’t mean slow — when data lives in memory, network latency and locking costs matter more than CPU parallelism. Its design trades concurrency for deterministic speed, making it one of the fastest databases per core ever built. But there are some cases where command execution can be impacted:</p>
+
+<ol>
+  <li>
+    <p>Redis supports Lua scripting but those are executed within same single-threaded event loop. So large/complicated lua scripts can slow down this thread.</p>
+  </li>
+  <li>
+    <p>Commands with high time complexity can slow down this event loop. For example: If you’re running <code class="language-plaintext highlighter-rouge">LRANGE</code> on a large list or <code class="language-plaintext highlighter-rouge">SMEMBERS</code> on a large set, it might take time to execute them and any commands that are fired afterwards. Redis official documentation mentions time complexity of all the commands.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">DEL</code> command can be slow if you’re trying to free up large memory blocks synchronously. <code class="language-plaintext highlighter-rouge">UNLINK</code> can be used in those situations.</p>
+  </li>
+  <li>
+    <p>There’s a very popular and notorious command in Redis called <code class="language-plaintext highlighter-rouge">KEYS</code>. I took a production Redis down for a few seconds during my first encounter with Redis 😛. Because this iterates the entire keyspace and production systems (generally) have millions of keys, this command takes a lot of time to execute.</p>
+  </li>
+  <li>
+    <p>Background save for large data sets (&gt;10GB as per ChatGPT) can have some intermittent impact on the command execution thread.</p>
+  </li>
+</ol>
+
+<h3 id="how-to-safely-analyze-production-redis-data-with-keys-command">How to safely analyze production Redis data with <code class="language-plaintext highlighter-rouge">KEYS</code> command</h3>
+
+<p>There are multiple ways for doing this:</p>
+
+<ol>
+  <li>
+    <p>First method is to avoid this as much as possible. Revisit your use case and check for alternate methods.</p>
+  </li>
+  <li>
+    <p>Redis documentation would recommend using <code class="language-plaintext highlighter-rouge">SCAN</code> instead of <code class="language-plaintext highlighter-rouge">KEYS</code> and use of the pointer (cursor) returned with each output to get next set of keys but you would need some application level logic to follow the cursor iteratively and filter keys by names incase you’re searching for some specific pattern of keys (eg. keys starting with word <code class="language-plaintext highlighter-rouge">alert</code>). For this specific purpose, I’ve tried a workaround:</p>
+
+    <ol>
+      <li>
+        <p>Setup a replica of this Redis.</p>
+      </li>
+      <li>
+        <p>Disconnect the replica from MASTER (command: <code class="language-plaintext highlighter-rouge">REPLICAOF NO ONE</code>).</p>
+      </li>
+      <li>
+        <p>Ensure there are no connections to this replica now, except your current session (use <code class="language-plaintext highlighter-rouge">CLIENT LIST</code> to see connected clients and <code class="language-plaintext highlighter-rouge">MONITOR</code> to see if someone is running any other command).</p>
+      </li>
+      <li>
+        <p>Now run <code class="language-plaintext highlighter-rouge">KEYS *</code> here so that there’s no impact elsewhere.</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p>If your purpose is doing some analytics, somewhat old data might not cause any problems.</p>
+
+<h3 id="taking-advantage-of-single-threaded-nature">Taking advantage of Single threaded nature</h3>
+
+<p>By now, we know two things about Redis:</p>
+
+<ol>
+  <li>
+    <p>It’s uses a single CPU Core.</p>
+  </li>
+  <li>
+    <p>It’s an in-memory database. So for production machines, you need boxes with large amount of RAM.</p>
+  </li>
+</ol>
+
+<p>In one of my prev organisations, we had four Redis machines connected to a monolith application:</p>
+
+<ol>
+  <li>
+    <p>One was for background queueing (full persistence needed, can’t lose data).</p>
+  </li>
+  <li>
+    <p>One was for some alert thresholds (persistence needed).</p>
+  </li>
+  <li>
+    <p>One was a pure cache use case (speed preferred)</p>
+  </li>
+  <li>
+    <p>One was for acting as a database for a high performance system (using lists/sets mostly) (persistence needed).</p>
+  </li>
+</ol>
+
+<p>Out of these, three were hosted on VMs (AWS EC2) and one on managed service (AWS Elasticache). The organisation was trying to cut costs from all sides and our own production infra was a significant component of that cost. After cutting all corners, we saw another opportunity — we could merge these Redices into one big EC2 machine. For some, this might sound like a stupid decision because it would mean a single point of failure for the application (i.e. if this EC2 goes down, everything goes down). But we still did moved ahead to this setup because cost cutting were our only targets.</p>
+
+<p>We took a machine with 4 cores, ran four Redis processes on different ports and exported data from existing machines, saving <strong>75%</strong> on Redis costs. One learning that I got in this process is — you can’t create replica of a Elasticache Redis outside Elasticache ecosystem (basically EC2 cannot act as replica of Elasticache hosted Redis). So in order to copy data, we had to export it to S3 and copy that backup file on the new machine which increased our migration downtime by a few minutes.</p>
+
+<h3 id="deployment-options-and-managed-services">Deployment options and managed services</h3>
+
+<p>Redis can be deployed in several topologies, each balancing availability, consistency, and operational complexity differently. From a single instance to fully distributed clusters, the choice depends on whether your priority is simplicity, high availability, or scalability. I have mostly operated first two setups but I’ll share four of them for your reference:</p>
+
+<ol>
+  <li>
+    <p><strong>Standalone:</strong> A single Redis instance handling all reads and writes. It is simple, fast, and ideal for development environments or small production caches with <strong>no fault tolerance</strong> if it goes down.</p>
+  </li>
+  <li>
+    <p><strong>Master–Replica:</strong> A primary node manages writes while replicas asynchronously copy data for read scalability and redundancy, offering better availability but <strong>manual recovery</strong> on failure.</p>
+  </li>
+  <li>
+    <p><strong>Sentinel:</strong> A lightweight layer that monitors master–replica setups, automatically promotes replicas during failures and updates clients, bringing high availability without clustering.</p>
+  </li>
+  <li>
+    <p><strong>Cluster:</strong> A distributed Redis setup that shards data across multiple masters with replicas for each, enabling horizontal scalability and built-in failover for large, production-scale workloads.</p>
+  </li>
+</ol>
+
+<p>Beyond this, I also wanted to touch upon an important thing that is kind of deployment - <strong>self managed</strong> vs. <strong>provider managed</strong>. For provider managed Redis services (eg. <strong>AWS ElastiCache</strong>, <strong>Azure Cache</strong> or <strong>GCP Memorystore</strong>), the provider takes care of the heavy lifting from provisioning to scaling, failover, patching, and monitoring, making them production-ready but that convenience comes with trade-offs in control and flexibility. Some reasons are:</p>
+
+<ol>
+  <li>
+    <p><strong>Limited configuration control -</strong> You can only modify parameters exposed via their UI (eg. <em>parameter groups)</em>. Many performance and persistence knobs remain locked. One reason for this is that Redis license has changed multiple times since 2021 and the newer one doesn’t let the cloud provider run the original Redis as a managed service. So all of them fork Redis 6.x (till which license was relaxed) and maintain their own implementation. Because the API layer and protocol is compatible with the original Redis, developers hardly care about this fact.</p>
+  </li>
+  <li>
+    <p><strong>Restricted operational access -</strong> Direct shell access (<code class="language-plaintext highlighter-rouge">redis-cli</code>, <code class="language-plaintext highlighter-rouge">INFO all</code> with full privileges) is limited or read-only. You can’t inspect <code class="language-plaintext highlighter-rouge">/var/log/redis</code> or the underlying OS, so debugging memory fragmentation, CPU throttling, or swap usage becomes harder.</p>
+  </li>
+  <li>
+    <p><strong>Limited control during freezes or failovers -</strong> If a node hangs (e.g., fork stall, full memory pressure), you can’t SSH or restart the process. You must wait for the cloud provider’s control plane to detect failure and trigger replacement — which can take minutes. For production use cases, this can cause serious damage by the time this gets fixed. It did much damage for one of the teams I worked with, and they started hating Redis because of this.</p>
+  </li>
+  <li>
+    <p><strong>Version lag and feature delays -</strong> Managed offerings usually trail open-source Redis by a few releases. New features (e.g., active-active replication, ACL improvements, new data encodings) arrive late or in enterprise-only tiers.</p>
+  </li>
+  <li>
+    <p><strong>Higher cost for flexibility -</strong> While managed Redis saves operational effort, it’s significantly more expensive per GB of memory. Running Redis on self-managed EC2 is often 50% cheaper.</p>
+  </li>
+</ol>
+
+<h3 id="popularity-and-alternatives">Popularity and alternatives</h3>
+
+<p>For over a decade, Redis has been the standard choice for in-memory data store because of its speed, simplicity, and versatility. As of 2025:</p>
+
+<ul>
+  <li>
+    <p>Redis continues to rank among the <strong>top 10 databases</strong> on the <a href="https://db-engines.com/en/ranking">DB-Engines index</a>, often #1 in the <a href="https://db-engines.com/en/ranking/key-value+store">key-value category</a>.</p>
+  </li>
+  <li>
+    <p>Major companies rely on it for both caching and primary storage of ephemeral workloads.</p>
+  </li>
+  <li>
+    <p>Virtually every cloud platform offers Redis (or compatible software) as a first-class managed service.</p>
+  </li>
+</ul>
+
+<p>While providers with managed Redis services have different forks of Redis due to <a href="https://redis.io/blog/what-redis-license-change-means-for-our-managed-service-providers/">license reasons</a>, there have been parallel initiatives by many open source and closed source teams leading to softwares which are 100% API compatible with Redis. To name a few:</p>
+
+<ol>
+  <li>
+    <p><a href="https://docs.aws.amazon.com/memorydb/latest/devguide/what-is-memorydb.html"><strong>AWS Memory DB</strong></a> is a durable, in-memory, Redis-compatible database service that delivers ultra-fast performance with multi-AZ durability. MemoryDB stores all data in memory for sub-millisecond reads, but persists every write to a distributed transactional log (across multiple AZs in AWS). If the cluster or all nodes crash, MemoryDB can rebuild the in-memory state from that log — unlike ElastiCache, which would rely on periodic snapshots.</p>
+  </li>
+  <li>
+    <p><a href="https://microsoft.github.io/garnet/"><strong>Garnet</strong></a> is a research project by Microsoft Research. It uses the RESP wire protocol, making it compatible with standard Redis clients in many languages but unlike Redis’s single-thread command execution, Garnet’s storage layer is designed to scale across threads within a node. It can work over memory, SSD, and even remote storage (e.g., Azure storage) to support datasets larger than memory.</p>
+  </li>
+  <li>
+    <p><a href="https://dicedb.io/"><strong>DiceDB</strong></a> is an <strong>open-source, in-memory, reactive database</strong> written in Go. It is Redis protocol compatible while adding features like subscriptions / query reactivity (push updates rather than polling). It is designed to better utilize multi-core hardware rather than being stuck with a single-threaded event loop. I was following the creator of this project for a while, who had created this mostly for learning purposes and had not tested this on large number of production applications yet.</p>
+  </li>
+  <li>
+    <p><a href="https://www.dragonflydb.io/"><strong>DragonflyDB</strong></a> is a high-performance drop-in Redis replacement written in C++. It is fully API-compatible with Redis, supports multi-threaded execution, and often 2–3× faster in mixed workloads. It uses lock-free structures and shared-nothing architecture, avoiding Redis’s single-thread bottleneck. It is known to be extremely efficient with memory and CPU — ideal for modern multi-core servers.</p>
+  </li>
+</ol>
+
+<h3 id="debugging-performance-bottlenecks">Debugging performance bottlenecks</h3>
+
+<p>To ensure optimal performance of Redis in production, it’s essential to monitor and debug performance bottlenecks effectively. Here’s a concise guide:</p>
+
+<ol>
+  <li>
+    <p><strong>INFO Command</strong>: The <code class="language-plaintext highlighter-rouge">INFO</code> command in Redis is a versatile tool that provides a comprehensive overview of the server’s status and performance metrics. When executed, it returns a wealth of information categorized into sections such as server, clients, memory, persistence, stats, replication, CPU, and keyspace. This command is invaluable for monitoring and diagnosing the health of your Redis instance. For latency analysis, the <code class="language-plaintext highlighter-rouge">INFO</code> command can help identify potential issues by providing insights into metrics like the number of connected clients, memory usage, and command statistics. High memory usage or a large number of connected clients can contribute to increased latency, and the <code class="language-plaintext highlighter-rouge">INFO</code> command helps pinpoint these areas.</p>
+  </li>
+  <li>
+    <p><strong>Slow logs:</strong> They are essential for identifying performance bottlenecks by tracking commands that exceed a specified execution time threshold. Configured through parameters like <code class="language-plaintext highlighter-rouge">slowlog-log-slower-than</code> and <code class="language-plaintext highlighter-rouge">slowlog-max-len</code>, slow logs capture detailed entries of long-running commands, including their execution time and timestamp. By analyzing these entries, you can pinpoint specific commands or patterns causing delays, guiding you in optimizing command performance or adjusting Redis configurations. I’ve used this a few times to figure out usage of some commands on large data structures causing slowness in command execution thread.</p>
+  </li>
+  <li>
+    <p><strong>Latency Doctor</strong>: Utilize the <code class="language-plaintext highlighter-rouge">LATENCY DOCTOR</code> command to analyze and report on latency spikes, providing insights into potential causes. When you run the <code class="language-plaintext highlighter-rouge">LATENCY DOCTOR</code> command, Redis examines its internal latency history and generates a report. This report includes details about various latency events, such as their frequency and potential causes. The command analyzes different aspects of the server’s operation, including command execution, memory management, and I/O operations. Based on the insights provided by <code class="language-plaintext highlighter-rouge">LATENCY DOCTOR</code>, you can take specific actions to mitigate latency issues.</p>
+  </li>
+  <li>
+    <p><strong>Connection Pooling</strong>: Always implement connection pooling on the client side to manage Redis connections efficiently. This reduces the overhead of establishing new connections by reusing existing ones, which most client libraries support.</p>
+  </li>
+  <li>
+    <p><strong>Monitoring Tools</strong>: Employ monitoring tools that can instrument Redis metrics, such as Datadog, New Relic, or AWS CloudWatch. Key metrics to monitor include:</p>
+
+    <ul>
+      <li>
+        <p><strong>Memory Usage</strong>: Track used and peak memory to prevent out-of-memory errors.</p>
+      </li>
+      <li>
+        <p><strong>Command Latency</strong>: Monitor the time taken to execute commands to identify slow operations.</p>
+      </li>
+      <li>
+        <p><strong>Keyspace Hits/Misses</strong>: Analyze cache efficiency by observing the ratio of hits to misses.</p>
+      </li>
+      <li>
+        <p><strong>Evicted Keys</strong>: Keep an eye on the number of keys evicted due to memory limits, which can indicate the need for configuration adjustments.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>By using these strategies and tools, you can effectively monitor and address performance bottlenecks in your Redis environment.</p>
+
+<h1 id="closing-note">Closing note</h1>
+
+<p>Reflecting on my journey with Redis over the years, it’s clear that this powerful tool has been more than just a component in my tech stack; it’s been a constant companion. From my early days of grappling with security vulnerabilities to tweaking the nuances of Redis configurations, each experience has enriched my understanding and appreciation of this versatile database.</p>
+
+<p>As I share these insights, my hope is that they resonate with you, whether you’re just starting out or are well-versed in the world of Redis. Remember, while technical knowledge is crucial, it’s the personal experiences and challenges overcome that truly shape our expertise. Here’s to embracing the learning curve and continuing to explore the endless possibilities that such databases offer. Thank you for sparing time to read this.</p>
+
+<hr />
+
+<p>If you liked this post, you might also like these:</p>
+
+<ol>
+  <li>
+    <p>Having worked with small teams mostly, I’ve been a proponent of keeping the tech stack very simple. I shared <a href="https://blog.gagan93.me/avoid-redundant-complexity">my thoughts</a> around the same.</p>
+  </li>
+  <li>
+    <p>I wrote a post early this year about <a href="https://blog.gagan93.me/habits-productivity-deep-work"><strong>habits, productivity and deep work</strong></a><strong>.</strong></p>
+  </li>
+  <li>
+    <p>If you’re transitioning from monolith to microservices and are looking for a scalable way to migrate data, read <a href="https://blog.gagan93.me/migrating-data-across-services"><strong>this post</strong></a> once.</p>
+  </li>
+</ol>
+
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            
+              
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(https://avatars.githubusercontent.com/u/13852061)">Blog Logo</div>
+              <h4>Gagandeep Singh</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2025-10-17 00:00">17 Oct 2025</time></p>
+            </section>
+          </div>
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Made with ❤️ using <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/blog/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> RSS feed</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright &copy; 2025<br>All rights reserved.</section>
+              </div>
+            </footer>
+          </div>
+        </div>
+        
+      </article>
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image"  style="background-image: url(/blog/assets/images/cover.jpg)">
+        Image
+      </div>
+      <div class="inner">
+        <a href=/blog/ class="btn">Back to All Posts</a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/blog/assets/js/index.js"></script>
+<script type="text/javascript" src="/blog/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image, .post-image-image2');
+    
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 0.5-Math.max(top/1400, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+  </body>
+</html>
