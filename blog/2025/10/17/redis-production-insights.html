@@ -144,7 +144,7 @@
 
 <h1 id="learnings-and-recommendations">Learnings and Recommendations</h1>
 
-<h3 id="when-do-i-need-the-second-redis-in-my-infra">When do I need the second Redis in my infra?</h3>
+<h3 id="do-i-need-the-multiple-redices">Do I need the multiple Redices?</h3>
 
 <p>I’ve seen applications grow from a few thousand users to millions. In a simple stack, we usually start with one Redis instance. As the product grows, more developers realize use cases for Redis and continue building on top of it. However, there are instances when you should consider adding a second Redis machine to your infrastructure:</p>
 
@@ -162,7 +162,7 @@
 
 <p>Based on use cases, persistence, latency, and other tuning requirements, you might want to separate Redis early on to avoid migration overhead.</p>
 
-<h3 id="using-expiring-keys-wherever-possible">Using expiring keys wherever possible</h3>
+<h3 id="using-expiring-keys">Using expiring keys</h3>
 
 <p>I’ve seen apps where the count of keys easily grows beyond 10 million. It’s not bad to have this many keys as long as you have the memory available, but in some cases, it might not be justified given the app size and use cases. A primary reason for <em>ever-growing keys</em> in Redis is <strong>not setting expiry</strong> for keys. On analyzing key patterns on various Redis machines, I’ve often come across keys for which the corresponding application code was deleted long ago, but the developers didn’t clean up the respective keys. As Redis is an in-memory database, useless keys mean wasted RAM. I’m not saying all keys should be expiring, but if you’re considering running in cache mode, your application code should manage repopulating Redis as needed. Some good examples of expiring keys are:</p>
 
@@ -177,7 +177,7 @@
 
 <p>If you see your Redis memory graph in an ‘ever-increasing trend”, it might be a good time to revisit if you really need all those keys 😁.</p>
 
-<h3 id="caching-invalidation-problem-and-application-hooks">Caching invalidation problem and application hooks</h3>
+<h3 id="caching-invalidation--application-hooks">Caching invalidation &amp; application hooks</h3>
 
 <blockquote>
   <p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
@@ -209,7 +209,7 @@
 
 <p>By carefully setting up cache invalidation hooks and strategies, you can maintain the integrity of your application’s data while leveraging the performance benefits of caching.</p>
 
-<h3 id="understanding-configuration-options-before-running-a-database-in-production">Understanding configuration options before running a database in production</h3>
+<h3 id="tuning-the-configuration">Tuning the configuration</h3>
 
 <p>This is true for all databases, not just Redis. Whenever you’re planning to run anything in production, it’s good to know about various parameters that you can tune. For ages, we’ve been operating single-node centralized databases that persist data on disk, and they generally run fine with default settings unless you hit some metric (IO/CPU/RAM) really hard. But the same is not true for distributed NoSQL databases. Based on the configuration, such databases can be tuned to compromise consistency or availability for speed, scalability, and fault tolerance.</p>
 
@@ -405,7 +405,7 @@
   </li>
 </ol>
 
-<h3 id="how-to-safely-analyze-production-redis-data-with-keys-command">How to safely analyze production Redis data with <code class="language-plaintext highlighter-rouge">KEYS</code> command</h3>
+<h3 id="safely-analyzing-data-with-keys-command">Safely analyzing data with KEYS command</h3>
 
 <p>There are multiple ways for doing this:</p>
 
@@ -435,7 +435,7 @@
 
 <p>If your purpose is doing some analytics, somewhat old data might not cause any problems.</p>
 
-<h3 id="taking-advantage-of-single-threaded-nature">Taking advantage of Single threaded nature</h3>
+<h3 id="how-i-saved-75-cost-due-to-single-core-usage">How I saved 75% cost due to single core usage</h3>
 
 <p>By now, we know two things about Redis:</p>
 
@@ -469,7 +469,7 @@
 
 <p>We took a machine with 4 cores, ran four Redis processes on different ports and exported data from existing machines, saving <strong>75%</strong> on Redis costs. One learning that I got in this process is — you can’t create replica of a Elasticache Redis outside Elasticache ecosystem (basically EC2 cannot act as replica of Elasticache hosted Redis). So in order to copy data, we had to export it to S3 and copy that backup file on the new machine which increased our migration downtime by a few minutes.</p>
 
-<h3 id="deployment-options-and-managed-services">Deployment options and managed services</h3>
+<h3 id="deployment-options-and-cloud-providers">Deployment options and Cloud providers</h3>
 
 <p>Redis can be deployed in several topologies, each balancing availability, consistency, and operational complexity differently. From a single instance to fully distributed clusters, the choice depends on whether your priority is simplicity, high availability, or scalability. I have mostly operated first two setups but I’ll share four of them for your reference:</p>
 

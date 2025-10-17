@@ -6,8 +6,8 @@
 </description>
     <link>https://gagan93.me/blog/</link>
     <atom:link href="https://gagan93.me/blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 17 Oct 2025 10:21:06 +0530</pubDate>
-    <lastBuildDate>Fri, 17 Oct 2025 10:21:06 +0530</lastBuildDate>
+    <pubDate>Fri, 17 Oct 2025 10:27:31 +0530</pubDate>
+    <lastBuildDate>Fri, 17 Oct 2025 10:27:31 +0530</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -74,7 +74,7 @@
 
 &lt;h1 id=&quot;learnings-and-recommendations&quot;&gt;Learnings and Recommendations&lt;/h1&gt;
 
-&lt;h3 id=&quot;when-do-i-need-the-second-redis-in-my-infra&quot;&gt;When do I need the second Redis in my infra?&lt;/h3&gt;
+&lt;h3 id=&quot;do-i-need-the-multiple-redices&quot;&gt;Do I need the multiple Redices?&lt;/h3&gt;
 
 &lt;p&gt;I’ve seen applications grow from a few thousand users to millions. In a simple stack, we usually start with one Redis instance. As the product grows, more developers realize use cases for Redis and continue building on top of it. However, there are instances when you should consider adding a second Redis machine to your infrastructure:&lt;/p&gt;
 
@@ -92,7 +92,7 @@
 
 &lt;p&gt;Based on use cases, persistence, latency, and other tuning requirements, you might want to separate Redis early on to avoid migration overhead.&lt;/p&gt;
 
-&lt;h3 id=&quot;using-expiring-keys-wherever-possible&quot;&gt;Using expiring keys wherever possible&lt;/h3&gt;
+&lt;h3 id=&quot;using-expiring-keys&quot;&gt;Using expiring keys&lt;/h3&gt;
 
 &lt;p&gt;I’ve seen apps where the count of keys easily grows beyond 10 million. It’s not bad to have this many keys as long as you have the memory available, but in some cases, it might not be justified given the app size and use cases. A primary reason for &lt;em&gt;ever-growing keys&lt;/em&gt; in Redis is &lt;strong&gt;not setting expiry&lt;/strong&gt; for keys. On analyzing key patterns on various Redis machines, I’ve often come across keys for which the corresponding application code was deleted long ago, but the developers didn’t clean up the respective keys. As Redis is an in-memory database, useless keys mean wasted RAM. I’m not saying all keys should be expiring, but if you’re considering running in cache mode, your application code should manage repopulating Redis as needed. Some good examples of expiring keys are:&lt;/p&gt;
 
@@ -107,7 +107,7 @@
 
 &lt;p&gt;If you see your Redis memory graph in an ‘ever-increasing trend”, it might be a good time to revisit if you really need all those keys 😁.&lt;/p&gt;
 
-&lt;h3 id=&quot;caching-invalidation-problem-and-application-hooks&quot;&gt;Caching invalidation problem and application hooks&lt;/h3&gt;
+&lt;h3 id=&quot;caching-invalidation--application-hooks&quot;&gt;Caching invalidation &amp;amp; application hooks&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;There are only two hard things in Computer Science: cache invalidation and naming things.&lt;/p&gt;
@@ -139,7 +139,7 @@
 
 &lt;p&gt;By carefully setting up cache invalidation hooks and strategies, you can maintain the integrity of your application’s data while leveraging the performance benefits of caching.&lt;/p&gt;
 
-&lt;h3 id=&quot;understanding-configuration-options-before-running-a-database-in-production&quot;&gt;Understanding configuration options before running a database in production&lt;/h3&gt;
+&lt;h3 id=&quot;tuning-the-configuration&quot;&gt;Tuning the configuration&lt;/h3&gt;
 
 &lt;p&gt;This is true for all databases, not just Redis. Whenever you’re planning to run anything in production, it’s good to know about various parameters that you can tune. For ages, we’ve been operating single-node centralized databases that persist data on disk, and they generally run fine with default settings unless you hit some metric (IO/CPU/RAM) really hard. But the same is not true for distributed NoSQL databases. Based on the configuration, such databases can be tuned to compromise consistency or availability for speed, scalability, and fault tolerance.&lt;/p&gt;
 
@@ -335,7 +335,7 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;how-to-safely-analyze-production-redis-data-with-keys-command&quot;&gt;How to safely analyze production Redis data with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEYS&lt;/code&gt; command&lt;/h3&gt;
+&lt;h3 id=&quot;safely-analyzing-data-with-keys-command&quot;&gt;Safely analyzing data with KEYS command&lt;/h3&gt;
 
 &lt;p&gt;There are multiple ways for doing this:&lt;/p&gt;
 
@@ -365,7 +365,7 @@
 
 &lt;p&gt;If your purpose is doing some analytics, somewhat old data might not cause any problems.&lt;/p&gt;
 
-&lt;h3 id=&quot;taking-advantage-of-single-threaded-nature&quot;&gt;Taking advantage of Single threaded nature&lt;/h3&gt;
+&lt;h3 id=&quot;how-i-saved-75-cost-due-to-single-core-usage&quot;&gt;How I saved 75% cost due to single core usage&lt;/h3&gt;
 
 &lt;p&gt;By now, we know two things about Redis:&lt;/p&gt;
 
@@ -399,7 +399,7 @@
 
 &lt;p&gt;We took a machine with 4 cores, ran four Redis processes on different ports and exported data from existing machines, saving &lt;strong&gt;75%&lt;/strong&gt; on Redis costs. One learning that I got in this process is — you can’t create replica of a Elasticache Redis outside Elasticache ecosystem (basically EC2 cannot act as replica of Elasticache hosted Redis). So in order to copy data, we had to export it to S3 and copy that backup file on the new machine which increased our migration downtime by a few minutes.&lt;/p&gt;
 
-&lt;h3 id=&quot;deployment-options-and-managed-services&quot;&gt;Deployment options and managed services&lt;/h3&gt;
+&lt;h3 id=&quot;deployment-options-and-cloud-providers&quot;&gt;Deployment options and Cloud providers&lt;/h3&gt;
 
 &lt;p&gt;Redis can be deployed in several topologies, each balancing availability, consistency, and operational complexity differently. From a single instance to fully distributed clusters, the choice depends on whether your priority is simplicity, high availability, or scalability. I have mostly operated first two setups but I’ll share four of them for your reference:&lt;/p&gt;
 
