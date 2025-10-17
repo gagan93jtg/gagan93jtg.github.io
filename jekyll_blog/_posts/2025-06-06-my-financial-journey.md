@@ -6,7 +6,7 @@ published_on: "6th Jun, 2025"
 author: Gagandeep Singh
 image: "/assets/images/2025-06-06-financial-journey.jpg"
 categories: personal-finance money investing financial-literacy
-excerpt: In 2022-2023, I spent at least two afternoons each week discussing architecture with two senior colleagues at my company. We had hired many people, expecting growth, and decided to transition from a monolith to microservices. During one discussion about a central authorization service...
+excerpt: I began working as a Software Engineer in June 2015, which means I've been earning for nearly 10 years. But if you ask me when I seriously started investing, the answer is "about three years ago." In this blog post, I'll share what happened around that time and how my views on money and expenses have changed...
 ---
 
 Photo by <a href="https://unsplash.com/@micheile?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">micheile henderson</a> on <a href="https://unsplash.com/photos/green-plant-in-clear-glass-cup-SoT4-mZhyhE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
