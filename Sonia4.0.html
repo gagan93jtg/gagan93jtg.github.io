@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Transformation Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-soft: #E1F5EE;
+    --teal-text: #0F6E56;
+    --purple: #7F77DD;
+    --purple-soft: #EEEDFE;
+    --purple-text: #3C3489;
+    --amber: #B8720A;
+    --amber-soft: #FDF0D8;
+    --amber-text: #633806;
+    --coral: #D85A30;
+    --coral-soft: #FAECE7;
+    --coral-text: #712B13;
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --border: #E8E6E0;
+    --text: #1A1A1A;
+    --text2: #6B6860;
+    --text3: #9A9890;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(145deg, #0d3d2e 0%, #1a6b50 60%, #2d9970 100%);
+    padding: 48px 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32px;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: #7DDFB8;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0 auto 24px;
+  }
+  .hero-pills {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* TABS */
+  .tab-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text3);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+  }
+
+  /* PANELS */
+  .panel { display: none; padding: 20px 16px 80px; max-width: 640px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 28px 0 12px;
+  }
+  .section-label:first-child { margin-top: 4px; }
+
+  /* INFO BOX */
+  .info-box {
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .info-box p { font-size: 13px; line-height: 1.65; margin: 0; }
+  .info-box strong { font-weight: 600; display: block; margin-bottom: 4px; font-size: 13px; }
+
+  /* SCHEDULE CARD */
+  .sched-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+    border-left-width: 3px;
+  }
+  .sched-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sched-icon { font-size: 20px; flex-shrink: 0; }
+  .sched-meta { flex: 1; min-width: 0; }
+  .sched-time-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; flex-wrap: wrap; }
+  .sched-time { font-size: 11px; font-weight: 500; color: var(--text3); }
+  .sched-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .sched-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .sched-chevron {
+    font-size: 10px;
+    color: var(--text3);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .sched-card.open .sched-chevron { transform: rotate(180deg); }
+  .sched-body {
+    display: none;
+    padding: 0 16px 16px 48px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .sched-card.open .sched-body { display: block; }
+
+  /* FOOD CARD */
+  .food-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .food-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .food-title-block { flex: 1; min-width: 0; }
+  .food-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+  .food-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+  .food-chevron {
+    font-size: 10px;
+    color: var(--text3);
+    flex-shrink: 0;
+    margin-top: 4px;
+    transition: transform 0.25s;
+  }
+  .food-card.open .food-chevron { transform: rotate(180deg); }
+  .food-body {
+    display: none;
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .food-card.open .food-body { display: block; }
+  .food-how {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .food-how strong { color: var(--text); font-weight: 600; }
+  .food-why {
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* WATER */
+  .water-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .water-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+  .water-time { font-size: 12px; font-weight: 500; color: var(--text3); min-width: 76px; }
+  .water-amount { font-size: 13px; font-weight: 500; color: var(--text); flex: 1; }
+  .water-note { font-size: 11px; color: var(--text3); text-align: right; flex-shrink: 0; max-width: 120px; line-height: 1.4; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+  .stat-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .stat-val { font-size: 22px; font-weight: 600; color: var(--text); }
+  .stat-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* BEHAVIOUR */
+  .loop-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-left-color: var(--purple);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .loop-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .loop-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .loop-body { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* MILESTONES */
+  .milestone {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .milestone-phase {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .milestone-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .milestone-goal {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 7px;
+  }
+  .milestone-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .milestone-goal-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .milestone-footer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .milestone-metric { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .milestone-note { font-size: 12px; color: var(--text3); font-style: italic; line-height: 1.5; }
+
+  /* MINIMUM VIABLE DAY */
+  .mvd {
+    background: linear-gradient(135deg, var(--teal-soft), #f0fdf8);
+    border: 1px solid #b2e8d4;
+    border-radius: var(--radius);
+    padding: 18px 18px;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .mvd-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); margin-bottom: 6px; }
+  .mvd-text { font-size: 14px; color: var(--teal-text); line-height: 1.6; }
+
+  /* ALERT BOX */
+  .alert-box {
+    background: #FFF8E7;
+    border: 1px solid #F0D080;
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-text { font-size: 13px; color: #7A5A00; line-height: 1.65; }
+  .alert-text strong { color: #5A3D00; font-weight: 600; display: block; margin-bottom: 3px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 12px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Sonia's personal plan · Jun - Dec 2026</p>
+  <h1 class="hero-title">Health first.<br><em>Career alongside.</em></h1>
+  <p class="hero-sub">Built around your real day — aerobics at 7pm, baby, Delhi, vegetarian kitchen, and actual hunger after a workout.</p>
+  <div class="hero-pills">
+    <span class="hero-pill">50% health</span>
+    <span class="hero-pill">50% career</span>
+    <span class="hero-pill">100% vegetarian</span>
+    <span class="hero-pill">BMI 33 → 27</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" onclick="switchTab('schedule', this)">📅 Schedule</button>
+  <button class="tab-btn" onclick="switchTab('food', this)">🍽 What to eat</button>
+  <button class="tab-btn" onclick="switchTab('water', this)">💧 Water plan</button>
+  <button class="tab-btn" onclick="switchTab('loops', this)">🔄 Breaking loops</button>
+  <button class="tab-btn" onclick="switchTab('milestones', this)">📈 Milestones</button>
+</div>
+
+<!-- ═══════════════════════════════════ SCHEDULE ═══ -->
+<div class="panel active" id="panel-schedule">
+
+  <p class="section-label">Tap any block to read the reasoning</p>
+
+  <!-- Cards -->
+  <div class="sched-card" style="border-left-color: var(--teal);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">💧</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">6:00 am</span>
+          <span class="sched-tag" style="background:var(--teal-soft);color:var(--teal-text);">Hydration</span>
+        </div>
+        <div class="sched-title">Wake up — warm water first, phone second</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      2 large glasses of warm or room-temp water before anything else — before tea, before phone, before baby. Takes 90 seconds. Kickstarts digestion, flushes overnight metabolic waste, and suppresses the false hunger that leads to biscuits at 7:30am. Cold water first thing constricts the gut. Don't do it.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--teal);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🌅</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">6:15 – 7:00 am</span>
+          <span class="sched-tag" style="background:var(--teal-soft);color:var(--teal-text);">Movement</span>
+        </div>
+        <div class="sched-title">Park walk with baby — 3,000 to 4,000 steps</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Baby is up anyway — put them in the stroller or carrier and walk. Morning sunlight before 8am sets your circadian rhythm, suppresses late-evening hunger, and releases serotonin that carries through the day. This is the single highest-leverage habit in the entire plan. Everything else can slip on a bad day — not this one.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">☕</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">7:00 – 7:30 am</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Food — fix this</span>
+        </div>
+        <div class="sched-title">Tea — but replace biscuit and rusk</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Tea is absolutely fine. Biscuit and rusk are the problem — pure refined carbs with zero protein. They spike blood sugar hard, which crashes by 9am and creates the craving that derails breakfast. Replace with: <strong>4–5 soaked almonds + 2 walnuts</strong>, OR <strong>a small bowl of makhana</strong> OR <strong>1-2 slice multigrain bread</strong>. Zero cooking. Takes the same time.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--teal);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">👶</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">8:30 – 9:30 am</span>
+          <span class="sched-tag" style="background:var(--teal-soft);color:var(--teal-text);">Hydration</span>
+        </div>
+        <div class="sched-title">Baby food time + 1 glass water</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      While making baby food, drink one glass of water. Keep the bottle on the kitchen counter — visible, always. You will not drink it if it's in the fridge. This is the only trick that consistently works for reactive drinkers who don't think about water until they're already thirsty (which means already mildly dehydrated).
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🍽️</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">10:00 am</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Food — most important</span>
+        </div>
+        <div class="sched-title">Breakfast — protein first, always</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      This is the most impactful meal for fat loss. At least 20g protein here reduces cravings by 30–40% for the rest of the day — without willpower. A parantha alone doesn't do it. A parantha with paneer filling, or a proper sandwich, does. See the <strong>What to eat</strong> tab for six exact recipes she can rotate through. <br>You can use phone for 10 minutes in this window.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--coral);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">📚</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">11:00 am – 12:00 pm</span>
+          <span class="sched-tag" style="background:var(--coral-soft);color:var(--coral-text);">Career</span>
+        </div>
+        <div class="sched-title">Tuition window — prep or students</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      English grammar worksheets, lesson plans, or actual student sessions. Start with 2–3 neighbourhood students — word of mouth in a Punjabi family network moves fast. This is the identity window. You can do something else also till you get students (eg. reading or planning something else) but don't utilise this plan in scrolling reels.
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <span class="alert-icon">⚠️</span>
+    <div class="alert-text">
+      <strong>12:00 – 1:00 pm · Baby food round 2 — don't eat the leftovers</strong>
+      Eating bits of banana and mango while making baby food is a mindless 100–150 extra calories every single day. That's up to 4,500 extra calories a month — nearly 0.5kg of stored fat from something you don't even register eating. If hungry here, drink water first. Still hungry? Have a proper snack.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🥗</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">2:00 pm</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Food</span>
+        </div>
+        <div class="sched-title">Lunch — dal first, sabzi second, roti last</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Same food, different order — and it changes everything. Eating dal and sabzi first (fibre + protein) before roti (carbs) significantly blunts the blood sugar spike. You feel full faster, stay full longer, and get far less of the 3pm crash. Limit to 2 rotis. On a junk day, eat 50g paneer or a bowl of dal before the junk arrives. You'll naturally eat 25–30% less.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--purple);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">😴</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">3:00 – 5:00 pm</span>
+          <span class="sched-tag" style="background:var(--purple-soft);color:var(--purple-text);">Rest + Career</span>
+        </div>
+        <div class="sched-title">Baby nap = rest first, then tuitions</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Split this window: 3–4pm rest or nap — not reels. 4–5pm tuition prep or student sessions. Protecting the rest window directly affects food choices at 6pm. Tired people consistently make worse food decisions and have lower motivation to move. This isn't laziness — it's system maintenance. Instagram limit: 20 mins total here.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">⚡</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">6:00 pm</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Pre-workout fuel</span>
+        </div>
+        <div class="sched-title">Small pre-aerobics snack — don't skip this</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Makhana (perfect — keep it), OR a small banana, OR 1 slice toast with peanut butter. Eating before aerobics means you actually perform instead of dragging through it. A properly fuelled session burns significantly more than a depleted one. Also drink 1 glass water here.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--teal);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🏃‍♀️</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">7:00 – 8:00 pm</span>
+          <span class="sched-tag" style="background:var(--teal-soft);color:var(--teal-text);">Movement — anchor</span>
+        </div>
+        <div class="sched-title">Aerobics — already happening 🎉</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      5x per week already. This is the strongest existing habit and the backbone of the physical transformation. Protect it like a non-negotiable appointment. Don't negotiate with it. Don't skip it for anything except genuine illness. Every session that happens is a deposit. Every skipped one costs more than just one day.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🍊</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">8:00 pm</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Post-workout · keep it</span>
+        </div>
+        <div class="sched-title">Mosambi juice 300ml — this timing is actually perfect</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      After 60 mins of aerobics, muscles are glycogen-depleted and absorb sugar quickly — storing very little as fat. 300ml fresh mosambi is ~130 natural calories, and at this exact time it works in your favour. Don't shift it to afternoon when you're sedentary. Keep it right here, post-aerobics. This is one thing on the list that doesn't need changing.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--amber);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🍲</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">8:15 – 8:45 pm</span>
+          <span class="sched-tag" style="background:var(--amber-soft);color:var(--amber-text);">Dinner — most challenging</span>
+        </div>
+        <div class="sched-title">Post-aerobics dinner — hungry, tired, and it still needs to be right</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      The hardest meal to get right. The answer is NOT eating less — it's eating food that's genuinely filling but light on the stomach. High-protein, high-volume, fast to make. See the <strong>What to eat</strong> tab for six specific dinner options designed exactly for this scenario — all under 30 mins, all vegetarian, all satisfying.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--purple);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🔌</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">9:30 pm</span>
+          <span class="sched-tag" style="background:var(--purple-soft);color:var(--purple-text);">Sleep prep</span>
+        </div>
+        <div class="sched-title">Phone usage restricted after Bisman comes up  — non-negotiable</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Scrolling in bed raises cortisol, ruins sleep quality, increases ghrelin (the hunger hormone) the next morning, and means tomorrow starts reactive instead of intentional. The phone sleeps away from you, not on your side table. This one habit change improves food choices the next day more than any single dietary intervention.
+    </div>
+  </div>
+
+  <div class="sched-card" style="border-left-color: var(--purple);" onclick="toggleCard(this)">
+    <div class="sched-header">
+      <span class="sched-icon">🌙</span>
+      <div class="sched-meta">
+        <div class="sched-time-row">
+          <span class="sched-time">10:00 pm</span>
+          <span class="sched-tag" style="background:var(--purple-soft);color:var(--purple-text);">Recovery</span>
+        </div>
+        <div class="sched-title">Sleep — 7 to 8 hours. This is active transformation.</div>
+      </div>
+      <span class="sched-chevron">▼</span>
+    </div>
+    <div class="sched-body">
+      Fat burning, hormone reset, and muscle repair all happen during sleep — not during exercise. Poor sleep = higher cortisol = more belly fat stored = stronger food cravings next day. This is not optional recovery. It is the transformation happening while you do nothing. Protect it exactly like the aerobics session.
+    </div>
+  </div>
+
+  <div class="mvd">
+    <div class="mvd-label">Minimum viable day</div>
+    <div class="mvd-text">If everything falls apart — just do the morning walk, avoid junk and drink your water. That is not a bad day.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════ FOOD ═══ -->
+<div class="panel" id="panel-food">
+
+  <div class="info-box" style="background:var(--amber-soft);">
+    <p style="color:var(--amber-text);"><strong>Breakfast · 10:00am — protein first</strong>Six options. Rotate them through the week. All vegetarian, all under 30 mins, all with at least 14g protein. She likes sandwiches — there are three here. Tap to expand any recipe.</p>
+  </div>
+
+  <!-- Breakfast options -->
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Paneer veggie sandwich</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">10 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">18–22g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Sandwich</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Grate 60g paneer. Mix with finely chopped capsicum, onion, pinch of chaat masala, salt, and a squeeze of lemon. Spread generously on 2 slices multigrain bread. Toast on a tawa with minimal ghee or in a sandwich maker. No mayo needed — the paneer is moist enough.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Can prep the paneer filling the night before and refrigerate. Morning effort: 3 minutes and a tawa. High protein, actually filling, feels like a treat.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Hung curd + cucumber sandwich</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">8 min (prep night before)</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">14g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Sandwich</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> The night before: pour regular dahi into a muslin cloth or strainer over a bowl and refrigerate — it thickens into hung curd by morning. Next day: mix with grated cucumber, salt, roasted jeera powder, chaat masala. Spread on multigrain bread. No cooking at all.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 The hanging happens passively overnight — zero morning effort. Probiotic, cooling, high protein, and the hanging takes 30 seconds to set up.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Besan chilla (2 pieces)</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">15 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">16g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Tawa cook</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> 1 cup besan, grated zucchini or carrot or spinach, finely chopped onion, green chilli, salt, ajwain. Add water to a pourable batter. Pour on a hot non-stick tawa, spread thin like a dosa, drizzle minimal oil, flip once. Serve with green chutney or a bowl of dahi on the side.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Feels like a proper cooked breakfast. Very filling because besan is slow-digesting. The dahi on the side adds protein and probiotics.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Parantha — done right</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">15 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">15–18g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Existing habit</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> She already makes this — just two changes. (1) Mix 50g crumbled paneer into the aloo stuffing. (2) Always eat with a bowl of dahi on the side — not pickle, not butter, dahi. Minimal ghee on the parantha itself. That's it. Same effort, completely different nutritional profile.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 No new skill needed. The paneer adds protein, the dahi slows digestion and prevents the blood sugar crash at noon that triggers junk cravings.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Poha with paneer crumble</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">15 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">16g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">One upgrade</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Standard poha recipe — rinse poha, temper with mustard seeds, curry leaves, onion, green chilli, turmeric, salt. At the very end, crumble 50g paneer in instead of or alongside peanuts. Add lemon juice. That one addition is the only change from regular poha.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Most people make poha as a carb-only snack. Adding paneer turns it into a balanced meal. Same taste, same effort, triple the protein.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--amber);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Overnight oats — zero morning effort</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">2 min morning · 5 min prev night</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">14g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">No cooking</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Night before (while baby is sleeping): ½ cup rolled oats + 1 cup thick dahi + 1 tsp honey + chopped banana or mango or apple. Mix in a jar or container, refrigerate. Morning: take out, add a small handful of nuts on top. Eat at room temp or cold.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 On aerobics days when morning is chaotic, this is already done. The effort happens the previous night when things are calmer. Best lazy-day breakfast in the plan.</div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:28px;">Post-aerobics dinner · 8:15pm — hungry, tired, and it still needs to work</p>
+
+  <div class="info-box" style="background:var(--teal-soft);">
+    <p style="color:var(--teal-text);"><strong>The approach</strong>She's starving and exhausted at 8pm. The answer is NOT less food — it's the right food. High protein + high volume + light on the stomach. Everything below is under 30 mins. Batch-cooking tips included where relevant.</p>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Paneer bhurji + 1 roti</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">12 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">24g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Fastest option</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Heat oil, add jeera, chopped onion (3 min), chopped tomato + spices (3 min), crumble 100g paneer in (3 min), finish with coriander and lemon. One roti on the side. Start to plate: 12 minutes.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Fastest high-protein dinner possible. 100g paneer = ~18g protein alone. With the roti it's a complete satisfying meal. Best choice on the most exhausted nights.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Dal + 1 roti + sabzi</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">20 min (10 hands-off)</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">18–22g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">The classic</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Pressure cook dal while doing other things — 3–4 whistles, 10 minutes hands-off. Quick tadka with ghee, jeera, garlic, tomato. One roti. Any sabzi that's already made or a simple bhindi / palak toss. Eat dal first, sabzi next, roti last.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Dal is the most underrated protein source in Indian cooking. The pressure cooker does the work while she showers after aerobics. Dinner is ready by the time she's changed.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Moong dal khichdi</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">20 min pressure cooker</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">16g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Comfort food</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> ½ cup moong dal + ½ cup rice + any chopped vegetables (carrot, peas, beans, whatever is there) + turmeric + jeera + salt. Pressure cook together — 3 whistles. Add a small dollop of ghee at the end. That's it.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Easy to digest at night. Complete protein and carbs in one pot. Genuinely comforting after a tough session. Makes great next-day leftovers too.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Quick palak paneer + 1 roti</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">20 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">22g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Iron + protein</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Blanch palak in hot water for 2 minutes, blend. Sauté onion + tomato + ginger-garlic + spices (5 min), add palak puree (3 min simmer), add 80–100g paneer cubes (3 min). Done. No deep frying, no restaurant-style long process.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Palak + paneer is one of the most nutrient-dense post-workout combinations — iron, calcium, and protein together. The quick version cuts the usual 40 min process to 20 without compromising taste.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Vegetable dalia + dahi</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">20 min</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">18g protein (with dahi)</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Lightest option</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Dry roast broken wheat (dalia) for 2 min. Add chopped vegetables (onion, tomato, carrot, peas), spices, water. Pressure cook 2 whistles. Serve with a bowl of dahi alongside — the dahi is not optional, it's what fixes the protein gap in dalia.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Highest fibre, lightest on the stomach of all dinner options. Best choice when she wants something that won't feel heavy before sleep. Dahi alongside brings it to a complete meal.</div>
+    </div>
+  </div>
+
+  <div class="food-card" style="border-left-color:var(--teal);" onclick="toggleCard(this)">
+    <div class="food-header">
+      <div class="food-title-block">
+        <div class="food-name">Rajma or chhole — batch cooked on Sunday</div>
+        <div class="food-chips">
+          <span class="chip" style="background:var(--amber-soft);color:var(--amber-text);">5 min weeknight (batch cooked)</span>
+          <span class="chip" style="background:var(--teal-soft);color:var(--teal-text);">20g protein</span>
+          <span class="chip" style="background:#F0F0FF;color:#5555AA;">Batch cook trick</span>
+        </div>
+      </div>
+      <span class="food-chevron">▼</span>
+    </div>
+    <div class="food-body">
+      <div class="food-how"><strong>How to make it:</strong> Sunday: soak rajma or chhole overnight, pressure cook a big batch (20 min), refrigerate in portions. Weeknight: heat one portion with a quick onion-tomato tadka — 5 minutes. Eat with 1 roti. Sunday 30 minutes = 4 weeknight dinners sorted.</div>
+      <div class="food-why" style="background:var(--teal-soft);color:var(--teal-text);">💡 Batch cooking is the single most effective tool against the "too tired to cook healthy" problem. When it's already done, there's no decision to make. This is the cheat code for the hardest nights.</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="background:#F5F5F5; margin-top:16px;">
+    <p style="color:var(--text2);"><strong style="color:var(--text);">Junk day rule — once in 10 days</strong>Momos, spring rolls, whatever — allowed, once. The rule: eat a bowl of dal or 50g paneer BEFORE the order arrives. You'll eat 25–30% less of it without trying. Consolidate junk into one meal window, not scattered snacking. And never cold water with it.</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════ WATER ═══ -->
+<div class="panel" id="panel-water">
+
+  <div class="info-box" style="background:var(--teal-soft);">
+    <p style="color:var(--teal-text);"><strong>Why this does more work than you think</strong>Dehydration mimics hunger. The craving for makhana at 4pm, the urge to pick at baby's fruit, the insatiable hunger post-aerobics — a significant chunk of that is thirst, not hunger. 2.5–3L daily can reduce mindless snacking by 20–25% with zero other change.</p>
+  </div>
+
+  <div class="alert-box" style="background:#FFF3E0; border-color:#F0C060; margin-bottom:16px;">
+    <span class="alert-icon">❄️</span>
+    <div class="alert-text" style="color:#7A4A00;">
+      <strong style="color:#5A3000;">Cold water — replace this habit</strong>
+      Cold water constricts blood vessels in the gut, slows digestion, and forces the body to work harder just to warm it. Switch to room temperature or warm — especially in the morning and with all meals.
+    </div>
+  </div>
+
+  <p class="section-label">When to drink — anchored to your actual day</p>
+
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">6:00 am</span>
+    <span class="water-amount">2 glasses warm</span>
+    <span class="water-note">Before phone, before tea</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">7:30 am</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">Alongside tea</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">8:30 am</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">Making baby food — bottle on counter</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">11:00 am</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">Set a phone reminder</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">1:45 pm</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">Before lunch</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">6:00 pm</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">Pre-aerobics</span>
+  </div>
+  <div class="water-row">
+    <div class="water-dot"></div>
+    <span class="water-time">8:00 pm</span>
+    <span class="water-amount">Mosambi juice ✓</span>
+    <span class="water-note">Post-aerobics, counts</span>
+  </div>
+  <div class="water-row" style="border-bottom:none;">
+    <div class="water-dot"></div>
+    <span class="water-time">8:45 pm</span>
+    <span class="water-amount">1 glass</span>
+    <span class="water-note">With dinner</span>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-val">2.5 – 3L</div>
+      <div class="stat-label">Daily target</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">9 – 10</div>
+      <div class="stat-label">Glasses roughly</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="background:var(--teal-soft);">
+    <p style="color:var(--teal-text);"><strong>The one trick that actually works</strong>Keep a 1 litre bottle on the kitchen counter — visible at all times. Refill it twice a day. You will not drink water you can't see. This is not about willpower. It's about removing the activation energy of even opening the fridge.</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════ LOOPS ═══ -->
+<div class="panel" id="panel-loops">
+
+  <div class="info-box" style="background:var(--purple-soft);">
+    <p style="color:var(--purple-text);"><strong>One loop, four expressions</strong>Reel scrolling, impulsive food orders, online shopping, phone covers — not four separate problems. The same dopamine-seeking loop running through different channels. Fix the loop once and all four improve together.</p>
+  </div>
+
+  <div class="loop-card">
+    <span class="loop-icon">📱</span>
+    <div>
+      <div class="loop-title">The phone covers — 60+ and counting</div>
+      <div class="loop-body">60+ covers for an iPhone is not a shopping problem. It's the same dopamine loop as reels and momos — novelty, quick hit, temporary satisfaction, repeat. The purchase is never about the cover. It's about the feeling of choosing something new. The fix is not willpower. It's friction: delete shopping apps from the home screen, bury them three folders deep, and add the <strong>24-hour cart rule</strong> — anything added to cart waits 24 hours before purchase. 80% of impulse buys die in the cart overnight on their own.</div>
+    </div>
+  </div>
+
+  <div class="loop-card">
+    <span class="loop-icon">📲</span>
+    <div>
+      <div class="loop-title">Instagram food reels</div>
+      <div class="loop-body">The algorithm knows exactly what she wants and serves it endlessly. Fighting it with willpower is a losing game — the algorithm has infinite patience and she doesn't. The intervention: <strong>unfollow or mute every food reel account</strong> — not restrict, unfollow. Replace with body transformation and fitness creators. The algorithm recalibrates within 3–4 days and starts serving different content. This is an environment change, not a self-control exercise. Also: set Instagram to 45 mins/day via Screen Time.</div>
+    </div>
+  </div>
+
+  <div class="loop-card" style="border-left-color:var(--amber);">
+    <span class="loop-icon">⚡</span>
+    <div>
+      <div class="loop-title">The 10-day slip — it will happen, and that's fine</div>
+      <div class="loop-body">Around day 8–12 the initial excitement fades and a craving wins. This is not failure — it is completely predictable. Every plan she's tried before treated this as a restart moment. This plan doesn't. The only rule after a slip: <strong>the next meal is protein-first</strong>. Not tomorrow. Not Monday. The very next meal. No guilt, no dramatic restart, no "I've ruined it". The slip is already built into the plan.</div>
+    </div>
+  </div>
+
+  <div class="loop-card">
+    <span class="loop-icon">🔄</span>
+    <div>
+      <div class="loop-title">Doom scrolling through the day</div>
+      <div class="loop-body">The goal isn't eliminating the joy of scrolling — it's keeping it from becoming 3 hours of passive consumption that leaves her feeling worse than before she started. Set Instagram to <strong>45 mins/day</strong> via Screen Time (iPhone) or Digital Wellbeing (Android). Suggested split: 20 mins in the morning window, 25 mins in the evening. The phone charges outside the bedroom at 9:30pm — that's the hard stop.</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="background:#F5F5F5; margin-top:6px;">
+    <p style="color:var(--text2);"><strong style="color:var(--text);">Gagan's role — witness, not warden</strong>One Sunday check-in, 10 minutes. What went well this week. What slipped. One thing for next week. That's it. She tracks her own numbers. He witnesses on Sunday. Accountability without it feeling like surveillance.</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════ MILESTONES ═══ -->
+<div class="panel" id="panel-milestones">
+
+  <div class="info-box" style="background:var(--purple-soft);">
+    <p style="color:var(--purple-text);"><strong>Tracked without feeling tracked</strong>No daily weigh-ins. No calorie counting apps. One waist measurement per month with a tape measure. One photo per month — same outfit, same spot, same time of day. One Sunday check-in. The scale lies daily. The tape and the mirror tell the truth monthly.</p>
+  </div>
+
+  <div class="milestone" style="border-left-color:var(--teal);">
+    <span class="milestone-phase" style="background:var(--teal-soft);color:var(--teal-text);">Week 1 – 2</span>
+    <div class="milestone-title">Lock exactly three things</div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Morning walk with baby — every single day</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">2 glasses warm water on waking — before phone</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Phone charges outside bedroom at night</div></div>
+    <div class="milestone-footer">
+      <div class="milestone-metric" style="color:var(--teal-text);">📊 Track: Walk done today? Yes / No. Nothing else.</div>
+      <div class="milestone-note">Don't change food yet. Don't add anything else. Three habits only. Starting small is not thinking small.</div>
+    </div>
+  </div>
+
+  <div class="milestone" style="border-left-color:var(--teal);">
+    <span class="milestone-phase" style="background:var(--teal-soft);color:var(--teal-text);">Month 1</span>
+    <div class="milestone-title">Add protein-first and fix the algorithm</div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Walk streak continues</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Protein in every breakfast — no exceptions</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Unfollow all food reel accounts on Instagram</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Replace biscuit/rusk with nuts or makhana at tea time</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--teal);"></div><div class="milestone-goal-text">Stop eating baby's leftover fruit mindlessly</div></div>
+    <div class="milestone-footer">
+      <div class="milestone-metric" style="color:var(--teal-text);">📊 Track: Waist measurement with tape. Not weight. Not scale.</div>
+      <div class="milestone-note">Scale won't move much yet. The waist will. Trust the tape, not the number.</div>
+    </div>
+  </div>
+
+  <div class="milestone" style="border-left-color:var(--amber);">
+    <span class="milestone-phase" style="background:var(--amber-soft);color:var(--amber-text);">Month 2 – 3</span>
+    <div class="milestone-title">Structure becomes automatic</div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--amber);"></div><div class="milestone-goal-text">3–4 tuition students enrolled from neighbourhood</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--amber);"></div><div class="milestone-goal-text">Instagram under 45 mins/day consistently</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--amber);"></div><div class="milestone-goal-text">Dal-first eating order at lunch becomes natural</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--amber);"></div><div class="milestone-goal-text">24-hour cart rule for all online shopping</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--amber);"></div><div class="milestone-goal-text">Dinner done by 9pm most nights</div></div>
+    <div class="milestone-footer">
+      <div class="milestone-metric" style="color:var(--amber-text);">📊 Track: Waist down 1–2 inches. Energy noticeably better.</div>
+      <div class="milestone-note">This is where past plans died. Don't quit here. Results are 3 weeks behind the effort — always.</div>
+    </div>
+  </div>
+
+  <div class="milestone" style="border-left-color:var(--coral);">
+    <span class="milestone-phase" style="background:var(--coral-soft);color:var(--coral-text);">Month 4 – 6</span>
+    <div class="milestone-title">Visible transformation</div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--coral);"></div><div class="milestone-goal-text">BMI moving from 33 toward 29–30</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--coral);"></div><div class="milestone-goal-text">Monthly photo comparison showing clear difference</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--coral);"></div><div class="milestone-goal-text">First online Zoom tuition batch launched</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--coral);"></div><div class="milestone-goal-text">Strength training added 2x per week at home</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--coral);"></div><div class="milestone-goal-text">Impulse shopping noticeably reduced</div></div>
+    <div class="milestone-footer">
+      <div class="milestone-metric" style="color:var(--coral-text);">📊 Track: Monthly photo in same outfit, same spot. Waist tape. How you feel walking into a room.</div>
+      <div class="milestone-note">By month 5, people around you will notice before you do.</div>
+    </div>
+  </div>
+
+  <div class="milestone" style="border-left-color:var(--purple);">
+    <span class="milestone-phase" style="background:var(--purple-soft);color:var(--purple-text);">Month 7 – 12</span>
+    <div class="milestone-title">The new normal</div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-goal-text">BMI target 27–28</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-goal-text">Tuitions = real income and real identity</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-goal-text">Habits are automatic — no longer effortful</div></div>
+    <div class="milestone-goal"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-goal-text">Morning walk feels wrong to skip, not hard to do</div></div>
+    <div class="milestone-footer">
+      <div class="milestone-metric" style="color:var(--purple-text);">📊 Track: Monthly photo series. How clothes fit. How you feel.</div>
+      <div class="milestone-note">This is the version of you that was always there. It just needed the right conditions.</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="background:#F5F5F5; margin-top:6px;">
+    <p style="color:var(--text2);"><strong style="color:var(--text);">The photo series</strong>First Sunday of every month. Same outfit. Same spot. Same time of day. By month 3 the difference will be subtle but unmistakable. By month 6 it will be the most motivating thing in the entire plan — not because someone told her she looked good, but because she can see it herself.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Made with care by Bou and Claude · gagan93.me
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
